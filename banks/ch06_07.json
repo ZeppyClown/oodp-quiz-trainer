@@ -1,0 +1,677 @@
+[
+ {
+  "id": "ch6-01",
+  "chapter": 6,
+  "subtopic": "visibility",
+  "type": "single",
+  "gotcha": true,
+  "question": "In a UML class diagram, an operation is written as `#getID():int`. What is the visibility of `getID()`?",
+  "options": [
+   "package (default) access",
+   "private",
+   "protected",
+   "public"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The slides list + public, # protected, - private, ~ package (default). `#` means protected. Package visibility is `~`."
+ },
+ {
+  "id": "ch6-02",
+  "chapter": 6,
+  "subtopic": "visibility",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which Java declaration correctly implements `getEmailAddress()` from the Student class shown?",
+  "diagram": "classDiagram\nclass Student {\n-name:String\n-id:int\n-totalStudents:int$\n#getID() int\n+getName() String\n~getEmailAddress() String\n+getTotalStudents()$ int\n}",
+  "options": [
+   "`public String getEmailAddress()`",
+   "`protected String getEmailAddress()`",
+   "`private String getEmailAddress()`",
+   "`String getEmailAddress()` (no access modifier)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`~` is package visibility. In Java that is the default access you get with no modifier. It is not protected, which is `#`."
+ },
+ {
+  "id": "ch6-03",
+  "chapter": 6,
+  "subtopic": "class notation",
+  "type": "single",
+  "gotcha": true,
+  "question": "In the same Student class, `totalStudents` and `getTotalStudents()` are drawn **underlined**. What does the underline mean, and how is `totalStudents` declared in Java?",
+  "diagram": "classDiagram\nclass Student {\n-name:String\n-id:int\n-totalStudents:int$\n#getID() int\n+getName() String\n~getEmailAddress() String\n+getTotalStudents()$ int\n}",
+  "options": [
+   "It marks a constant: `private final int totalStudents;`",
+   "It marks a class-level (static) member: `private static int totalStudents;`",
+   "It marks an abstract member: `abstract int totalStudents;`",
+   "It marks a derived attribute that is computed and not stored"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "In UML, underlining marks static (class-scope) members. The `-` makes it private. Underlining does not mean final."
+ },
+ {
+  "id": "ch6-04",
+  "chapter": 6,
+  "subtopic": "class notation",
+  "type": "single",
+  "gotcha": true,
+  "question": "According to the slides, which line is a correctly formatted UML attribute for a private Boolean `isPrepaid` initialised to FALSE?",
+  "options": [
+   "`- Boolean isPrepaid = FALSE`",
+   "`- isPrepaid = FALSE : Boolean`",
+   "`- isPrepaid: Boolean = FALSE`",
+   "`private isPrepaid: Boolean = FALSE`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The attribute format is `name: type [multiplicity] = initial-value`, after the visibility symbol. The type comes after the name, the reverse of Java, and visibility is a symbol, not a keyword."
+ },
+ {
+  "id": "ch6-05",
+  "chapter": 6,
+  "subtopic": "class notation",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which is the correct UML operation for the Java method `public boolean dispatch(Date dateDispatched)`, in the format the slides use?",
+  "options": [
+   "`+ dispatch(in dateDispatched: Date): Boolean`",
+   "`+ boolean dispatch(Date dateDispatched)`",
+   "`+ dispatch(dateDispatched): Date Boolean`",
+   "`# dispatch(in Date dateDispatched): Boolean`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Operation format: `name(parameter-list): return type`. Each parameter is `direction name: type = default`, where `in` is the optional direction. `+` means public, while `#` would mean protected."
+ },
+ {
+  "id": "ch6-06",
+  "chapter": 6,
+  "subtopic": "class notation",
+  "type": "multi",
+  "gotcha": true,
+  "question": "`Shape` is an abstract class with an abstract operation `areaOf()` returning float. Which notations correctly mark something as abstract in a UML class diagram?",
+  "options": [
+   "Underlining the class name `Shape`",
+   "Writing `{abstract}` under the class name `Shape`",
+   "Placing `<<interface>>` above the class name `Shape`",
+   "Writing `areaOf() : float {abstract}` in the operations compartment"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "The slides mark abstract classes and operations with the property `{abstract}`. Italics is the equivalent standard form. Underlining means static, and `<<interface>>` is a different kind of classifier."
+ },
+ {
+  "id": "ch6-07",
+  "chapter": 6,
+  "subtopic": "multiplicity",
+  "type": "single",
+  "gotcha": true,
+  "question": "What does this diagram specify?",
+  "diagram": "classDiagram\nCompany \"1\" *-- \"1..*\" Department : has",
+  "options": [
+   "Each Company has one or more Departments, and each Department belongs to exactly one Company",
+   "Each Department belongs to one or more Companies",
+   "Each Company has exactly one Department",
+   "Each Department owns one or more Companies, because the 1..* is next to Department"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Multiplicity is read at the far end. The 1..* next to Department says how many Departments one Company has, and the 1 next to Company says each Department has one Company. The filled diamond marks Company as the whole."
+ },
+ {
+  "id": "ch6-08",
+  "chapter": 6,
+  "subtopic": "uml to java",
+  "type": "single",
+  "gotcha": true,
+  "question": "Using the slides' mapping for this **bi-directional** association (no arrowheads), which pair of attribute declarations is correct?",
+  "diagram": "classDiagram\nClassA \"1..10\" -- \"1..5\" ClassB",
+  "options": [
+   "ClassA: `ClassB[] bObjs = new ClassB[10];` and ClassB: `ClassA[] aObjs = new ClassA[5];`",
+   "ClassA: `ClassB[] bObjs = new ClassB[5];` and ClassB: `ClassA[] aObjs = new ClassA[10];`",
+   "ClassA: `ClassB b;` and ClassB has no ClassA attribute",
+   "ClassA: `ClassB[] bObjs = new ClassB[5];` and ClassB has no ClassA attribute"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Each class holds an array sized by the multiplicity at the OTHER end. ClassA can link to up to 5 ClassB objects (1..5 is next to ClassB), and ClassB can link to up to 10 ClassA objects. A plain line is bi-directional, so both classes get a field."
+ },
+ {
+  "id": "ch6-09",
+  "chapter": 6,
+  "subtopic": "uml to java",
+  "type": "single",
+  "gotcha": true,
+  "question": "Following the slides' conventions, which relationship best matches this code?",
+  "code": "import java.util.ArrayList;\n\nclass Room {}\n\nclass House {\n    private ArrayList<Room> rooms = new ArrayList<>();\n\n    public House() {\n        rooms.add(new Room());\n        rooms.add(new Room());\n    }\n}",
+  "options": [
+   "Hollow diamond at the House end (aggregation)",
+   "Filled diamond at the Room end (composition)",
+   "Dashed arrow from House to Room (dependency)",
+   "Filled diamond at the House end (composition)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The whole (House) creates its own parts in its constructor, so this is composition. The filled diamond goes at the whole's end. Aggregation would add parts that were created elsewhere and passed in by reference."
+ },
+ {
+  "id": "ch6-10",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which UML relationship does this code represent, according to the slides?",
+  "code": "import java.util.ArrayList;\n\nclass Person {}\n\nclass LectureGroup {\n    private ArrayList<Person> members = new ArrayList<>();\n\n    public void addPerson(Person p) {\n        members.add(p);\n    }\n}",
+  "options": [
+   "Composition: filled diamond at LectureGroup, because LectureGroup holds a list of Person",
+   "Dependency only (dashed arrow), because Person appears as a method parameter",
+   "Aggregation: hollow diamond at Person",
+   "Aggregation: hollow diamond at LectureGroup, with * at the Person end"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The Person objects are created elsewhere and added by reference, so LectureGroup is the whole in an aggregation and the hollow diamond sits at its end. A collection field means `*`. Because Person is stored as an attribute, the relationship is more than a dependency."
+ },
+ {
+  "id": "ch6-11",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "multi",
+  "gotcha": true,
+  "question": "Considered on its own, which uses of `ClassB` inside `ClassA` do the slides show as a **dependency** (dashed arrow from ClassA to ClassB) rather than an association?",
+  "options": [
+   "`ClassB doSomeThing() { ... }`: ClassB as a method return type",
+   "`private ClassB partner;`: ClassB as an attribute",
+   "`void doSomeThing(ClassB b) { ... }`: ClassB as a method parameter type",
+   "`void doSomeThing() { ClassB b = new ClassB(); }`: ClassB as a local variable"
+  ],
+  "answer": [
+   0,
+   2,
+   3
+  ],
+  "explanation": "The slides map a dependency to ClassB used as a return type, a parameter type, or a local variable type. An attribute of type ClassB is an association."
+ },
+ {
+  "id": "ch6-12",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": false,
+  "question": "Based on this diagram, which statement is correct?",
+  "diagram": "classDiagram\nHuman \"1\" *-- \"0..2\" Arm\nArm \"1\" *-- \"0..1\" Hand\nLectureGroup \"*\" o-- \"1..*\" Person",
+  "options": [
+   "A Person can belong to only one LectureGroup at a time, because the diamond is next to LectureGroup",
+   "If a Human object is deleted, its Arm objects are normally deleted with it",
+   "An Arm can be part of two Human objects at the same time",
+   "Hand is the whole and Arm is the part"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Composition (filled diamond) means a part belongs to at most one whole at a time and is normally deleted with it. Aggregation (hollow diamond) has standalone parts that can be shared, so the `*` lets a Person be in many LectureGroups. The diamond always sits at the whole."
+ },
+ {
+  "id": "ch6-13",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": true,
+  "question": "How is the relationship between `BubbleSort` and `Sort` drawn in a class diagram?",
+  "code": "interface Sort {\n    void sortAscending();\n    void sortDescending();\n}\n\nclass BubbleSort implements Sort {\n    public void sortAscending() {}\n    public void sortDescending() {}\n}",
+  "options": [
+   "Solid line with a hollow triangle at Sort",
+   "Dashed line with an open (stick) arrowhead at Sort",
+   "Dashed line with a hollow triangle at Sort",
+   "Dashed line with a hollow triangle at BubbleSort"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Interface realisation (`implements`) is a dashed line with a hollow triangle pointing at the interface. A solid line with a hollow triangle is generalisation (`extends`), and a dashed line with an open arrowhead is a dependency."
+ },
+ {
+  "id": "ch6-14",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": true,
+  "question": "This diagram follows the slides' Java Collections Framework example. Which Java declaration is consistent with it?",
+  "diagram": "classDiagram\nclass Collection {\n<<interface>>\n+equals()\n+add()\n}\nclass List {\n<<interface>>\n+get()\n}\nclass AbstractList {\n<<abstract>>\n+add()\n+get()*\n}\nclass ArrayList {\n+add()\n+get()\n}\nCollection <|-- List\nList <|.. AbstractList\nAbstractList <|-- ArrayList\nOrder ..> List",
+  "options": [
+   "`interface List implements Collection { ... }`",
+   "`interface List extends Collection { ... }`",
+   "`abstract class AbstractList extends List { ... }`",
+   "`class ArrayList implements AbstractList { ... }`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Between two interfaces the line is generalisation (solid line, hollow triangle), which maps to `extends`. A class to an interface is realisation (dashed), which maps to `implements`. A class to a class is generalisation, which maps to `extends`. An interface can never `implements` anything."
+ },
+ {
+  "id": "ch6-15",
+  "chapter": 6,
+  "subtopic": "object diagram",
+  "type": "single",
+  "gotcha": true,
+  "question": "In an object diagram, how is an object named `jack` of class `Student` labelled according to the slides?",
+  "options": [
+   "`jack : Student`, underlined",
+   "`Student : jack`, underlined",
+   "`jack : Student`, in bold but not underlined",
+   "`<<object>> jack`, underlined"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "An instance is labelled `objectName : ClassName` and the whole string is underlined. Underlining is what separates an object from a class box."
+ },
+ {
+  "id": "ch6-16",
+  "chapter": 6,
+  "subtopic": "object diagram",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which statements about drawing the two Book objects created in `main` as a UML object diagram are correct?",
+  "code": "class Book {\n    String title;\n    String author;\n\n    Book(String title, String author) {\n        this.title = title;\n        this.author = author;\n    }\n}\n\nclass Library {\n    public static void main(String[] args) {\n        Book b = new Book(\"Twelfth Night\", \"Shakespeare\");\n        checkout(new Book(\"Hamlet\", \"Shakespeare\"));\n    }\n\n    static void checkout(Book bk) {}\n}",
+  "options": [
+   "The object passed straight into `checkout(...)` has no variable name in `main`, so it is drawn as `Book:` (underlined)",
+   "The first object can be drawn as `b:Book` (underlined), with `title = \"Twelfth Night\"` in its attribute compartment",
+   "Attribute values are written in Java form, such as `String title = \"Twelfth Night\";`",
+   "The object passed straight into `checkout(...)` is an anonymous object and is drawn as `:Book` (underlined)"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "An object diagram uses `name:Class` underlined and lists attribute values as `attr = value`. When the object has no name, the name before the colon is dropped and the colon stays, giving `:Book`."
+ },
+ {
+  "id": "ch6-17",
+  "chapter": 6,
+  "subtopic": "stereotypes",
+  "type": "single",
+  "gotcha": true,
+  "question": "The slides describe a `<<boundary>>` class as handling 'interaction between System and External (system surrounding) - interfaces'. Which statement is correct?",
+  "options": [
+   "A `<<boundary>>` class holds persistent information tracked by the system, such as Student",
+   "A `<<boundary>>` class such as `InvoiceForm` or `xxxUI` handles interaction between the system and actors outside it",
+   "A `<<boundary>>` class must be written as a Java `interface`",
+   "A `<<boundary>>` class contains the logic that coordinates a use case, such as `CourseMgr`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Boundary classes (xxxUI, xxxForm, xxxInterface) are ordinary classes at the system edge. 'Interface' there means user or system interface, not a Java `interface`. Persistent data belongs to `<<entity>>` classes and use-case logic to `<<control>>` classes (xxxMgr, xxxCtrl)."
+ },
+ {
+  "id": "ch6-18",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Borrower` and `Equipment` are linked by an association (Borrower `*`, Equipment `1..*`). A class `Loan` with attribute `- date` is attached to the middle of that association line. How is Loan attached, and what is it?",
+  "options": [
+   "By a dashed arrow; Loan has a dependency on the association",
+   "By a solid line with a hollow triangle; Loan is a subclass of the association",
+   "By a solid line; Loan is a third class in a three-way association",
+   "By a dashed line (no arrowhead); Loan is an association class holding data, such as the date, that belongs to the link itself"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "An association class is joined to its association line by a plain dashed line. It holds features of the relationship itself. The slides also show it promoted to a normal class: Borrower 1 to 1..* Loan, and Loan * to 1 Equipment."
+ },
+ {
+  "id": "ch6-19",
+  "chapter": 6,
+  "subtopic": "multiplicity",
+  "type": "single",
+  "gotcha": true,
+  "question": "In the slides, this association also carries the constraint `{ordered}` and the role name `bookItems` at the Book end. Which Java is the best match?",
+  "diagram": "classDiagram\nShelf \"1\" --> \"1..*\" Book : bookItems",
+  "options": [
+   "In Shelf: `Book bookItems;`, and in Book: `Shelf shelf;`",
+   "In Book: `List<Shelf> bookItems = new ArrayList<>();`",
+   "In Shelf: `Set<Book> bookItems = new HashSet<>();`, and nothing in Book",
+   "In Shelf: `List<Book> bookItems = new ArrayList<>();`, and nothing in Book"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The arrowhead at Book makes the association navigable only from Shelf, so only Shelf gets a field, named after the role `bookItems`. The `1..*` multiplicity needs a collection, and `{ordered}` points to a List rather than an unordered Set."
+ },
+ {
+  "id": "ch6-20",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which relationship from `Car` to `ParkingLot` best matches this code, according to the slides?",
+  "code": "class ParkingLot {}\n\nclass Car {\n    private ParkingLot lot;\n\n    public void park(ParkingLot l) {\n        lot = l;\n    }\n}",
+  "options": [
+   "Association (solid line, open arrowhead at ParkingLot), because Car keeps a ParkingLot reference as an attribute",
+   "Dependency (dashed arrow) only, because ParkingLot is a method parameter",
+   "Composition, with the filled diamond at Car",
+   "Generalisation, because a Car is a ParkingLot"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A parameter alone would give a dependency. Here the parameter is stored in the field `lot`, so Car holds a lasting reference, which makes this a directed association. Car does not create the ParkingLot, so it is not composition."
+ },
+ {
+  "id": "ch6-21",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": true,
+  "question": "In the slides, the labels in this diagram are the stereotypes `<<call>>` and `<<use>>`. Which statement is correct?",
+  "diagram": "classDiagram\nBenefitsForm ..> EmployeeManager : call\nEmployeeManager ..> Employee : use\nEmployeeManager ..> Benefits : use",
+  "options": [
+   "BenefitsForm is the supplier and EmployeeManager is the client",
+   "The arrows point from the supplier to the client",
+   "EmployeeManager is a client of Employee and Benefits, so changes to Employee may affect EmployeeManager",
+   "The dashed arrows mean EmployeeManager holds Employee and Benefits as attributes"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A dependency arrow runs from the client, at the tail, to the supplier, at the arrowhead. If the supplier changes, the client may be affected. A dashed arrow does not imply an attribute; attributes are associations."
+ },
+ {
+  "id": "ch7-01",
+  "chapter": 7,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": true,
+  "question": "In this ButtonPress diagram, which message is **asynchronous**?",
+  "diagram": "sequenceDiagram\nparticipant u as :User\nparticipant b as btn:Button\nparticipant l as :ButtonListener\nparticipant t as :Light\nu-)b: press\nactivate b\nb->>l: actionPerformed(event)\nactivate l\nl->>t: toggle()\nactivate t\nt->>t: getState()\nt-->>l: done\ndeactivate t\nl-->>b: done\ndeactivate l\ndeactivate b",
+  "options": [
+   "actionPerformed(event)",
+   "toggle()",
+   "getState()",
+   "press"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "An asynchronous message has an open arrowhead, and the sender does not wait. A synchronous message, a normal blocking method call, has a filled arrowhead."
+ },
+ {
+  "id": "ch7-02",
+  "chapter": 7,
+  "subtopic": "messages",
+  "type": "multi",
+  "gotcha": true,
+  "question": "According to the slides, which message types are drawn as a **dashed line with an open arrowhead**?",
+  "options": [
+   "Synchronous message",
+   "Reply (return) message",
+   "Asynchronous message",
+   "Object creation message (labelled `new`)"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "The slides say the reply message has a dashed line, and the object creation message is a dashed line with an open arrow. Synchronous messages are solid with a filled head, and asynchronous ones are solid with an open head."
+ },
+ {
+  "id": "ch7-03",
+  "chapter": 7,
+  "subtopic": "lifelines",
+  "type": "single",
+  "gotcha": true,
+  "question": "Using the slides' lifeline format `[name] : class_name`, which lifeline label is **NOT** valid?",
+  "options": [
+   ":Order",
+   "ol:OrderLine",
+   "ol",
+   "f:File"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "In a lifeline head, `:class_name` is mandatory and the object name is optional. `:Order` is an anonymous object, but `ol` with no class is not allowed."
+ },
+ {
+  "id": "ch7-04",
+  "chapter": 7,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": true,
+  "question": "In a sequence diagram of `Order.calculatePrice()` drawn from this code, which statement is correct?",
+  "code": "class Product {\n    public double getPricingDetails() { return 100.0; }\n}\n\nclass Customer {\n    public double getDiscountInfo() { return 10.0; }\n}\n\nclass OrderLine {\n    private int qty;\n    private Product product = new Product();\n    public int getQuantity() { return qty; }\n    public Product getProduct() { return product; }\n}\n\nclass Order {\n    private Customer c = new Customer();\n    private OrderLine ol = new OrderLine();\n\n    public double calculatePrice() {\n        int qty = ol.getQuantity();\n        Product p = ol.getProduct();\n        double price = p.getPricingDetails();\n        double bPrice = calculateBasicPrice(qty, price);\n        double discount = calculateDiscounts();\n        return calculateTotalPrice(price, discount);\n    }\n\n    private double calculateBasicPrice(int qty, double price) { return qty * price; }\n    private double calculateDiscounts() { return c.getDiscountInfo(); }\n    private double calculateTotalPrice(double price, double discount) { return price * discount; }\n}",
+  "options": [
+   "`getQuantity()` is drawn as a message from `ol:OrderLine` to `:Order`",
+   "`getPricingDetails()` is drawn as a message from `:Order` to `ol:OrderLine`",
+   "`getDiscountInfo()` leaves calculatePrice()'s own activation bar, at the same nesting level as `getProduct()`",
+   "`calculateBasicPrice(...)` and `calculateDiscounts()` are drawn as self-messages on `:Order`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A message goes from the caller to the object that owns the method, and a call to the object's own method is a self-message. `getDiscountInfo()` is called inside `calculateDiscounts()`, so it leaves the nested activation bar of that self-call. `getPricingDetails()` goes to `p:Product`."
+ },
+ {
+  "id": "ch7-05",
+  "chapter": 7,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": false,
+  "question": "In this diagram, `p` can be traced because it is returned by `getProduct()`. No message creates or returns `ol` or `c`. When coding `Order`, what must be true?",
+  "diagram": "sequenceDiagram\nparticipant x as Caller\nparticipant o as :Order\nparticipant ol as ol:OrderLine\nparticipant p as p:Product\nparticipant c as c:Customer\nx->>o: calculatePrice()\nactivate o\no->>ol: qty = getQuantity()\no->>ol: getProduct()\nol-->>o: p\no->>p: getPricingDetails()\np-->>o: price\no->>o: bPrice = calculateBasicPrice(qty, price)\no->>o: discount = calculateDiscounts()\no->>c: getDiscountInfo()\no->>o: calculateTotalPrice(price, discount)\no-->>x: total\ndeactivate o",
+  "options": [
+   "`ol` and `c` must be local variables declared inside `calculatePrice()`",
+   "`ol` and `c` must be attributes (fields) of Order",
+   "`ol` and `c` must be parameters of `calculatePrice()`",
+   "`ol` and `c` must be static methods of Order"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Every reference in a sequence diagram must be traceable. If a reference is not passed in, returned, or created within the method, it must come from outside the method, which means an attribute of the class."
+ },
+ {
+  "id": "ch7-06",
+  "chapter": 7,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which Java code in `FASMgr` matches this diagram?",
+  "diagram": "sequenceDiagram\nparticipant f as :FASMgr\nparticipant m as :FingerprintMgr\nparticipant g as :EntryGateInterface\nf->>m: result = validate(img)\nactivate m\nm-->>f: result\ndeactivate m\nopt result == true\nf->>g: unlock()\nend",
+  "options": [
+   "`boolean result = fpMgr.validate(img); if (result == true) { gate.unlock(); }`",
+   "`boolean result = fpMgr.validate(img); while (result == true) { gate.unlock(); }`",
+   "`boolean result = fpMgr.validate(img); if (result == true) { gate.unlock(); } else { gate.lock(); }`",
+   "`gate.unlock(); boolean result = fpMgr.validate(img);`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "An `opt` fragment is an if statement with no else: its contents run only when the guard is true. An if-else maps to `alt`, and a while loop maps to `loop`."
+ },
+ {
+  "id": "ch7-07",
+  "chapter": 7,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which code matches this `printCurrentRecords` diagram?",
+  "diagram": "sequenceDiagram\nparticipant pm as :PrintManager\nparticipant f as f:File\nparticipant pi as :PrinterInterface\npm->>f: open()\nloop not end of file\npm->>f: rec = readRecord()\nalt rec is valid\npm->>pi: print(rec)\nelse else\npm->>pi: log(rec)\nend\nend\npm->>f: close()",
+  "options": [
+   "`f.open(); while (!eof) { rec = f.readRecord(); if (valid) pi.print(rec); else pi.log(rec); f.close(); }`",
+   "`f.open(); rec = f.readRecord(); while (!eof) { if (valid) pi.print(rec); else pi.log(rec); } f.close();`",
+   "`f.open(); while (!eof) { rec = f.readRecord(); if (valid) pi.print(rec); } pi.log(rec); f.close();`",
+   "`f.open(); while (!eof) { rec = f.readRecord(); if (valid) pi.print(rec); else pi.log(rec); } f.close();`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`loop` maps to while/for, and `alt` maps to if-else, with operands separated by a dashed line. What is inside a fragment's box is inside the code block: readRecord() and the alt are inside the loop, and close() comes after it."
+ },
+ {
+  "id": "ch7-08",
+  "chapter": 7,
+  "subtopic": "fragments",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which statements about interaction operators are correct according to the slides?",
+  "options": [
+   "`par` means the operands execute one after another in the order drawn",
+   "`opt` is equivalent to an `alt` with only one operand; it runs only if its guard is true",
+   "In an `alt`, at most one operand is chosen: the one whose guard is true",
+   "`ref` repeats the enclosed messages until its guard becomes false"
+  ],
+  "answer": [
+   1,
+   2
+  ],
+  "explanation": "`alt` chooses at most one operand, and `opt` is an alt with a single trace. `par` means the operands run in parallel, and `ref` (InteractionUse) refers to another sequence diagram. Repetition is `loop`."
+ },
+ {
+  "id": "ch7-09",
+  "chapter": 7,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": true,
+  "question": "In this diagram, a `break` fragment sits inside `loop(10)`. What happens on an iteration where y is greater than 0?",
+  "diagram": "sequenceDiagram\nparticipant a as :Client\nparticipant b as :List\nparticipant s as :Store\nloop 10 times\na->>b: add()\nbreak y greater than 0\na->>s: save()\nend\nend",
+  "options": [
+   "save() runs, then the loop continues with its next iteration",
+   "save() runs instead of the rest of the enclosing loop, so the loop is exited",
+   "The whole loop is skipped and save() is never called",
+   "save() runs in parallel with add()"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`break` represents a breaking or exceptional scenario that runs instead of the remainder of the enclosing fragment, much like `if (y > 0) { save(); break; }` in Java."
+ },
+ {
+  "id": "ch7-10",
+  "chapter": 7,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": true,
+  "question": "A message arrow **starts** at a small filled black circle, with no sending lifeline, and ends on `:PrintManager`. What is it?",
+  "options": [
+   "A lost message: the sender is known but the message never arrives",
+   "A destruction event",
+   "A found message: the receiver is known but the origin is outside the scope of the diagram",
+   "An asynchronous message from an actor"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A found message has a black circle at its source, meaning the origin is unknown or out of scope. A lost message has the black circle at the arrow end, meaning it never reached a receiver."
+ },
+ {
+  "id": "ch7-11",
+  "chapter": 7,
+  "subtopic": "creation and destruction",
+  "type": "single",
+  "gotcha": true,
+  "question": "In `sd UpdateUserInfo`, `:UserMgr` sends a dashed message with an open arrowhead, labelled `new`, that points at the head box of `:UserInfo`. That head box is drawn lower than the other lifeline heads, and the `:UserInfo` lifeline later ends in a large X. Which interpretation is correct?",
+  "options": [
+   "The dashed `new` arrow is a return message, and the X marks where the method returns",
+   "The `new` arrow is an asynchronous message, and the X marks a lost message",
+   "The `new` arrow creates the object (a constructor call), and the X is the destruction event that ends the object's lifetime",
+   "The X marks an exception thrown by `:UserInfo`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "An object created during the interaction has its head placed where the dashed `new` (creation) message arrives. The X at the bottom of the lifeline is the destruction event. In Java, that corresponds to the object no longer being referenced so it can be garbage-collected."
+ },
+ {
+  "id": "ch7-12",
+  "chapter": 7,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": true,
+  "question": "Using the slides' message syntax, what does `v=mymsg(16, variab):96` mean?",
+  "options": [
+   "mymsg is called with arguments 16 and variab; this reply returns 96, which is assigned to v",
+   "v is passed as an argument, and 96 is the default value of variab",
+   "96 is the sequence number of the message",
+   "mymsg is called 96 times and the last result is stored in v"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "In a reply message, `var=` receives the return value and `:value` after the call gives the returned value. Similarly, `result=dispatch(today)` passes `today` as the argument and assigns the return value to `result`."
+ },
+ {
+  "id": "ch7-13",
+  "chapter": 7,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which combined-fragment structure should a sequence diagram of `Cart.total()` use?",
+  "code": "import java.util.ArrayList;\nimport java.util.List;\n\nclass Item {\n    boolean isTaxable() { return true; }\n    double getPrice() { return 1.0; }\n}\n\nclass TaxCalc {\n    double tax(double p) { return p * 0.09; }\n}\n\nclass Cart {\n    private List<Item> items = new ArrayList<>();\n    private TaxCalc calc = new TaxCalc();\n\n    double total() {\n        double sum = 0;\n        for (Item it : items) {\n            double p = it.getPrice();\n            if (it.isTaxable()) {\n                p = p + calc.tax(p);\n            }\n            sum = sum + p;\n        }\n        return sum;\n    }\n}",
+  "options": [
+   "An `alt` fragment containing a `loop` fragment",
+   "A `loop` fragment containing an `opt` fragment around `tax(p)`",
+   "A `loop` fragment containing a `break` fragment around `tax(p)`",
+   "A `par` fragment around `getPrice()` and `isTaxable()`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The for-each loop maps to `loop`. The if statement with no else inside it maps to a nested `opt` whose guard is the if condition."
+ },
+ {
+  "id": "ch7-14",
+  "chapter": 7,
+  "subtopic": "lifelines",
+  "type": "single",
+  "gotcha": false,
+  "question": "In this diagram, the self-message `calculateDiscounts()` opens a second, nested activation bar on `:Order`, and `getDiscountInfo()` leaves from that nested bar. Which Order code matches?",
+  "diagram": "sequenceDiagram\nparticipant x as Caller\nparticipant o as :Order\nparticipant c as c:Customer\nx->>o: calculatePrice()\nactivate o\no->>o: discount = calculateDiscounts()\nactivate o\no->>c: getDiscountInfo()\nactivate c\nc-->>o: info\ndeactivate c\ndeactivate o\no-->>x: total\ndeactivate o",
+  "options": [
+   "`private double calculateDiscounts() { return c.getDiscountInfo(); }`, called from calculatePrice() as `discount = calculateDiscounts();`",
+   "`double discount = c.getDiscountInfo();` written directly in calculatePrice(), with calculateDiscounts() left empty",
+   "Customer declares `calculateDiscounts()`, which calls `getDiscountInfo()` on itself",
+   "`calculateDiscounts()` is called on `c`, and `c` then calls `getDiscountInfo()` back on Order"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "An activation bar marks a method body. The nested bar from a self-message (the slides' recommended 'recursive message' style) is the body of calculateDiscounts(), so getDiscountInfo() is called inside that method."
+ },
+ {
+  "id": "ch7-15",
+  "chapter": 7,
+  "subtopic": "lifelines",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which statement about reading a sequence diagram is correct according to the slides?",
+  "options": [
+   "Time flows left to right, in the order the lifelines are drawn",
+   "Return messages are mandatory and must be drawn for every call",
+   "The frame label `sd ButtonPress` names the class that owns all the messages",
+   "Time flows top to bottom; the left-to-right order of lifelines is only a layout choice"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A sequence diagram is read top-down. Messages may flow left or right depending on where the lifelines are placed. Return messages are often left out to reduce clutter, and the `sd` label names the interaction."
+ }
+]

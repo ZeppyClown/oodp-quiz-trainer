@@ -1,0 +1,671 @@
+[
+ {
+  "id": "ch5-01",
+  "chapter": 5,
+  "subtopic": "dynamic binding",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "class A {\n    String name = \"A\";\n    String get() { return name; }\n}\nclass B extends A {\n    String name = \"B\";\n    String get() { return name; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        A a = new B();\n        System.out.println(a.name + a.get() + ((B) a).name);\n    }\n}",
+  "options": [
+   "BBB",
+   "AAB",
+   "ABB",
+   "AAA"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Only methods are dynamically bound. Fields are not polymorphic: `a.name` is resolved from the declared (reference) type `A`, so it gives \"A\". `a.get()` runs B's overriding method, which reads B's `name`. Expecting \"BBB\" assumes fields are overridden, but a field with the same name in a subclass only hides the parent's field."
+ },
+ {
+  "id": "ch5-02",
+  "chapter": 5,
+  "subtopic": "static binding",
+  "type": "single",
+  "gotcha": true,
+  "question": "This is a variation of the slides' `StaticBindingTest`. What is printed?",
+  "code": "import java.util.*;\npublic class Main {\n    static String sort(Collection c) { return \"Collection\"; }\n    static String sort(HashSet hs) { return \"HashSet\"; }\n    public static void main(String[] args) {\n        Collection c = new HashSet();\n        HashSet h = new HashSet();\n        System.out.println(sort(c) + \" \" + sort(h) + \" \" + sort((HashSet) c));\n    }\n}",
+  "options": [
+   "Collection HashSet HashSet",
+   "HashSet HashSet HashSet",
+   "Collection Collection HashSet",
+   "Collection Collection Collection"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Choosing between overloaded methods is static (early) binding. The compiler picks the overload from the declared type of the argument, so `sort(c)` with `c` declared as `Collection` calls the Collection version even though the object is a HashSet. The cast `(HashSet) c` changes the compile-time type, so that call picks the HashSet overload."
+ },
+ {
+  "id": "ch5-03",
+  "chapter": 5,
+  "subtopic": "static binding",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "class P {\n    static String id() { return \"P\"; }\n    String who() { return \"p\"; }\n}\nclass Q extends P {\n    static String id() { return \"Q\"; }\n    String who() { return \"q\"; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        P x = new Q();\n        System.out.println(x.id() + x.who() + ((Q) x).id());\n    }\n}",
+  "options": [
+   "QqQ",
+   "PqQ",
+   "PpP",
+   "Pqp"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Static methods are statically bound and are not polymorphic. `x.id()` is resolved from the declared type `P`, so Q's static `id()` only hides P's and does not override it. The instance method `who()` is dynamically bound to Q. Answering \"QqQ\" treats static methods as if they were overridden."
+ },
+ {
+  "id": "ch5-04",
+  "chapter": 5,
+  "subtopic": "dynamic binding",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed when `new Derived()` runs?",
+  "code": "class Base {\n    Base() { show(); }\n    void show() { System.out.println(\"Base\"); }\n}\nclass Derived extends Base {\n    int v = 5;\n    String s = \"set\";\n    void show() { System.out.println(\"Derived \" + v + \" \" + s); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        new Derived();\n    }\n}",
+  "options": [
+   "Base",
+   "Derived 5 set",
+   "Derived 0 null",
+   "Compilation error: cannot call an overridable method in a constructor"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Dynamic binding applies even inside a constructor, so `Base()` calls Derived's overriding `show()`. That happens before Derived's field initialisers have run, so `v` and `s` still hold their default values, 0 and null. Java allows the call, so there is no compile error."
+ },
+ {
+  "id": "ch5-05",
+  "chapter": 5,
+  "subtopic": "typecasting",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens when this program is compiled and run?",
+  "code": "class Shape { }\nclass Rectangle extends Shape {\n    int getHeight() { return 10; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Shape shape = new Shape();              // line 1\n        Rectangle rect = (Rectangle) shape;     // line 2\n        System.out.println(\"cast done\");        // line 3\n        System.out.println(rect.getHeight());   // line 4\n    }\n}",
+  "options": [
+   "Compilation error at line 2: incompatible types",
+   "It compiles; a `ClassCastException` is thrown at line 2 and nothing is printed",
+   "It compiles; prints `cast done` and then throws an exception at line 4",
+   "It compiles and prints `cast done` then `10`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "An explicit downcast is accepted by the compiler because the compiler does not check whether downcasting makes sense. At run time the object is a plain `Shape`, not a `Rectangle`, so the cast itself throws `ClassCastException`, before line 3 runs. Without the cast, line 2 would be a compile error."
+ },
+ {
+  "id": "ch5-06",
+  "chapter": 5,
+  "subtopic": "typecasting",
+  "type": "multi",
+  "gotcha": true,
+  "question": "Each statement below replaces the comment in `main`. Which ones **compile**? Some of them may still fail at run time.",
+  "code": "class Figure { }\nclass Cylinder extends Figure { }\npublic class Main {\n    public static void main(String[] args) {\n        Figure fig = new Figure();\n        // statement goes here\n    }\n}",
+  "options": [
+   "`Cylinder cy = fig;`",
+   "`Cylinder cy = (Cylinder) fig;`",
+   "`Object o = fig;`",
+   "`String s = (String) fig;`",
+   "`Integer i = (Integer) (Object) fig;`"
+  ],
+  "answer": [
+   1,
+   2,
+   4
+  ],
+  "explanation": "Assigning a superclass reference to a subclass variable is a compile error unless you downcast explicitly, and the explicit cast then fails at run time. Upcasting to `Object` is always safe. A cast between unrelated types such as Figure and String is rejected at compile time. Casting through `(Object)` first makes the cast legal for the compiler, but it throws ClassCastException at run time."
+ },
+ {
+  "id": "ch5-07",
+  "chapter": 5,
+  "subtopic": "typecasting",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "class Person { }\nclass Student extends Person { }\npublic class Main {\n    public static void main(String[] args) {\n        Object o = new Student();\n        Person p = new Person();\n        Person n = null;\n        System.out.println((o instanceof Person) + \" \" + (p instanceof Student)\n            + \" \" + (n instanceof Person) + \" \" + (o instanceof Object));\n    }\n}",
+  "options": [
+   "true false false true",
+   "true true false true",
+   "true false true true",
+   "false false false true"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`instanceof` returns true for an instance of the class or of any descendant class, so a Student is a Person and also an Object. A Person is not a Student. `null instanceof X` is always false and never throws."
+ },
+ {
+  "id": "ch5-08",
+  "chapter": 5,
+  "subtopic": "overriding",
+  "type": "multi",
+  "gotcha": true,
+  "question": "The lecture lists \"three ways of method overriding\". Which of the following are among those three?",
+  "options": [
+   "Methods of a subclass override the methods of a superclass",
+   "Overloading a method with a different parameter list in the same class",
+   "Methods of a subclass implement the abstract methods of an abstract class",
+   "Methods of a concrete class implement the methods of a Java interface",
+   "A subclass static method hides a superclass static method"
+  ],
+  "answer": [
+   0,
+   2,
+   3
+  ],
+  "explanation": "The slides list three ways: (1) ordinary overriding of superclass methods, (2) overriding (implementing) the abstract methods of an abstract class, and (3) overriding (implementing) through a Java interface. Overloading is resolved at compile time and is not overriding. Static methods are hidden, not overridden."
+ },
+ {
+  "id": "ch5-09",
+  "chapter": 5,
+  "subtopic": "dynamic binding",
+  "type": "single",
+  "gotcha": true,
+  "question": "According to the lecture, Java uses dynamic binding for all methods **except** which ones?",
+  "options": [
+   "abstract, final and static methods",
+   "protected, private and static methods",
+   "constructors and abstract methods",
+   "private, final and static methods"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Slide: \"Java uses dynamic binding for all methods (except private, final, and static methods).\" None of these three can be overridden, so the compiler can bind the call early. Abstract methods have to be dynamically bound because they have no body of their own."
+ },
+ {
+  "id": "ch5-10",
+  "chapter": 5,
+  "subtopic": "abstract classes",
+  "type": "single",
+  "gotcha": true,
+  "question": "This is adapted from the slides' `LivingThings`/`Mammal`/`Dog` example. What happens?",
+  "code": "abstract class LivingThings {\n    public void grow() { System.out.println(\"LivingThings grow!\"); }\n    public abstract void speak();\n}\nabstract class Mammal extends LivingThings {\n    public void move() { System.out.println(\"Mammal move!\"); }\n    public void eat()  { System.out.println(\"Mammal eat!\"); }\n}\nclass Dog extends Mammal {\n    public void speak() { System.out.println(\"Woof!\"); }\n    public void move()  { System.out.println(\"Dog move!\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        LivingThings lt = new Dog();\n        lt.speak();\n        lt.grow();\n        lt.move();\n    }\n}",
+  "options": [
+   "It prints `Woof!`, `LivingThings grow!`, `Dog move!`",
+   "It prints `Woof!`, `LivingThings grow!`, `Mammal move!`",
+   "Compilation error: `lt.speak()` cannot call an abstract method",
+   "Compilation error at `lt.move()`: cannot find symbol"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The compiler uses the reference type to check which members can be called. `LivingThings` declares `grow()` and `speak()` but not `move()`, so `lt.move()` does not compile even though the object is a Dog. `speak()` is declared (abstract) in LivingThings, so that call compiles and is bound to Dog's version at run time."
+ },
+ {
+  "id": "ch5-11",
+  "chapter": 5,
+  "subtopic": "abstract classes",
+  "type": "single",
+  "gotcha": false,
+  "question": "Here the keyword `abstract` has been removed from `Mammal`. What happens?",
+  "code": "abstract class LivingThings {\n    public abstract void speak();\n}\nclass Mammal extends LivingThings {\n    public void eat() { System.out.println(\"Mammal eat!\"); }\n}\nclass Dog extends Mammal {\n    public void speak() { System.out.println(\"Woof!\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Mammal m = new Dog();\n        m.speak();\n    }\n}",
+  "options": [
+   "It compiles and prints `Woof!`",
+   "Compilation error: Mammal is not abstract and does not override abstract method `speak()`",
+   "Compilation error only at `m.speak()`, because Mammal has no `speak()`",
+   "It compiles, but `AbstractMethodError` is thrown at run time"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A concrete class must implement every inherited abstract method. Mammal does not implement `speak()`, so it must be declared abstract (\"Mammal did not implement abstract method speak so has to be abstract\"). Dog implementing `speak()` does not fix the error in Mammal."
+ },
+ {
+  "id": "ch5-12",
+  "chapter": 5,
+  "subtopic": "overriding",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "class Person {\n    String name;\n    Person(String n) { name = n; }\n    public boolean equals(Person p) { return name.equals(p.name); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Object a = new Person(\"Tom\");\n        Person b = new Person(\"Tom\");\n        Person c = (Person) a;\n        System.out.println(a.equals(b) + \" \" + c.equals(b) + \" \" + c.equals(a));\n    }\n}",
+  "options": [
+   "true true true",
+   "false true false",
+   "false false true",
+   "false true true"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`equals(Person)` overloads `Object.equals(Object)`; it does not override it, because overriding needs exactly the same signature. The compiler chooses the overload from the declared argument type: `a.equals(b)` (a is declared Object) and `c.equals(a)` (a is declared Object) both call `Object.equals`, which compares references. a and b are different objects, but c and a are the same object. Only `c.equals(b)` uses the `Person` version."
+ },
+ {
+  "id": "ch5-13",
+  "chapter": 5,
+  "subtopic": "polymorphism concepts",
+  "type": "single",
+  "gotcha": false,
+  "question": "According to the lecture, what are the benefits of polymorphism?",
+  "options": [
+   "Encapsulation and information hiding",
+   "Faster execution thanks to early binding",
+   "Simplicity and extensibility",
+   "Code reuse and multiple inheritance of classes"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The summary slide says: \"The benefits of polymorphism is simplicity and extensibility.\" Simplicity means code can work with the base type and ignore type-specific details. Extensibility means new subclasses can be added without changing the base class or the existing code."
+ },
+ {
+  "id": "ch5-14",
+  "chapter": 5,
+  "subtopic": "dynamic binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "This is based on the slides' Sale/DiscountSale example. What is printed?",
+  "code": "class Sale {\n    double price;\n    Sale(double p) { price = p; }\n    double bill() { return price; }\n    boolean lessThan(Sale other) { return bill() < other.bill(); }\n}\nclass DiscountSale extends Sale {\n    double discount;\n    DiscountSale(double p, double d) { super(p); discount = d; }\n    double bill() { return (1 - discount / 100) * price; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Sale simple = new Sale(10.00);\n        Sale disc = new DiscountSale(11.00, 10);\n        System.out.println(simple.lessThan(disc) + \" \" + disc.lessThan(simple));\n    }\n}",
+  "options": [
+   "false true",
+   "true false",
+   "true true",
+   "false false"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`lessThan` is written only once, in Sale, but its calls to `bill()` are dynamically bound to the actual object, so the discounted `bill()` gives 9.9 for `disc`. That makes `10 < 9.9` false and `9.9 < 10` true. This is the slides' point that a base-class method can rely on behaviour defined later in a subclass."
+ },
+ {
+  "id": "ch5-15",
+  "chapter": 5,
+  "subtopic": "static binding",
+  "type": "single",
+  "gotcha": true,
+  "question": "This is based on the slides' `CareTaker.takeAWalk` example. What is printed?",
+  "code": "interface IAnimal { String speak(); }\nclass Cat implements IAnimal {\n    public String speak() { return \"Meow\"; }\n}\nclass CareTaker {\n    String walk(IAnimal a) { return \"any:\" + a.speak(); }\n    String walk(Cat c)     { return \"cat:\" + c.speak(); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        CareTaker ct = new CareTaker();\n        IAnimal pet = new Cat();\n        Cat cat = new Cat();\n        System.out.println(ct.walk(pet) + \" \" + ct.walk(cat));\n    }\n}",
+  "options": [
+   "cat:Meow cat:Meow",
+   "any:Meow cat:Meow",
+   "any:Meow any:Meow",
+   "Compilation error: ambiguous method call walk"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The slides contrast the two: which overload of `walk` runs is decided at compile time from the declared type (static binding), so `pet`, declared `IAnimal`, picks `walk(IAnimal)`. Inside that method, `a.speak()` is dynamically bound to Cat. The call is not ambiguous, because `walk(Cat)` is more specific for an argument declared as Cat."
+ },
+ {
+  "id": "ch5-16",
+  "chapter": 5,
+  "subtopic": "interfaces",
+  "type": "single",
+  "gotcha": true,
+  "question": "This modifies the slides' `IAnimal`/`Cat` example. What happens?",
+  "code": "interface IAnimal {\n    void move();\n}\nclass Cat implements IAnimal {\n    void move() { System.out.println(\"Cat moves\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        IAnimal a = new Cat();\n        a.move();\n    }\n}",
+  "options": [
+   "It prints `Cat moves`",
+   "Compilation error: `move()` in Cat cannot implement `move()` in IAnimal; attempting to assign weaker access privileges",
+   "Compilation error: `Cat` must be declared abstract",
+   "It compiles, but `IllegalAccessError` is thrown at run time"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Interface methods are implicitly `public abstract`, and an overriding (implementing) method cannot reduce visibility. Leaving out `public` makes Cat's `move()` package-private, so this is a compile error. That is why the slides write `public void move()` in Cat and Lion."
+ },
+ {
+  "id": "ch10-01",
+  "chapter": 10,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": true,
+  "question": "This is the slides' \"Code Before Java 5\" example. What happens when it is compiled and run?",
+  "code": "import java.util.ArrayList;\nimport java.util.List;\npublic class Main {\n    public static void main(String[] args) {\n        List myList = new ArrayList();\n        myList.add(\"Java\");\n        myList.add(2);\n        String str = (String) myList.get(0);\n        System.out.println(str);\n        String num = (String) myList.get(1);\n        System.out.println(num);\n    }\n}",
+  "options": [
+   "Compilation error at `myList.add(2)`",
+   "It compiles and prints `Java` then `2`",
+   "It compiles with an unchecked warning; prints `Java`, then throws `ClassCastException`",
+   "It compiles, but throws `ClassCastException` before printing anything"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A raw type `List` has no type safety, so adding an Integer is allowed and only an unchecked note is printed. The explicit cast `(String) myList.get(1)` compiles but fails at run time because the element is an Integer. `get(0)` succeeds first, so `Java` is printed before the exception."
+ },
+ {
+  "id": "ch10-02",
+  "chapter": 10,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> a = new ArrayList<>();\n        List<Integer> b = new ArrayList<>();\n        System.out.println(a.getClass() == b.getClass());\n        System.out.println(a.getClass().getName());\n    }\n}",
+  "options": [
+   "false\njava.util.ArrayList<String>",
+   "Compilation error: incomparable types",
+   "false\njava.util.ArrayList",
+   "true\njava.util.ArrayList"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Generics are implemented by type erasure: the type arguments exist only at compile time, so at run time both lists are simply `java.util.ArrayList` and share one `Class` object. No `ArrayList<String>` class exists at run time."
+ },
+ {
+  "id": "ch10-03",
+  "chapter": 10,
+  "subtopic": "generics",
+  "type": "multi",
+  "gotcha": true,
+  "question": "Given `List<? extends Number> nums = new ArrayList<Integer>();`, which of the following compile?",
+  "options": [
+   "`nums.add(1);`",
+   "`Number n = nums.get(0);`",
+   "`List<Number> ln = new ArrayList<Integer>();`",
+   "`List<? super Integer> s = new ArrayList<Number>(); s.add(5);`"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "An upper-bounded wildcard (`? extends Fruit` in the slides) lets you read elements as the bound type, but you cannot add to it because the exact element type is unknown. A lower-bounded wildcard `? super Integer` accepts Integer, or Number, or Object lists, and lets you add Integers. Generics are invariant, so `ArrayList<Integer>` is not a `List<Number>`."
+ },
+ {
+  "id": "ch10-04",
+  "chapter": 10,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which Java version introduced the diamond operator, as in `List<String> list = new ArrayList<>();`?",
+  "options": [
+   "Java 5",
+   "Java 7",
+   "Java 8",
+   "Java 12"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Generics arrived in Java 5, but then you had to write the type on both sides (`new ArrayList<String>()`). The diamond operator, which infers the type on the right-hand side, was added in Java 7. Java 5 is the tempting wrong answer."
+ },
+ {
+  "id": "ch10-05",
+  "chapter": 10,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        Integer a = 127, b = 127;\n        Integer c = 128, d = 128;\n        int e = 128;\n        System.out.println((a == b) + \" \" + (c == d) + \" \"\n            + (c == e) + \" \" + c.equals(d));\n    }\n}",
+  "options": [
+   "true false true true",
+   "true true true true",
+   "true false false true",
+   "false false true true"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Autoboxing uses `Integer.valueOf`, which caches the values -128 to 127. That makes `a == b` true, but `c` and `d` are distinct objects, so comparing those references gives false. `c == e` compares an Integer with an int, so `c` is unboxed and the values are compared (true). `equals` always compares values."
+ },
+ {
+  "id": "ch10-06",
+  "chapter": 10,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<Integer> list = new ArrayList<>(List.of(10, 20, 30, 1));\n        list.remove(1);\n        list.remove(Integer.valueOf(1));\n        System.out.println(list);\n    }\n}",
+  "options": [
+   "[20, 30]",
+   "[10, 20, 30]",
+   "[10, 30]",
+   "[10, 30, 1]"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`list.remove(1)` with an int argument calls `remove(int index)`, so it removes the element at index 1, which is 20. It does not remove the value 1. `remove(Integer.valueOf(1))` calls `remove(Object)` and removes the value 1. The result is [10, 30]."
+ },
+ {
+  "id": "ch10-07",
+  "chapter": 10,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens when this runs?",
+  "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> list = new ArrayList<>(List.of(\"Apple\", \"Banana\", \"Cherry\"));\n        for (String fruit : list) {\n            System.out.print(fruit + \" \");\n            if (fruit.equals(\"Apple\")) list.remove(fruit);\n        }\n        System.out.println(list);\n    }\n}",
+  "options": [
+   "Prints `Apple Banana Cherry [Banana, Cherry]`",
+   "Compilation error: a list cannot be modified inside an enhanced for loop",
+   "Prints `Apple Cherry [Banana, Cherry]`",
+   "Prints `Apple ` and then throws `ConcurrentModificationException`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The slides warn that calling `list.remove()` while traversing with an enhanced for loop causes `ConcurrentModificationException`, because the hidden iterator detects the change on its next `next()` call. The compiler does not check for this. The safe way to remove elements during iteration is `iterator.remove()`."
+ },
+ {
+  "id": "ch10-08",
+  "chapter": 10,
+  "subtopic": "lambdas",
+  "type": "multi",
+  "gotcha": true,
+  "question": "Assume a suitable functional interface target type (`Consumer<String>` or `BinaryOperator<Integer>`). Which of these are syntactically valid lambda expressions?",
+  "options": [
+   "`x, y -> x + y`",
+   "`s -> System.out.println(s)`",
+   "`(Integer x, y) -> x + y`",
+   "`(x, y) -> { return x + y; }`",
+   "`(x, y) -> return x + y;`"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "The syntax is `(arguments) -> { body }`. The parentheses can be left out only when there is exactly one untyped parameter. Explicit and implicit parameter types cannot be mixed. `return` is only allowed inside a braced block body, and a statement there needs its semicolon."
+ },
+ {
+  "id": "ch10-09",
+  "chapter": 10,
+  "subtopic": "lambdas",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        int count = 0;\n        Runnable r = () -> System.out.println(count);\n        count++;\n        r.run();\n    }\n}",
+  "options": [
+   "It prints `1`",
+   "It prints `0`",
+   "Compilation error: local variables referenced from a lambda expression must be final or effectively final",
+   "Compilation error: `Runnable` is not a functional interface"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A lambda may capture only local variables that are final or effectively final. `count++` assigns to `count` again, so it is no longer effectively final and the lambda line does not compile. `Runnable`, with its single method `run()`, is the functional-interface example shown in the slides."
+ },
+ {
+  "id": "ch10-10",
+  "chapter": 10,
+  "subtopic": "lambdas",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "@FunctionalInterface\ninterface Calc {\n    int apply(int x);\n    default int twice(int x) { return apply(apply(x)); }\n    static Calc identity() { return x -> x; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Calc inc = x -> x + 1;\n        System.out.println(inc.twice(5) + Calc.identity().apply(3));\n    }\n}",
+  "options": [
+   "10",
+   "73",
+   "Compilation error: a `@FunctionalInterface` cannot have default or static methods",
+   "8"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A functional interface has exactly one abstract method. Default and static methods do not count, so `@FunctionalInterface` accepts Calc. `inc.twice(5)` gives 7 and `identity().apply(3)` gives 3, and `+` on two ints is numeric addition, so the output is 10, not the string \"73\"."
+ },
+ {
+  "id": "ch10-11",
+  "chapter": 10,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> names = Arrays.asList(\"Alice\", \"Bob\", \"Charlie\");\n        names.stream()\n             .filter(n -> { System.out.print(n + \" \"); return n.length() > 3; })\n             .map(String::toUpperCase);\n        System.out.println(\"done\");\n    }\n}",
+  "options": [
+   "Alice Bob Charlie done",
+   "Alice Charlie done",
+   "done",
+   "ALICE CHARLIE done"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Streams use lazy evaluation: intermediate operations such as `filter` and `map` run only when a terminal operation (for example `collect` or `forEach`) consumes the stream. This pipeline has no terminal operation, so the filter lambda never runs and only `done` is printed."
+ },
+ {
+  "id": "ch10-12",
+  "chapter": 10,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "question": "This is a variation of the slides' \"Complex Stream Example\". What is printed?",
+  "code": "import java.util.*;\nimport java.util.stream.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> names = Arrays.asList(\"bob\", \"Alice\", \"alice\", \"Anna\", \"Alice\");\n        List<String> result = names.stream()\n                                   .filter(n -> n.startsWith(\"A\"))\n                                   .map(String::toUpperCase)\n                                   .sorted()\n                                   .distinct()\n                                   .collect(Collectors.toList());\n        System.out.println(result);\n    }\n}",
+  "options": [
+   "[ALICE, ALICE, ANNA]",
+   "[ALICE, ANNA]",
+   "[ALICE, ANNA, ALICE]",
+   "[ALICE, ALICE, ANNA, BOB]"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`filter` keeps only the names that start with an uppercase \"A\" (Alice, Anna, Alice). `startsWith` is case-sensitive, so \"alice\" is dropped. `map` then makes them uppercase, `sorted` gives ALICE, ALICE, ANNA, and `distinct` removes the duplicate."
+ },
+ {
+  "id": "ch10-13",
+  "chapter": 10,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "import java.util.*;\nimport java.util.stream.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<Integer> nums = new ArrayList<>(List.of(4, 1, 3, 2));\n        int r = nums.stream().map(n -> n * n)\n                    .filter(n -> n % 2 == 0)\n                    .reduce(0, Integer::sum);\n        List<Integer> sorted = nums.stream().sorted().collect(Collectors.toList());\n        System.out.println(r + \" \" + nums + \" \" + sorted);\n    }\n}",
+  "options": [
+   "30 [1, 2, 3, 4] [1, 2, 3, 4]",
+   "20 [1, 2, 3, 4] [1, 2, 3, 4]",
+   "6 [4, 1, 3, 2] [1, 2, 3, 4]",
+   "20 [4, 1, 3, 2] [1, 2, 3, 4]"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "map gives the squares 16, 1, 9, 4. filter keeps the even ones, 16 and 4, and `reduce(0, Integer::sum)` adds them to get 20. The slides call this \"immutable processing\": streams do not modify the source, so `nums` keeps its original order and `sorted()` only affects the new list."
+ },
+ {
+  "id": "ch10-14",
+  "chapter": 10,
+  "subtopic": "streams",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which of these stream operations are **terminal** operations?",
+  "options": [
+   "`forEach()`",
+   "`map()`",
+   "`distinct()`",
+   "`collect()`",
+   "`filter()`"
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "Intermediate operations such as `filter()`, `map()`, `sorted()` and `distinct()` return a new stream and are lazy. Terminal operations such as `collect()` and `forEach()` produce a result or a side effect and trigger the pipeline to run."
+ },
+ {
+  "id": "ch10-15",
+  "chapter": 10,
+  "subtopic": "default methods",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens?",
+  "code": "interface A { default void show() { System.out.println(\"A\"); } }\ninterface B { default void show() { System.out.println(\"B\"); } }\nclass C implements A, B { }\npublic class Main {\n    public static void main(String[] args) {\n        new C().show();\n    }\n}",
+  "diagram": "classDiagram\n  class A {\n    <<interface>>\n    +show() default\n  }\n  class B {\n    <<interface>>\n    +show() default\n  }\n  A <|.. C\n  B <|.. C",
+  "options": [
+   "It prints `A`, because A is listed first in the `implements` clause",
+   "It prints `B`, because the last interface listed wins",
+   "Compilation error: class C inherits unrelated defaults for `show()` from types A and B",
+   "It compiles, but an ambiguity error is thrown at run time"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "When a class inherits the same default method from two interfaces, the compiler reports a conflict, and the order in the `implements` clause does not matter. C must override `show()`. Inside the override it can pick one version with `A.super.show()`, as the slides do."
+ },
+ {
+  "id": "ch10-16",
+  "chapter": 10,
+  "subtopic": "default methods",
+  "type": "single",
+  "gotcha": true,
+  "question": "Class `C implements A, B`, and both interfaces have a default `show()`. C overrides `show()`. Which statement inside C's `show()` correctly calls **A's** default implementation?",
+  "options": [
+   "`A.show();`",
+   "`super.show();`",
+   "`super.A.show();`",
+   "`A.super.show();`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The syntax is `InterfaceName.super.method()`. `A.show()` tries to call an instance method as if it were static, `super.show()` looks in the superclass (Object), which has no `show()`, and `super.A` does not exist. All three of those are compile errors."
+ },
+ {
+  "id": "ch10-17",
+  "chapter": 10,
+  "subtopic": "default methods",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens?",
+  "code": "interface Utility {\n    static String msg() { return \"static\"; }\n    default String hi() { return \"default\"; }\n}\nclass Tool implements Utility { }\npublic class Main {\n    public static void main(String[] args) {\n        Tool t = new Tool();\n        System.out.print(t.hi() + \" \");\n        System.out.print(Utility.msg() + \" \");\n        System.out.println(Tool.msg());\n    }\n}",
+  "options": [
+   "It prints `default static static`",
+   "Compilation error at `t.hi()`: a default method cannot be called through a class reference",
+   "Compilation error at `Tool.msg()`: cannot find symbol",
+   "It prints `default static ` and then throws an exception"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Static methods in an interface belong to the interface only. Implementing classes do not inherit them, so they must be called as `Utility.msg()`; the summary slide notes that they cannot be overridden. Default methods are inherited, so `t.hi()` is fine."
+ },
+ {
+  "id": "ch10-18",
+  "chapter": 10,
+  "subtopic": "enhanced switch",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the output?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        int day = 2;\n        switch (day) {\n            case 1: System.out.print(\"A\");\n            case 2: System.out.print(\"B\");\n            case 3: System.out.print(\"C\");\n            default: System.out.print(\"D\");\n        }\n        System.out.print(\"|\");\n        switch (day) {\n            case 1 -> System.out.print(\"A\");\n            case 2 -> System.out.print(\"B\");\n            case 3 -> System.out.print(\"C\");\n            default -> System.out.print(\"D\");\n        }\n    }\n}",
+  "options": [
+   "B|B",
+   "BCD|B",
+   "BCD|BCD",
+   "B|BCD"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "In a traditional `case X:` switch, execution falls through into the following cases when there is no `break`, so B, C and D are all printed. An arrow `case X ->` runs only its own right-hand side. \"No fall-through\" is the first benefit the slides list for the enhanced switch."
+ },
+ {
+  "id": "ch10-19",
+  "chapter": 10,
+  "subtopic": "enhanced switch",
+  "type": "single",
+  "gotcha": true,
+  "question": "This is based on the slides' `yield` example. What happens?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        char grade = 'A';\n        int finalScore = switch (grade) {\n            case 'A' -> {\n                System.out.println(\"Excellent\");\n                yield 100;\n            }\n            case 'B' -> 85;\n        };\n        System.out.println(finalScore);\n    }\n}",
+  "options": [
+   "It prints `Excellent` then `100`",
+   "Compilation error: the switch expression does not cover all possible input values",
+   "It prints `100`",
+   "Compilation error: `yield` cannot be used inside an arrow case"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A switch *expression* must be exhaustive. For a `char` selector that means you need a `default`, so the slides' example includes `default -> 50;`. With the default added, it prints Excellent and then 100. `yield` is exactly how an arrow block returns its value."
+ }
+]

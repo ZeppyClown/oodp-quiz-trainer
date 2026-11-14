@@ -1,0 +1,640 @@
+[
+ {
+  "id": "ch8-01",
+  "chapter": 8,
+  "subtopic": "modelling-steps",
+  "gotcha": true,
+  "question": "The Chapter 8 slides list the steps for **Modeling an OO Application**. Which sequence matches the slides' order?",
+  "options": [
+   "Identify classes -> add class relationships -> add attributes and methods -> add multiplicities -> identify object behaviours and interaction through functional flow -> enhance class details -> implement -> quality testing",
+   "Identify object behaviours and interaction through functional flow -> identify classes -> add attributes and methods -> add class relationships -> add multiplicities -> implement -> enhance class details -> quality testing",
+   "Identify classes -> add attributes and methods -> add class relationships -> add multiplicities -> identify object behaviours and interaction through functional flow -> enhance class details -> implement the model -> quality testing",
+   "Identify classes -> add attributes and methods -> add multiplicities -> add class relationships -> enhance class details -> identify object behaviours and interaction through functional flow -> quality testing -> implement the model"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The slides go: identify classes, add attributes and methods, add class relationships, add multiplicities, then identify behaviours and interaction through functional flow (the sequence diagram, which helps you discover more methods), enhance class details, implement, and test. Multiplicities belong to relationships, so they can only be added after the relationships exist. Class details are enhanced after the interactions have been worked out.",
+  "type": "single"
+ },
+ {
+  "id": "ch8-02",
+  "chapter": 8,
+  "subtopic": "entity-boundary-control",
+  "gotcha": true,
+  "question": "A library app has a use case *Borrow Book*. A librarian fills in `LoanForm`, `LoanMgr` holds the steps that carry out the borrowing, and `Loan` records who borrowed which copy and the due date, which the system keeps over time. Using the slides' stereotype definitions, how should these be classified?",
+  "options": [
+   "`LoanForm` = boundary, `LoanMgr` = control, `Loan` = entity",
+   "`LoanForm` = boundary, `LoanMgr` = entity, `Loan` = control",
+   "`LoanForm` = control, `LoanMgr` = boundary, `Loan` = entity",
+   "`LoanForm` = entity, `LoanMgr` = control, `Loan` = boundary"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The slides define Boundary as the interaction between the Actor and the System, Control as the logic that realises a use case, and Entity as persistent information tracked by the System. `Loan` performs the borrowing in the real world, but in the model it is persistent data, so it is an entity, not a control.",
+  "type": "single"
+ },
+ {
+  "id": "ch8-03",
+  "chapter": 8,
+  "subtopic": "entity-boundary-control",
+  "type": "multi",
+  "question": "This sequence diagram is the slides' *check mentee result* example. Under the entity/boundary/control stereotypes, which participants are **entity** objects?",
+  "diagram": "sequenceDiagram\n    actor Prof as Professor\n    participant SF as :SelectForm\n    participant AM as AppMgr\n    participant P as professor : Professor\n    participant S as student : Student\n    participant R as result : Result\n    participant C as course : Course\n    Prof->>SF: select\n    SF->>AM: showMenteeResults()\n    AM->>P: getMentees()\n    loop foreach student\n        AM->>S: getResults()\n        loop foreach result\n            AM->>R: getCourse()\n            AM->>C: getCourseName()\n            AM->>R: getGrade()\n        end\n    end\n    AM-->>SF: output",
+  "options": [
+   ":SelectForm",
+   "AppMgr",
+   "result : Result",
+   "course : Course"
+  ],
+  "answer": [
+   2,
+   3
+  ],
+  "explanation": "`Result` and `Course` (like `Professor` and `Student`) hold persistent information the system tracks, so they are entities. `:SelectForm` is the boundary through which the actor interacts, and `AppMgr` is the control that holds the logic realising the use case.",
+  "gotcha": false
+ },
+ {
+  "id": "ch8-04",
+  "chapter": 8,
+  "subtopic": "sequence-diagram",
+  "gotcha": true,
+  "question": "Refer to the same *check mentee result* sequence diagram. Which statement is correct?",
+  "diagram": "sequenceDiagram\n    actor Prof as Professor\n    participant SF as :SelectForm\n    participant AM as AppMgr\n    participant P as professor : Professor\n    participant S as student : Student\n    participant R as result : Result\n    participant C as course : Course\n    Prof->>SF: select\n    SF->>AM: showMenteeResults()\n    AM->>P: getMentees()\n    loop foreach student\n        AM->>S: getResults()\n        loop foreach result\n            AM->>R: getCourse()\n            AM->>C: getCourseName()\n            AM->>R: getGrade()\n        end\n    end\n    AM-->>SF: output",
+  "options": [
+   "The actor `Professor` and the lifeline `professor : Professor` are the same thing, so `getMentees()` is a request shown to the human user.",
+   "`AppMgr` (control) receives `showMenteeResults()` from the boundary and drives the entities. The human actor never messages `AppMgr` directly, and `getCourseName()` is sent by `AppMgr`, not by `result`.",
+   "`getCourseName()` is sent by `result` to `course`, because `Result` holds the reference to `Course`.",
+   "`output` is a synchronous call from `AppMgr` to `:SelectForm`, so it should use a solid arrow with a filled head."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The actor is the real-world user. `professor : Professor` is a separate entity object inside the system, and `getMentees()` goes to that object. In the slides, `AppMgr` first gets the Course from `result.getCourse()` and then calls `getCourseName()` on it itself. `output` is a return, drawn as a dashed arrow.",
+  "type": "single"
+ },
+ {
+  "id": "ch8-05",
+  "chapter": 8,
+  "subtopic": "nouns-verbs",
+  "gotcha": true,
+  "question": "During the Blackjack *process of elimination* on the noun list, which pairing of an eliminated noun with its reason matches the slides?",
+  "options": [
+   "House: the game is actually the system itself",
+   "Players: we just need a single Player (class)",
+   "Suit: it is an attribute of Hand",
+   "Blackjack: it is just another name for the Dealer"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Per the slides, Blackjack was dropped because the game is the system itself, House because it is just another name for the dealer, and Players and Cards because one singular class (Player, Card) is enough. The tempting options swap the reasons for House and Blackjack, and suit relates to Card, not Hand.",
+  "type": "single"
+ },
+ {
+  "id": "ch8-06",
+  "chapter": 8,
+  "subtopic": "nouns-verbs",
+  "type": "multi",
+  "question": "In the Blackjack case study, some nouns from the requirements were judged to be **attributes of the Card class** rather than classes of their own. Which of these were treated that way?",
+  "options": [
+   "Face value",
+   "Hand",
+   "King (and Ace, Queen, Jack)",
+   "Deck"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "The slides say face value is really an attribute of Card, and Ace, King, Queen and Jack are better represented as attributes of Card than as individual classes. Hand and Deck both survive as classes, with their own CRC cards and UML boxes.",
+  "gotcha": false
+ },
+ {
+  "id": "ch8-07",
+  "chapter": 8,
+  "subtopic": "nouns-verbs",
+  "gotcha": true,
+  "question": "What happens to **Bet** across the Blackjack case study?",
+  "options": [
+   "It is eliminated at the noun stage and never reconsidered.",
+   "It becomes a class with its own CRC card and appears in the final UML alongside Card, Deck, Hand, Player and Dealer.",
+   "It is merged into Player as the attribute `limit:int`, so the final UML has no Bet class.",
+   "It is first taken out, then put back in the noun list with future card usage in mind. At the responsibility review it is judged not needed at this stage (it can be added later), so it gets no CRC card or UML class."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The slides first remove Bet, then restore it with future use in mind. The 'Bet Class Issues' slide then says the class is not needed at this stage and can be added later, so Bet has no CRC card and no box in the Blackjack UML. The `limit:int` attribute in Player is not described as a replacement for Bet.",
+  "type": "single"
+ },
+ {
+  "id": "ch8-08",
+  "chapter": 8,
+  "subtopic": "requirements-to-classes",
+  "gotcha": true,
+  "question": "Requirement: *\"A professor is a mentor to at least 1 student.\"* In the slides' class diagram, the Professor end of the mentor/mentee association is `1`. Which multiplicity belongs at the position marked `?`",
+  "diagram": "classDiagram\n    class Professor {\n        -name\n        +getMenteeResults()\n    }\n    class Student {\n        -name\n        +getResults()\n    }\n    Professor \"1\" -- \"?\" Student : mentor-mentee",
+  "options": [
+   "`1`",
+   "`0..*`",
+   "`1..*`",
+   "`*`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "\"At least 1\" means a lower bound of 1 with no upper bound, which is `1..*`. Both `0..*` and `*` allow a professor with zero mentees. The `1` at the Professor end means each student has exactly one mentor.",
+  "type": "single"
+ },
+ {
+  "id": "ch8-09",
+  "chapter": 8,
+  "subtopic": "requirements-to-classes",
+  "question": "From *\"He/she can check the course results of his/her mentees, which the students have registered\"*, the slides model a separate `Result` class (noted 'as Student Record') with attribute `grade`. It links to Student (`1..*`) and points to Course. Why is `grade` not simply an attribute of `Course` or `Student`?",
+  "options": [
+   "A grade belongs to a particular student-in-a-course pairing. A course has many students and a student registers for many courses, so the grade needs a class representing that link.",
+   "It should be on `Student` as a single `grade` field, because each student has `1..*` results.",
+   "It should be on `Course`, because the text literally says \"course results\".",
+   "`Result` exists only because Java lacks multiple inheritance, so `Student` cannot extend both `Person` and `Course`."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Student and Course have a many-to-many relationship, so a value that depends on both (the grade, and semYr in the first draft) belongs to a link class such as `Result`. One grade field on Course or on Student cannot hold a different value for each pairing.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch8-10",
+  "chapter": 8,
+  "subtopic": "crc-cards",
+  "gotcha": true,
+  "question": "CRC stands for Class-Responsibility-Collaborator. On the slides' CRC card **template**, which field does **not** appear?",
+  "options": [
+   "Superclasses",
+   "Attributes",
+   "Subclasses",
+   "Collaborators"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The slides' template has Class Name, Superclasses, Subclasses, Responsibilities and Collaborators. Attributes appear later in the UML class diagram. (Trivia from the slides: Kent Beck once renamed Collaborators to 'helpers', and Ward Cunningham changed it back.)",
+  "type": "single"
+ },
+ {
+  "id": "ch8-11",
+  "chapter": 8,
+  "subtopic": "crc-cards",
+  "type": "multi",
+  "question": "On the slides' Blackjack CRC cards, which classes list **Deck** as a collaborator?",
+  "options": [
+   "Card",
+   "Dealer",
+   "Player",
+   "Hand"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "The Card CRC lists Deck as its collaborator, and the Dealer CRC lists Hand, Player and Deck. The Player CRC lists Hand and Dealer, and the Hand CRC lists Player and Dealer, so neither mentions Deck.",
+  "gotcha": false
+ },
+ {
+  "id": "ch8-12",
+  "chapter": 8,
+  "subtopic": "crc-cards",
+  "gotcha": true,
+  "question": "When the slides review the verb-derived responsibilities before writing CRC cards, which responsibility is **newly added**, meaning it was not on the original verb list?",
+  "options": [
+   "Dealer: 'Calculate the value of the dealer's hand'",
+   "Card: separate responsibilities for 'is face card', 'is ace' and 'is joker'",
+   "Hand: 'Shuffle the hand'",
+   "Deck: 'Know whether there is a full deck to begin'"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The Deck review adds 'Know whether there is a full deck to begin'. The Dealer item was already on the list and was only renamed to 'Show the value of dealer's hand'. Separate face-card, ace and joker responsibilities were rejected because 'report value' handles them.",
+  "type": "single"
+ },
+ {
+  "id": "ch8-13",
+  "chapter": 8,
+  "subtopic": "requirements-to-classes",
+  "question": "Requirement: *\"All cards must be a member of a deck of cards. There are 52 cards in a deck.\"* The code below implements it, and the Deck creates and owns its Cards. Which class-diagram fragment best matches the slides' Blackjack class diagram?",
+  "code": "class Card {\n    private String name;\n    private int value;\n    Card(String name, int value) { this.name = name; this.value = value; }\n    int getValue() { return value; }\n}\n\nclass Deck {\n    private final Card[] cards = new Card[52];\n    private int nextItem = 0;\n\n    Deck() {\n        for (int i = 0; i < 52; i++)\n            cards[i] = new Card(\"c\" + i, Math.min(i % 13 + 1, 10));\n    }\n    Card getNextCard() { return cards[nextItem++]; }\n    int getDeckSize() { return 52 - nextItem; }\n}",
+  "options": [
+   "A diamond at the Card end, with multiplicity 52 at the Deck end",
+   "A diamond at the Deck end, with multiplicity 52 at the Card end",
+   "A plain association with `1..*` at both ends",
+   "A dashed dependency arrow from Card to Deck, with no multiplicities"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "In whole-part relationships the diamond goes on the **whole** (Deck), and the part's multiplicity (52) goes at the Card end, as on the slides' class diagram. Putting the diamond on Card reverses the whole and the part.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch8-14",
+  "chapter": 8,
+  "subtopic": "sequence-diagram",
+  "question": "`AppMgr.showMenteeResults` below implements the *check mentee result* use case. When it is drawn as a sequence diagram in the slides' style, how is the iteration shown?",
+  "code": "import java.util.*;\n\nclass Course { private String courseName = \"OODP\"; String getCourseName() { return courseName; } }\nclass Result {\n    private String grade = \"A\"; private Course course = new Course();\n    Course getCourse() { return course; }\n    String getGrade() { return grade; }\n}\nclass Student { private List<Result> results = new ArrayList<>(); List<Result> getResults() { return results; } }\nclass Professor { private List<Student> mentees = new ArrayList<>(); List<Student> getMentees() { return mentees; } }\n\nclass AppMgr {\n    void showMenteeResults(Professor p) {\n        for (Student s : p.getMentees())\n            for (Result r : s.getResults()) {\n                Course c = r.getCourse();\n                System.out.println(c.getCourseName() + \": \" + r.getGrade());\n            }\n    }\n}",
+  "options": [
+   "One `loop` fragment containing all of `getMentees()`, `getResults()`, `getCourse()`, `getCourseName()` and `getGrade()`, because nested loops are flattened.",
+   "Two `opt` fragments, guarded by `[has mentees]` and `[has results]`.",
+   "Repetition is not drawn. Each message appears once, with multiplicity `*` written on the arrow.",
+   "`getMentees()` outside any fragment, then an outer `loop [foreach student]` containing `getResults()`, and nested inside it a `loop [foreach result]` containing `getCourse()`, `getCourseName()` and `getGrade()`."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Each Java `for` loop becomes a `loop` combined fragment with a guard, nested the same way the code is, exactly as in the slides. `getMentees()` runs only once, before the loops. `opt` means a single optional execution, not repetition.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-01",
+  "chapter": 9,
+  "subtopic": "bad-design-symptoms",
+  "gotcha": true,
+  "question": "Every time the team changes the tax-calculation module, the PDF export and the login screen break, even though neither has any conceptual relationship to tax. Which symptom of rotting design, as named in the slides, is this?",
+  "options": [
+   "Rigidity",
+   "Fragility",
+   "Immobility",
+   "Viscosity"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Fragility is the tendency of software to break in many places every time it is changed, often in areas with no conceptual relationship to the change. Rigidity is software that is difficult to change, where each change forces a cascade of further changes in dependent modules. Immobility is the inability to reuse a module.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-02",
+  "chapter": 9,
+  "subtopic": "bad-design-symptoms",
+  "type": "multi",
+  "gotcha": true,
+  "question": "Which of these are listed on the Chapter 9 slide **'Symptoms of Rotting Design'**?",
+  "options": [
+   "Rigidity",
+   "Viscosity",
+   "Immobility",
+   "Fragility"
+  ],
+  "answer": [
+   0,
+   2,
+   3
+  ],
+  "explanation": "This slide lists exactly three symptoms: Rigidity, Fragility and Immobility. Viscosity appears in Robert Martin's original paper but is not on these slides, which makes it a trap if you learned the four-symptom version."
+ },
+ {
+  "id": "ch9-03",
+  "chapter": 9,
+  "subtopic": "design-goals",
+  "gotcha": true,
+  "question": "The slides' **Class Design Guidelines** say to manage coupling and cohesion, and to design with three qualities in mind, so as to achieve loose (low) coupling and high cohesion. Which of these is **not** one of those three qualities?",
+  "options": [
+   "Reusability",
+   "Extensibility",
+   "Portability",
+   "Maintainability"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The three listed are Reusability, Extensibility and Maintainability, all serving the stated objective of minimising the impact of change, since 'much of OO design is about managing dependencies'. Portability is a real quality attribute, but it is not on this slide.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-04",
+  "chapter": 9,
+  "subtopic": "cohesion-coupling",
+  "type": "multi",
+  "question": "In the slides' *Finance Index Display* example, `NASDAQ` contains code like `if (displayType == DAILY) dataDisplay.displayDailyData(getData()); else if (displayType == MONTHLY) ...`. Which problems do the slides attribute to this design?",
+  "diagram": "classDiagram\n    class NASDAQ {\n        -data : Data\n        -displayType\n    }\n    class DataDisplay {\n        +displayDailyData(Data)\n        +displayMonthlyData(Data)\n        +displayYearlyData(Data)\n    }\n    NASDAQ -- DataDisplay",
+  "options": [
+   "Tight coupling: NASDAQ and DataDisplay need each other to work",
+   "Low cohesion: NASDAQ has to track data and also manage display",
+   "Bad encapsulation: NASDAQ has to know the inner workings of DataDisplay, namely the displayType",
+   "LSP violation: DataDisplay cannot be substituted for NASDAQ"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "The slides name exactly three problems: tight coupling, low cohesion and bad encapsulation. No inheritance is involved, so LSP, which concerns subtypes being substitutable for their base types, does not apply.",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-05",
+  "chapter": 9,
+  "subtopic": "cohesion-coupling",
+  "gotcha": true,
+  "question": "This is the slides' **improved** Finance Index Display design. In it, `DataDisplay.notify()` calls `display(NASDAQ.getData())`. Which statement is correct?",
+  "diagram": "classDiagram\n    class NASDAQ {\n        -data : Data\n        +getData() Data\n    }\n    class DataDisplay {\n        -displayType\n        +notify()\n        -display(Data)\n    }\n    DataDisplay --> NASDAQ",
+  "options": [
+   "DataDisplay now owns `displayType` and pulls data from NASDAQ. The association is navigable from DataDisplay to NASDAQ only, so NASDAQ knows nothing about display formats.",
+   "The arrow means NASDAQ depends on DataDisplay, because NASDAQ pushes data into `display(Data)`.",
+   "NASDAQ still keeps `displayType` and passes it to `notify()`, so the coupling is unchanged but cohesion improves.",
+   "`display(Data)` must be public, because NASDAQ needs to call it for each display type."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Moving `displayType` and the display logic into DataDisplay raises cohesion (NASDAQ only tracks data) and loosens coupling, because only DataDisplay knows NASDAQ, through `getData()`. The arrowhead points to the class being navigated to, so DataDisplay is the one that knows NASDAQ.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-06",
+  "chapter": 9,
+  "subtopic": "cohesion-coupling",
+  "gotcha": true,
+  "question": "The slides label this `DataManager` design **'Bad Encapsulation'**. What is the slides' improved design?",
+  "code": "class Database {\n    static String lookupPassword(String id) { return \"secret\"; }\n}\n\nclass DataManager {\n    boolean validateCustomer(String cusID, String pwd) {\n        String passwd = Database.lookupPassword(cusID);\n        return passwd.equals(pwd);\n    }\n    boolean storeCustomer(String cusID, String name) { /* customer SQL */ return true; }\n    boolean validateAccount(String accNo, String pin) { /* account check */ return true; }\n    boolean storeAccount(String accNo, double bal)    { /* account SQL */ return true; }\n}",
+  "options": [
+   "Split DataManager into `CustomerDataManager` and `AccountDataManager`, each still comparing passwords and writing SQL itself.",
+   "Give Customer and Account their own `validate(...)` and `store(...)` methods, and have DataManager manage the entities and delegate, e.g. `return new Customer(cusID).validate(pwd);`.",
+   "Make Customer's password field public so that DataManager can compare it without a database lookup.",
+   "Make DataManager a Singleton so that only one object knows the inner workings of Customer and Account."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The fix is better encapsulation. Customer and Account are responsible for their own validation and persistence (plain or hashed comparison stays hidden inside them), and DataManager only manages the entities. Splitting the manager in two looks like SRP, but each half would still need to know the entities' internals.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-07",
+  "chapter": 9,
+  "subtopic": "cohesion-coupling",
+  "question": "The two `BarChart` designs below come from the slides' *Inheritance vs. Delegation* example. According to the slides, which statement is correct?",
+  "code": "abstract class Graph {\n    private String title, xAxis, yAxis;\n    protected abstract void plotData();\n    public void draw() { plotData(); }\n}\nclass BarChartA extends Graph {          // version 1\n    protected void plotData() { }\n}\n\nclass Axes {\n    private String title, xAxis, yAxis;\n    public void draw() { }\n}\nclass BarChartB {                        // version 2\n    private Axes myAxes = new Axes();\n    protected void plotData() { myAxes.draw(); }\n}",
+  "options": [
+   "BarChartA 'has a' Graph and BarChartB 'is a' Axes.",
+   "When Graph changes, BarChartA needs to be recompiled. When Axes changes, BarChartB does not. BarChartB uses delegation (object composition, 'has a').",
+   "Delegation couples more tightly, because BarChartB must be recompiled whenever Axes changes, whereas subclasses are isolated from their superclass.",
+   "The slides treat the two designs as equivalent, because both produce the same chart."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The slides' comments say: with inheritance, 'when Graph changes, BarChart needs to be recompiled'; with delegation, 'when Axes changes, BarChart does not need to be recompiled'. Inheritance ('is a') binds the subclass to its superclass's implementation, while composition ('has a') gives looser coupling.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-08",
+  "chapter": 9,
+  "subtopic": "cohesion-coupling",
+  "question": "The slides put a cross through this design, which appears under *Inheritance vs. Role*. What is the best explanation and alternative?",
+  "code": "abstract class Person {\n    private String name;\n    public void walk() { }\n    public void talk() { }\n}\nclass Father extends Person { }\nclass Mother extends Person { }",
+  "options": [
+   "`Father` and `Mother` should be interfaces that `Person` implements.",
+   "An abstract class cannot have subclasses that add no members, so it fails to compile.",
+   "It should be `Mother extends Father`, so that `walk()` and `talk()` are reused only once.",
+   "Father and Mother are **roles**, not kinds of person. One person can be a father, brother and father-in-law, and roles change over time. Model them as `Person father = new Person();` together with a role value such as `enum FAMILY_ROLE {...}`."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Inheritance should model a fixed 'is a kind of' relationship. Roles are better modelled as data (the slides use a FAMILY_ROLE enum). By contrast, the slides' Lecturer and Student subclasses are acceptable, because they add their own state and behaviour (salary and teach(), matriNo and getResults()). The code does compile.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-09",
+  "chapter": 9,
+  "subtopic": "srp",
+  "question": "Which SOLID principle does this class most directly violate?",
+  "code": "import java.sql.Connection;\nimport java.sql.SQLException;\n\nclass Employee {\n    private String name;\n    private double salary;\n\n    double calculatePay() { return salary / 12; }\n\n    String toHtml() { return \"<td>\" + name + \"</td><td>\" + calculatePay() + \"</td>\"; }\n\n    void saveToDatabase(Connection c) throws SQLException {\n        c.createStatement().executeUpdate(\n            \"INSERT INTO emp VALUES ('\" + name + \"', \" + salary + \")\");\n    }\n}",
+  "options": [
+   "Interface Segregation Principle",
+   "Single Responsibility Principle",
+   "Open-Closed Principle",
+   "Dependency Injection Principle"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The class has three axes of change: pay rules, HTML presentation and the database schema. That breaks SRP ('never more than ONE reason for a class to change') and moves it toward a 'God' class. ISP is about clients being forced to depend on fat interfaces, and no interface is involved here.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-10",
+  "chapter": 9,
+  "subtopic": "srp",
+  "gotcha": true,
+  "question": "Which statement about the Single Responsibility Principle matches the slides?",
+  "options": [
+   "SRP = low coupling. 'A class should do only one thing.'",
+   "SRP = encapsulation. 'A class should expose only one public method.'",
+   "SRP = abstraction. 'Each module should have exactly one client.'",
+   "SRP = cohesion. 'There should never be more than ONE reason for a class to change.' Each responsibility is an axis of change."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The slides equate SRP with cohesion and state it in terms of reasons to change. They add that if a class has more than one responsibility, the responsibilities become coupled. SRP limits the number of responsibilities, not the number of methods, so a cohesive class can have many methods.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-11",
+  "chapter": 9,
+  "subtopic": "ocp",
+  "question": "The client now needs fares for a new `Tricycle` transport. With this design, `Transport` itself has to be edited. Which principle does the slides' version of this example illustrate as being violated?",
+  "code": "class Transport {\n    static final int BUS = 0, TAXI = 1, MRT = 2;\n    private int type;\n    private double distance;\n\n    Transport(int type, double distance) { this.type = type; this.distance = distance; }\n\n    double calFare() {\n        double fare;\n        switch (type) {\n            case BUS:  fare = 0.9 + 0.10 * distance; break;\n            case TAXI: fare = 3.2 + 0.50 * distance; break;\n            case MRT:  fare = 0.8 + 0.08 * distance; break;\n            default:   fare = 0;\n        }\n        return fare;\n    }\n}",
+  "options": [
+   "Open-Closed Principle",
+   "Liskov Substitution Principle",
+   "Single Responsibility Principle",
+   "Interface Segregation Principle"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A switch on a type code means every new type requires modifying `calFare()`, so the class is not 'closed for modification'. The slides' fix is an abstract `Transport` with `calFare()` overridden in Bus, Taxi and MRT. SRP is a tempting answer, but the class does have a single responsibility (fares). The problem is that it cannot be extended without editing it.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-12",
+  "chapter": 9,
+  "subtopic": "ocp",
+  "gotcha": true,
+  "question": "This is the slides' OCP-compliant redesign. A `Tricycle` fare is now required. Which change follows OCP as taught?",
+  "diagram": "classDiagram\n    class Client\n    class Transport {\n        <<abstract>>\n        -startPlace\n        -destination\n        +calFare() double\n    }\n    class Bus {\n        -rate\n        -age\n        +calFare() double\n    }\n    class Taxi {\n        -peak\n        -isDialIn\n        +calFare() double\n    }\n    class MRT {\n        -cardType\n        +calFare() double\n    }\n    Client ..> Transport\n    Transport <|-- Bus\n    Transport <|-- Taxi\n    Transport <|-- MRT",
+  "options": [
+   "Add a subclass `Tricycle extends Transport` that overrides `calFare()`. The source of Transport, Bus, Taxi, MRT and Client stays untouched.",
+   "Declare Transport, Bus, Taxi and MRT `final`, so that they are 'closed for modification'.",
+   "Add a `type` field back to Transport and a `case TRICYCLE` branch in `Transport.calFare()`.",
+   "Change Client to test `instanceof Tricycle` and compute that fare itself."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "'Open for extension but closed for modification' means you change what the module does by adding new code, not by editing existing source. Abstraction is the key. 'Closed' does not mean `final`: a `final` Transport could not be extended at all, which defeats the 'open' half.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-13",
+  "chapter": 9,
+  "subtopic": "lsp",
+  "gotcha": true,
+  "question": "Which attribution matches the Chapter 9 slides?",
+  "options": [
+   "OCP originated from the work of Bertrand Meyer. LSP was first written by Barbara Liskov in 1988.",
+   "OCP originated from the work of Barbara Liskov. LSP was first written by Bertrand Meyer in 1988.",
+   "OCP originated from the Gang of Four. LSP was first written by Barbara Liskov in 1994.",
+   "OCP originated from Kent Beck and Ward Cunningham. LSP was first written by Barbara Liskov in 1988."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The slides credit OCP to Bertrand Meyer and say Barbara Liskov first wrote LSP in 1988. Kent Beck and Ward Cunningham are credited with CRC cards (Chapter 8), and the Gang of Four with design patterns.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-14",
+  "chapter": 9,
+  "subtopic": "lsp",
+  "question": "This is the slides' classic example. What does it print, and what is the diagnosis?",
+  "code": "class Rectangle {\n    protected int width, height;\n    public void setWidth(int w)  { width = w; }\n    public void setHeight(int h) { height = h; }\n    public int getArea() { return width * height; }\n}\nclass Square extends Rectangle {\n    @Override public void setWidth(int w)  { width = w; height = w; }\n    @Override public void setHeight(int h) { width = h; height = h; }\n}\npublic class Client {\n    static Rectangle getNewRectangle() { return new Square(); }\n    public static void main(String[] args) {\n        Rectangle r = getNewRectangle();\n        r.setWidth(5);\n        r.setHeight(10);\n        System.out.println(r.getArea());\n    }\n}",
+  "options": [
+   "`50`, and there is no design problem.",
+   "`100`. It violates OCP, because Square modifies Rectangle's behaviour.",
+   "Compile error: Square cannot override Rectangle's setters, because the fields are `protected`.",
+   "`100`. It violates LSP: code written against Rectangle behaves differently when a Square is substituted."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`setHeight(10)` on a Square sets both sides to 10, so the area is 100, while a client that thinks it has a Rectangle expects 50. Subtypes must be substitutable for their base types without changing the program's behaviour. Overriding is legal and is how OCP extension works, so OCP is not the problem.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-15",
+  "chapter": 9,
+  "subtopic": "lsp",
+  "gotcha": true,
+  "question": "This mirrors the slides' AccountInfoDisplay/ATMDisplay example. Which statement correctly diagnoses it?",
+  "code": "class Account { String summary() { return \"S\"; } String log() { return \"L\"; } }\nclass View { final String text; View(String t) { text = t; } }\n\nclass AccountInfoDisplay {\n    public View format(Account acc) {\n        if (acc == null) return new View(\"\");\n        return new View(acc.summary() + acc.log());   // full details\n    }\n}\nclass ATMDisplay extends AccountInfoDisplay {\n    @Override\n    public View format(Account acc) {\n        // assumes the client has already checked acc != null\n        return new View(acc.summary());               // partial details\n    }\n}",
+  "options": [
+   "ATMDisplay **strengthens the pre-condition** (it expects more: a non-null `acc`) and **weakens the post-condition** (it provides less: partial details). These are two LSP violations.",
+   "There is no violation: the signature is identical and `@Override` compiles.",
+   "ATMDisplay weakens the pre-condition and strengthens the post-condition, which LSP forbids.",
+   "The only problem is that ATMDisplay does not call `super.format(acc)`, which Java requires for overriding methods."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Under Design by Contract, a subtype is substitutable if its pre-conditions are no stronger (expect no more) and its post-conditions are no weaker (provide no less). ATMDisplay breaks both rules. Compiling only proves the signatures match, while LSP is about behaviour. Weaker pre-conditions and stronger post-conditions are allowed.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-16",
+  "chapter": 9,
+  "subtopic": "lsp",
+  "gotcha": true,
+  "question": "`Ostrich` compiles, and biologically an ostrich *is a* bird. Which statement is most accurate?",
+  "code": "import java.util.List;\n\nclass Bird {\n    public void fly() { System.out.println(\"flying\"); }\n}\nclass Ostrich extends Bird {\n    @Override\n    public void fly() {\n        throw new UnsupportedOperationException(\"Ostriches can't fly\");\n    }\n}\nclass Migration {\n    void migrate(List<Bird> flock) {\n        for (Bird b : flock) b.fly();\n    }\n}",
+  "options": [
+   "No principle is violated: the compiler accepts it, and the real-world is-a relationship holds.",
+   "It violates ISP, because `Bird` is a fat interface.",
+   "It violates LSP: `migrate`, written in terms of Bird, fails when given an Ostrich. The fix is to restructure the abstraction, e.g. move `fly()` into a flying-bird type or a separate interface.",
+   "It violates DIP, because Migration depends on the concrete class Bird instead of an interface."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A subclass that throws where the base type promised behaviour is not substitutable, which violates LSP even though it compiles. As the slides' rubber duck puts it, if it needs batteries you probably have the wrong abstraction. Bird has only one method, so it is not a 'fat interface', and ISP does not apply.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-17",
+  "chapter": 9,
+  "subtopic": "isp",
+  "question": "This is the slides' animal example. Which principle does the design violate, as the lecture labels it?",
+  "code": "interface IAnimal {\n    void fly();\n    void run();\n    void swim();\n}\nclass Tiger implements IAnimal {\n    public void fly()  { }\n    public void run()  { System.out.println(\"Tiger runs\"); }\n    public void swim() { }\n}\nclass Dolphin implements IAnimal {\n    public void fly()  { }\n    public void run()  { }\n    public void swim() { System.out.println(\"Dolphin swims\"); }\n}",
+  "options": [
+   "Interface Segregation Principle",
+   "Single Responsibility Principle",
+   "Open-Closed Principle",
+   "Liskov Substitution Principle"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "ISP says 'many client specific interfaces are better than one general purpose interface', and that classes should not depend on interfaces they do not use. IAnimal is a FAT interface that forces Tiger and Dolphin to write dummy methods. The slides' fix splits it into IFlyable, IRunnable and ISwimmable. LSP is tempting, but the root cause is the interface's shape, not one subtype's contract.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-18",
+  "chapter": 9,
+  "subtopic": "isp",
+  "question": "This is the slides' segregated design. Which statement is correct?",
+  "diagram": "classDiagram\n    class IFlyable {\n        <<interface>>\n        +fly()\n    }\n    class IRunnable {\n        <<interface>>\n        +run()\n    }\n    class ISwimmable {\n        <<interface>>\n        +swim()\n    }\n    IFlyable <|.. Goose\n    IRunnable <|.. Goose\n    ISwimmable <|.. Goose\n    ISwimmable <|.. Dolphin\n    IRunnable <|.. Tiger\n    IRunnable <|.. Crocodile\n    ISwimmable <|.. Crocodile",
+  "options": [
+   "Goose is invalid Java, because a class can implement only one interface.",
+   "ISP requires that every interface declares exactly one method.",
+   "Each animal implements only the role interfaces it needs, so no class is forced to supply a dummy `fly()`, and adding a new capability does not disturb unrelated animals.",
+   "Tiger must still implement IAnimal as well, so it keeps its empty `fly()` and `swim()`."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Splitting the fat interface into client-specific interfaces means that classes depend only on what they use. Java allows a class to implement many interfaces (single inheritance applies only to classes). ISP asks for client-specific interfaces, not one method per interface.",
+  "type": "single",
+  "gotcha": false
+ },
+ {
+  "id": "ch9-19",
+  "chapter": 9,
+  "subtopic": "dip",
+  "gotcha": true,
+  "question": "Which statement about the **D** in SOLID matches the Chapter 9 slides exactly?",
+  "options": [
+   "It is expanded as 'Dependency Inversion Principle' and is also known as Design by Contract.",
+   "It is expanded as 'Dependency Injection Principle' and states that low-level modules should not depend upon high-level modules.",
+   "It is expanded as 'Dependency Injection Principle' and is also known as Inversion of Control (IoC). High-level modules should not depend upon low-level modules; both should depend upon abstractions. Abstractions should not depend upon details; details should depend upon abstractions.",
+   "It is expanded as 'Dependency Isolation Principle', and abstractions should depend upon details so that they stay concrete."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "These slides use the name 'Dependency **Injection** Principle', call it Inversion of Control, and describe it as the principle 'at the very heart of Framework design'. The rule concerns high-level modules not depending on low-level ones, not the reverse. Design by Contract is the LSP slide's concept.",
+  "type": "single"
+ },
+ {
+  "id": "ch9-20",
+  "chapter": 9,
+  "subtopic": "dip",
+  "question": "`OrderService` holds business rules and creates its own `MySQLDatabase`. Which refactoring best removes the design problem?",
+  "code": "class MySQLDatabase {\n    void save(String table, String row) { /* JDBC calls */ }\n}\n\nclass OrderService {\n    private MySQLDatabase db = new MySQLDatabase();\n\n    void placeOrder(String order) {\n        // ... business rules ...\n        db.save(\"orders\", order);\n    }\n}",
+  "options": [
+   "Make OrderService extend MySQLDatabase, so that it inherits `save()` and no longer needs `new`.",
+   "Add a `String dbType` field to OrderService and switch on it to create either MySQL or Oracle.",
+   "Make `MySQLDatabase.save` static, so that OrderService never instantiates it.",
+   "Introduce an abstraction such as `interface OrderRepository { void save(String row); }`, have MySQLDatabase implement it, and pass an OrderRepository into OrderService's constructor."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "DIP says the high-level OrderService and the low-level MySQLDatabase should both depend on an abstraction, with the concrete class supplied (injected) from outside. A switch on dbType still depends on every concrete database and also breaks OCP. Inheritance or a static call just hard-wires the dependency in another way.",
+  "type": "single",
+  "gotcha": false
+ }
+]

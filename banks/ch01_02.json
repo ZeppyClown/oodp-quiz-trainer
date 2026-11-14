@@ -1,0 +1,586 @@
+[
+  {
+    "id": "ch1-01",
+    "chapter": 1,
+    "subtopic": "paradigms",
+    "type": "single",
+    "gotcha": true,
+    "question": "The slides classify programming languages into three paradigms. Which language do they list as an example of **Unstructured Programming (UP)** rather than Procedural Programming?",
+    "options": [
+      "Fortran",
+      "Pascal",
+      "COBOL",
+      "Ada"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "The slides list Assembly language, COBOL and Basic under Unstructured Programming; C, Pascal, ADA and Fortran are their Procedural Programming examples. Fortran is the tempting trap because it is old, but the slides put it under procedural."
+  },
+  {
+    "id": "ch1-02",
+    "chapter": 1,
+    "subtopic": "java-platform",
+    "type": "single",
+    "gotcha": true,
+    "question": "In the slides' 'Java Translation and Execution' diagram, which component turns **bytecode (.class)** into **machine (binary) code**?",
+    "options": [
+      "The Just-in-time (JIT) compiler inside the JVM",
+      "The Java compiler (`javac`)",
+      "The Java Runtime Environment's class loader",
+      "The operating system's linker"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "`javac` (the Java compiler) only translates .java source into .class bytecode. Inside the JVM (part of the JRE), the Just-in-time compiler translates bytecode into machine code at run time."
+  },
+  {
+    "id": "ch1-03",
+    "chapter": 1,
+    "subtopic": "java-platform",
+    "type": "multi",
+    "gotcha": false,
+    "question": "According to the slides, Java is based on C/C++ but 'smaller, more reliable, more portable, and has restrictions'. Which of the following are among the restrictions listed?",
+    "options": [
+      "No pointers",
+      "No automatic garbage collection",
+      "No multiple-inheritance",
+      "No classes outside a package",
+      "Speed (interpreted byte-code), mitigated by JIT compilers"
+    ],
+    "answer": [
+      0,
+      2,
+      4
+    ],
+    "explanation": "The slides list three restrictions: no pointers, no multiple-inheritance, and speed (interpreted byte-code, helped by JIT compilers). Java does have automatic garbage collection, and there is no packaging restriction."
+  },
+  {
+    "id": "ch1-04",
+    "chapter": 1,
+    "subtopic": "paradigms",
+    "type": "single",
+    "gotcha": true,
+    "question": "Why do the slides describe C++ as **not pure OOP**?",
+    "options": [
+      "Because it supports multiple inheritance",
+      "Because it uses pointers and manual memory management",
+      "Because it does not force you to use its OOP features, so you can write code using only non-OOP features",
+      "Because classes in C++ cannot provide encapsulation"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "The slides say C++ is not pure OOP because it does not force you to use its OOP features (it is a superset of C). Multiple inheritance and pointers are real C++ features, but they are not the reason the slides give."
+  },
+  {
+    "id": "ch1-05",
+    "chapter": 1,
+    "subtopic": "oo-model",
+    "type": "single",
+    "gotcha": true,
+    "question": "Which of the following is **NOT** one of the slides' 'Four Basic Components of the Object-Oriented Model'?",
+    "options": [
+      "Messages",
+      "Methods",
+      "Classes",
+      "Inheritance"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The four basic components are Objects, Messages, Methods and Classes. Inheritance is one of the four main **concepts/features** (Abstraction, Encapsulation, Inheritance, Polymorphism). The two lists are easy to mix up."
+  },
+  {
+    "id": "ch1-06",
+    "chapter": 1,
+    "subtopic": "oo-model",
+    "type": "single",
+    "gotcha": true,
+    "question": "In the slides, \"requests from one object to another for the receiving object to produce some desired result\" is the definition of:",
+    "options": [
+      "Messages",
+      "Methods",
+      "Interfaces",
+      "Operations"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "That is the definition of Messages. Methods are the 'descriptions of operations/actions that an object performs **when it receives** a message'. The method is the receiver's response, not the request."
+  },
+  {
+    "id": "ch1-07",
+    "chapter": 1,
+    "subtopic": "abstraction",
+    "type": "single",
+    "gotcha": true,
+    "question": "Complete Booch's definition from the slides: the **state** of an object \"encompasses all of the ______ properties of the object plus the current ______ values of each of these properties.\"",
+    "options": [
+      "(usually dynamic) ... (usually static)",
+      "(usually static) ... (usually dynamic)",
+      "(always private) ... (always public)",
+      "(instance) ... (class)"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "State = all of the (usually **static**) properties plus the current (usually **dynamic**) values of those properties. The set of properties rarely changes, but their values do. Swapping the two adjectives is the trap."
+  },
+  {
+    "id": "ch1-08",
+    "chapter": 1,
+    "subtopic": "encapsulation",
+    "type": "single",
+    "gotcha": true,
+    "question": "The slides define encapsulation and information hiding separately. Which statement is the slides' definition of **information hiding** (not encapsulation)?",
+    "options": [
+      "Builds a barrier to protect an object's private data; access is through public get/set methods",
+      "Lets the same message be sent to objects of different classes",
+      "Denotes the essential characteristics that distinguish an object from all other kinds of objects",
+      "Hides the details or implementation of the class from users"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "Information hiding hides the details/implementation of the class from users. 'Builds a barrier to protect private data ... via public methods' is encapsulation. The other two options are polymorphism and Booch's definition of abstraction."
+  },
+  {
+    "id": "ch1-09",
+    "chapter": 1,
+    "subtopic": "abstraction",
+    "type": "single",
+    "gotcha": false,
+    "question": "In the slides' car example, which of the object's three characteristics is the car's **machine serial number**?",
+    "options": [
+      "State",
+      "Behaviour",
+      "Attribute",
+      "Identity"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The car example gives Identity = machine serial number, State/Properties = colour, maximum speed, and Behaviour/Methods = turn, brake, accelerate. A serial number identifies one particular object. It does not describe the object's state."
+  },
+  {
+    "id": "ch1-10",
+    "chapter": 1,
+    "subtopic": "inheritance",
+    "type": "single",
+    "gotcha": false,
+    "question": "When a class inherits the same property or method from more than one superclass, which of these is **NOT** one of the resolution approaches listed in the slides?",
+    "options": [
+      "User-specified precedence (as in Smalltalk)",
+      "Rename one of the properties/methods",
+      "Accept both if their signatures are different, e.g. print(String s) and print(Char c)",
+      "Always inherit from the superclass listed first in the class declaration"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The slides list three approaches to the multiple-inheritance conflict: user-specified precedence (Smalltalk), renaming one property/method, and accepting both if their signatures differ. 'First-listed superclass wins' is not one of them."
+  },
+  {
+    "id": "ch1-11",
+    "chapter": 1,
+    "subtopic": "polymorphism",
+    "type": "single",
+    "gotcha": true,
+    "question": "Based on the slides' Animal/Eagle/Tiger/Shark polymorphism example, what does this program print?",
+    "code": "class Animal { void move() { System.out.print(\"A \"); } }\nclass Eagle extends Animal { void move() { System.out.print(\"fly \"); } }\nclass Tiger extends Animal { void move() { System.out.print(\"run \"); } }\nclass Shark extends Animal { }\npublic class Zoo {\n    static void call(Animal animal) { animal.move(); }\n    public static void main(String[] args) {\n        Animal[] zoo = { new Eagle(), new Tiger(), new Shark(), new Animal() };\n        for (Animal a : zoo) call(a);\n    }\n}",
+    "options": [
+      "A A A A",
+      "fly run",
+      "fly run A A",
+      "Compile error: Shark must define move()"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "The same message `move()` is sent to each object, and each object runs the version for its own run-time class (polymorphism), even though the parameter type is Animal. Shark does not override move(), so it inherits Animal's version and prints 'A'. Nothing forces it to override a concrete method."
+  },
+  {
+    "id": "ch1-12",
+    "chapter": 1,
+    "subtopic": "java-platform",
+    "type": "single",
+    "gotcha": true,
+    "question": "The code below is saved in a file named **Main.java**, and the student runs `javac Main.java`. What happens?",
+    "code": "// file: Main.java\npublic class Factorial {\n    public static void main(String[] args) {\n        System.out.println(\"hi\");\n    }\n}",
+    "options": [
+      "It compiles to Main.class; `java Main` prints hi",
+      "It compiles to Factorial.class; `java Factorial` prints hi",
+      "It compiles, but `java Main` fails at run time with a ClassNotFoundException",
+      "Compile error: class Factorial is public, should be declared in a file named Factorial.java"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "A **public** top-level class must be declared in a file with the same name, so `javac` rejects this file. (The slides' own Factorial class was not public, so the file-name rule did not strictly apply there.) `javac` names each .class file after the class, never after the source file."
+  },
+  {
+    "id": "ch2-01",
+    "chapter": 2,
+    "subtopic": "constructors",
+    "type": "single",
+    "gotcha": true,
+    "question": "Which line causes a compile error?",
+    "code": "class Rectangle {\n    private double width, height;\n    public Rectangle(double w, double h) { width = w; height = h; }\n    public double findArea() { return width * height; }\n}\npublic class App {\n    public static void main(String[] args) {\n        Rectangle r1 = new Rectangle(2.0, 3.0);   // line A\n        Rectangle r2 = new Rectangle();           // line B\n        System.out.println(r1.findArea());        // line C\n    }\n}",
+    "options": [
+      "Line A",
+      "Line B",
+      "Line C",
+      "None: it compiles and prints 6.0"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Java only supplies the do-nothing no-argument default constructor when the programmer writes **no** constructors at all. Rectangle declares a two-argument constructor, so `new Rectangle()` has no matching constructor."
+  },
+  {
+    "id": "ch2-02",
+    "chapter": 2,
+    "subtopic": "this-keyword",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "class Rectangle {\n    private double width, height;\n    public Rectangle(double width, double height) {\n        width = width;\n        height = height;\n    }\n    public double findArea() { return width * height; }\n}\npublic class App {\n    public static void main(String[] args) {\n        System.out.println(new Rectangle(4.0, 5.0).findArea());\n    }\n}",
+    "options": [
+      "0.0",
+      "20.0",
+      "Compile error: variable width is already defined",
+      "0"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Inside the constructor the parameters shadow the instance variables, so `width = width` assigns the parameter to itself and the fields stay at their default of 0.0. This is why the slides use `this.width = width`. It is legal code, so there is no compile error."
+  },
+  {
+    "id": "ch2-03",
+    "chapter": 2,
+    "subtopic": "references-copying",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "class Rectangle {\n    private double width, height;\n    public Rectangle(double w, double h) { width = w; height = h; }\n    public void setWidth(double w) { width = w; }\n    public double getWidth() { return width; }\n    public Rectangle copyObjects() { return new Rectangle(width, height); }\n}\npublic class App {\n    public static void main(String[] args) {\n        Rectangle rect1 = new Rectangle(10.0, 20.0);\n        Rectangle rect2 = rect1;\n        Rectangle rect3 = rect2.copyObjects();\n        rect2.setWidth(5.0);\n        rect3.setWidth(7.0);\n        System.out.println(rect1.getWidth() + \" \" + rect3.getWidth());\n    }\n}",
+    "options": [
+      "10.0 7.0",
+      "7.0 7.0",
+      "5.0 5.0",
+      "5.0 7.0"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "`rect2 = rect1` copies only the reference, so there is one object with two references, and changing it through rect2 also changes what rect1 sees. `copyObjects()` creates a separate new object, so changing rect3 does not affect rect1."
+  },
+  {
+    "id": "ch2-04",
+    "chapter": 2,
+    "subtopic": "static",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "class Rectangle {\n    private double width, height;\n    private static int numRectangles = 0;\n    public Rectangle() {\n        this(1.0, 1.0);\n        numRectangles++;\n    }\n    public Rectangle(double w, double h) {\n        width = w; height = h;\n        numRectangles++;\n    }\n    public static int getNumRectangles() { return numRectangles; }\n}\npublic class App {\n    public static void main(String[] args) {\n        Rectangle a = new Rectangle();\n        Rectangle b = new Rectangle(2.0, 3.0);\n        Rectangle c = a;\n        System.out.println(Rectangle.getNumRectangles());\n    }\n}",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "Compile error: static variable used in a constructor"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "`new Rectangle()` calls `this(1.0, 1.0)`, which increments the shared static counter, and then increments it again (2). `new Rectangle(2.0, 3.0)` adds 1 (3). `c = a` creates no object. Only two objects exist, but the counter reads 3."
+  },
+  {
+    "id": "ch2-05",
+    "chapter": 2,
+    "subtopic": "static",
+    "type": "multi",
+    "gotcha": true,
+    "question": "Which numbered statements inside the static method `countArea()` compile?",
+    "code": "public class Rectangle {\n    private double width = 2.0, height = 3.0;\n    private static int numRectangles = 0;\n    public double findArea() { return width * height; }\n    public static int getNumRectangles() { return numRectangles; }\n\n    public static void countArea() {\n        getNumRectangles();                     // (1)\n        findArea();                             // (2)\n        this.width = 4.0;                       // (3)\n        double a = new Rectangle().findArea();  // (4)\n        numRectangles++;                        // (5)\n    }\n}",
+    "options": [
+      "(1)",
+      "(2)",
+      "(3)",
+      "(4)",
+      "(5)"
+    ],
+    "answer": [
+      0,
+      3,
+      4
+    ],
+    "explanation": "Class methods can use class variables and class methods directly ((1), (5)) but not instance members, because there is no `this` receiver ((2) and (3) give 'non-static ... cannot be referenced from a static context'). (4) compiles because it calls the instance method on an explicitly created object."
+  },
+  {
+    "id": "ch2-06",
+    "chapter": 2,
+    "subtopic": "static",
+    "type": "single",
+    "gotcha": true,
+    "question": "What happens when this program runs?",
+    "code": "class Rectangle {\n    private static int numRectangles = 2;\n    public static int getNumRectangles() { return numRectangles; }\n}\npublic class App {\n    public static void main(String[] args) {\n        Rectangle r = null;\n        System.out.println(r.getNumRectangles());\n    }\n}",
+    "options": [
+      "NullPointerException at run time",
+      "Compile error: a static method must be called as Rectangle.getNumRectangles()",
+      "It prints 0",
+      "It prints 2"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "A static method belongs to the class, so the compiler resolves `r.getNumRectangles()` using r's declared type, Rectangle. It never dereferences r, so there is no NullPointerException. Calling a static method through a reference is legal (it only triggers a style warning). The slides' recommended form is `ClassName.method()`."
+  },
+  {
+    "id": "ch2-07",
+    "chapter": 2,
+    "subtopic": "constructors",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "class Rectangle {\n    private double width;\n    public void Rectangle() { width = 1.0; }\n    public double getWidth() { return width; }\n}\npublic class App {\n    public static void main(String[] args) {\n        Rectangle r = new Rectangle();\n        System.out.println(r.getWidth());\n    }\n}",
+    "options": [
+      "1.0",
+      "Compile error: a method cannot have the same name as its class",
+      "0.0",
+      "Compile error: no constructor Rectangle() found"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "Because it declares a return type (`void`), `Rectangle()` is an ordinary method, not a constructor. Constructors have no return type. With no real constructor declared, Java supplies the default no-arg constructor, which does nothing, so width stays 0.0."
+  },
+  {
+    "id": "ch2-08",
+    "chapter": 2,
+    "subtopic": "constructors",
+    "type": "single",
+    "gotcha": false,
+    "question": "The slides ask, 'Is there also a Destructor?' What do they name as Java's counterpart?",
+    "options": [
+      "A destructor `~Rectangle()`, as in C++",
+      "The `delete` operator",
+      "The finalizer, the `finalize()` method, used to release resources and associated with the garbage collector",
+      "The `close()` method, which every class inherits"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "The slides say that in Java the counterpart is the finalizer, the `finalize()` method, used to release resources. Objects are reclaimed by the garbage collector. Java has no `~ClassName()` destructor and no `delete` operator."
+  },
+  {
+    "id": "ch2-09",
+    "chapter": 2,
+    "subtopic": "class-object",
+    "type": "single",
+    "gotcha": true,
+    "question": "The slides warn that sending a message through a reference that does not point to an object causes a 'NullPointerException Error!!'. What actually happens with this exact code?",
+    "code": "class Person {\n    public void comeDown() { System.out.println(\"Walking down\"); }\n}\npublic class App {\n    public static void main(String[] args) {\n        Person bill;\n        bill.comeDown();\n    }\n}",
+    "options": [
+      "It prints Walking down",
+      "NullPointerException at run time",
+      "Compile error: variable bill might not have been initialized",
+      "It runs and prints nothing"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "`bill` is a **local** variable, and local variables get no default value, so `javac` rejects the use of a variable that has not been definitely assigned. You only get a NullPointerException at run time if the reference holds null, e.g. `Person bill = null;` or an uninitialised instance field."
+  },
+  {
+    "id": "ch2-10",
+    "chapter": 2,
+    "subtopic": "accessors-encapsulation",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "class Rectangle {\n    public static final double MAX_WIDTH = 100;\n    private double width = 1.0;\n    public void setWidth(double w) {\n        if (w >= MAX_WIDTH) width = MAX_WIDTH;\n        else width = w;\n    }\n    public double getWidth() { return width; }\n}\npublic class App {\n    public static void main(String[] args) {\n        Rectangle r = new Rectangle();\n        r.setWidth(150);\n        System.out.print(r.getWidth() + \" \");\n        r.setWidth(-5);\n        System.out.print(r.getWidth() + \" \");\n        System.out.println(Rectangle.MAX_WIDTH);\n    }\n}",
+    "options": [
+      "100 -5 100",
+      "100.0 1.0 100.0",
+      "150.0 -5.0 100.0",
+      "100.0 -5.0 100.0"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The mutator caps values at MAX_WIDTH (data consistency) but checks only the upper bound, so -5 is accepted. `MAX_WIDTH` is a `double` initialised with 100, so it prints as 100.0, and the int arguments are widened to double."
+  },
+  {
+    "id": "ch2-11",
+    "chapter": 2,
+    "subtopic": "static",
+    "type": "multi",
+    "gotcha": false,
+    "question": "The slides recommend `static final` class constants such as `public static final double MAX_WIDTH = 100;`. Which advantages do they state?",
+    "options": [
+      "Easy to change to a new value",
+      "The constant is stored once per object for faster access",
+      "Symbolic names are easier to understand",
+      "It allows the value to be modified by a set method"
+    ],
+    "answer": [
+      0,
+      2
+    ],
+    "explanation": "The slides list two advantages: (1) easy to change to a new value, and (2) symbolic names are easier to understand. `static` means one copy per class, not per object, and `final` prevents reassignment."
+  },
+  {
+    "id": "ch2-12",
+    "chapter": 2,
+    "subtopic": "strings",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "public class App {\n    public static void main(String[] args) {\n        String s1 = \"Java\";\n        String s2 = \"Java\";\n        String s3 = new String(\"Java\");\n        System.out.println((s1 == s2) + \" \" + (s1 == s3) + \" \" + s1.equals(s3));\n    }\n}",
+    "options": [
+      "true false true",
+      "true true true",
+      "false false true",
+      "false false false"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "`==` compares references. Identical string literals refer to the same pooled object, so s1 == s2 is true, but `new String(...)` always creates a distinct object, so s1 == s3 is false. `equals` compares the character contents, so it returns true."
+  },
+  {
+    "id": "ch2-13",
+    "chapter": 2,
+    "subtopic": "strings",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "public class App {\n    public static void main(String[] args) {\n        String aString = \"Java Programming\";\n        aString.toUpperCase();\n        aString.concat(\"!\");\n        String alias = aString;\n        aString = \"Java\";\n        System.out.println(alias + \" | \" + aString + \" | \" + alias.charAt(5));\n    }\n}",
+    "options": [
+      "JAVA PROGRAMMING! | Java | P",
+      "Java Programming | Java | P",
+      "Java | Java | P",
+      "Java Programming | Java | ' '"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Strings are immutable: `toUpperCase()` and `concat()` return new String objects, which are discarded here. `aString = \"Java\"` makes the variable point to a different object, and alias still refers to the original. charAt is 0-based, so index 5 is 'P'."
+  },
+  {
+    "id": "ch2-14",
+    "chapter": 2,
+    "subtopic": "class-object",
+    "type": "multi",
+    "gotcha": false,
+    "question": "According to the slides' Data Types tree, which of the following are **reference types**?",
+    "options": [
+      "String",
+      "char",
+      "int[]",
+      "boolean",
+      "double"
+    ],
+    "answer": [
+      0,
+      2
+    ],
+    "explanation": "The slides split data types into primitive types (numerical types including char, and boolean) and reference types (class types such as String, interface types and array types). An `int[]` is an array, and therefore a reference type, even though its elements are primitives."
+  },
+  {
+    "id": "ch2-15",
+    "chapter": 2,
+    "subtopic": "references-copying",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is the output?",
+    "code": "class Rectangle {\n    private double width;\n    public Rectangle(double w) { width = w; }\n    public void setWidth(double w) { width = w; }\n    public double getWidth() { return width; }\n}\npublic class App {\n    static void change(Rectangle r, double w) {\n        r.setWidth(5.0);\n        r = new Rectangle(9.0);\n        r.setWidth(7.0);\n        w = 99.0;\n    }\n    public static void main(String[] args) {\n        Rectangle rect = new Rectangle(1.0);\n        double w = 1.0;\n        change(rect, w);\n        System.out.println(rect.getWidth() + \" \" + w);\n    }\n}",
+    "options": [
+      "1.0 1.0",
+      "7.0 99.0",
+      "5.0 1.0",
+      "7.0 1.0"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "Java passes everything by value. For an object, the value passed is a copy of the reference, so `r.setWidth(5.0)` changes the caller's object. Reassigning `r` to a new Rectangle only changes the local copy, so later changes go to the new object. The primitive `w` is copied too, so the caller's w stays 1.0."
+  },
+  {
+    "id": "ch2-16",
+    "chapter": 2,
+    "subtopic": "composition",
+    "type": "single",
+    "gotcha": true,
+    "question": "What is printed, and how many Course, Student and array objects in total does `main` create?",
+    "code": "class Course {\n    private int score;\n    public Course(int score) { this.score = score; }\n    public void setScore(int s) { score = s; }\n    public int getScore() { return score; }\n}\nclass Student {\n    private Course course;\n    public Student(Course courseIn) { course = courseIn; }\n    public Course getCourse() { return course; }\n}\npublic class StudentApp {\n    public static void main(String[] args) {\n        Course c = new Course(80);\n        Student s1 = new Student(c);\n        Student s2 = new Student(c);\n        Student[] db = new Student[3];\n        c.setScore(60);\n        System.out.println(s1.getCourse().getScore() + \" \" + (db[0] == null));\n    }\n}",
+    "options": [
+      "60 true; 4 objects",
+      "80 true; 4 objects",
+      "60 false; 7 objects",
+      "60 true; 6 objects"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Composition (has-a) stores a **reference** to the Course, so s1 and s2 share the single Course object and see the score change to 60. `new Student[3]` creates one array object whose 3 slots hold null, not 3 Students. The total is 1 Course + 2 Students + 1 array = 4."
+  },
+  {
+    "id": "ch2-17",
+    "chapter": 2,
+    "subtopic": "class-object",
+    "type": "single",
+    "gotcha": true,
+    "question": "The slides' Java naming convention uses four letter-case styles. What do they say **Mixed case** (e.g. `customerFirstName`) is used for?",
+    "options": [
+      "Classes and interfaces",
+      "Methods and variables",
+      "Constants and enums",
+      "Package names"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "The slides call lower camel case 'Mixed case' and use it for methods and variables. 'CamelCase' (Upper CamelCase) is for classes and interfaces, UPPERCASE_WITH_UNDERSCORES is for constants and enums, and all-lowercase is for packages. The trap is that 'CamelCase' and 'Mixed case' sound interchangeable."
+  },
+  {
+    "id": "ch2-18",
+    "chapter": 2,
+    "subtopic": "accessors-encapsulation",
+    "type": "single",
+    "gotcha": false,
+    "question": "In the UML class diagram below (as in the slides), what do the `-` and `+` prefixes indicate, and which members form the class's public interface (API) that users see?",
+    "diagram": "classDiagram\n    class Rectangle {\n        -double width\n        -double height\n        +double MAX_WIDTH\n        +getWidth() double\n        +setWidth(double w) void\n        +findArea() double\n        -optimiseResult() void\n    }",
+    "options": [
+      "`-` means static and `+` means instance; the interface is everything listed",
+      "`-` means private and `+` means public; the interface is the public method headers and public class constants",
+      "`-` means private and `+` means public; the interface includes the bodies of all public methods",
+      "`-` means protected and `+` means public; the interface includes optimiseResult()"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "`-` means private and `+` means public. In the slides' information-hiding example, users see only the public method headers and public class constants (the API). Private variables, private methods such as optimiseResult(), and the bodies of all methods are hidden implementation."
+  },
+  {
+    "id": "ch2-19",
+    "chapter": 2,
+    "subtopic": "static",
+    "type": "single",
+    "gotcha": true,
+    "question": "Like the slides' Person/BMI example, this class has an instance method and a static method with the same name. What is the output?",
+    "code": "public class Person {\n    double height, weight;\n    public Person(double h, double w) { height = h; weight = w; }\n    public double calculateBMI() { return weight / (height * height); }\n    public static double calculateBMI(double height, double weight) {\n        return weight / (height * height);\n    }\n    public static void main(String[] args) {\n        Person bill = new Person(2.0, 80);\n        System.out.println(bill.calculateBMI() + \" \" + Person.calculateBMI(1.0, 50));\n    }\n}",
+    "options": [
+      "Compile error: method calculateBMI is already defined",
+      "Compile error: a static method cannot share a name with an instance method",
+      "20 50",
+      "20.0 50.0"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The two methods have different parameter lists, so this is legal overloading, regardless of one being static. The instance version uses the receiver's fields (80 / 4.0 = 20.0), and the class version uses its arguments (50 / 1.0 = 50.0). Both return double, so they print with '.0'."
+  }
+]

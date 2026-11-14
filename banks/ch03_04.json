@@ -1,0 +1,635 @@
+[
+ {
+  "id": "ch3-01",
+  "chapter": 3,
+  "subtopic": "constructors and super",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed when `main` runs?",
+  "code": "class A {\n    A()      { System.out.print(\"A\"); }\n    A(int x) { System.out.print(\"A\" + x); }\n}\nclass B extends A {\n    B()      { System.out.print(\"B\"); }\n    B(int x) { this(); System.out.print(\"B\" + x); }\n}\nclass C extends B {\n    C(int x) { super(x); System.out.print(\"C\" + x); }\n}\npublic class Test {\n    public static void main(String[] args) {\n        new C(1);\n    }\n}",
+  "options": [
+   "A1B1C1",
+   "AB1C1",
+   "ABB1C1",
+   "C1B1BA"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`C(1)` calls `super(1)`, which is `B(int)`. That constructor calls `this()`, so `B()` runs, and `B()` begins with an implicit `super()`, which is the no-arg `A()`. So `A(int)` never runs and the output is A, B, B1, C1. A1B1C1 is wrong because the argument is not passed up the chain automatically."
+ },
+ {
+  "id": "ch3-02",
+  "chapter": 3,
+  "subtopic": "constructors and super",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens when this code is compiled and run?",
+  "code": "class Parent {\n    Parent(String name) {\n        System.out.println(\"Parent \" + name);\n    }\n}\nclass Child extends Parent {\n    Child() {\n        System.out.println(\"Child\");\n    }\n}\npublic class Test {\n    public static void main(String[] args) {\n        new Child();\n    }\n}",
+  "options": [
+   "It prints `Child`",
+   "It prints `Parent null` then `Child`",
+   "It compiles, but a runtime error occurs at `new Child()`",
+   "Compile error: `Child()` implicitly calls `super()`, but `Parent` has no no-arg constructor"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A constructor that does not call `super(...)` or `this(...)` gets an implicit `super()` inserted. `Parent` defines a constructor, so it has no default no-arg constructor, and javac reports \"constructor Parent in class Parent cannot be applied to given types\". The compiler never passes `null` for you."
+ },
+ {
+  "id": "ch3-03",
+  "chapter": 3,
+  "subtopic": "constructors and super",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the result of compiling this code?",
+  "code": "class Shape {\n    Shape() { System.out.print(\"S\"); }\n}\nclass Circle extends Shape {\n    double r;\n    Circle(double r) {\n        this.r = r;      // line X\n        super();         // line Y\n    }\n}\npublic class Test {\n    public static void main(String[] args) {\n        new Circle(2.0);\n    }\n}",
+  "options": [
+   "It compiles and prints `S`",
+   "It compiles and prints `SS` (once from the implicit `super()` and once from line Y)",
+   "Compile error at line Y: the call to `super()` must be the first statement in the constructor",
+   "Compile error at line X: fields cannot be assigned in a constructor before `super()`, but line Y is fine"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The lecture states that the call to `super()` must be the first statement in a subclass constructor, and javac reports \"call to super must be first statement in constructor\" at line Y. The compiler does not add a second implicit `super()`, so `SS` cannot happen."
+ },
+ {
+  "id": "ch3-04",
+  "chapter": 3,
+  "subtopic": "overriding",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens when this code is compiled and run?",
+  "code": "class Shape {\n    public void print() { System.out.println(\"Shape\"); }\n}\nclass Circle extends Shape {\n    void print() { System.out.println(\"Circle\"); }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Circle c = new Circle();\n        c.print();\n    }\n}",
+  "options": [
+   "Compile error: `print()` in `Circle` attempts to assign weaker access privileges (was `public`)",
+   "It prints `Circle`",
+   "It prints `Shape`, because the package-private `print()` is a separate method that does not override",
+   "Compile error: `print()` is ambiguous in `Circle`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "An overriding method cannot reduce the visibility of the method it overrides. Here `public` is narrowed to package access, so javac reports \"attempting to assign weaker access privileges; was public\". Because the signature is identical, Java treats it as an override attempt, not as a separate method."
+ },
+ {
+  "id": "ch3-05",
+  "chapter": 3,
+  "subtopic": "hiding",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "class Shape {\n    String name = \"Shape\";\n    String getName() { return name; }\n}\nclass Circle extends Shape {\n    String name = \"Circle\";\n    String getName() { return name; }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Shape s = new Circle();\n        System.out.println(s.name + \" \" + s.getName()\n                           + \" \" + ((Circle) s).name);\n    }\n}",
+  "options": [
+   "Circle Circle Circle",
+   "Shape Circle Circle",
+   "Shape Shape Circle",
+   "Shape Circle Shape"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Fields are not overridden. A field in the subclass with the same name hides the parent's field, and which one you get depends on the reference type at compile time, so `s.name` is \"Shape\". Instance methods are overridden and dispatched on the runtime object, so `s.getName()` runs `Circle`'s version. After the cast, the reference type is `Circle`, so `((Circle) s).name` is \"Circle\"."
+ },
+ {
+  "id": "ch3-06",
+  "chapter": 3,
+  "subtopic": "hiding",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "class Parent {\n    static String who() { return \"Parent\"; }\n    String call() { return who(); }\n}\nclass Child extends Parent {\n    static String who() { return \"Child\"; }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Parent p = new Child();\n        System.out.println(p.who() + \" \" + new Child().call()\n                           + \" \" + Child.who());\n    }\n}",
+  "options": [
+   "Child Child Child",
+   "Parent Child Child",
+   "Compile error: a static method cannot be redefined in a subclass",
+   "Parent Parent Child"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Static methods are hidden, not overridden, so the call is bound at compile time. `p.who()` uses the declared type `Parent`. Inside `Parent.call()`, `who()` means `Parent.who()` even when the object is a `Child`. Only `Child.who()` names the child's version, so there is no dynamic dispatch here."
+ },
+ {
+  "id": "ch3-07",
+  "chapter": 3,
+  "subtopic": "overloading",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "class Printer {\n    void print(Object o) { System.out.print(\"P-Object \"); }\n}\nclass ColorPrinter extends Printer {\n    void print(String s) { System.out.print(\"C-String \"); }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Printer p = new ColorPrinter();\n        ColorPrinter c = new ColorPrinter();\n        p.print(\"hi\");\n        c.print(\"hi\");\n        c.print(42);\n    }\n}",
+  "options": [
+   "C-String C-String P-Object",
+   "P-Object C-String P-Object",
+   "C-String C-String C-String",
+   "Compile error at `c.print(42)`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`print(String)` has a different parameter type, so it overloads `print(Object)` instead of overriding it, because overriding needs exactly the same signature. Through a `Printer` reference, only `print(Object)` is visible, so `p.print(\"hi\")` prints P-Object. `c.print(42)` autoboxes 42 to `Integer` and uses the inherited `print(Object)`."
+ },
+ {
+  "id": "ch3-08",
+  "chapter": 3,
+  "subtopic": "overriding",
+  "type": "single",
+  "gotcha": false,
+  "question": "Using the lecture's Shape, Circle, Disc hierarchy, what is printed by `new Disc().show();`?",
+  "diagram": "classDiagram\n  Shape <|-- Circle\n  Circle <|-- Disc\n  class Shape {\n    +print() void\n    +show() void\n  }\n  class Circle {\n    +print() void\n  }\n  class Disc {\n    +print() void\n  }",
+  "code": "class Shape {\n    void print() { System.out.print(\"Shape \"); }\n    void show()  { print(); }\n}\nclass Circle extends Shape {\n    void print() { System.out.print(\"Circle \"); super.print(); }\n}\nclass Disc extends Circle {\n    void print() { System.out.print(\"Disc \"); super.print(); }\n}\npublic class Test {\n    public static void main(String[] args) {\n        new Disc().show();\n    }\n}",
+  "options": [
+   "Shape",
+   "Disc",
+   "Shape Circle Disc",
+   "Disc Circle Shape"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The search for a matching method starts at the object's class (`Disc`) and moves up to each immediate superclass in turn, so `show()` is found in `Shape`. The `print()` call inside it still runs on the `Disc` object, and each `super.print()` is a refinement that calls the next version up: Disc, then Circle, then Shape."
+ },
+ {
+  "id": "ch3-09",
+  "chapter": 3,
+  "subtopic": "final",
+  "type": "multi",
+  "gotcha": true,
+  "question": "According to the lecture, which statements about `final` classes and methods are true?",
+  "options": [
+   "A `final` method cannot be overridden in a subclass.",
+   "A `final` class cannot be instantiated.",
+   "The methods of a `final` class are implicitly `final`.",
+   "A `final` method cannot be overloaded within the same class.",
+   "Declaring methods `final` can improve efficiency, because binding can be done at compile time instead of at runtime."
+  ],
+  "answer": [
+   0,
+   2,
+   4
+  ],
+  "explanation": "A `final` class cannot be a superclass, and its methods are implicitly final. The lecture lists two benefits of `final`: security and efficiency through compile-time binding. A `final` class can still be instantiated, because the restriction is on subclassing (being abstract is what prevents instantiation). A `final` method can still be overloaded; only overriding is blocked."
+ },
+ {
+  "id": "ch3-10",
+  "chapter": 3,
+  "subtopic": "final",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which of the marked lines cause a compile error?",
+  "code": "class Account {\n    final void withdraw(int amt)    { }   // (1)\n    final void withdraw(double amt) { }   // (2)\n}\nclass Savings extends Account {\n    void withdraw(double amt) { }         // (3)\n    void withdraw(long amt)   { }         // (4)\n}",
+  "options": [
+   "(2) only",
+   "(3) and (4)",
+   "(3) only",
+   "(2), (3) and (4)"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Only (3) fails, with \"withdraw(double) in Savings cannot override withdraw(double) in Account; overridden method is final\". (2) is a legal overload of a final method. (4) has a new signature (`long`), so it is an overload, not an override, and `final` does not block it."
+ },
+ {
+  "id": "ch3-11",
+  "chapter": 3,
+  "subtopic": "abstract classes",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "abstract class Figure {\n    Figure() { System.out.print(\"F \"); }\n    abstract double area();\n    void print() { System.out.print(area()); }\n}\nclass Square extends Figure {\n    double side = 2;\n    Square() { System.out.print(\"S \"); }\n    double area() { return side * side; }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Figure f = new Square();\n        f.print();\n    }\n}",
+  "options": [
+   "Compile error: an abstract class cannot declare a constructor",
+   "Compile error: `Figure f = new Square();` tries to instantiate an abstract class",
+   "S 4.0",
+   "F S 4.0"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "An abstract class cannot be instantiated with `new Figure()`, but it can have constructors, and those run through constructor chaining when a concrete subclass is created. A `Figure` reference to a `Square` object is legal. `area()` returns a `double`, so it prints 4.0."
+ },
+ {
+  "id": "ch3-12",
+  "chapter": 3,
+  "subtopic": "abstract classes",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the result of compiling this code?",
+  "code": "abstract class Figure {\n    abstract double findArea();\n    abstract double findPerimeter();\n}\nclass Circle extends Figure {\n    double r = 1;\n    double findArea() { return 3.14 * r * r; }\n}",
+  "options": [
+   "It compiles. `Circle` becomes implicitly abstract because it does not implement `findPerimeter()`.",
+   "Compile error: `Circle` is not abstract and does not override abstract method `findPerimeter()`",
+   "It compiles, but calling `findPerimeter()` on a `Circle` throws an exception at runtime",
+   "Compile error: abstract methods must be declared `public`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A subclass that does not implement every inherited abstract method must itself be declared `abstract`. Java never makes a class abstract implicitly. The lecture's phrase \"the new class will also be abstract\" means you have to write the `abstract` keyword yourself."
+ },
+ {
+  "id": "ch3-13",
+  "chapter": 3,
+  "subtopic": "interfaces",
+  "type": "multi",
+  "gotcha": false,
+  "question": "According to the lecture's comparison of abstract classes and interfaces, which statements are true?",
+  "options": [
+   "A class can extend more than one abstract class, as long as their method names do not clash.",
+   "An abstract class can have object attributes (data members) and non-abstract methods.",
+   "Data declared in an interface is limited to constants (`static final`).",
+   "An abstract class can be instantiated with `new` as long as it declares a constructor.",
+   "A concrete class that implements a derived interface must define the methods of both the derived interface and its base interface."
+  ],
+  "answer": [
+   1,
+   2,
+   4
+  ],
+  "explanation": "Java has single inheritance, so a class extends only one class (abstract or not) but can implement many interfaces. Neither an abstract class nor an interface can be instantiated with `new`, even when the abstract class has a constructor. A concrete class implementing `IShowablyOrdered` must implement the `IOrdered` methods as well."
+ },
+ {
+  "id": "ch3-14",
+  "chapter": 3,
+  "subtopic": "interfaces",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which of the marked lines cause a compile error?",
+  "code": "interface Sized {\n    int MAX = 10;\n    int size();\n}\nclass Box implements Sized {\n    int size() { return MAX; }           // (1)\n    void grow() { MAX++; }               // (2)\n    static int cap() { return MAX; }     // (3)\n}",
+  "options": [
+   "(2) only",
+   "(1) only",
+   "(1) and (2)",
+   "None of them"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Interface methods are implicitly `public`, so implementing `size()` with package access narrows the visibility, which is error (1). Interface fields are implicitly `static final` constants, so `MAX++` is error (2), \"cannot assign a value to final variable MAX\". Reading `MAX` in (3) is fine."
+ },
+ {
+  "id": "ch3-15",
+  "chapter": 3,
+  "subtopic": "interfaces",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the result of compiling this code?",
+  "code": "interface Printable { void print(); }\ninterface Savable   { void save();  }\nclass Document { }\nclass Report implements Printable, Savable extends Document {\n    public void print() { }\n    public void save()  { }\n}",
+  "options": [
+   "It compiles",
+   "Compile error: the `extends` clause must come before the `implements` clause",
+   "Compile error: a class cannot implement more than one interface",
+   "Compile error: `Document` must be abstract to be extended together with interfaces"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The syntax is `class SubClass1 extends SuperClass implements Interface1, Interface2, Interface3`, so `extends` must come first (javac reports \"'{' expected\" at `extends`). Implementing several interfaces is exactly how Java supports multiple inheritance of type."
+ },
+ {
+  "id": "ch3-16",
+  "chapter": 3,
+  "subtopic": "visibility and packages",
+  "type": "single",
+  "gotcha": true,
+  "question": "The two classes are in different packages. Which fields used in `sum()` cause a compile error?",
+  "code": "// file pkgA/Shape.java\npackage pkgA;\npublic class Shape {\n    private   int a = 1;\n    protected int b = 2;\n              int c = 3;   // no modifier\n    public    int d = 4;\n}\n\n// file pkgB/Circle.java\npackage pkgB;\nimport pkgA.Shape;\npublic class Circle extends Shape {\n    int sum() { return a + b + c + d; }\n}",
+  "options": [
+   "`a` and `c`",
+   "`a` only",
+   "`a`, `b` and `c`",
+   "None, because a subclass inherits all fields"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Under the lecture's visibility table, a member with no modifier (package access) is visible within the package but not to a subclass in another package, so `c` fails, and so does the `private` field `a`. `protected` (`b`) is visible to subclasses even across packages. The idea that a subclass inherits everything ignores the access level."
+ },
+ {
+  "id": "ch3-17",
+  "chapter": 3,
+  "subtopic": "visibility and packages",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Class1` in `packageOne` declares `- iV1` (private), `# iV2` (protected), `iV3` (no modifier) and `+ iV4` (public). `Class5` is in `packageTwo` and is **not** a subclass of `Class1`. Which of these can `Class5` access by name through a `Class1` object?",
+  "options": [
+   "iV4 only",
+   "iV2 and iV4",
+   "iV2, iV3 and iV4",
+   "None of them"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "For an unrelated class in a different package (\"the world\"), only `public` members are visible. `protected` adds subclass and same-package access, package access (no modifier) covers only the same package, and `private` is visible only inside the class itself. In UML, `#` marks protected."
+ },
+ {
+  "id": "ch3-18",
+  "chapter": 3,
+  "subtopic": "overloading",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the result of compiling this class?",
+  "code": "public class Minimum {\n    int findMin(int a, int b)          { return a < b ? a : b; }\n    double findMin(int x, int y)       { return x < y ? x : y; }\n    double findMin(double a, double b) { return a < b ? a : b; }\n}",
+  "options": [
+   "It compiles, because the first two methods have different return types",
+   "It compiles, because the first two methods have different parameter names",
+   "Compile error: method `findMin(int,int)` is already defined in class `Minimum`",
+   "Compile error: `findMin(double,double)` conflicts with `findMin(int,int)`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Overloads must differ in the number or types of parameters. Neither the return type nor the parameter names count as part of the signature, so the first two methods clash. This is the method marked X on the lecture's `findMin` slide."
+ },
+ {
+  "id": "ch4-01",
+  "chapter": 4,
+  "subtopic": "exception hierarchy",
+  "type": "single",
+  "gotcha": true,
+  "question": "In Java's exception hierarchy, which class is the **direct** superclass of both `Error` and `Exception`?",
+  "options": [
+   "Object",
+   "RuntimeException",
+   "Throwable",
+   "Exception (it is the root of all exceptions)"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The hierarchy is Object, then Throwable, then Error and Exception. `Object` is the root of all classes, but it is not the direct parent of these two. `Error` is not a subclass of `Exception`, even though the lecture calls `Exception` \"the root class of all exceptions\"."
+ },
+ {
+  "id": "ch4-02",
+  "chapter": 4,
+  "subtopic": "checked vs unchecked",
+  "type": "multi",
+  "gotcha": true,
+  "question": "Which of these are **unchecked** exceptions, according to the lecture?",
+  "options": [
+   "NumberFormatException",
+   "VirtualMachineError",
+   "ClassNotFoundException",
+   "IOException",
+   "NullPointerException"
+  ],
+  "answer": [
+   0,
+   1,
+   4
+  ],
+  "explanation": "Unchecked exceptions are subclasses of `RuntimeException` or `Error`. `NumberFormatException` (via `IllegalArgumentException`) and `NullPointerException` are runtime exceptions, and `VirtualMachineError` is an `Error`. `ClassNotFoundException` sounds like a runtime problem, but it extends `Exception` directly, so it is checked, as is `IOException`."
+ },
+ {
+  "id": "ch4-03",
+  "chapter": 4,
+  "subtopic": "checked vs unchecked",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens when this code is compiled and run?",
+  "code": "public class Test {\n    static void validate(int n) {\n        if (n <= 0)\n            throw new Exception(\"n must be positive\");\n        System.out.println(\"OK \" + n);\n    }\n    public static void main(String[] args) {\n        try {\n            validate(0);\n        } catch (Exception e) {\n            System.out.println(e.getMessage());\n        }\n    }\n}",
+  "options": [
+   "It prints `n must be positive`",
+   "Compile error in `validate`: unreported exception `Exception`; must be caught or declared to be thrown",
+   "It prints `OK 0`",
+   "Compile error in `main`: `catch (Exception e)` is unreachable"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`Exception` (outside `RuntimeException`) is checked, so the method that throws it must either catch it or declare `throws Exception`. The `try/catch` in the caller does not satisfy that requirement for `validate` itself."
+ },
+ {
+  "id": "ch4-04",
+  "chapter": 4,
+  "subtopic": "multiple catches",
+  "type": "single",
+  "gotcha": true,
+  "question": "What happens when this code is compiled and run?",
+  "code": "public class Test {\n    public static void main(String[] args) {\n        try {\n            int x = 5 / 0;\n        } catch (Exception e) {\n            System.out.println(\"General\");\n        } catch (ArithmeticException e) {\n            System.out.println(\"Arithmetic\");\n        }\n    }\n}",
+  "options": [
+   "It prints `General`",
+   "It prints `Arithmetic`",
+   "It prints `General` then `Arithmetic`",
+   "Compile error: exception `ArithmeticException` has already been caught"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Catch blocks are checked in order, and `Exception` already catches every `ArithmeticException`, so the second catch is unreachable. That is a compile error, not just bad style. The lecture's \"recommendation\" to put specific catches before general ones is enforced by the compiler."
+ },
+ {
+  "id": "ch4-05",
+  "chapter": 4,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "question": "This is modelled on the lecture's AverageMarksV5. What is printed?",
+  "code": "public class Test {\n    static double avg(int n) {\n        if (n <= 0) throw new ArithmeticException(\"n must be > 0\");\n        return 100.0 / n;\n    }\n    public static void main(String[] args) {\n        try {\n            System.out.println(avg(0));\n        } catch (ArithmeticException e) {\n            System.out.println(e.getMessage());\n            System.exit(0);\n        } catch (Exception e) {\n            System.out.println(\"General\");\n        } finally {\n            System.out.println(\"End\");\n        }\n        System.out.println(\"After\");\n    }\n}",
+  "options": [
+   "n must be > 0",
+   "n must be > 0, then End",
+   "n must be > 0, then End, then After",
+   "n must be > 0, then General, then End"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`System.exit(0)` terminates the JVM immediately, so the `finally` block never runs. That is why the lecture's V5 output for 0 students has no \"End of program execution!\" line. Without the exit, `finally` would always run."
+ },
+ {
+  "id": "ch4-06",
+  "chapter": 4,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "public class Test {\n    static int f() {\n        try {\n            System.out.print(\"T\");\n            return 1;\n        } finally {\n            System.out.print(\"F\");\n            return 2;\n        }\n    }\n    public static void main(String[] args) {\n        System.out.println(f());\n    }\n}",
+  "options": [
+   "T1",
+   "TF1",
+   "T1F",
+   "TF2"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`finally` runs even after `return 1` has started, and a `return` inside `finally` replaces the pending return value, so `f()` returns 2. Both T and F print while `f()` is being evaluated, before `println` prints the result."
+ },
+ {
+  "id": "ch4-07",
+  "chapter": 4,
+  "subtopic": "propagation",
+  "type": "single",
+  "gotcha": false,
+  "question": "This follows the lecture's ExPropagation example. Which lines are printed, in order?",
+  "code": "public class Test {\n    static void m1() {\n        System.out.println(\"Start m1\");\n        try { m2(); }\n        catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"Caught\");\n        }\n        System.out.println(\"End m1\");\n    }\n    static void m2() {\n        System.out.println(\"Start m2\");\n        m3();\n        System.out.println(\"End m2\");\n    }\n    static void m3() {\n        int[] a = new int[5];\n        a[5] = 10;\n        System.out.println(\"End m3\");\n    }\n    public static void main(String[] args) {\n        m1();\n        System.out.println(\"End main\");\n    }\n}",
+  "options": [
+   "Start m1, Start m2, Caught, End m2, End m1, End main",
+   "Start m1, Start m2, Caught, End m1, End main",
+   "Start m1, Start m2, Caught, End m1",
+   "Start m1, Start m2, End m2, Caught, End m1, End main"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`a[5]` throws `ArrayIndexOutOfBoundsException` in `m3`. Neither `m3` nor `m2` catches it, so it propagates up the call stack and the rest of `m3` and `m2` is skipped. `m1` catches it, and from there execution continues normally with End m1 and End main."
+ },
+ {
+  "id": "ch4-08",
+  "chapter": 4,
+  "subtopic": "multiple catches",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "diagram": "classDiagram\n  Exception <|-- RuntimeException\n  RuntimeException <|-- ArithmeticException",
+  "code": "public class Test {\n    public static void main(String[] args) {\n        int[] a = {1, 2};\n        try {\n            System.out.print(a[1] / (a[0] - 1));\n            System.out.print(\"X\");\n        } catch (ArithmeticException e) {\n            System.out.print(\"A\");\n        } catch (RuntimeException e) {\n            System.out.print(\"R\");\n        } catch (Exception e) {\n            System.out.print(\"E\");\n        } finally {\n            System.out.print(\"F\");\n        }\n        System.out.print(\"Z\");\n    }\n}",
+  "options": [
+   "ARFZ",
+   "AREFZ",
+   "AFZ",
+   "AF"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`2 / 0` throws `ArithmeticException`, so X is skipped. The catch blocks are searched in order and only the first matching one runs, even though `RuntimeException` and `Exception` would also match (IS-A). Then `finally` runs and execution continues after the try statement."
+ },
+ {
+  "id": "ch4-09",
+  "chapter": 4,
+  "subtopic": "custom exceptions",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "class NegativeException extends Exception {\n    public NegativeException() { super(\"Negative input!\"); }\n    public NegativeException(String msg) { super(msg); }\n}\npublic class Test {\n    static void check(int n) throws NegativeException {\n        if (n < 0) throw new NegativeException();\n    }\n    public static void main(String[] args) {\n        try {\n            check(-1);\n        } catch (NegativeException e) {\n            System.out.println(e.getMessage());\n            System.out.println(e);\n        }\n    }\n}",
+  "options": [
+   "Negative input!, then Negative input!",
+   "Negative input!, then NegativeException: Negative input!",
+   "Negative input!, then java.lang.Exception: Negative input!",
+   "null, then NegativeException"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`getMessage()` returns only the message passed to `super(...)`. `println(e)` calls `toString()`, which returns a short description: the class name of the runtime object (here in the default package), a colon, and the message. It reports the actual class, not `java.lang.Exception`."
+ },
+ {
+  "id": "ch4-10",
+  "chapter": 4,
+  "subtopic": "custom exceptions",
+  "type": "multi",
+  "gotcha": true,
+  "question": "A custom exception is declared as `class X extends ____ { }`. For which superclasses does `static void f() { throw new X(); }` compile **without** a `throws` clause?",
+  "options": [
+   "Exception",
+   "RuntimeException",
+   "Throwable",
+   "Error",
+   "IllegalArgumentException"
+  ],
+  "answer": [
+   1,
+   3,
+   4
+  ],
+  "explanation": "Only exceptions under `RuntimeException` or `Error` are unchecked, and these do not need to be caught or declared. `IllegalArgumentException` is a subclass of `RuntimeException`. Extending `Exception`, or `Throwable` directly, creates a checked exception that needs `throws`."
+ },
+ {
+  "id": "ch4-11",
+  "chapter": 4,
+  "subtopic": "throw and throws",
+  "type": "single",
+  "gotcha": true,
+  "question": "Which statement correctly raises an exception inside a method body?",
+  "options": [
+   "`throws new Exception(\"bad input\");`",
+   "`throw Exception(\"bad input\");`",
+   "`throw new Exception(\"bad input\");`",
+   "`raise new Exception(\"bad input\");`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`throw` is the statement that throws an exception object, and the object has to be created with `new`. `throws` is used only in a method header to declare the exceptions the method may throw. Leaving out `new` makes it a call to a method named `Exception`, which does not exist."
+ },
+ {
+  "id": "ch4-12",
+  "chapter": 4,
+  "subtopic": "propagation",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the lecture's CreateException example, `main` calls `method1`, which calls `method2`, which calls `method3`. In `method3`, `k = i / j` with `j = 0` is caught, and `e.printStackTrace()` is called. Which line is printed immediately after `java.lang.ArithmeticException: / by zero`?",
+  "options": [
+   "at CreateException.main(...)",
+   "at CreateException.method1(...)",
+   "/ by zero",
+   "at CreateException.method3(...)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`printStackTrace()` prints the methods that were called, starting with the one that threw the exception (`method3`) and ending with `main`. The plain `/ by zero` line came from the earlier `getMessage()` print, before the trace."
+ },
+ {
+  "id": "ch4-13",
+  "chapter": 4,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "public class Test {\n    public static void main(String[] args) {\n        try {\n            try {\n                throw new RuntimeException(\"first\");\n            } catch (RuntimeException e) {\n                System.out.print(\"C:\" + e.getMessage() + \" \");\n                throw new IllegalStateException(\"second\");\n            } finally {\n                System.out.print(\"F \");\n            }\n        } catch (IllegalStateException e) {\n            System.out.print(\"O:\" + e.getMessage());\n        }\n    }\n}",
+  "options": [
+   "C:first F O:second",
+   "C:first O:second F",
+   "C:first C:second F O:second",
+   "C:first F, then the program terminates with an uncaught IllegalStateException"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "An exception thrown inside a catch block is not handled by the other catch blocks of the same `try`, even though `IllegalStateException` IS-A `RuntimeException`. The inner `finally` runs first, and then the exception propagates to the outer `try`, whose catch prints O:second."
+ },
+ {
+  "id": "ch4-14",
+  "chapter": 4,
+  "subtopic": "exception hierarchy",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is printed?",
+  "code": "public class Test {\n    public static void main(String[] args) {\n        try {\n            int n = Integer.parseInt(\"12a\");\n            System.out.print(n + \" \");\n        } catch (ArithmeticException e) {\n            System.out.print(\"Arith \");\n        } catch (IllegalArgumentException e) {\n            System.out.print(\"Illegal \");\n        } catch (Exception e) {\n            System.out.print(\"General \");\n        }\n        System.out.print(\"Done\");\n    }\n}",
+  "options": [
+   "Illegal Done",
+   "General Done",
+   "12 Done",
+   "Compile error: `NumberFormatException` must be caught explicitly"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`Integer.parseInt(\"12a\")` throws `NumberFormatException`, which is a subclass of `IllegalArgumentException`, so the first matching handler is the `IllegalArgumentException` one. General is wrong because only the first matching catch runs. It is unchecked, so it never has to be caught explicitly."
+ },
+ {
+  "id": "ch4-15",
+  "chapter": 4,
+  "subtopic": "checked vs unchecked",
+  "type": "single",
+  "gotcha": true,
+  "question": "What is the result of compiling and running this code?",
+  "code": "import java.io.IOException;\n\npublic class Test {\n    public static void main(String[] args) {\n        try {\n            int x = 10 / 2;\n            System.out.println(x);\n        } catch (IOException e) {\n            System.out.println(\"IO problem\");\n        }\n    }\n}",
+  "options": [
+   "It prints `5`",
+   "It prints `5` then `IO problem`",
+   "Compile error: exception `IOException` is never thrown in the body of the corresponding try statement",
+   "Compile error: `main` must declare `throws IOException`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Checked exceptions are analysed by the compiler, so catching a checked exception that the try block cannot throw is a compile error. This rule does not apply to `Exception`, `Throwable` or unchecked types, so `catch (Exception e)` would compile here."
+ }
+]
