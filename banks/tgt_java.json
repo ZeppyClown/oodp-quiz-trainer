@@ -1,0 +1,561 @@
+[
+  {
+    "id": "tj-01",
+    "chapter": 1,
+    "subtopic": "java-platform",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Using the slides' 'Java Translation and Execution' pipeline, which pairing of tool and job is correct?",
+    "options": [
+      "`javac` turns .java source into .class bytecode; the JIT compiler inside the JVM turns bytecode into machine code",
+      "`javac` turns .java source directly into machine code; the JVM then only loads it",
+      "The JIT compiler turns .java source into .class bytecode; `javac` turns bytecode into machine code",
+      "`javac` turns .java source into bytecode; the operating system interprets the bytecode without the JVM"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "The Java compiler (`javac`) stops at bytecode (.class). The Just-in-time compiler, which lives inside the JVM (part of the JRE), produces machine code at run time. Picking `javac` for the machine-code step is the classic mix-up."
+  },
+  {
+    "id": "tj-02",
+    "chapter": 1,
+    "subtopic": "java-platform",
+    "type": "multi",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which statements about the Java platform are TRUE? (Select all that apply.)",
+    "options": [
+      "The JVM is part of the Java Runtime Environment (JRE)",
+      "The JRE on its own includes the `javac` compiler, so you can compile with only a JRE installed",
+      "`java Shape` starts the JVM and runs the bytecode in Shape.class",
+      "The JIT compiler runs at compile time, before the .class file is produced"
+    ],
+    "answer": [
+      0,
+      2
+    ],
+    "explanation": "The JRE is the JVM plus libraries, enough to *run* programs; `javac` comes with the JDK (development kit), which contains the JRE plus development tools. The JIT works at run time on bytecode, after `javac` has already made the .class file."
+  },
+  {
+    "id": "tj-03",
+    "chapter": 1,
+    "subtopic": "java-platform",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "This code is saved in a file named **Main.java**, and you run `javac Main.java`. What happens?",
+    "code": "public class Circle {\n    public static void main(String[] args) {\n        System.out.println(\"Circle running\");\n    }\n}",
+    "options": [
+      "It compiles to Main.class, and `java Main` prints `Circle running`",
+      "Compile error: a public class `Circle` must be declared in a file named Circle.java",
+      "It compiles to Circle.class, and `java Circle` prints `Circle running`",
+      "It compiles, but the JVM throws an error at run time because the names differ"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "A public top-level class must sit in a file with exactly the same name (Circle.java). The mismatch is caught by `javac`, so nothing runs; it is not a run-time problem."
+  },
+  {
+    "id": "tj-04",
+    "chapter": 2,
+    "subtopic": "references-copying",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "class Box {\n    int v;\n    Box(int v) { this.v = v; }\n}\npublic class Main {\n    static void swap(Box a, Box b) {\n        Box t = a;\n        a = b;\n        b = t;\n        a.v = 99;\n    }\n    public static void main(String[] args) {\n        Box x = new Box(1), y = new Box(2);\n        swap(x, y);\n        System.out.println(x.v + \" \" + y.v);\n    }\n}",
+    "options": [
+      "2 1",
+      "99 2",
+      "1 99",
+      "1 2"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "Java passes copies of references: swapping `a` and `b` only swaps the method's local copies, so `x` and `y` are not swapped. After the swap, `a` refers to the object `y` refers to, so `a.v = 99` changes `y`'s object, and the caller can see that change."
+  },
+  {
+    "id": "tj-05",
+    "chapter": 2,
+    "subtopic": "references-copying",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "import java.util.Arrays;\npublic class Main {\n    static void change(int[] arr, String s) {\n        arr[0] = 10;\n        arr = new int[]{7, 7, 7};\n        arr[1] = 20;\n        s = s + \"!\";\n        s.toUpperCase();\n    }\n    public static void main(String[] args) {\n        int[] a = {1, 2, 3};\n        String s = \"hi\";\n        change(a, s);\n        System.out.println(Arrays.toString(a) + \" \" + s);\n    }\n}",
+    "options": [
+      "[10, 20, 3] HI!",
+      "[7, 20, 7] hi!",
+      "[1, 2, 3] hi",
+      "[10, 2, 3] hi"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "`arr[0] = 10` changes the caller's array through the shared reference, but after `arr = new int[]...` the parameter points to a new array, so `arr[1] = 20` never reaches `a`. Strings are immutable, and reassigning `s` only changes the local copy, so the caller still has `hi`."
+  },
+  {
+    "id": "tj-06",
+    "chapter": 2,
+    "subtopic": "accessors-encapsulation",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "class Account {\n    private double balance;\n    public void setBalance(double b) { balance = b; }\n    public double getBalance() { return balance; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Account a = new Account();\n        a.setBalance(250);\n        System.out.println(\"Balance: \" + a.getBalance());\n    }\n}",
+    "options": [
+      "Balance: 250.0",
+      "Balance: 250",
+      "Balance: 250.00",
+      "Compile error: an int argument cannot be passed to a double parameter"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "The int 250 is automatically widened to double when it is passed to `setBalance`, so it compiles. A double always prints with a decimal part, so the output is `250.0`, not `250`."
+  },
+  {
+    "id": "tj-07",
+    "chapter": 2,
+    "subtopic": "accessors-encapsulation",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        int total = 7, count = 2;\n        double avg = total / count;\n        double avg2 = (double) total / count;\n        System.out.println(avg + \" \" + avg2);\n    }\n}",
+    "options": [
+      "3.5 3.5",
+      "3.0 3.5",
+      "3 3.5",
+      "Compile error: possible lossy conversion from int to double"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "`total / count` is int division (7/2 = 3), worked out *before* the result is widened to 3.0 for the double. Casting one operand first makes it floating-point division (3.5). Widening int to double is always allowed, so there is no compile error."
+  },
+  {
+    "id": "tj-08",
+    "chapter": 4,
+    "subtopic": "checked vs unchecked",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is the result of compiling and running this code?",
+    "code": "import java.io.IOException;\npublic class Main {\n    public static void main(String[] args) {\n        try {\n            int x = Integer.parseInt(\"12\");\n            System.out.println(x);\n        } catch (IOException e) {\n            System.out.println(\"IO problem\");\n        }\n    }\n}",
+    "options": [
+      "Prints `12`",
+      "Prints `12` then `IO problem`",
+      "Compile error: exception IOException is never thrown in body of corresponding try statement",
+      "Throws a NumberFormatException at run time"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "IOException is a checked exception, and nothing in the try block can throw it, so `javac` rejects the catch block. The code looks harmless, which is why `12` is tempting, but it never gets to run."
+  },
+  {
+    "id": "tj-09",
+    "chapter": 4,
+    "subtopic": "checked vs unchecked",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is the result of compiling and running this code?",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        try {\n            int x = Integer.parseInt(\"12\");\n            System.out.println(x);\n        } catch (Exception e) {\n            System.out.println(\"problem\");\n        }\n        System.out.println(\"done\");\n    }\n}",
+    "options": [
+      "Compile error: exception Exception is never thrown in body of corresponding try statement",
+      "Prints `12`, `problem`, then `done`",
+      "Prints `done` only",
+      "Prints `12` then `done`"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The 'never thrown' rule only applies to specific checked exceptions. `catch (Exception e)` is always allowed because Exception also covers unchecked RuntimeExceptions. Here the code really does just run normally."
+  },
+  {
+    "id": "tj-10",
+    "chapter": 4,
+    "subtopic": "checked vs unchecked",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is the result of compiling this code?",
+    "code": "public class Main {\n    static void load() {\n        throw new Exception(\"missing file\");\n    }\n    public static void main(String[] args) {\n        try {\n            load();\n        } catch (Exception e) {\n            System.out.println(\"Caught: \" + e.getMessage());\n        }\n    }\n}",
+    "options": [
+      "Compile error in `load()`: unreported exception Exception; must be caught or declared to be thrown",
+      "Compiles and prints `Caught: missing file`",
+      "Compile error in `main`: exception Exception is never thrown in body of corresponding try statement",
+      "Compiles, then crashes with an uncaught Exception"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Exception is checked, so `load()` itself must either catch it or declare `throws Exception`. The caller catching it later doesn't help. The catch in `main` is not the problem, because `catch (Exception e)` is always legal."
+  },
+  {
+    "id": "tj-11",
+    "chapter": 4,
+    "subtopic": "checked vs unchecked",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is the result of compiling and running this code?",
+    "code": "public class Main {\n    static void check(int x) {\n        if (x < 0) throw new IllegalArgumentException(\"negative\");\n        System.out.println(\"ok \" + x);\n    }\n    public static void main(String[] args) {\n        check(5);\n    }\n}",
+    "options": [
+      "Compile error: unreported exception IllegalArgumentException; must be caught or declared to be thrown",
+      "Prints `ok 5`",
+      "Compile error: `check` must be called inside a try block",
+      "Throws IllegalArgumentException at run time"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "IllegalArgumentException is a RuntimeException (unchecked), so it doesn't need to be declared or caught, and here it isn't even thrown because x is 5. The 'catch or declare' rule only applies to checked exceptions."
+  },
+  {
+    "id": "tj-12",
+    "chapter": 4,
+    "subtopic": "multiple catches",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        try {\n            int[] a = new int[2];\n            a[2] = 5;\n            System.out.print(\"A \");\n        } catch (ArithmeticException e) {\n            System.out.print(\"B \");\n        } catch (RuntimeException e) {\n            System.out.print(\"C \");\n        } catch (Exception e) {\n            System.out.print(\"D \");\n        } finally {\n            System.out.print(\"E \");\n        }\n        System.out.print(\"F\");\n    }\n}",
+    "options": [
+      "C D E F",
+      "A E F",
+      "C E F",
+      "B C D E F"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "`a[2]` throws ArrayIndexOutOfBoundsException, so `A` is skipped. Only the FIRST catch that matches runs (RuntimeException, so `C`), and the later catches are skipped even though Exception would also match. Then finally runs, then the code after the try."
+  },
+  {
+    "id": "tj-13",
+    "chapter": 4,
+    "subtopic": "try-catch-finally",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "public class Main {\n    static int f() {\n        try {\n            throw new IllegalStateException();\n        } catch (RuntimeException e) {\n            return 1;\n        } finally {\n            System.out.print(\"F \");\n        }\n    }\n    public static void main(String[] args) {\n        System.out.println(f());\n    }\n}",
+    "options": [
+      "1",
+      "1 F",
+      "Compile error: missing return statement",
+      "F 1"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The finally block runs even when the catch block is returning, so `F ` is printed before `f()` hands back 1, and `println` then prints `1`. The catch returns on every path, so there is no missing-return error."
+  },
+  {
+    "id": "tj-14",
+    "chapter": 4,
+    "subtopic": "try-catch-finally",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What happens when this runs?",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        try {\n            throw new RuntimeException();\n        } catch (RuntimeException e) {\n            System.out.print(\"C \");\n            throw new IllegalStateException();\n        } catch (Exception e) {\n            System.out.print(\"E \");\n        } finally {\n            System.out.print(\"F \");\n        }\n        System.out.print(\"After\");\n    }\n}",
+    "options": [
+      "Prints `C F `, then the program ends with an uncaught IllegalStateException",
+      "Prints `C E F After`",
+      "Prints `C F After`",
+      "Prints `C E F ` then the program ends with an uncaught IllegalStateException"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "The catch blocks of a try only handle exceptions thrown inside that try, not ones thrown from a sibling catch, so `catch (Exception e)` does not catch it. finally still runs, then the new exception leaves `main` uncaught, so `After` is never printed."
+  },
+  {
+    "id": "tj-15",
+    "chapter": 5,
+    "subtopic": "dynamic binding",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "class Base {\n    Base() { describe(); }\n    void describe() { System.out.println(\"Base\"); }\n}\nclass Derived extends Base {\n    private String name = \"D\";\n    private int n = 5;\n    Derived() { super(); describe(); }\n    @Override\n    void describe() { System.out.println(name + \" \" + n); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        new Derived();\n    }\n}",
+    "options": [
+      "Base\nD 5",
+      "null 0\nD 5",
+      "D 5\nD 5",
+      "Base\nnull 0"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Dynamic binding works even inside the superclass constructor, so `Derived.describe()` runs, not `Base`'s. At that moment Derived's field initialisers haven't run yet, so it sees the default values (null, 0). After `super()` returns, the fields are set and the second call prints `D 5`."
+  },
+  {
+    "id": "tj-16",
+    "chapter": 5,
+    "subtopic": "dynamic binding",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "class Lamp {\n    Lamp() { System.out.println(\"on=\" + isOn()); }\n    boolean isOn() { return true; }\n}\nclass SmartLamp extends Lamp {\n    boolean powered = true;\n    @Override\n    boolean isOn() { return powered; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Lamp l = new SmartLamp();\n    }\n}",
+    "options": [
+      "on=true",
+      "Compile error: a constructor cannot call an overridable method",
+      "on=false",
+      "NullPointerException"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "The Lamp constructor calls `isOn()`, which is dynamically bound to `SmartLamp.isOn()`. That runs before `powered = true` has been assigned, so it reads the default value false. It compiles fine, and a boolean field can't cause an NPE."
+  },
+  {
+    "id": "tj-17",
+    "chapter": 5,
+    "subtopic": "overriding",
+    "type": "multi",
+    "gotcha": true,
+    "targeted": true,
+    "question": "According to the slides' 'Three Ways of Method Overriding', which of these are examples of method overriding? (Select all that apply.)",
+    "options": [
+      "Subclass `Dog` defines `void speak()` with the same signature as `Animal`'s `void speak()`",
+      "Class `Calc` defines both `add(int, int)` and `add(double, double)`",
+      "Concrete class `Circle` implements `double area()` declared in interface `Shape`",
+      "Subclass `Dog` declares `static void info()` with the same signature as a static `info()` in `Animal`"
+    ],
+    "answer": [
+      0,
+      2
+    ],
+    "explanation": "The three ways are: a subclass overrides a superclass method, a subclass implements an abstract method of an abstract class, and a concrete class implements an interface method. Two `add` methods with different parameters is overloading, and a matching static method *hides* the parent's method (bound statically); neither is overriding."
+  },
+  {
+    "id": "tj-18",
+    "chapter": 5,
+    "subtopic": "static binding",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "class Animal {\n    String name = \"Animal\";\n    static String kind() { return \"A-static\"; }\n    String sound() { return \"...\"; }\n}\nclass Dog extends Animal {\n    String name = \"Dog\";\n    static String kind() { return \"D-static\"; }\n    @Override\n    String sound() { return \"Woof\"; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Animal a = new Dog();\n        System.out.println(a.name + \" \" + a.kind() + \" \" + a.sound());\n    }\n}",
+    "options": [
+      "Dog D-static Woof",
+      "Animal D-static Woof",
+      "Animal A-static ...",
+      "Animal A-static Woof"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "Only overridden instance methods are dynamically bound, so `sound()` gives `Woof`. Fields and static methods are chosen by the *reference* type (Animal) at compile time, so you get `Animal` and `A-static`. Picking `Dog D-static Woof` treats everything as polymorphic."
+  },
+  {
+    "id": "tj-19",
+    "chapter": 10,
+    "subtopic": "default methods",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is the result of compiling and running this code?",
+    "code": "interface A { default String hi() { return \"A\"; } }\ninterface B { default String hi() { return \"B\"; } }\nclass C implements A, B { }\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(new C().hi());\n    }\n}",
+    "options": [
+      "Compile error: class C inherits unrelated defaults for hi() from types A and B",
+      "Prints `A` (the first interface listed wins)",
+      "Prints `B` (the last interface listed wins)",
+      "Compiles, but throws an error at run time because the call is ambiguous"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "When two interfaces supply the same default method, the class must override it (and can call `A.super.hi()` or `B.super.hi()`). The order the interfaces are listed in doesn't matter, and the conflict is always caught at compile time, never at run time."
+  },
+  {
+    "id": "tj-20",
+    "chapter": 10,
+    "subtopic": "default methods",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "interface A { default String hi() { return \"A\"; } }\ninterface B { default String hi() { return \"B\"; } }\nclass C implements A, B {\n    @Override\n    public String hi() { return B.super.hi() + A.super.hi(); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(new C().hi());\n    }\n}",
+    "options": [
+      "AB",
+      "BA",
+      "Compile error: the defaults for hi() from A and B still conflict",
+      "B"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Overriding `hi()` in C resolves the conflict, and `X.super.hi()` calls interface X's default. The body really does run as written, so it prints `BA`. The conflict error only happens when C does NOT override the method."
+  },
+  {
+    "id": "tj-21",
+    "chapter": 10,
+    "subtopic": "default methods",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "interface Greeter {\n    default String greet() { return \"Hi from Greeter\"; }\n}\nclass Base {\n    public String greet() { return \"Hi from Base\"; }\n}\nclass Kid extends Base implements Greeter { }\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(new Kid().greet());\n    }\n}",
+    "options": [
+      "Hi from Greeter",
+      "Compile error: Kid inherits two versions of greet()",
+      "Hi from Base",
+      "Run-time error: ambiguous method greet()"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "The 'class wins' rule: a method inherited from a superclass takes priority over an interface default method, so there is no conflict and Base's version runs. Only two *interface* defaults with no class method between them cause a compile error."
+  },
+  {
+    "id": "tj-22",
+    "chapter": 10,
+    "subtopic": "generics",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> a = new ArrayList<>();\n        List<Integer> b = new ArrayList<>();\n        System.out.println(a.getClass() == b.getClass());\n        System.out.println(a.getClass().getName());\n    }\n}",
+    "options": [
+      "false\njava.util.ArrayList<String>",
+      "false\njava.util.ArrayList",
+      "true\njava.util.ArrayList<String>",
+      "true\njava.util.ArrayList"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "Type erasure: type arguments only exist at compile time, so at run time both objects are plain `ArrayList` and share one Class object. That's why `getClass()` matches and the name has no `<String>`."
+  },
+  {
+    "id": "tj-23",
+    "chapter": 10,
+    "subtopic": "generics",
+    "type": "multi",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Inside `class Holder<T> { ... }`, with `Object obj` as a parameter, which of these lines COMPILE? (Select all that apply.)",
+    "options": [
+      "`T item = new T();`",
+      "`boolean ok = obj instanceof List<String>;`",
+      "`boolean ok = obj instanceof List<?>;`",
+      "`<E> boolean same(E x, E y) { return x.equals(y); }` (as a method of Holder)"
+    ],
+    "answer": [
+      2,
+      3
+    ],
+    "explanation": "Because of type erasure, T and `<String>` are unknown at run time, so `new T()` is illegal and `instanceof List<String>` can't be checked (it's a compile error). The unbounded wildcard `List<?>` is fine, and a generic method that only calls Object methods compiles."
+  },
+  {
+    "id": "tj-24",
+    "chapter": 10,
+    "subtopic": "generics",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is the result of compiling this code?",
+    "code": "import java.util.*;\npublic class Main {\n    static void addThree(List<? extends Number> nums) {\n        nums.add(Integer.valueOf(3));\n    }\n    public static void main(String[] args) {\n        List<Integer> ints = new ArrayList<>();\n        addThree(ints);\n        System.out.println(ints);\n    }\n}",
+    "options": [
+      "Compile error at `nums.add(...)`: you cannot add to a `List<? extends Number>`",
+      "Compiles and prints `[3]`",
+      "Compiles, but throws UnsupportedOperationException at run time",
+      "Compile error at `addThree(ints)`: a `List<Integer>` is not a `List<? extends Number>`"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "`? extends Number` means 'some unknown subtype of Number', which could be `List<Double>`, so the compiler blocks every add (apart from null) and the list is read-only. Passing a `List<Integer>` is fine. The add is the problem."
+  },
+  {
+    "id": "tj-25",
+    "chapter": 10,
+    "subtopic": "generics",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "import java.util.*;\npublic class Main {\n    static void fill(List<? super Integer> list) {\n        list.add(1);\n        list.add(2);\n    }\n    public static void main(String[] args) {\n        List<Number> nums = new ArrayList<>();\n        fill(nums);\n        nums.add(2.5);\n        System.out.println(nums);\n    }\n}",
+    "options": [
+      "Compile error at `fill(nums)`: a `List<Number>` is not a `List<Integer>`",
+      "[1, 2, 2.5]",
+      "Compile error at `nums.add(2.5)`",
+      "[1.0, 2.0, 2.5]"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "`? super Integer` accepts a List of Integer or any of its supertypes, so a `List<Number>` can be passed in and Integers can be added to it. `List<Number>` takes a Double too, and each element keeps its own type, so it prints `[1, 2, 2.5]`. There is no trap here."
+  },
+  {
+    "id": "tj-26",
+    "chapter": 10,
+    "subtopic": "generics",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which line causes a problem, and what kind?",
+    "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Object[] arr = new String[2];       // line 4\n        arr[0] = \"a\";                       // line 5\n        arr[1] = Integer.valueOf(42);       // line 6\n        List<Integer> ints = new ArrayList<>();\n        List<Number> nums = ints;           // line 8\n    }\n}",
+    "options": [
+      "Line 4 is a compile error, because a String[] is not an Object[]",
+      "Line 6 is a compile error, and line 8 compiles because Integer is a Number",
+      "Line 8 is a compile error. If it is removed, line 6 compiles but throws ArrayStoreException at run time",
+      "Nothing goes wrong: the program compiles and runs without error"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "Generics are invariant: `List<Integer>` is NOT a `List<Number>`, so line 8 fails to compile. Arrays are covariant, so `Object[] arr = new String[2]` compiles, but storing an Integer into what is really a String[] throws ArrayStoreException at run time."
+  },
+  {
+    "id": "tj-27",
+    "chapter": 10,
+    "subtopic": "collections",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What happens when this runs?",
+    "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> names = new ArrayList<>(List.of(\"Ann\", \"Bob\", \"Cid\", \"Dan\"));\n        for (String n : names) {\n            if (n.startsWith(\"B\")) names.remove(n);\n        }\n        System.out.println(names);\n    }\n}",
+    "options": [
+      "Prints `[Ann, Cid, Dan]`",
+      "Compile error: cannot modify a list inside a for-each loop",
+      "Prints `[Ann, Bob, Cid, Dan]`",
+      "Throws ConcurrentModificationException"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "Changing the list's structure directly with `names.remove` while a for-each loop is iterating over it makes the hidden iterator throw ConcurrentModificationException on its next step. It compiles fine. Use `Iterator.remove()` or `removeIf` instead."
+  },
+  {
+    "id": "tj-28",
+    "chapter": 10,
+    "subtopic": "collections",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What is printed?",
+    "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<Integer> nums = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));\n        Iterator<Integer> it = nums.iterator();\n        while (it.hasNext()) {\n            if (it.next() % 2 == 0) it.remove();\n        }\n        nums.removeIf(n -> n > 4);\n        System.out.println(nums);\n    }\n}",
+    "options": [
+      "[1, 3]",
+      "Throws ConcurrentModificationException",
+      "[1, 3, 5]",
+      "[1, 2, 3, 4]"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "`Iterator.remove()` is the safe way to remove during iteration, and `removeIf` is safe too, so no exception is thrown. Evens are removed (leaving [1, 3, 5]), then removeIf drops 5, giving `[1, 3]`."
+  }
+]

@@ -1,0 +1,583 @@
+[
+  {
+    "id": "tu-01",
+    "chapter": 6,
+    "subtopic": "visibility",
+    "type": "multi",
+    "gotcha": true,
+    "targeted": true,
+    "question": "A Java class declares the four fields below. Select ALL the UML attribute lines that correctly show the field (visibility symbol, plus static or abstract styling).",
+    "code": "public class Sensor {\n    int count;\n    protected String label;\n    private double reading;\n    public static int total;\n}",
+    "options": [
+      "`int count;` becomes `~count : int`",
+      "`private double reading;` becomes `~reading : double`",
+      "`protected String label;` becomes `#label : String`",
+      "`public static int total;` becomes `+total : int` written in italics"
+    ],
+    "answer": [
+      0,
+      2
+    ],
+    "explanation": "No modifier in Java means package visibility, which is `~`. `#` is protected. A private field is `-`, not `~`. Static members are underlined; italics means abstract."
+  },
+  {
+    "id": "tu-02",
+    "chapter": 6,
+    "subtopic": "visibility",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which Java method header matches the operation `~getEmail() : String` in this class box?",
+    "diagram": "classDiagram\n  class Member {\n    -name : String\n    #getId() int\n    ~getEmail() String\n    +getName() String\n  }",
+    "options": [
+      "`private String getEmail()`",
+      "`protected String getEmail()`",
+      "`public String getEmail()`",
+      "`String getEmail()`"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "`~` is package visibility, which in Java is written with NO access modifier. The tempting answer, private, is `-`, and protected is `#`."
+  },
+  {
+    "id": "tu-03",
+    "chapter": 6,
+    "subtopic": "class notation",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "In this class box, `instances` is drawn **underlined** and `area()` is drawn in **italics**. Which Java declaration matches?",
+    "diagram": "classDiagram\n  class Shape {\n    -instances : int$\n    +area() double*\n  }",
+    "options": [
+      "`public class Shape { private int instances; public static double area() { return 0; } }`",
+      "`public abstract class Shape { private static int instances; public abstract double area(); }`",
+      "`public abstract class Shape { private final int instances = 0; public abstract double area(); }`",
+      "`public class Shape { private static int instances; public final double area() { return 0; } }`"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Underlined means static, and italics means abstract. A class with an abstract method must itself be abstract. Underline does not mean final, and italics does not mean static or final."
+  },
+  {
+    "id": "tu-04",
+    "chapter": 6,
+    "subtopic": "relationships",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Read the two arrows. `Printable` is an interface. What Java relationship does each arrow show?",
+    "diagram": "classDiagram\n  class Printable {\n    <<interface>>\n    +print() void\n  }\n  Printable <|.. Report\n  Report ..> Formatter",
+    "options": [
+      "`Report implements Printable` (dashed line, hollow triangle), and `Formatter` appears only as a parameter, return type or local variable in Report (dashed line, open arrowhead)",
+      "`Report extends Printable` (solid line, hollow triangle), and `Report` has a `Formatter` field",
+      "Both are realisations, so `Report implements Printable, Formatter`",
+      "`Report` merely uses `Printable` as a parameter (dependency), and `Report implements Formatter`"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Both arrows are dashed, so look at the head: a hollow triangle means realisation (`implements`), and an open arrowhead means dependency (used only temporarily). Swapping those two heads is the classic trap."
+  },
+  {
+    "id": "tu-05",
+    "chapter": 6,
+    "subtopic": "relationships",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Both `Readable` and `Seekable` are interfaces. Which Java code and line style are correct for this relationship?",
+    "diagram": "classDiagram\n  class Readable {\n    <<interface>>\n    +read() int\n  }\n  class Seekable {\n    <<interface>>\n    +seek(pos : long) void\n  }\n  Readable <|-- Seekable",
+    "options": [
+      "`interface Seekable implements Readable`, drawn with a dashed line and a hollow triangle",
+      "`interface Seekable extends Readable`, drawn with a dashed line and a hollow triangle (realisation)",
+      "`interface Seekable extends Readable`, drawn with a solid line and a hollow triangle (generalisation)",
+      "`class Seekable implements Readable`, drawn with a solid line and a hollow triangle"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "An interface inheriting from an interface uses `extends` and is generalisation, drawn with a solid line. `interface X implements Y` never compiles, and the dashed realisation line is reserved for a class implementing an interface."
+  },
+  {
+    "id": "tu-06",
+    "chapter": 6,
+    "subtopic": "relationships",
+    "type": "multi",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Following the slides' class-diagram-to-Java rules, to which classes should `Invoice` have a **dependency** (dashed line, open arrow) rather than an association? Select ALL.",
+    "code": "class Invoice {\n    private Customer customer;\n\n    Receipt print(Printer p) {\n        Tax t = new Tax();\n        p.send(customer.getName() + t.rate());\n        return new Receipt();\n    }\n}",
+    "options": [
+      "`Customer`",
+      "`Printer`",
+      "`Tax`",
+      "`Receipt`"
+    ],
+    "answer": [
+      1,
+      2,
+      3
+    ],
+    "explanation": "Dependency covers a class used as a method parameter (`Printer`), a local variable (`Tax`) or a return type (`Receipt`). `Customer` is stored in a field (an attribute), so it is an association, not a dependency."
+  },
+  {
+    "id": "tu-07",
+    "chapter": 6,
+    "subtopic": "multiplicity",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Using the slides' class-diagram-to-Java mapping, which field belongs in class `Car`?",
+    "diagram": "classDiagram\n  Car \"1\" --> \"4\" Wheel : wheels",
+    "options": [
+      "`private Wheel wheels;`",
+      "`private Wheel[] wheels = new Wheel[4];`",
+      "`private Wheel[] wheels = new Wheel[1];`",
+      "No field in `Car`. Instead `Wheel` has `private Car[] cars = new Car[4];`"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "The multiplicity next to `Wheel` says how many Wheels one Car holds, so a fixed 4 becomes an array (or collection) field of size 4 in Car. A multiplicity of 1 would be a single field. The arrow points to Wheel, so only Car needs the reference."
+  },
+  {
+    "id": "tu-08",
+    "chapter": 6,
+    "subtopic": "uml to java",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Using the slides' Java mapping for aggregation and composition, how should this code be drawn?",
+    "code": "import java.util.ArrayList;\n\nclass Playlist {\n    private ArrayList<Song> songs = new ArrayList<>();\n\n    public void addSong(Song s) {   // Song created elsewhere, passed in\n        songs.add(s);\n    }\n}",
+    "options": [
+      "Composition: a filled diamond at the `Playlist` end",
+      "Aggregation: a hollow diamond at the `Song` end",
+      "Dependency: a dashed arrow from `Playlist` to `Song`, because `Song` is a parameter",
+      "Aggregation: a hollow diamond at the `Playlist` end"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "Parts that are passed in by reference and stored in a collection field show aggregation. The diamond always sits on the WHOLE (`Playlist`). Composition would create the parts inside the whole. Because `songs` is a field, this is more than a dependency."
+  },
+  {
+    "id": "tu-09",
+    "chapter": 6,
+    "subtopic": "relationships",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which Java code best matches this diagram (a filled diamond at `House`)?",
+    "diagram": "classDiagram\n  House \"1\" *-- \"1..*\" Room : rooms",
+    "options": [
+      "`House` has a `rooms` collection field and its constructor does `rooms.add(new Room())`, so the Rooms are created inside House and die with it",
+      "`House` has a `rooms` collection field filled by `addRoom(Room r)` with Rooms created by the caller",
+      "`Room` has a `House` field and creates the House in its constructor",
+      "`House` has a method `void paint(Room r)` and no Room field"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "A filled diamond is composition. The whole creates and owns its parts, and they are deleted with it. Rooms passed in from outside would be aggregation (hollow diamond), and a parameter only would be a dependency."
+  },
+  {
+    "id": "tu-10",
+    "chapter": 6,
+    "subtopic": "relationships",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "What does the arrowhead (navigability) on this association mean for the Java code?",
+    "diagram": "classDiagram\n  Customer \"1\" --> \"*\" Order : orders",
+    "options": [
+      "`Order` must hold a `Customer` field, and `Customer` needs nothing",
+      "Both classes must hold references to each other",
+      "`Customer` holds a collection of `Order` references, and `Order` needs no `Customer` field",
+      "`Customer` only uses `Order` as a method parameter (dependency)"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "An association arrow points in the navigable direction: Customer can reach its Orders, so Customer has the field (a collection, because of `*`). A uni-directional association does not require the reverse reference. A dependency would be drawn dashed."
+  },
+  {
+    "id": "tu-11",
+    "chapter": 7,
+    "subtopic": "messages",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "In this sequence diagram, `save(o)` has a filled arrowhead, `log(msg)` has an open arrowhead, and `ok` is a dashed line. Which statement is correct?",
+    "diagram": "sequenceDiagram\n  participant c as :Controller\n  participant r as :Repository\n  participant l as :Logger\n  c->>r: save(o)\n  r-->>c: ok\n  c-)l: log(msg)",
+    "options": [
+      "`log(msg)` is asynchronous (open arrowhead), and `save(o)` is synchronous (filled arrowhead)",
+      "`save(o)` is asynchronous because a reply comes back",
+      "`ok` is a synchronous call because it goes back to the caller",
+      "`log(msg)` is a reply message because it has no return value"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Async messages have an open arrowhead, sync calls have a filled arrowhead, and a reply is a dashed line. Getting a reply does not make a call asynchronous: a synchronous call is exactly the one that waits for its reply."
+  },
+  {
+    "id": "tu-12",
+    "chapter": 7,
+    "subtopic": "creation and destruction",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "In a sequence diagram, `:Cart` sends a **dashed** arrow with an **open** arrowhead, labelled `new`, to the head of an `:Item` lifeline. That head is drawn lower than the other heads. Later the `:Item` lifeline ends in a large **X**. What do these show?",
+    "options": [
+      "An asynchronous message, followed by a lost message",
+      "A creation message (a constructor call such as `new Item()`). The X is the destruction of that object",
+      "A reply message, followed by a found message",
+      "A synchronous call to a static method. The X marks the end of the diagram frame"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "A dashed line with an open arrow going to a lowered lifeline head is the object-creation message, which maps to a constructor call. The X marks destruction. An async message is a solid line, and found and lost messages use a small black dot, not an X."
+  },
+  {
+    "id": "tu-13",
+    "chapter": 7,
+    "subtopic": "messages",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "A message arrow **starts at a small filled black circle** and ends on the `:Bookshop` lifeline. What kind of message is it?",
+    "options": [
+      "A lost message: the message never reached its destination",
+      "A creation message: `:Bookshop` is being created",
+      "An asynchronous message from an actor",
+      "A found message: the receiver is known, but the sender is unknown or outside the scope of the diagram"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "A black dot at the START means a found message (it arrives from outside the scope). A black dot at the arrow END means a lost message (it is sent but never received). Neither has anything to do with creation or async arrowheads."
+  },
+  {
+    "id": "tu-14",
+    "chapter": 7,
+    "subtopic": "lifelines",
+    "type": "multi",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Using the slides' lifeline-head format `[name] : class_name`, which heads are valid? Select ALL.",
+    "options": [
+      "`acc`",
+      "`:Account`",
+      "`Account acc`",
+      "`acc : Account`"
+    ],
+    "answer": [
+      1,
+      3
+    ],
+    "explanation": "`:class_name` is mandatory and the name is optional, so `:Account` (an anonymous object) and `acc : Account` are both valid. A name with no `:Class` is invalid, and the Java-style `Type name` order is not UML syntax."
+  },
+  {
+    "id": "tu-15",
+    "chapter": 7,
+    "subtopic": "diagram to code",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Assume `s` and `p` are fields of `Kiosk`. Which body of `Kiosk.buy(String item)` matches this diagram?",
+    "diagram": "sequenceDiagram\n  participant k as :Kiosk\n  participant s as s:Stock\n  participant p as p:Printer\n  k->>s: count(item)\n  s-->>k: n\n  opt n greater than 0\n    k->>p: printTicket(item)\n  end",
+    "options": [
+      "`int n = s.count(item); if (n > 0) { p.printTicket(item); }`",
+      "`int n = s.count(item); while (n > 0) { p.printTicket(item); n--; }`",
+      "`int n = s.count(item); if (n > 0) { p.printTicket(item); } else { s.restock(item); }`",
+      "`p.printTicket(item); int n = s.count(item);`"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "`opt` is a single guarded block with no else: it runs only if the guard is true, like an `if` on its own. A `while` would be `loop`, an if/else would be `alt` with two operands, and messages must run in the top-to-bottom order shown."
+  },
+  {
+    "id": "tu-16",
+    "chapter": 7,
+    "subtopic": "fragments",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which fragment operator is described INCORRECTLY?",
+    "options": [
+      "`alt`: choose at most one of several guarded operands (if / else)",
+      "`loop`: repeat the enclosed messages while the guard holds",
+      "`par`: one of the operands is chosen, based on its guard",
+      "`ref`: an interaction use that refers to an interaction defined elsewhere"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "`par` means the operands run in parallel. Choosing one operand by its guard is what `alt` does (and `opt` is an alt with a single operand). `ref` reuses a shared interaction, drawn as a fragment box labelled ref."
+  },
+  {
+    "id": "tu-17",
+    "chapter": 7,
+    "subtopic": "diagram to code",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "`checkout(id)` reaches `:Shop` as a found message. Which version of `Shop` matches the diagram AND follows the slides' rule that partial code must still compile?",
+    "code": "// Version A\nclass Shop {\n    private Item it;\n    double checkout(int id) {\n        Inventory inv;\n        Pricer pr;\n        it = inv.getItem(id);\n        return pr.applyTax(it.getPrice());\n    }\n}\n\n// Version B\nclass Shop {\n    private Inventory inv;\n    private Pricer pr;\n    private Item it;\n    double checkout(int id) {\n        double price = it.getPrice();\n        return pr.applyTax(price);\n    }\n}\n\n// Version C\nclass Shop {\n    private Inventory inv;\n    private Pricer pr;\n    double checkout(int id) {\n        Item it = inv.getItem(id);\n        double price = it.getPrice();\n        return pr.applyTax(price);\n    }\n}\n\n// Version D\nclass Shop {\n    private Inventory inv;\n    private Pricer pr;\n    double checkout(int id) {\n        Item it = inv.getItem(id);\n        double total = pr.applyTax(0);\n        return total + it.getPrice();\n    }\n}",
+    "diagram": "sequenceDiagram\n  participant s as :Shop\n  participant inv as :Inventory\n  participant i as it:Item\n  participant pr as :Pricer\n  s->>inv: getItem(id)\n  inv-->>s: it\n  s->>i: getPrice()\n  i-->>s: price\n  s->>pr: applyTax(price)\n  pr-->>s: total",
+    "options": [
+      "Version A",
+      "Version B",
+      "Version C",
+      "Version D"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "`:Inventory` and `:Pricer` are never produced inside the diagram, so they must be fields. `it` IS produced (it is the value returned by `getItem`), so it is a local, and the messages follow the diagram's order. Version A does not compile (it uses uninitialised locals), Version B skips `getItem`, and Version D calls `applyTax` before `getPrice`."
+  },
+  {
+    "id": "tu-18",
+    "chapter": 7,
+    "subtopic": "fragments",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "You draw this method as a sequence diagram. Which fragment structure is correct?",
+    "code": "void sort(java.util.List<Item> items, Bin bin, Shelf shelf) {\n    for (Item i : items) {\n        if (i.isExpired()) bin.discard(i);\n        else shelf.keep(i);\n    }\n}",
+    "options": [
+      "An `alt` fragment containing a `loop` fragment",
+      "A `loop` fragment containing an `alt` fragment with two operands",
+      "A `loop` fragment containing an `opt` fragment",
+      "A `par` fragment containing an `alt` fragment"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "The `for` statement is the outer `loop`, and the if/else inside it is an `alt` with two guarded operands. `opt` has only one operand, so it cannot show the else branch, and `par` means the operands run in parallel, not that the code repeats."
+  },
+  {
+    "id": "tu-19",
+    "chapter": 9,
+    "subtopic": "lsp",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which design principle does this code violate?",
+    "code": "class Vehicle {\n    void refuel() { System.out.println(\"refuelling\"); }\n}\n\nclass ElectricCar extends Vehicle {\n    @Override\n    void refuel() {\n        throw new UnsupportedOperationException(\"no fuel tank\");\n    }\n}\n\nclass PetrolStation {\n    void serve(java.util.List<Vehicle> queue) {\n        for (Vehicle v : queue) v.refuel();\n    }\n}",
+    "diagram": "classDiagram\n  class Vehicle {\n    ~refuel() void\n  }\n  class ElectricCar {\n    ~refuel() void\n  }\n  Vehicle <|-- ElectricCar\n  PetrolStation ..> Vehicle : uses",
+    "options": [
+      "None. It compiles, and in the real world an electric car is a vehicle",
+      "Interface Segregation Principle",
+      "Single Responsibility Principle",
+      "Liskov Substitution Principle"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "LSP says a subtype must be substitutable for its base type: `PetrolStation` works with any `Vehicle` but crashes when it gets an `ElectricCar`. Compiling and a real-world is-a link do not satisfy LSP. ISP is about fat interfaces, and there is no interface here."
+  },
+  {
+    "id": "tu-20",
+    "chapter": 9,
+    "subtopic": "lsp",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which design principle does this code violate?",
+    "code": "class Uploader {\n    // accepts any file size >= 0\n    void upload(int sizeMb) {\n        System.out.println(\"uploaded \" + sizeMb);\n    }\n}\n\nclass MobileUploader extends Uploader {\n    @Override\n    void upload(int sizeMb) {\n        if (sizeMb > 5) throw new IllegalArgumentException(\"max 5 MB\");\n        System.out.println(\"uploaded \" + sizeMb);\n    }\n}",
+    "options": [
+      "Liskov Substitution Principle, because the subtype's pre-condition is stronger (it expects more)",
+      "Open-Closed Principle, because `upload` was modified",
+      "None. Overriding a method is normal polymorphism",
+      "Dependency Injection Principle, because `MobileUploader` depends on `Uploader`"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "In design-by-contract terms, a subtype's pre-conditions must be no stronger than the base's (expect no more). Callers that rely on `Uploader` accepting any size break. Overriding is legal Java, but that alone does not make it substitutable, and extending a class does not create a DIP problem."
+  },
+  {
+    "id": "tu-21",
+    "chapter": 9,
+    "subtopic": "lsp",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which design principle does this code violate?",
+    "code": "import java.util.*;\n\nclass Sorter {\n    // returns a NEW list containing xs sorted ascending\n    List<Integer> sort(List<Integer> xs) {\n        List<Integer> c = new ArrayList<>(xs);\n        Collections.sort(c);\n        return c;\n    }\n}\n\nclass FastSorter extends Sorter {\n    @Override\n    List<Integer> sort(List<Integer> xs) {\n        if (xs.size() > 1000) return xs;   // too big: return it unsorted\n        return super.sort(xs);\n    }\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Liskov Substitution Principle, because the post-condition is weaker (it provides less)",
+      "None. `FastSorter` reuses `super.sort`, which is good inheritance",
+      "Interface Segregation Principle"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "A subtype's post-conditions must be no weaker than the base's (provide no less). `Sorter` promises a sorted list, and `FastSorter` sometimes returns an unsorted one, so a client written against `Sorter` misbehaves. Reusing `super` does not fix a broken contract."
+  },
+  {
+    "id": "tu-22",
+    "chapter": 9,
+    "subtopic": "srp",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which design principle does this class violate most directly?",
+    "code": "class Employee {\n    private String name;\n    private double rate;\n    private int hours;\n\n    double calculatePay() { return rate * hours; }\n\n    void saveToDatabase() { /* SQL insert of name, rate, hours */ }\n\n    String toHtmlReport() { return \"<p>\" + name + \"</p>\"; }\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Interface Segregation Principle",
+      "Liskov Substitution Principle",
+      "Dependency Injection Principle"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Pay rules, persistence and report formatting are three separate reasons for the class to change, which goes against SRP (cohesion: one reason to change, so avoid a 'God' class). ISP is about clients depending on fat interfaces, and there is no inheritance here for LSP to apply to."
+  },
+  {
+    "id": "tu-23",
+    "chapter": 9,
+    "subtopic": "ocp",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "The business is about to add a new `VIP` customer type. Which principle does this design violate?",
+    "code": "class DiscountCalculator {\n    double discount(String type, double amount) {\n        switch (type) {\n            case \"STUDENT\": return amount * 0.10;\n            case \"SENIOR\":  return amount * 0.15;\n            default:        return 0;\n        }\n    }\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Liskov Substitution Principle",
+      "Interface Segregation Principle",
+      "Open-Closed Principle"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "Every new type forces you to edit this switch, so the module is not closed for modification. OCP uses abstraction instead (for example a `Customer` abstraction with an overridden `discount()`). The class has only one job, so SRP is not the problem."
+  },
+  {
+    "id": "tu-24",
+    "chapter": 9,
+    "subtopic": "isp",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Which design principle does this code violate?",
+    "code": "interface SmartDevice {\n    void play();\n    void call(String number);\n    void takePhoto();\n}\n\nclass Speaker implements SmartDevice {\n    public void play() { System.out.println(\"music\"); }\n    public void call(String number) { }   // not supported\n    public void takePhoto() { }           // not supported\n}",
+    "diagram": "classDiagram\n  class SmartDevice {\n    <<interface>>\n    +play() void\n    +call(number : String) void\n    +takePhoto() void\n  }\n  SmartDevice <|.. Speaker",
+    "options": [
+      "Liskov Substitution Principle",
+      "Open-Closed Principle",
+      "Interface Segregation Principle",
+      "Single Responsibility Principle"
+    ],
+    "answer": [
+      2
+    ],
+    "explanation": "`Speaker` is forced to depend on methods it does not use because `SmartDevice` is a FAT interface. That is ISP (many client-specific interfaces are better than one general-purpose one), and it mirrors the slides' animal-interface example with empty methods. LSP is the tempting answer, but the fix here is to split the interface."
+  },
+  {
+    "id": "tu-25",
+    "chapter": 9,
+    "subtopic": "dip",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "The team wants `OrderService` to send SMS instead of email without editing `OrderService`. Which principle does the current code violate?",
+    "code": "class EmailSender {\n    void send(String to, String msg) { System.out.println(to + \": \" + msg); }\n}\n\nclass OrderService {\n    private EmailSender sender = new EmailSender();\n\n    void place(String customer) {\n        sender.send(customer, \"Order placed\");\n    }\n}",
+    "diagram": "classDiagram\n  class OrderService {\n    -sender : EmailSender\n    ~place(customer : String) void\n  }\n  class EmailSender {\n    ~send(to : String, msg : String) void\n  }\n  OrderService --> EmailSender : sender",
+    "options": [
+      "Single Responsibility Principle",
+      "Dependency Injection Principle",
+      "Liskov Substitution Principle",
+      "Interface Segregation Principle"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "The high-level `OrderService` depends directly on the low-level concrete `EmailSender`. DIP says both should depend on an abstraction (for example a `MessageSender` interface that is passed in). `OrderService` still has a single job, so SRP is not violated."
+  },
+  {
+    "id": "tu-26",
+    "chapter": 9,
+    "subtopic": "bad-design-symptoms",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "A developer changes the date format in the billing module. Afterwards the unrelated login screen and the PDF export both break. Which symptom of rotting design is this?",
+    "options": [
+      "Fragility",
+      "Rigidity",
+      "Immobility",
+      "Low cohesion"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Fragility is software that breaks in many places after a change, often in areas with no conceptual link to the change. Rigidity is when a change is hard to make because it cascades into required changes in dependent modules. Immobility is being unable to reuse a module."
+  },
+  {
+    "id": "tu-27",
+    "chapter": 9,
+    "subtopic": "bad-design-symptoms",
+    "type": "multi",
+    "gotcha": true,
+    "targeted": true,
+    "question": "Select ALL the items that the slides list as **symptoms of rotting design**.",
+    "options": [
+      "Viscosity",
+      "Rigidity",
+      "Reusability",
+      "Immobility"
+    ],
+    "answer": [
+      1,
+      3
+    ],
+    "explanation": "The slides list exactly three symptoms: Rigidity, Fragility and Immobility. Viscosity does not appear on the slides. Reusability (with Extensibility and Maintainability) is one of the design goals you should design for, not a symptom."
+  },
+  {
+    "id": "tu-28",
+    "chapter": 9,
+    "subtopic": "dip",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "In the slides' list of SOLID principles, what does the **D** stand for, and what other name do the slides give it?",
+    "options": [
+      "Dependency Inversion Principle, also known as Design by Contract",
+      "Dependency Isolation Principle, also known as Loose Coupling",
+      "Dynamic Dispatch Principle, also known as Late Binding",
+      "Dependency Injection Principle, also known as Inversion of Control (IoC)"
+    ],
+    "answer": [
+      3
+    ],
+    "explanation": "The slides expand D as Dependency Injection Principle, also known as Inversion of Control (IoC): high-level modules should not depend on low-level modules, and both should depend on abstractions. Design by Contract belongs to the slides' explanation of LSP."
+  },
+  {
+    "id": "tu-29",
+    "chapter": 9,
+    "subtopic": "design-goals",
+    "type": "single",
+    "gotcha": true,
+    "targeted": true,
+    "question": "The slides' class design guidelines say to manage coupling and cohesion by designing with which three goals in mind?",
+    "options": [
+      "Rigidity, Fragility and Immobility",
+      "Reusability, Extensibility and Maintainability",
+      "Abstraction, Encapsulation and Inheritance",
+      "Readability, Efficiency and Security"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "The design goals are Reusability, Extensibility and Maintainability, which together aim for loose coupling and high cohesion. Rigidity, Fragility and Immobility are the opposite: the symptoms of rotting design."
+  }
+]

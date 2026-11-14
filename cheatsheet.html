@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SC2002 Cheat Sheet: your weak spots</title>
+<style>
+body{margin:0;background:#0f1115;color:#e8eaf0;font:15.5px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:14px 14px 60px}
+h1{font-size:21px;margin:6px 0}h2{font-size:17px;margin:22px 0 6px;color:#8fb8ff;border-bottom:1px solid #2c313c;padding-bottom:4px}
+.c{background:#181b22;border:1px solid #2c313c;border-radius:12px;padding:10px 12px;margin:8px 0}
+code{background:#2a2f3a;padding:1px 5px;border-radius:5px;font-size:.92em}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid #2c313c;padding:6px 4px;text-align:left;vertical-align:top}th{color:#9aa3b2;font-weight:600}
+.t{color:#f0b429;font-weight:700}.ok{color:#2fbf71}.bad{color:#ef5b5b}
+a{color:#5b9cff}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
+.mut{color:#9aa3b2;font-size:13px}
+</style></head><body><div class="w">
+<a href="./">← Back to quiz</a>
+<h1>Cheat sheet for your diagnostic misses</h1>
+<div class="mut">Built from your 13/37 diagnostic. Read it once, then drill.</div>
+
+<h2>0. Your #1 habit to fix: picking the "happy path" answer</h2>
+<div class="c">8 of your 24 misses were option <b>A</b>, the answer you get if the code "just works". When a code question looks easy, check these 5 traps <b>before</b> answering:
+<ul>
+<li><span class="t">Compile error?</span> Look for an unreachable checked catch, two default methods clashing, a missing initialisation, catch order, or a wildcard <code>add</code>.</li>
+<li><span class="t">Runtime exception?</span> Removing from a list inside a for-each loop throws <code>ConcurrentModificationException</code>. A bad downcast throws <code>ClassCastException</code>.</li>
+<li><span class="t">Output formatting?</span> A <code>double</code> prints as <code>100.0</code>, not <code>100</code>.</li>
+<li><span class="t">Which method actually runs?</span> Dynamic binding applies even inside a constructor.</li>
+<li><span class="t">Does the reassignment reach the caller?</span> No. Java passes the reference by value.</li>
+</ul></div>
+
+<h2>1. Java platform (Ch1)</h2>
+<div class="c"><table>
+<tr><td><code>.java</code> → <code>.class</code> (bytecode)</td><td><b>javac</b> (the Java compiler)</td></tr>
+<tr><td>bytecode → machine code</td><td><b>JIT compiler inside the JVM</b>, at run time. <span class="bad">Not javac!</span></td></tr>
+<tr><td>runs the program</td><td><code>java</code> launcher → JVM (part of the JRE)</td></tr>
+</table>
+<ul><li><b>Encapsulation</b>: builds a barrier to protect an object's private data; access goes through public get/set methods.</li>
+<li><b>Information hiding</b>: hides the details/implementation of the class from users.</li>
+<li><b>Abstraction</b> (Booch): the essential characteristics that distinguish an object from all other kinds of objects.</li>
+<li><b>Polymorphism</b>: the same message can be sent to objects of different classes.</li></ul></div>
+
+<h2>2. Java traps you missed (Ch2, 4, 5, 10)</h2>
+<div class="c"><ul>
+<li><b>Pass-by-value</b>: <code>r.setW(5)</code> changes the caller's object, but <code>r = new Rect()</code> inside the method only changes the local copy. Changes made after that reassignment go to the new object.</li>
+<li><b>Unreachable checked catch</b>: <code>catch (IOException e)</code> when nothing in the <code>try</code> can throw it is a <span class="bad">compile error</span>. <code>catch (Exception e)</code> is fine, and so are unchecked exceptions.</li>
+<li><b>Multiple catches</b>: only the <b>first</b> matching catch runs, then <code>finally</code>, then the code after the try.</li>
+<li><b>Overridden method called from a constructor</b>: the subclass version runs, <b>before</b> the subclass's fields are initialised, so you see <code>0</code> / <code>null</code>.</li>
+<li><b>Two interfaces with the same default method</b>: <span class="bad">compile error</span> unless the class overrides it. Inside the override, pick one with <code>A.super.show()</code>. The order in the implements clause doesn't matter, and it's never a runtime error.</li>
+<li><b>Type erasure</b>: <code>new ArrayList&lt;String&gt;().getClass() == new ArrayList&lt;Integer&gt;().getClass()</code> is <b>true</b>, and both print <code>java.util.ArrayList</code>.</li>
+<li><b>Wildcards (PECS)</b>: with <code>? extends T</code> you can only read (as T) and can't <code>add</code>. With <code>? super T</code> you can <code>add(T)</code>. <code>List&lt;Number&gt; = new ArrayList&lt;Integer&gt;()</code> is a <span class="bad">compile error</span>, because generics are invariant.</li>
+<li><b>for-each + <code>list.remove()</code></b> → <code>ConcurrentModificationException</code> on the next iteration. Use <code>Iterator.remove()</code> or <code>removeIf</code> instead.</li>
+<li><b>The 3 ways of overriding (slides)</b>: (1) a subclass overrides a superclass method, (2) implementing an abstract class's abstract methods, (3) implementing an interface's methods. <span class="bad">Overloading and static hiding are not on the list.</span></li>
+</ul></div>
+
+<h2>3. UML class diagram notation (Ch6): your weakest area</h2>
+<div class="c"><table>
+<tr><th>Symbol</th><th>Meaning</th></tr>
+<tr><td><code>+</code></td><td>public</td></tr><tr><td><code>-</code></td><td>private</td></tr>
+<tr><td><code>#</code></td><td>protected</td></tr><tr><td><code>~</code></td><td><b>package</b> (no modifier in Java)</td></tr>
+<tr><td>underlined</td><td>static</td></tr><tr><td><i>italic</i> / {abstract}</td><td>abstract</td></tr>
+</table></div>
+<div class="c"><table>
+<tr><th>Line</th><th>Head</th><th>Meaning → Java</th></tr>
+<tr><td>solid</td><td>hollow △</td><td><b>Generalisation</b> → <code>extends</code> (class→class <b>or interface→interface</b>)</td></tr>
+<tr><td><b>dashed</b></td><td>hollow △</td><td><b>Realisation</b> → <code>implements</code> (class→interface)</td></tr>
+<tr><td><b>dashed</b></td><td>open stick →</td><td><b>Dependency</b>: the class is used as a <b>parameter, return type or local variable</b>. The arrow runs from client to supplier.</td></tr>
+<tr><td>solid</td><td>open stick →</td><td><b>Association</b> (navigable): the class is stored as a <b>field/attribute</b>.</td></tr>
+<tr><td>solid</td><td>◇ hollow at whole</td><td><b>Aggregation</b>: the part can exist on its own.</td></tr>
+<tr><td>solid</td><td>◆ filled at whole</td><td><b>Composition</b>: the part dies with the whole.</td></tr>
+</table>
+<div class="mut">Trap: an interface extending an interface is a <b>solid</b> line (<code>extends</code>), not dashed. <code>interface X implements Y</code> never compiles.</div></div>
+
+<h2>4. Sequence diagrams (Ch7)</h2>
+<div class="c"><table>
+<tr><td>Synchronous call</td><td>solid line, <b>filled</b> arrowhead</td></tr>
+<tr><td>Asynchronous</td><td>solid line, <b>open</b> arrowhead</td></tr>
+<tr><td>Reply / return</td><td><b>dashed</b>, open arrowhead</td></tr>
+<tr><td>Creation (<code>new</code>)</td><td><b>dashed</b> arrow to the lifeline <b>head</b>, which is drawn lower down. This is a constructor call.</td></tr>
+<tr><td>Destruction</td><td><b>X</b> at the bottom of the lifeline</td></tr>
+<tr><td>Found / lost message</td><td>found: ● at the <b>start</b>. lost: ● at the <b>end</b>.</td></tr>
+<tr><td>Lifeline head</td><td><code>name:ClassName</code>. <b><code>:ClassName</code> is mandatory</b>, the name is optional.</td></tr>
+<tr><td>alt / opt / loop / par / ref</td><td>alt: choice, at most one operand runs. opt: if, with no else. loop: repeat. par: parallel. ref: reuse another interaction.</td></tr>
+</table></div>
+
+<h2>5. Design principles (Ch9)</h2>
+<div class="c"><ul>
+<li><b>Symptoms of rotting design (exactly 3)</b>: Rigidity, Fragility, Immobility. <span class="bad">Viscosity isn't on the slides.</span></li>
+<li><b>Design goals</b>: Reusability, Extensibility, Maintainability, to minimise the impact of change.</li>
+<li><b>OCP</b>: Bertrand Meyer, "open for extension, closed for modification". Red flag: a switch or if-else on a type.</li>
+<li><b>LSP</b>: Barbara Liskov, <b>1988</b>. A subtype must be substitutable for its base type <b>without changing behaviour</b>. Red flags: an override that throws (Ostrich.fly) or changes the base's contract (Square.setHeight). <span class="bad">"It compiles" and "real-world is-a" do NOT mean LSP holds.</span></li>
+<li><b>ISP</b>: a fat interface forces dummy implementations.</li>
+<li><b>D in SOLID (slides)</b>: "Dependency <b>Injection</b> Principle", also called Inversion of Control. Depend on abstractions; a high-level class should not <code>new</code> a concrete low-level class.</li>
+<li><b>SRP</b>: one reason to change, which is the same as high cohesion.</li>
+</ul></div>
+
+<h2>6. Modelling an OO app (Ch8)</h2>
+<div class="c"><ul>
+<li>Steps: find nouns → classes, verbs → methods. Then attributes, relationships, multiplicities, then behaviour and interaction (sequence diagram), then enhance class details, implement, test.</li>
+<li><b>CRC card template</b>: Class name, Superclasses, Subclasses, Responsibilities, Collaborators. <span class="bad">No attributes field.</span> CRC cards come from Kent Beck and Ward Cunningham.</li>
+<li>Stereotypes: <b>entity</b> holds data, <b>boundary</b> is the UI/interface to actors, <b>control</b> coordinates the logic.</li>
+</ul></div>
+<a href="./">← Back to quiz</a>
+</div></body></html>

@@ -110,6 +110,8 @@ function home(){
   <div class="mut">${BANK.length} questions · bank updated ${esc(window.MANIFEST.updated||"")}</div>
   ${resume && resume.idx < resume.qs.length ? `<button class="btn pri" onclick="resumeS()">▶ Resume ${esc(resume.title)} (${resume.idx+1}/${resume.qs.length})</button>`:""}
   <h2>Start</h2>
+  <a class="btn" style="text-decoration:none;background:#2b2410;border-color:#6b5414" href="cheatsheet.html">📄 Cheat sheet: your weak spots<small>Read this first (about 10 min). Covers every rule you missed in the diagnostic.</small></a>
+  <button class="btn" style="border-color:var(--acc)" onclick="startTargeted()">🎯 Targeted fix-up set (NEW): 20 Qs<small>New questions written for your exact diagnostic mistakes. Instant feedback. Unseen questions first.</small></button>
   <button class="btn" onclick="startDiag()">🎯 Diagnostic: 37 Qs, exam style<small>Same weighting as the real quiz (whole course, more from Ch6+). Answers shown at the end. Do this first.</small></button>
   <button class="btn" onclick="startDrill()">🔥 Drill my weak spots: 15 Qs<small>Picks from your lowest-scoring topics plus questions you got wrong. Instant feedback.</small></button>
   <button class="btn" onclick="startGotcha()">🪤 Gotcha round: 15 Qs<small>Only the trick questions. Instant feedback.</small></button>
@@ -140,6 +142,11 @@ function startDrill(){
   const scored = BANK.map(q => ({q, s: weakScore(q,st)*chW[q.chapter] + Math.random()*0.25 - (st[q.id]&&!st[q.id].lastWrong&&st[q.id].c>=2?0.5:0)}));
   scored.sort((a,b)=>b.s-a.s);
   begin("Weak-spot drill", scored.slice(0,15).map(x=>x.q.id), "learn");
+}
+function startTargeted(){
+  const st=stats(); const pool=BANK.filter(q=>q.targeted);
+  const unseen=shuffle(pool.filter(q=>!st[q.id])), wrong=shuffle(pool.filter(q=>st[q.id]&&st[q.id].lastWrong)), rest=shuffle(pool.filter(q=>st[q.id]&&!st[q.id].lastWrong));
+  begin("Targeted fix-up", [...unseen,...wrong,...rest].slice(0,20).map(q=>q.id), "learn");
 }
 function startGotcha(){ begin("Gotcha round", pickN(BANK.filter(q=>q.gotcha),15).map(q=>q.id), "learn") }
 function startMistakes(){
