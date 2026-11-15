@@ -1,0 +1,329 @@
+{
+ "chapter": 4,
+ "summary": [
+  "An exception is a **run-time anomaly** (e.g. memory exhaustion, a file that cannot be opened, division by zero). Exception handling lets the program recover and keep its normal flow.",
+  "Mechanism: **try** (run code that may fail), **throw** (create and raise an exception object), **catch** (a handler whose type matches). An optional **finally** runs whether or not an exception is thrown.",
+  "Hierarchy: Object, then Throwable, which splits into **Exception** and **Error**. **Unchecked** = RuntimeException and its subclasses, plus Error and its subclasses. Every other exception is **checked**.",
+  "A checked exception must be **caught or declared** with `throws`. If nothing catches an exception, it **propagates** up to the caller, and the JVM's default handler stops the program if no one catches it.",
+  "With several catch blocks, they are tested in order and only the **first match** runs. Specific types must come before general ones.",
+  "Custom exceptions `extend Exception` (or a subclass of it) and usually define just their constructors, which call `super(message)`."
+ ],
+ "mustMemorise": [
+  "Unchecked = `RuntimeException` (and subclasses) + `Error` (and subclasses). **Error IS unchecked.**",
+  "Checked = everything else under Exception, e.g. `IOException`, `FileNotFoundException`, `ClassNotFoundException`, plain `Exception`. They must be caught or declared with `throws`.",
+  "Hierarchy chain: `Object → Throwable → Exception → RuntimeException → ArithmeticException …` and `Throwable → Error`.",
+  "`ArrayIndexOutOfBoundsException` and `StringIndexOutOfBoundsException` extend `IndexOutOfBoundsException`. `NumberFormatException` extends `IllegalArgumentException`.",
+  "The 3 methods: `getMessage()` (the message), `toString()` (short description = class name + ': ' + message), `printStackTrace()` (the trace of method calls).",
+  "The 2 constructors on the slide: `Exception()` and `Exception(String message)`.",
+  "Only the FIRST matching catch runs. Putting a catch for a superclass before a catch for its subclass is a **compile error**.",
+  "A catch for a checked exception that the try body can never throw is a **compile error**. `catch(Exception e)` is always allowed.",
+  "`finally` runs on a normal finish, on a caught exception, on an uncaught exception, and even after a `return`. **`System.exit()` skips it.**",
+  "An exception thrown inside a catch is NOT caught by the catch blocks next to it. `finally` still runs, then the new exception propagates.",
+  "Propagation: if an exception is not caught, the rest of that method is skipped and control returns to the caller, continuing up to main and then the JVM."
+ ],
+ "items": [
+  {
+   "slide": 4,
+   "tag": "exam",
+   "title": "What an exception is",
+   "notes": [
+    "Definition: an exception is a **run-time** anomaly that a program may detect.",
+    "Examples: memory exhaustion, an input file that cannot be opened, division by zero.",
+    "**Exception handlers** (recovery procedures) catch exceptions in order to recover."
+   ]
+  },
+  {
+   "slide": 5,
+   "tag": "slides-wrong",
+   "title": "'error if numOfStudents = 0' does not throw",
+   "notes": [
+    "`totalMarks / (double)numOfStudents` is **floating-point** division. Dividing by 0 does NOT throw; it gives `NaN` (0.0/0.0) or `Infinity` (verified).",
+    "So with 0 students this version prints `Average marks = NaN`. It does not crash.",
+    "Only **integer** division or `%` by zero throws `ArithmeticException: / by zero`.",
+    "Output `70.0`: a double always prints with `.0`."
+   ]
+  },
+  {
+   "slide": 6,
+   "tag": "code",
+   "title": "Version 2: if + System.exit(0)",
+   "notes": [
+    "This is old-style error handling: an `if` check, a message, then `System.exit(0)`, which ends the JVM immediately.",
+    "This is the 'before' version that try/catch improves on."
+   ]
+  },
+  {
+   "slide": 8,
+   "tag": "exam",
+   "title": "Try / Throw / Catch definitions",
+   "notes": [
+    "**Try**: try to see if there is any exception.",
+    "**Throw**: the method creates (raises) an exception **object** holding the exception type and the program state.",
+    "**Catch**: the **JVM** looks for a handler whose type **matches** the exception thrown."
+   ]
+  },
+  {
+   "slide": 9,
+   "tag": "exam",
+   "title": "try/throw/catch/finally syntax",
+   "notes": [
+    "`throw new ExceptionName(\"msg\");` uses `throw` (singular) inside the body. `throws` (with an s) goes in the method header.",
+    "You can have one or more `catch(Type name)` blocks, then an optional `finally` that runs **regardless** of whether an exception was thrown.",
+    "Real Java: try must be followed by at least one catch OR a finally (`try{}finally{}` is legal)."
+   ]
+  },
+  {
+   "slide": 11,
+   "tag": "code",
+   "title": "Flow when there is no exception",
+   "notes": [
+    "The whole try block runs, **every catch block is skipped**, and execution continues after try/catch.",
+    "Output: `Average marks = 70.0` then `End of program execution!`."
+   ]
+  },
+  {
+   "slide": 12,
+   "tag": "code",
+   "title": "Flow when an exception is thrown",
+   "notes": [
+    "The rest of the try block after the `throw` is **skipped**, control jumps to the matching catch, and then execution continues after the try/catch.",
+    "Output: the message `Error: no of students must not equal to 0!` then `End of program execution!`."
+   ]
+  },
+  {
+   "slide": 15,
+   "tag": "diagram",
+   "weak": true,
+   "title": "Exception hierarchy (memorise)",
+   "notes": [
+    "Object → **Throwable** → Exception and Error. Under Exception: ClassNotFoundException, IOException, AWTException (checked), and **RuntimeException**.",
+    "RuntimeException subclasses: Arithmetic, ArrayStore, ClassCast, IllegalArgument (→ NumberFormat), IllegalMonitorState, IndexOutOfBounds (→ ArrayIndex…, StringIndex…), NegativeArraySize, NullPointer, Security.",
+    "The two circled branches are **Unchecked**: RuntimeException's subtree AND **Error**'s subtree (LinkageError, VirtualMachineError, AWTError).",
+    "Hollow-triangle arrows point UP to the parent class. The top of the tree is general, the bottom is specific."
+   ]
+  },
+  {
+   "slide": 16,
+   "tag": "trap",
+   "weak": true,
+   "title": "Useful exceptions, and FileNotFoundException is CHECKED",
+   "notes": [
+    "ArithmeticException = integer division by zero. Array/StringIndexOutOfBounds = index < 0 or **≥ length**. Both are subclasses of IndexOutOfBounds.",
+    "NullPointerException = using a null reference. NumberFormatException = `parseInt(\"abc\")`. IllegalArgumentException = an improper argument.",
+    "Trap: `FileNotFoundException` is listed here but extends `IOException`, so it is **checked** (verified). Every other exception on the slide is unchecked."
+   ]
+  },
+  {
+   "slide": 17,
+   "tag": "code",
+   "title": "Code that triggers each exception",
+   "notes": [
+    "`array[5]` on `new int[5]` gives ArrayIndexOutOfBounds (valid indexes are 0 to 4).",
+    "`str.charAt(str.length())` gives StringIndexOutOfBounds. `Integer.parseInt(\"abc\")` gives NumberFormatException.",
+    "Typos: `st.length()` should be `str.length()`, and the slide uses curly quotes. The intended result is a NullPointerException on the null `str`."
+   ]
+  },
+  {
+   "slide": 18,
+   "tag": "slides-wrong",
+   "title": "Exception class, and 'root of all exceptions'",
+   "notes": [
+    "The 2 constructors are `Exception()` and `Exception(String message)`. `getMessage()` returns the message (`null` if none). `toString()` gives e.g. `java.lang.Exception: hi`. `printStackTrace()` prints the call trace.",
+    "Slide wrong: the real root is **Throwable** (slide 15). `Error` is not an Exception, so `catch(Exception e)` won't catch an Error.",
+    "Exam: for 'root of the Exception classes' per this slide, answer Exception. For 'the top of the hierarchy / what catches everything', answer Throwable."
+   ]
+  },
+  {
+   "slide": 21,
+   "tag": "code",
+   "title": "printStackTrace output",
+   "notes": [
+    "`3/0` with ints gives ArithmeticException. `getMessage()` is `/ by zero`.",
+    "The trace lists the **most recent call first**: method3, method2, method1, main.",
+    "`System.exit(0)` in the catch ends the program, so `return k` is never reached."
+   ]
+  },
+  {
+   "slide": 23,
+   "tag": "exam",
+   "weak": true,
+   "title": "Checked exceptions",
+   "notes": [
+    "Checked = exceptions that **can be analysed by the compiler**, e.g. IOException when reading a file.",
+    "There are 2 options: 1) **catch** it with try/catch in the method that threw it, or 2) **delay** handling by declaring it with a `throws` clause.",
+    "If you do neither, it is a compile error ('unreported exception … must be caught or declared to be thrown', verified)."
+   ]
+  },
+  {
+   "slide": 24,
+   "tag": "exam",
+   "weak": true,
+   "title": "Unchecked exceptions",
+   "notes": [
+    "Unchecked = **not checked by the compiler**: any subclass of **RuntimeException** OR class **Error**.",
+    "**Error IS unchecked.** A common wrong answer is 'Error is checked'.",
+    "They are caused by actions like bad input (ArithmeticException, IndexOutOfBounds) and are usually avoided by careful programming, not by catching."
+   ]
+  },
+  {
+   "slide": 25,
+   "tag": "exam",
+   "weak": true,
+   "title": "Uncaught exceptions and the catch-or-declare rule",
+   "notes": [
+    "An uncaught unchecked exception goes to **Java's default exception handler**, which ends the program with a message that includes the exception class name.",
+    "RuntimeException/Error: catching is not required. Anything else: either **catch** it or **declare** it with `throws`.",
+    "Corollary (verified): a catch for a **checked** exception the try body can never throw (e.g. `catch(IOException e)` around `int x=1;`) is a **compile error**. Catching `Exception`, `Throwable`, `RuntimeException` or `Error` is always allowed."
+   ]
+  },
+  {
+   "slide": 26,
+   "tag": "code",
+   "weak": true,
+   "title": "Version 4: try/catch/finally in main",
+   "notes": [
+    "`finally` prints `End of program execution!` in **both** cases (normal and exception).",
+    "`finally` even runs if the try block executes `return`. Only `System.exit()` (or the JVM dying) skips it."
+   ]
+  },
+  {
+   "slide": 27,
+   "tag": "trap",
+   "title": "throws ArithmeticException is optional",
+   "notes": [
+    "`throws` in the header declares exceptions the method may throw **but does not catch**.",
+    "ArithmeticException is unchecked, so this `throws` is **documentation only**. The code compiles without it, and callers are not forced to catch it (verified).",
+    "For a checked exception (e.g. `throws IOException`) the declaration is **required**, and the caller must then catch it or declare it too."
+   ]
+  },
+  {
+   "slide": 28,
+   "tag": "slides-wrong",
+   "weak": true,
+   "title": "'Average marks = 70' should be 70.0",
+   "notes": [
+    "`average` is a `double`, so Java prints `Average marks = 70.0`. The slide's `70` is wrong (slide 36 has the same mistake).",
+    "Also, the second prompt says 'Enter **the** number of students', but the code prints 'Enter number of students'.",
+    "Exam: real output is `70.0`."
+   ]
+  },
+  {
+   "slide": 29,
+   "tag": "exam",
+   "title": "Exception propagation (definition)",
+   "notes": [
+    "If an exception is thrown and not caught by the handlers after its try block, control is **transferred to the calling method**, and so on up the call chain.",
+    "If main doesn't catch it either, the JVM default handler prints the stack trace and ends the program."
+   ]
+  },
+  {
+   "slide": 30,
+   "tag": "code",
+   "title": "Propagation walk-through (steps 1-8)",
+   "notes": [
+    "method3: `array[6]` on length 5 throws AIOOBE. `End method3()` is skipped.",
+    "method2 has no handler, so `End method2()` is also **skipped** and the exception moves up to method1.",
+    "method1's `catch(ArrayIndexOutOfBoundsException)` handles it. Then `End method1()` runs, and main prints `End of program execution` (back to normal)."
+   ]
+  },
+  {
+   "slide": 31,
+   "tag": "slides-wrong",
+   "title": "Old-JDK exception message",
+   "notes": [
+    "The slide shows `Exception message: 6` and `Java.lang.ArrayIndexOutOfBoundsException: 6` (and the capital J is a typo).",
+    "JDK 11+ (verified on 17): `getMessage()` is `Index 6 out of bounds for length 5`, and the trace line starts `java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 5`.",
+    "The ORDER of lines is correct: Start×4 lines, message, trace (method3 first), End method1(), End of program. Note `End method2()`/`End method3()` never print.",
+    "Exam: focus on which lines print and in what order. If the question quotes the slide's message, accept it."
+   ]
+  },
+  {
+   "slide": 32,
+   "tag": "slides-wrong",
+   "weak": true,
+   "title": "Multiple catches: ordering is a RULE",
+   "notes": [
+    "Catch blocks are searched **in sequence**, and **only the first matching** one runs. A general catch also catches subclasses (IS-A).",
+    "Order: **most specific first, most general last**.",
+    "The slide calls it a 'Recommendation', but a superclass catch BEFORE a subclass catch is a **compile error** ('exception … has already been caught', verified).",
+    "Exam: `catch(Exception)` followed by `catch(ArithmeticException)` does **not compile**."
+   ]
+  },
+  {
+   "slide": 33,
+   "tag": "diagram",
+   "title": "The nets analogy",
+   "notes": [
+    "The small specific nets sit on top and catch the egg first. The big **General** net is last. If every net misses, the egg reaches the **JVM** and breaks (the program crashes with a trace)."
+   ]
+  },
+  {
+   "slide": 34,
+   "tag": "code",
+   "weak": true,
+   "title": "Version 5: specific catch, then general catch, then finally",
+   "notes": [
+    "`catch(ArithmeticException)` comes before `catch(Exception)`. Reversing them would not compile.",
+    "The ArithmeticException handler calls **`System.exit(0)`**, so **finally does NOT run** in that case."
+   ]
+  },
+  {
+   "slide": 36,
+   "tag": "code",
+   "weak": true,
+   "title": "System.exit skips finally (output proof)",
+   "notes": [
+    "Case 0: prints only `Error: no of students must not equal to 0!`. There is **no** `End of program execution!`, because `System.exit(0)` in the catch stops the JVM before `finally`.",
+    "Case 5: `Average marks = 70.0` (the slide wrongly shows `70`) then `End of program execution!`.",
+    "Related (verified): if a catch block **throws** a new exception, `finally` still runs, and then the new exception propagates to the caller."
+   ]
+  },
+  {
+   "slide": 38,
+   "tag": "exam",
+   "title": "Creating your own exception class",
+   "notes": [
+    "It must be **derived from an existing exception class**: `class IntNonNegativeException extends Exception`. That makes it **checked**. Extending RuntimeException would make it unchecked.",
+    "Usually you define **only constructors** that call `super(...)`: the no-arg one passes a default message, and the other passes the given `message`.",
+    "The slide says 'call the default constructor using super'. Really, `super(\"...\")` calls `Exception(String)`."
+   ]
+  },
+  {
+   "slide": 40,
+   "tag": "code",
+   "title": "Throw and catch your own exception in one method",
+   "notes": [
+    "`throw new IntNonNegativeException();` uses the no-arg constructor, so `getMessage()` is `Integer input is a negative number!! `.",
+    "It is caught in the same method, so `getInteger()` needs no `throws` clause even though the exception is checked.",
+    "The catch calls `getIntAgain()` to retry."
+   ]
+  },
+  {
+   "slide": 42,
+   "tag": "code",
+   "title": "Program output (negative input)",
+   "notes": [
+    "Input 1,2,3,-2 then retry 4, then 5 gives sum `15`. The -2 is replaced by 4.",
+    "Small typo: the slide output says 'Enter total no. of **input** integers', but the code prints 'Enter total no. of integers'."
+   ]
+  },
+  {
+   "slide": 43,
+   "tag": "code",
+   "title": "Second negative input terminates",
+   "notes": [
+    "-2 triggers the exception, and the retry -4 makes `getIntAgain` print 2 error lines and call `System.exit(0)`. The sum is never printed."
+   ]
+  },
+  {
+   "slide": 44,
+   "tag": "exam",
+   "title": "Summary points",
+   "notes": [
+    "Core advantage: exception handling **maintains the normal flow** of the application.",
+    "Without handling, an exception at statement 5 of 10 stops statements 6-10 from running. With handling, the rest can still run.",
+    "Its examples (ClassNotFound, IO, SQL, Remote) are all **checked** exceptions."
+   ]
+  }
+ ]
+}

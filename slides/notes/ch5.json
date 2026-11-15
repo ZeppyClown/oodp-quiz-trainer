@@ -1,0 +1,304 @@
+{
+ "chapter": 5,
+ "summary": [
+  "Polymorphism means 'many forms'. One superclass/interface reference can point to objects of different subclasses, and each object runs its **own** overridden method.",
+  "Binding connects a method call to a method body. **Static (early)** binding happens at compile time: overload choice, and `private`/`final`/`static` methods. **Dynamic (late)** binding happens at run time, using the **actual object type**.",
+  "Casting: upcasting (subclass to superclass) is automatic and safe. Downcasting needs an explicit cast. It compiles, but throws `ClassCastException` at run time if the object isn't really that type. Use `instanceof` to check first.",
+  "The **reference (declared) type** decides what compiles. The **object type** decides which overridden method runs.",
+  "The benefits of polymorphism are exactly **Simplicity** and **Extensibility**. LSP (Liskov, 1988): subtypes must be substitutable for their base types.",
+  "The slides' **three ways of method overriding**: 1) a subclass overrides a superclass method, 2) a subclass implements the abstract methods of an abstract class, 3) a concrete class implements the methods of an interface."
+ ],
+ "mustMemorise": [
+  "Polymorphism = 'many forms' (Greek). Overriding is the necessary tool for it.",
+  "Static binding = early = **compile time**. Dynamic binding = late = **run time** (based on the actual object).",
+  "Java uses dynamic binding for all methods EXCEPT `private`, `final` and `static` methods.",
+  "Overloading is resolved by static binding (on the declared argument types). Overriding is resolved by dynamic binding (on the object type).",
+  "`<reference type> name = new <Object Type>()`: the reference type is checked at **compile time**, the object type at **run time**.",
+  "Upcast `Shape s = new Rectangle();` is OK. `Rectangle r = s;` is a COMPILE error. `Rectangle r = (Rectangle) s;` compiles, but throws ClassCastException at run time if `s` is not really a Rectangle.",
+  "Calling a subclass-only method through a superclass variable is a **compile error** (e.g. `Object st = new String(); st.charAt(0);`).",
+  "`x instanceof C` is true if x is a C or any **descendant** of C. `null instanceof C` is false.",
+  "Benefits of polymorphism = **Simplicity** + **Extensibility**.",
+  "LSP: Barbara **Liskov**, **1988**. 'Subtypes must be substitutable for their base types.'",
+  "The 3 ways of overriding: (1) subclass overrides superclass, (2) implementing abstract methods of an abstract class, (3) a concrete class implementing an interface's methods.",
+  "Dynamic binding works even inside a superclass **constructor**. The subclass override runs before the subclass's fields are initialised, so they are still `0`/`null`."
+ ],
+ "items": [
+  {
+   "slide": 4,
+   "tag": "exam",
+   "title": "Polymorphism definition",
+   "notes": [
+    "Polymorphism means **'many forms'** (Greek).",
+    "In OOP it is the ability of an **object reference** to refer to different types. Which method runs depends on where the object sits in the inheritance hierarchy.",
+    "Overriding is a **necessary tool** for polymorphism. The subclass method may **replace** or **refine** the parent's method."
+   ]
+  },
+  {
+   "slide": 5,
+   "tag": "trap",
+   "title": "Refine vs replace (labels are confusing)",
+   "notes": [
+    "**Refine** = call `super.printInfo()` and then add more. That is the version in the slide text: `Employee details are :` → `super.printInfo()` → salary.",
+    "**Replace** = rewrite the method without calling `super`. That is the version visible in the image (prints `Employee name is :` …).",
+    "In the image, the '// refine' comment sits beside the *replace* body because of an animation overlay. Go by the rule: uses `super` = refine."
+   ]
+  },
+  {
+   "slide": 6,
+   "tag": "diagram",
+   "title": "Animal / Eagle / Tiger / Shark",
+   "notes": [
+    "The hollow triangle at Animal means the three subclasses inherit from it, and each **overrides** `move()`.",
+    "With one variable `Animal animal`, reassigning it to `new Eagle()`, then `new Tiger()`, then `new Shark()` makes `animal.move()` run Eagle's, then Tiger's, then Shark's `move()`."
+   ]
+  },
+  {
+   "slide": 7,
+   "tag": "exam",
+   "weak": true,
+   "title": "Polymorphism via a superclass variable",
+   "notes": [
+    "When you call a method through a superclass variable, the **subclass version** runs, chosen by the type of the **object** the variable refers to. The slide's wording 'type of the reference' is corrected on the slide to 'object'.",
+    "The same name and signature can cause different actions depending on the object's type.",
+    "This lets you add new classes with **minimal modification** to existing code: `call(Animal a)` works for any future subclass."
+   ]
+  },
+  {
+   "slide": 9,
+   "tag": "exam",
+   "title": "Liskov Substitution Principle",
+   "notes": [
+    "By **Barbara Liskov, 1988**. If replacing o2 (type T) with o1 (type S) leaves the behaviour of every program P written for T **unchanged**, then S is a subtype of T.",
+    "Paraphrase to memorise: **'Subtypes must be substitutable for their base types.'**",
+    "Being able to substitute requires the *behaviour* to be unchanged, not just that the code compiles (more in Ch9)."
+   ]
+  },
+  {
+   "slide": 12,
+   "tag": "exam",
+   "weak": true,
+   "title": "Static vs dynamic binding",
+   "notes": [
+    "Binding = connecting a **method call** to a **method body**.",
+    "**Static / early** binding: bound at **compile time**. **Dynamic / late** binding: delayed until **execution time (runtime)**, based on the **actual object** referred to.",
+    "Trap: `Shape circle = new Circle();` is placed under 'static binding', but `circle.print()` is dynamically bound and runs Circle's `print()`. The compiler only checks that Shape *has* a `print()`."
+   ]
+  },
+  {
+   "slide": 13,
+   "tag": "exam",
+   "weak": true,
+   "title": "Reference type vs object type",
+   "notes": [
+    "Java uses dynamic binding **by default**: the **object type** (actual type), not the declared/reference type, decides which method runs.",
+    "Synonyms: reference type = declared type = variable type. Object type = the class after `new`.",
+    "`Object anObj = new Person();` has reference type Object and object type Person. An interface can be the reference type: `IAnimal a = new Cat();`."
+   ]
+  },
+  {
+   "slide": 14,
+   "tag": "code",
+   "title": "Static binding: overload chosen by declared type",
+   "notes": [
+    "`Collection c = new HashSet(); et.sort(c);` prints **`Inside Collection sort method`** (verified).",
+    "Overload resolution uses the **declared** type of the argument (Collection) at compile time, even though the object is a HashSet.",
+    "Contrast: for overriding, the run-time object type decides."
+   ]
+  },
+  {
+   "slide": 15,
+   "tag": "code",
+   "title": "Dynamic binding: Vehicle v = new Car()",
+   "notes": [
+    "`vehicle.start()` prints **`Inside start method of Car`**: the method is overridden, so the object type (Car) wins.",
+    "Bus is never created, so its `start()` never runs."
+   ]
+  },
+  {
+   "slide": 16,
+   "tag": "exam",
+   "weak": true,
+   "title": "What is NOT dynamically bound",
+   "notes": [
+    "Java uses dynamic binding for all methods **except `private`, `final` and `static`**. Those are bound statically, because they cannot be overridden.",
+    "A `static` method with the same signature in a subclass **hides** the parent's method instead of overriding it. The reference type decides which one runs.",
+    "Dynamic binding lets a base-class method call methods whose details are defined later in subclasses: 'program in the general'.",
+    "Also verified: if a superclass constructor calls an overridden method, the **subclass** version runs, and it sees subclass fields still at `0`/`null`."
+   ]
+  },
+  {
+   "slide": 17,
+   "tag": "code",
+   "title": "Sale.lessThan calls bill() dynamically",
+   "notes": [
+    "Inside `Sale.lessThan`, both `bill()` and `otherSale.bill()` are dynamically bound, so `discount.bill()` runs **DiscountSale's** version: 11 × 0.9 = 9.9.",
+    "`simple.lessThan(discount)` checks 10 < 9.9, which is false, so `!false` prints `code can still be compiled!`.",
+    "Typo: `new sale(...)` should be `new Sale(...)` (Java is case-sensitive), and the slide uses curly quotes."
+   ]
+  },
+  {
+   "slide": 19,
+   "tag": "exam",
+   "weak": true,
+   "title": "Upcasting",
+   "notes": [
+    "Upcasting = assigning a derived-class object to a base-class (or any ancestor) variable. It is **implicit** and always safe.",
+    "`shape.findArea()` runs **Rectangle's** `findArea()` because of dynamic binding.",
+    "`shape.getWidth()` would NOT compile, because Shape has no getWidth. Typo: `new Rectangle(15,10));` has an extra `)`."
+   ]
+  },
+  {
+   "slide": 20,
+   "tag": "slides-wrong",
+   "weak": true,
+   "title": "Downcasting, plus the 'int height' bug",
+   "notes": [
+    "`Rectangle rect = shape;` without a cast is a **compile error**.",
+    "`Rectangle rect = (Rectangle) shape;` with `shape = new Shape()` **compiles**, but throws **ClassCastException** at run time (verified). The compiler only checks that the types are related, and the real object is checked at run time.",
+    "Slide bug: `int height = rect.getHeight(); // compiler OK`. Since `getHeight()` returns `double`, this is actually a compile error ('possible lossy conversion', verified).",
+    "Exam: the slide's intended point is that a subclass method through a subclass reference compiles. For a literal `int = double` line, answer 'compile error'."
+   ]
+  },
+  {
+   "slide": 21,
+   "tag": "exam",
+   "title": "Downcasting is the programmer's responsibility",
+   "notes": [
+    "The compiler does **not** check whether a downcast makes sense.",
+    "A downcast that doesn't make sense usually gives a **run-time error** (ClassCastException)."
+   ]
+  },
+  {
+   "slide": 22,
+   "tag": "exam",
+   "weak": true,
+   "title": "instanceof",
+   "notes": [
+    "Downcasting is only sensible if the object really is an instance of the target type. Check with `object instanceof ClassName`.",
+    "It is true if the object is of that class **or any descendant**, so `personObj instanceof Object` is always true for a non-null object.",
+    "`null instanceof X` is **false** (verified). That is why the `equals` pattern needs no separate null check."
+   ]
+  },
+  {
+   "slide": 23,
+   "tag": "code",
+   "title": "equals(Object) uses instanceof + downcast",
+   "notes": [
+    "Pattern: null → false. If `!(anObject instanceof Person)` → false. Otherwise downcast with `(Person) anObject` and compare fields.",
+    "`instanceof Person` also accepts a **Student** (subclass). The commented-out `getClass() != anObject.getClass()` requires the exact same class.",
+    "`Object anObject = new String(\"Tom\"); (Person) anObject` compiles but throws ClassCastException at run time. That is why you check first."
+   ]
+  },
+  {
+   "slide": 24,
+   "tag": "diagram",
+   "weak": true,
+   "title": "Cylinder/Figure: compile vs runtime checks",
+   "notes": [
+    "The outer Cylinder circle contains the inner Figure circle: a Cylinder object has all of Figure's members plus `getHeight`/`getRadius`.",
+    "`Figure fig = new Cylinder(); fig.getArea();` passes compile and run time. `Cylinder cy = fig;` is compile NOK. `(Cylinder) fig` on a real `new Figure()` is compile OK, runtime NOK. `cy.getHeight()` compiles.",
+    "**The reference type is used to check at compile time. The object type is used to check at run time.**",
+    "The red X on `#getCenterGravity()` means a protected member is not accessible from an outside (non-subclass, other-package) client."
+   ]
+  },
+  {
+   "slide": 25,
+   "tag": "exam",
+   "weak": true,
+   "title": "Allowed assignments (the 4 rules)",
+   "notes": [
+    "Superclass ref to superclass var: OK (`Object ob = new Object()`). Subclass ref to subclass var: OK (`String st = new String()`).",
+    "Subclass to superclass var: **safe** (is-a), `Object st = new String()`. But `st.charAt(0)` is a **compile error**, because subclass-only members aren't visible through a superclass variable.",
+    "Superclass to subclass var: **compile error** (`String ob = new Object()`). An explicit cast `(String) new Object()` compiles, but **throws ClassCastException at run time** (verified). The slide shows it in green, but it only gets past the compiler.",
+    "A cast between **unrelated** classes (e.g. `(Q) p`, where P and Q are siblings) is a **compile error** (verified)."
+   ]
+  },
+  {
+   "slide": 27,
+   "tag": "exam",
+   "title": "Benefit 1: Simplicity",
+   "notes": [
+    "Code dealing with a family of types can ignore type-specific details and just use the **base type**.",
+    "The object may actually be the base class or any subclass. This makes code easier to write and to understand."
+   ]
+  },
+  {
+   "slide": 28,
+   "tag": "exam",
+   "title": "Benefit 2: Extensibility",
+   "notes": [
+    "You add new functionality by creating **new subclasses** of an off-the-shelf base class **without modifying** the base class or the other subclasses.",
+    "The benefits are exactly 2: **Simplicity** and **Extensibility**."
+   ]
+  },
+  {
+   "slide": 29,
+   "tag": "slides-wrong",
+   "title": "ShapeApp code is broken as written",
+   "notes": [
+    "Bugs: Circle's constructor is named `Rectangle(double r)` (compile error), `shapes` is used before it is declared, `shapes[1] = …` uses array syntax on an ArrayList, the `println(` is missing its `)`, and it uses curly quotes.",
+    "Intended idea: `ArrayList<Shape> shapes` holding Circles/Rectangles, then `for (Shape s : shapes) s.area()` runs each object's own `area()`.",
+    "Exam: take away the polymorphic loop, not the literal code."
+   ]
+  },
+  {
+   "slide": 31,
+   "tag": "exam",
+   "weak": true,
+   "title": "THE three ways of method overriding",
+   "notes": [
+    "1) **Method overriding**: methods of a subclass override the methods of a superclass.",
+    "2) **Overriding (implementation) of abstract methods**: methods of a subclass implement the abstract methods of an **abstract class**.",
+    "3) **Overriding (implementation) through the Java interface**: methods of a **concrete class** implement the methods of the **interface**.",
+    "Don't mix this up with Ch3's **2 ways** (Refinement / Replacement), which describe *how* a single override is written."
+   ]
+  },
+  {
+   "slide": 33,
+   "tag": "code",
+   "title": "CareTaker.takeAWalk(IAnimal pet)",
+   "notes": [
+    "`ct.takeAWalk(cat)` prints `Cat moves....` then `Meow !`. `ct.takeAWalk(lion)` prints `Lion moves...` then `ROAR !`.",
+    "The parameter type is the **interface** IAnimal. Any class that implements it can be passed. This is way 3 of overriding."
+   ]
+  },
+  {
+   "slide": 34,
+   "tag": "trap",
+   "title": "Overloading = static binding, interface parameter = dynamic binding",
+   "notes": [
+    "Writing `takeAWalk(Cat)`, `takeAWalk(Lion)`, … is **method overloading**: the method is chosen at **compile time** (static binding), and you need a new method for every new animal.",
+    "One `takeAWalk(IAnimal pet)`: which object implements IAnimal is known only at **run time**, so this is **dynamic binding**. New animals (Dog, Elephant, Tiger) need no change to CareTaker."
+   ]
+  },
+  {
+   "slide": 35,
+   "tag": "code",
+   "title": "LivingThings / Mammal / Dog",
+   "notes": [
+    "`Mammal` does not implement the abstract `speak()`, so it **must be abstract**. `Dog` is concrete: it implements `speak()`, overrides `move()`/`grow()`, and inherits `eat()`.",
+    "`Mammal m = new Dog(); m.speak();` compiles because Mammal inherits the abstract `speak()` declaration. At run time it runs Dog's.",
+    "The red 'static' labels ask 'what if move() were static?' (verified): if both are static, `m.move()` prints `Mammal move!` (hiding, chosen by the reference type). If only one of them is static, it's a compile error."
+   ]
+  },
+  {
+   "slide": 36,
+   "tag": "slides-wrong",
+   "title": "Program output text doesn't match the code",
+   "notes": [
+    "The slide shows `Dog moves!`, `Mammal eats!`, `Dog grows!`. The code actually prints `Dog move!`, `Mammal eat!`, `Dog grow!` (verified).",
+    "Real output, twice (for `mDog` and for `m`): `Woof!` / `Dog move!` / `Mammal eat!` / `Dog grow!`. The same result both times = dynamic binding.",
+    "Exam: the pattern (Dog's speak/move/grow, Mammal's eat) is what matters. Use the exact strings in the code."
+   ]
+  },
+  {
+   "slide": 37,
+   "tag": "exam",
+   "title": "Summary",
+   "notes": [
+    "Polymorphism = 'many forms'. LSP = subtypes must be substitutable for their base types.",
+    "Benefits = simplicity and extensibility. A downcast that makes no sense gives a run-time error."
+   ]
+  }
+ ]
+}

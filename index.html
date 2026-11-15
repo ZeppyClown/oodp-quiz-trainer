@@ -62,6 +62,15 @@ label.chk{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--mut
 .lesson h3{margin:4px 0 6px;font-size:17px}.lesson .body{white-space:pre-wrap;font-size:15px}
 .kp{background:#132019;border-left:3px solid var(--ok);padding:8px 10px;border-radius:8px;margin-top:8px;font-size:14px}
 .kp li{margin:3px 0}
+.stag{display:inline-block;font-size:11.5px;padding:2px 7px;border-radius:6px;margin-right:5px;font-weight:700}
+.t-exam{background:#142a4a;color:#8fb8ff}.t-trap{background:#3b2f10;color:#f0b429}.t-slides-wrong{background:#3a1a1a;color:#ff8a8a}.t-diagram{background:#2a1f3d;color:#c9a7ff}.t-code{background:#123222;color:#5fe39a}.t-know{background:#252a33;color:#9aa3b2}
+.slideimg{width:100%;border-radius:8px;border:1px solid var(--bd);background:#222;min-height:120px;display:block;margin:8px 0}
+.notes li{margin:4px 0;font-size:14.5px}.notes{padding-left:18px;margin:6px 0}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px}.chips button{flex:0 0 auto;padding:7px 11px;border-radius:18px;border:1px solid var(--bd);background:var(--card2);color:var(--fg);font-size:13px}
+.chips button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.zoom{position:fixed;inset:0;background:#000;z-index:20;overflow:auto;-webkit-overflow-scrolling:touch}.zoom img{width:180%;display:block}
+.zoom .x{position:fixed;top:10px;right:10px;background:#333;color:#fff;border:0;border-radius:20px;padding:8px 14px;font-size:15px;z-index:21}
+input.pw{width:100%;padding:13px;border-radius:10px;border:1px solid var(--bd);background:var(--card2);color:var(--fg);font-size:17px;margin:8px 0}
 </style>
 </head>
 <body>
@@ -122,7 +131,7 @@ function home(){
   <div class="mut">${BANK.length} questions (${BANK.filter(q=>stats()[q.id]).length} seen) · bank updated ${esc(window.MANIFEST.updated||"")}</div>
   ${resume && resume.idx < resume.qs.length ? `<button class="btn pri" onclick="resumeS()">▶ Resume ${esc(resume.title)} (${resume.idx+1}/${resume.qs.length})</button>`:""}
   <h2>📚 Study path: go chapter by chapter</h2>
-  <div class="mut">Tap a chapter: 📖 Learn (diagrams), then <span class="lv lv1">L1 Foundation</span> → <span class="lv lv2">L2 What-if</span> → <span class="lv lv3">L3 Gotcha</span></div>
+  <div class="mut">Tap a chapter: 🖼 Slides + notes, 📖 Learn (diagrams), then <span class="lv lv1">L1 Foundation</span> → <span class="lv lv2">L2 What-if</span> → <span class="lv lv3">L3 Gotcha</span></div>
   <div class="card">${Object.keys(CH).map(k=>{ const st=stats(); const L=[1,2,3].map(l=>{const pool=BANK.filter(q=>q.chapter==k&&lvl(q)==l); const seen=pool.filter(q=>st[q.id]); const c=seen.reduce((a,q)=>a+st[q.id].c,0), n=seen.reduce((a,q)=>a+st[q.id].n,0); const p=pct(c,n); return `<span class="pill" style="${p!=null?`color:#fff;background:${col(p)}`:""}">L${l} ${p==null?seen.length+"/"+pool.length:p+"%"}</span>`}).join("");
      return `<div class="chrow" onclick="chapterPage(${k})"><div class="nm">${LESSONS[k]?"📖 ":""}${CH[k]}</div>${L}</div>`}).join("")}</div>
   <h2>Mixed practice</h2>
@@ -147,6 +156,7 @@ function chapterPage(ch){
   $("#app").innerHTML = `<button class="btn ghost" style="width:auto;padding:6px 10px" onclick="home()">← Home</button>
    <h1>${CH[ch]}</h1>
    ${LESSONS[ch]?`<button class="btn pri" onclick="lesson(${ch})">📖 Learn: ${esc(LESSONS[ch].title||"lesson")} (${LESSONS[ch].cards.length} cards)</button>`:`<div class="mut">Lesson coming soon</div>`}
+   <button class="btn" style="border-color:#8a63d2" onclick="slidesPage(${ch})">🖼 Lecture slides + what to note<small>The real slides with notes: what's examinable, traps, and where the slides are wrong.</small></button>
    ${[1,2,3].map(lvRow).join("")}`;
   window.scrollTo(0,0);
 }
@@ -175,6 +185,65 @@ function startLevel(ch, l){
   const n = ch?15:20;
   begin((ch?CH[ch]+" · ":"All chapters · ")+"L"+l+" "+LVN[l], [...unseen,...wrong,...rest].slice(0,n).map(q=>q.id), "learn");
 }
+// ---------- encrypted lecture slides ----------
+let SKEY=null, SMETA=null, SNOTES={}; const SURL={};
+const b64 = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
+async function slideKey(pass){
+  SMETA = SMETA || await fetch("slides/meta.json?v="+Date.now()).then(r=>r.json());
+  if (!pass){ const raw=localStorage.getItem("oop_skey"); if(!raw) return null; SKEY=await crypto.subtle.importKey("raw", b64(raw), "AES-GCM", false, ["decrypt"]); return SKEY }
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pass.trim().toLowerCase()), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits({name:"PBKDF2", salt:b64(SMETA.salt), iterations:SMETA.iter, hash:"SHA-256"}, base, 256);
+  const k = await crypto.subtle.importKey("raw", bits, "AES-GCM", false, ["decrypt"]);
+  const chk=b64(SMETA.check); await crypto.subtle.decrypt({name:"AES-GCM", iv:chk.slice(0,12)}, k, chk.slice(12)); // throws if wrong
+  localStorage.setItem("oop_skey", btoa(String.fromCharCode(...new Uint8Array(bits)))); SKEY=k; return k;
+}
+async function slideURL(ch, n){
+  const id=ch+"/"+n; if (SURL[id]) return SURL[id];
+  const buf = new Uint8Array(await fetch(`slides/ch${ch}/${String(n).padStart(3,"0")}.bin`).then(r=>r.arrayBuffer()));
+  const plain = await crypto.subtle.decrypt({name:"AES-GCM", iv:buf.slice(0,12)}, SKEY, buf.slice(12));
+  return SURL[id] = URL.createObjectURL(new Blob([plain], {type:"image/jpeg"}));
+}
+async function slidesPage(ch, filter){
+  $("#bottom").style.display="none";
+  try { if(!SKEY) await slideKey() } catch(e){ localStorage.removeItem("oop_skey") }
+  if (!SKEY){
+    $("#app").innerHTML = `<button class="btn ghost" style="width:auto;padding:6px 10px" onclick="chapterPage(${ch})">← Back</button>
+      <h1>🔒 Unlock lecture slides</h1><div class="mut">The slides are NTU restricted material, so they're encrypted on this public site. Enter the passphrase from your chat with Claude (only needed once per device).</div>
+      <input class="pw" id="pw" placeholder="passphrase" autocapitalize="off" autocomplete="off" spellcheck="false">
+      <button class="btn pri" id="ub" onclick="unlockSlides(${ch})">Unlock</button>`; return;
+  }
+  if (!SNOTES[ch]) SNOTES[ch] = await fetch(`slides/notes/ch${ch}.json?v=`+Date.now()).then(r=>r.json()).catch(()=>({items:[]}));
+  const N = SNOTES[ch], total = SMETA.chapters[ch]||0; filter = filter || "key";
+  const byS = Object.fromEntries((N.items||[]).map(it=>[it.slide,it]));
+  let list;
+  if (filter==="all") list = Array.from({length:total},(_,i)=>byS[i+1]||{slide:i+1});
+  else list = (N.items||[]).filter(it=> filter==="key" || (filter==="weak"?it.weak:it.tag===filter));
+  const cnt = t => (N.items||[]).filter(it=>t==="weak"?it.weak:it.tag===t).length;
+  const chips = [["key",`Key slides (${(N.items||[]).length})`],["weak",`⭐ Your weak spots (${cnt("weak")})`],["exam",`Exam (${cnt("exam")})`],["trap",`Traps (${cnt("trap")})`],["slides-wrong",`Slides wrong (${cnt("slides-wrong")})`],["diagram",`Diagrams (${cnt("diagram")})`],["code",`Code (${cnt("code")})`],["all",`All ${total} slides`]];
+  $("#app").innerHTML = `<button class="btn ghost" style="width:auto;padding:6px 10px" onclick="chapterPage(${ch})">← ${CH[ch]}</button>
+   <h1>🖼 ${CH[ch]}: slides</h1>
+   ${filter==="key"&&N.summary?`<div class="card"><b>Big ideas</b><ul class="notes">${N.summary.map(x=>`<li>${md(x)}</li>`).join("")}</ul></div>`:""}
+   ${filter==="key"&&N.mustMemorise?`<div class="card" style="border-color:var(--ok)"><b>🧠 Must memorise</b><ul class="notes">${N.mustMemorise.map(x=>`<li>${md(x)}</li>`).join("")}</ul></div>`:""}
+   <div class="chips">${chips.map(([k,l])=>`<button class="${k===filter?"on":""}" onclick="slidesPage(${ch},'${k}')">${l}</button>`).join("")}</div>
+   ${list.length?"":`<div class="mut">Nothing in this filter.</div>`}
+   ${list.map(it=>`<div class="card">
+      <div><span class="mut">Slide ${it.slide}</span> ${it.tag?`<span class="stag t-${it.tag}">${it.tag==="slides-wrong"?"⚠️ slides wrong":it.tag}</span>`:""}${it.weak?`<span class="stag t-trap">⭐ weak spot</span>`:""}</div>
+      ${it.title?`<div style="font-weight:700;margin-top:4px">${md(it.title)}</div>`:""}
+      <img class="slideimg" data-ch="${ch}" data-n="${it.slide}" alt="slide ${it.slide}" onclick="zoomSlide(this.src)">
+      ${it.notes?`<ul class="notes">${it.notes.map(x=>`<li>${md(x)}</li>`).join("")}</ul>`:""}
+   </div>`).join("")}
+   <button class="btn ghost" onclick="chapterPage(${ch})">← Back to ${CH[ch]}</button>`;
+  window.scrollTo(0,0);
+  const io = new IntersectionObserver(es=>es.forEach(async e=>{ if(!e.isIntersecting) return; io.unobserve(e.target);
+     try { e.target.src = await slideURL(+e.target.dataset.ch, +e.target.dataset.n) } catch(err){ e.target.alt="(failed to load)" } }), {rootMargin:"600px"});
+  document.querySelectorAll(".slideimg").forEach(el=>io.observe(el));
+}
+async function unlockSlides(ch){
+  const b=$("#ub"); b.textContent="Unlocking…";
+  try { await slideKey($("#pw").value); slidesPage(ch) } catch(e){ b.textContent="Unlock"; toast("Wrong passphrase") }
+}
+function zoomSlide(src){ if(!src) return; const d=document.createElement("div"); d.className="zoom";
+  d.innerHTML=`<button class="x">✕ Close</button><img src="${src}">`; d.querySelector(".x").onclick=()=>d.remove(); document.body.appendChild(d) }
 function pickN(pool, n){ return shuffle(pool).slice(0,n) }
 function startDiag(){
   const done = new Set(); let qs = [];

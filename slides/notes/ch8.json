@@ -1,0 +1,201 @@
+{"chapter": 8,
+ "summary": [
+  "OO modelling = find **objects** (nouns become classes and attributes) and their **behaviour** (verbs become responsibilities and methods) in the requirements, then model how they interact.",
+  "The modelling steps, in order: identify classes (entity / boundary / control), add attributes and methods, add relationships, add multiplicities, then sequence diagrams for behaviour and interaction, enhance class details (discover more methods), implement, test.",
+  "Short example: Professor mentors 1..* Students, Student registers 1..* Courses, Result holds the grade. A sequence diagram per scenario then reveals the methods each class needs.",
+  "Blackjack case study: list nouns, eliminate (synonyms, plurals, attributes, the system itself), list verbs as responsibilities, review them, write CRC cards, then draw the UML class diagram.",
+  "Final blackjack classes: **Card, Deck, Hand, Dealer, Player**. Bet was kept in the noun review but dropped at the responsibility review ('can be added later')."
+ ],
+ "mustMemorise": [
+  "Entity = persistent information tracked by the system (icon: circle sitting on a line).",
+  "Boundary = interaction between actor and system (icon: circle with a T-bar on its left).",
+  "Control = logic to realise a use case (icon: circle with an arrowhead on top).",
+  "Steps: Identify classes, then attributes & methods, then relationships, then multiplicities, then behaviours & interaction (functional flow), then enhance class details, then implement, then quality testing.",
+  "Nouns become candidate classes or attributes. Verbs become responsibilities (methods).",
+  "CRC = Class, Responsibilities, Collaborators. Card fields: Class Name, Superclasses, Subclasses, Responsibilities, Collaborators.",
+  "CRC cards were introduced by Kent Beck and Ward Cunningham (OOPSLA '89, 'A Laboratory for Teaching Object-Oriented Thinking').",
+  "Why CRC: portable (no computer), participants experience the system first-hand by role-playing objects, good for teaching the OO paradigm.",
+  "Eliminated nouns: Blackjack (game = the system), House (synonym for dealer), Players (one Player class suffices), Cards (one Card class), Face value & Suit (attributes of Card), Ace/King/Queen/Jack (attributes of Card).",
+  "Deck composed of 52 Cards (filled diamond at Deck). Each Player and the Dealer has a Hand."
+ ],
+ "items": [
+  {"slide": 3, "tag": "exam", "title": "Modelling real-world systems",
+   "notes": [
+    "The primary goal of OO: model real-world systems **in ways similar to how people think**.",
+    "Identify objects (encapsulated data and behaviour) by finding **nouns and verbs** in the requirements statement."
+   ]},
+  {"slide": 4, "tag": "exam", "weak": true, "title": "Steps 1-4 and entity / boundary / control",
+   "notes": [
+    "Steps in order: **Identify classes, then add attributes and methods, then add class relationships, then add multiplicities**.",
+    "**Entity** (circle on a line) = persistent information tracked by the system, e.g. Student, Course.",
+    "**Boundary** (circle with a T-bar on its left) = interaction between actor and system, e.g. a form or a device interface.",
+    "**Control** (circle with an arrow on top) = logic to realise a use case, e.g. `AppMgr`, `UserMgr`."
+   ]},
+  {"slide": 5, "tag": "exam", "weak": true, "title": "Steps 5-8",
+   "notes": [
+    "Then: **identify object behaviours and interaction through functional flow** (sequence diagrams), **enhance class details** (this is where you *discover more methods*), **implement the model**, **quality testing**.",
+    "Trap: behaviour modelling comes **after** the first class diagram, and it feeds new methods back into the classes."
+   ]},
+  {"slide": 7, "tag": "diagram", "weak": true, "title": "Short example: class diagram from nouns",
+   "notes": [
+    "The underlined nouns became classes: Professor, Student, Course, Result. All are **entities** (circle-on-line icon).",
+    "Professor `1` to Student `1..*` with roles `mentor`/`mentee`: a professor mentors **at least 1** student, and each student has exactly **1** mentor. Multiplicity is read at the far end.",
+    "Student `1..*` to Course `1..*` (`register`). Student to Result is `1..*`. Result to Course is a solid line with an **open arrowhead** = navigable **association** (Result knows its Course). It is not a dependency, which would be dashed.",
+    "The note `as Student Record` is attached by a **dashed line** (a comment, not a relationship). Result has private attributes `-grade`, `-semYr`."
+   ]},
+  {"slide": 8, "tag": "trap", "title": "Only model what the requirement needs",
+   "notes": [
+    "Same diagram, but `semYr` has been **removed** from Result. The highlighted requirement (check course results) only needs `grade`.",
+    "Lesson: attributes come from the requirement text, not from guessing."
+   ]},
+  {"slide": 9, "tag": "diagram", "weak": true, "title": "sd check mentee result",
+   "notes": [
+    "Professor (actor) sends `select` to `:SelectForm` (boundary), which sends `showMenteeResults()` to `AppMgr` (control), which calls the entities. This is the actor, boundary, control, entity layering.",
+    "`getMentees()` goes to the professor. Then `loop [foreach student]` calls `getResults()`, with a nested `loop [foreach result]` calling `getCourse()`, `getCourseName()`, `getGrade()`.",
+    "All calls have filled heads (synchronous). `output` is a **dashed** return back to SelectForm.",
+    "The dashed lines drawn inside the loop boxes are not meaningful: a loop has a single operand. They come from the drawing tool."
+   ]},
+  {"slide": 10, "tag": "slides-wrong", "title": "'x N': sequence diagrams add methods to classes",
+   "notes": [
+    "Repeat (**x N**) a sequence diagram per scenario. Each message received becomes a **method on the receiver's class**: `getResults()` on Student, `getCourse()` and `getGrade()` on Result, `getCourseName()` on Course.",
+    "Mismatch: the sd sends `getMentees()` to Professor, but the class box lists `+getMenteeResults()`. If asked, the rule is that the method name must match the message.",
+    "Attributes added: `-name` (Professor, Student) and `-courseName` (Course). `-` = private, `+` = public."
+   ]},
+  {"slide": 12, "tag": "exam", "title": "Blackjack requirements: nouns circled",
+   "notes": [
+    "Nouns are circled in the requirements statement (game, dealer, house, players, cards, deck, face value, hand, card, aces, Jack/Queen/King, bet, draw). They are the raw material for classes.",
+    "Source of the case study: *The Object-Oriented Thought Process* (Matt Weisfeld), named on slide 11."
+   ]},
+  {"slide": 13, "tag": "diagram", "weak": true, "title": "Blackjack class diagram",
+   "notes": [
+    "Deck to Card: **filled diamond at Deck**, `52` at Card = **composition** (a deck is made of 52 cards). The diamond sits at the whole.",
+    "Player `1` to Hand `1` and Dealer `1` to Hand `1` (`show`). Dealer `1` to Player `1..*` (`give card`). Dealer to Deck (`deals`).",
+    "The small filled triangles next to `show` / `give card` / `deals` show the **reading direction of the association name**. They are not inheritance and not navigability.",
+    "Notation quirks: `+getValue:int` omits `()` (standard UML is `+getValue(): int`). `Player:` / `Deck:` are the constructors. Members with no symbol (`limit:int`, `startNewGame:void`, `random:Random`) have unspecified visibility. `-determineWinner: Player` is private."
+   ]},
+  {"slide": 18, "tag": "trap", "title": "'Goal of game' is oversimplified",
+   "notes": [
+    "The slide says the winner's value 'will be equal to 21'. The actual rule (slides 12 and 23) is **closest to 21 without exceeding it**. Over 21 loses.",
+    "If a question asks about the rules, use slide 23: closer to 21 than the dealer wins."
+   ]},
+  {"slide": 19, "tag": "exam", "title": "Dealer's role (verbs)",
+   "notes": [
+    "Dealer: deals cards, gives extra cards on request, shows all or part of a hand, calculates the hand value, calculates the number of cards, determines the winner and starts a new hand.",
+    "These verbs later become Dealer responsibilities (slides 41, 48)."
+   ]},
+  {"slide": 20, "tag": "exam", "title": "Card & Deck requirement",
+   "notes": [
+    "A card knows and reports its **face value**. **Suit is of no importance**.",
+    "Every card belongs to a deck. There are **52 cards in a deck**. The deck must deal the next card and report how many cards remain. This is the basis of composition with multiplicity 52."
+   ]},
+  {"slide": 22, "tag": "exam", "title": "Card values",
+   "notes": [
+    "Suits are no factor. **Ace = 1 or 11**. **Jack, Queen, King = 10**. Other cards = their face value."
+   ]},
+  {"slide": 23, "tag": "exam", "title": "Win / payout rules",
+   "notes": [
+    "Closer to 21 than the dealer wins an amount **equal to the bet**. Winning with a **blackjack pays 3:2**. **Over 21 is not a win**.",
+    "Draw (slide 24): identical scores **and at least 17**, and the player keeps the bet."
+   ]},
+  {"slide": 26, "tag": "exam", "weak": true, "title": "Case-study design steps (overview)",
+   "notes": [
+    "Order used in the case study: **study the requirements again**, then **identify classes** (list nouns, then eliminate), then **identify responsibilities** (list verbs, then review), then **CRC cards**, then **UML class diagram**.",
+    "Slide 27: expect the first CRC cards to change, because not every class you think of makes the final cut."
+   ]},
+  {"slide": 29, "tag": "exam", "title": "The noun list",
+   "notes": [
+    "Game, Blackjack, Dealer, House, Players, Player, Cards, Card, Deck, Hand, Face value, Suit, Winner, Ace, Face card, King, Queen, Jack, Game, Bet. 'Game' appears twice on the slide."
+   ]},
+  {"slide": 31, "tag": "slides-wrong", "weak": true, "title": "Process of elimination (struck-out nouns)",
+   "notes": [
+    "Struck out: Blackjack, House, Cards, Face value and Suit (both 'an attribute of Card'), Winner, Ace, Face card, King, Queen, Jack, Bet.",
+    "The red strike line is drawn on **Player**, but slide 32 says **Players** is eliminated and Player is kept. Player is a final class, so answer **Players eliminated**.",
+    "Kept: Game, Dealer, Player, Card, Deck, Hand ('cards on hand'). Game is never drawn as a class. Per slide 32, the game is the system itself."
+   ]},
+  {"slide": 32, "tag": "exam", "weak": true, "title": "Why Blackjack, House, Players were removed",
+   "notes": [
+    "**Blackjack**: eliminated because the **game is the system itself**.",
+    "**House**: just **another name for the dealer** (a synonym).",
+    "**Players**: one **Player class** suffices (do not model plurals as classes)."
+   ]},
+  {"slide": 33, "tag": "exam", "weak": true, "title": "Why Cards, Face value, Suit were removed",
+   "notes": [
+    "**Cards**: a single Card class is enough.",
+    "**Face value** is an **attribute** of Card.",
+    "**Suit**: not needed for blackjack (you might keep it for future card games). 'Our example will leave it out', yet the final UML (slides 13, 60) still has `-suit:String` with `getSuit`/`setSuit`. The slides are inconsistent here."
+   ]},
+  {"slide": 34, "tag": "exam", "title": "Ace, King, Queen, Jack become attributes",
+   "notes": [
+    "They are better represented as **attributes of Card**, not as individual classes (no subclass per rank)."
+   ]},
+  {"slide": 35, "tag": "trap", "title": "Bet: in, then out again",
+   "notes": [
+    "Here: Bet was originally removed but is **kept** 'because of future card usage', so it appears on slide 36's picture.",
+    "Slide 50 later: the Bet class is **not needed** and 'can be added later if necessary'. The final design has no Bet."
+   ]},
+  {"slide": 36, "tag": "exam", "title": "Candidate classes after elimination",
+   "notes": [
+    "Card, Deck, Hand, Dealer, Player, Bet. (Bet is dropped at slide 50, leaving **5 final classes**.)"
+   ]},
+  {"slide": 37, "tag": "exam", "weak": true, "title": "Responsibilities come from verbs",
+   "notes": [
+    "**Responsibilities relate to actions**: look for **verbs** to find each class's responsibilities. Nouns give classes, verbs give responsibilities."
+   ]},
+  {"slide": 39, "tag": "exam", "title": "Deck and Hand responsibilities",
+   "notes": [
+    "Deck: shuffle, deal next card, know how many. Hand (slide 40): know how many cards, know the value, show the hand.",
+    "Slide 46 adds a Deck responsibility: **know whether there is a full deck to begin**."
+   ]},
+  {"slide": 45, "tag": "exam", "title": "Reviewing Card responsibilities",
+   "notes": [
+    "Card: face value, suit. 'Face card / ace / joker?' does **not** need separate responsibilities, because **report value** handles it."
+   ]},
+  {"slide": 48, "tag": "exam", "title": "Review: renames for Dealer and Player",
+   "notes": [
+    "Dealer: 'Calculate the value of the dealer's hand' is renamed **'Show the value of dealer's hand'**.",
+    "Player (slide 49): 'Calculate the value of the hand' is renamed **'Show value of the player's hand'**. Calculation belongs to Hand (Hand knows its value)."
+   ]},
+  {"slide": 50, "tag": "exam", "weak": true, "title": "Bet class dropped",
+   "notes": [
+    "Bet responsibilities: type of bet, value of bet, how much the player has left, whether the bet can be covered.",
+    "Decision: **'This class is not needed at this site, and can be added later if necessary.'**"
+   ]},
+  {"slide": 51, "tag": "exam", "weak": true, "title": "CRC card fields",
+   "notes": [
+    "CRC cards are used to identify objects and the messages they exchange.",
+    "Fields: **Class Name, Superclasses, Subclasses, Responsibilities (left column), Collaborators (right column)**.",
+    "CRC = **Class, Responsibilities, Collaborators**. Collaborators = the other classes this class works with or sends messages to."
+   ]},
+  {"slide": 53, "tag": "slides-wrong", "weak": true, "title": "History of CRC cards",
+   "notes": [
+    "Introduced by **Kent Beck and Ward Cunningham** in *'A Laboratory for Teaching Object-Oriented Thinking'* (1989). The original purpose was **teaching programmers the OO paradigm**.",
+    "Beck changed 'Collaborators' to 'helpers'. Cunningham changed it back.",
+    "Typo: the slide says 'OOPLSA '89'. The conference is **OOPSLA** '89. Do not confuse with Ch9 originators (OCP = Bertrand Meyer, LSP = Barbara Liskov)."
+   ]},
+  {"slide": 54, "tag": "exam", "weak": true, "title": "Why use CRC cards",
+   "notes": [
+    "1) **Portable**: no computers needed. 2) Participants **experience first-hand** how the system works by physically **playing the role of an object**. 3) Useful for **teaching the OO paradigm**."
+   ]},
+  {"slide": 55, "tag": "exam", "weak": true, "title": "Card and Deck CRC cards",
+   "notes": [
+    "**Card**: responsibilities Get name, Get value. Collaborator **Deck**.",
+    "**Deck** (slide 56): Reset deck, Get deck size, Get next card, Shuffle deck, Show deck. Collaborators **Dealer, Card**."
+   ]},
+  {"slide": 57, "tag": "exam", "weak": true, "title": "Dealer, Player, Hand CRC cards",
+   "notes": [
+    "**Dealer**: Start a new game, Get a card. Collaborators **Hand, Player, Deck**.",
+    "**Player** (slide 58): Want more cards?, Get a card, Show hand, Get value of hand. Collaborators **Hand, Dealer**.",
+    "**Hand** (slide 59): Return value, Add a card, Show hand. Collaborators **Player, Dealer**.",
+    "Each CRC responsibility maps to a method in the UML: e.g. Want more cards? is `+moreCards:boolean`, Add a card is `+addToHand`, Get next card is `+getNextCard:Card`."
+   ]},
+  {"slide": 60, "tag": "trap", "title": "Blackjack UML (final class diagram)",
+   "notes": [
+    "The slide's text (partly hidden behind the picture in this render): UML shows a class with its attributes and methods. **`+` = public, `-` = private**.",
+    "Hand: `-value:Int`, `-hand:Vector`. Deck: `-cards`, `-shuffledCards`, `-nextItem`, private helpers `-createHearts/Spades/Clubs/Diamonds`, public `+shuffleDeck`, `+getNextCard:Card`, etc.",
+    "No Bet class. Card still has `-suit:String` despite slide 33. The same notation quirks as slide 13 apply (no `()` on methods; some members have no visibility symbol)."
+   ]},
+  {"slide": 61, "tag": "exam", "title": "Design is iterative",
+   "notes": [
+    "The design is not final: teams discuss, and **changes do take place**, but the CRC cards plus the class diagram are a start for writing the code."
+   ]}
+ ]}

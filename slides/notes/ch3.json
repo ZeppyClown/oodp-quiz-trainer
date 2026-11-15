@@ -1,0 +1,397 @@
+{
+ "chapter": 3,
+ "summary": [
+  "Inheritance lets a subclass absorb a superclass's attributes and methods and add new ones. It models an **is-a** relationship and gives code reuse. The root of every Java class is `java.lang.Object`.",
+  "`super(...)` calls the superclass constructor and must be the **first statement** of the constructor. `super.m()` calls the superclass version of a method.",
+  "Overloading means the same name with a different parameter list (number or types). Overriding means the same signature and return type in a subclass, done either as **Refinement** (uses `super`) or as **Replacement**.",
+  "There are 4 access levels: public, protected (`#`), package/default (nothing written), private. `protected` = the class itself + subclasses + the same package.",
+  "`final` method = cannot be overridden. `final` class = cannot be extended. An abstract class cannot be instantiated, and its abstract methods have no body.",
+  "Java has single class inheritance but lets a class implement multiple interfaces. An interface can `extends` another interface."
+ ],
+ "mustMemorise": [
+  "Overloading = same name, different **number** OR **types** of parameters. Return type or parameter names alone do NOT count.",
+  "Overriding = **exactly** the same signature and return type (per the slides). The 2 ways are **Refinement** (uses `super`) and **Replacement**.",
+  "`super()` must be the FIRST statement in a subclass constructor.",
+  "Method lookup starts at the class of the **object**, then goes up through each immediate superclass. If nothing matches, an error is reported.",
+  "Access table (Class / Package / Subclass / World): public YYYY, protected YYYN, default YYNN, private YNNN.",
+  "UML access symbols: `+` public, `#` protected, `-` private, `~` package.",
+  "`final` method: cannot be overridden. `final` class: cannot be a superclass, and its methods are implicitly final. Benefits: **security** and **efficiency** (compile-time binding).",
+  "Abstract in UML = name in *italics* OR the `{abstract}` constraint.",
+  "Interface (per the slides) = only abstract methods + constants (`static final`). A class implementing it must implement all of them or be declared abstract.",
+  "A class `extends` ONE class and `implements` MANY interfaces. Neither an abstract class nor an interface can be created with `new`.",
+  "Packages have a global namespace based on the internet domain (e.g. `sg.edu.ntu.projects`). No `package` line puts a class in the anonymous **default package**."
+ ],
+ "items": [
+  {
+   "slide": 4,
+   "tag": "exam",
+   "title": "Definition of inheritance",
+   "notes": [
+    "Inheritance derives new classes from existing ones by **absorbing** their attributes and behaviours AND **adding** new capabilities.",
+    "It gives code reuse and models an **is-a** relationship: a Student *is a* Person.",
+    "The root/ancestor of ALL Java classes is `java.lang.Object`."
+   ]
+  },
+  {
+   "slide": 5,
+   "tag": "exam",
+   "title": "Generalisation vs specialisation",
+   "notes": [
+    "The superclass is a **generalisation** of its subclasses.",
+    "The subclasses are **specialisations** of the superclass.",
+    "In UML this is the generalisation relationship: a solid line with a hollow triangle pointing at the superclass."
+   ]
+  },
+  {
+   "slide": 6,
+   "tag": "diagram",
+   "title": "Reading the Shape hierarchy",
+   "notes": [
+    "A hollow-triangle arrow from Rectangle/Circle to Shape means `extends` (is-a). The arrowhead sits at the **superclass**.",
+    "Synonyms. Superclass: super / base / parent / generalised. Subclass: sub / derived / child / specialised.",
+    "The slide says subclasses inherit everything EXCEPT private members. Strictly, private fields still exist inside the subclass object but cannot be accessed by name, so `Rectangle` must use `getXPos()`."
+   ]
+  },
+  {
+   "slide": 8,
+   "tag": "code",
+   "weak": true,
+   "title": "Rectangle: super() constructor chaining",
+   "notes": [
+    "`super(xCoor, yCoor)` must be the **first** statement in the constructor.",
+    "If you write no `super(...)` call, Java inserts `super()` (no arguments) automatically. That fails to compile if the superclass has no no-arg constructor.",
+    "`super.print()` inside `print()` reuses Shape's version. This is overriding by **refinement**."
+   ]
+  },
+  {
+   "slide": 9,
+   "tag": "exam",
+   "weak": true,
+   "title": "The two uses of super",
+   "notes": [
+    "1) `super(args)` in a constructor calls the superclass constructor and must be the FIRST statement.",
+    "2) `super.method()` in any method calls the superclass's version of that method.",
+    "A subclass is declared with the `extends` keyword."
+   ]
+  },
+  {
+   "slide": 11,
+   "tag": "code",
+   "title": "Methods inherited from the superclass",
+   "notes": [
+    "`rect.getXPos()` compiles even though Rectangle doesn't declare it. It is inherited from Shape.",
+    "The search starts at Rectangle, finds nothing, then moves up to Shape (see slide 22)."
+   ]
+  },
+  {
+   "slide": 12,
+   "tag": "slides-wrong",
+   "weak": true,
+   "title": "Output typo: 'Width = 10'",
+   "notes": [
+    "Line 2 shows `Width = 10`. `getWidth()` returns a `double`, so Java really prints `Width = 10.0` (checked on JDK 17).",
+    "Every double prints with `.0`: `100.0`, `40.0`, `[5.0, 5.0]`.",
+    "Exam: for real output, always choose the `10.0` form."
+   ]
+  },
+  {
+   "slide": 14,
+   "tag": "exam",
+   "title": "Overloading rules",
+   "notes": [
+    "Same method name but 1) a different **number** of parameters OR 2) different parameter **types**.",
+    "The slide says overloading is NOT a behaviour of inheritance. It is shown here only to compare with overriding.",
+    "Benefit: one name (`print(int)`, `print(String)`) instead of `printInt`, `printString`, and so on."
+   ]
+  },
+  {
+   "slide": 15,
+   "tag": "trap",
+   "title": "Crossed-out findMin(int a, int b, int c)",
+   "notes": [
+    "Changing only the parameter **names** does not make a new signature. It is a compile error ('method already defined'), verified.",
+    "Changing only the **return type** is also not overloading, and is also a compile error.",
+    "The 3-arg version calls the 2-arg versions: min(min(a,b), min(b,c)) = the overall minimum."
+   ]
+  },
+  {
+   "slide": 16,
+   "tag": "code",
+   "title": "Which overload is called",
+   "notes": [
+    "`findMin(x,y)` with ints prints `10`. `findMin(i,j)` with doubles prints `4.5`. `findMin(x,y,z)` prints `5`.",
+    "The compiler picks the overload from the argument types at **compile time** (static binding, Ch5)."
+   ]
+  },
+  {
+   "slide": 18,
+   "tag": "exam",
+   "title": "Overriding: the 2 ways",
+   "notes": [
+    "To override, define a method with **exactly the same signature and return type** as the superclass method.",
+    "1) **Refinement**: reuse the superclass method via `super.method()` and add to it. 2) **Replacement**: rewrite the method completely.",
+    "Not on the slide but true in Java: the return type may be a subtype (covariant), and you cannot reduce visibility (e.g. public to default is a compile error)."
+   ]
+  },
+  {
+   "slide": 19,
+   "tag": "diagram",
+   "title": "Indirect inheritance (Disc to Circle to Shape)",
+   "notes": [
+    "Disc extends Circle, which extends Shape. Disc **indirectly** inherits `getXPos()` and the other Shape members.",
+    "Each arrow goes only to the **immediate** superclass."
+   ]
+  },
+  {
+   "slide": 20,
+   "tag": "trap",
+   "title": "Disc: super.findArea() vs the overridden findArea()",
+   "notes": [
+    "`super.findArea()` always runs **Circle's** version (πr²), so `findVolume` = πr²·t.",
+    "Trap: `super.print()` runs Circle's `print()`, but its call to `findArea()` is dynamically bound to **Disc's** `findArea()`.",
+    "So for `new Disc(10,20,5,10)` the 'Circle print' part prints `Area = 471.238...` (Disc's area), not 78.5 (verified)."
+   ]
+  },
+  {
+   "slide": 21,
+   "tag": "code",
+   "title": "DiscApp output (verified)",
+   "notes": [
+    "`circ.print()` prints Center `[1.0, 5.0]`, Radius `10.0`, Area `314.159...`.",
+    "`disc.findVolume()` prints `785.398...` (= π·25·10).",
+    "`disc.getXPos()` prints `10.0`. It is inherited from Shape through two levels."
+   ]
+  },
+  {
+   "slide": 22,
+   "tag": "exam",
+   "title": "Resolving method calls",
+   "notes": [
+    "The search starts at the **class of the object** (not the variable type), then goes to the **immediate superclass**, and repeats.",
+    "It stops when 1) a match is found, or 2) no superclasses remain, and then an error is reported.",
+    "The real compiler also checks that the method exists in the declared (reference) type. See Ch5 casting."
+   ]
+  },
+  {
+   "slide": 24,
+   "tag": "exam",
+   "weak": true,
+   "title": "public / private / protected",
+   "notes": [
+    "`public`: accessible anywhere. `private`: only inside that class.",
+    "`protected`: the class's methods + **subclass** methods + **any class in the same package**. The slide's slogan is 'Stay in the family'.",
+    "'Accessible' means **read and modify**. Protected = `#` in UML."
+   ]
+  },
+  {
+   "slide": 25,
+   "tag": "diagram",
+   "weak": true,
+   "title": "Same hierarchy with # (protected) fields",
+   "notes": [
+    "Here Shape's `xPos`/`yPos` are `#` (protected), so Circle and Rectangle can use `xPos` directly by name.",
+    "Compare slide 6, where they were `-` (private) and only reachable through getters.",
+    "Don't confuse the symbols: `#` = protected, `~` = package, `-` = private, `+` = public."
+   ]
+  },
+  {
+   "slide": 26,
+   "tag": "exam",
+   "title": "Defining a package",
+   "notes": [
+    "A package is a set of classes grouped in the **same directory**. Each file starts with `package packageOne;` before any `import`.",
+    "**Non-private** members can be accessed by any class in the same package."
+   ]
+  },
+  {
+   "slide": 27,
+   "tag": "diagram",
+   "weak": true,
+   "title": "Package access diagram: who sees iV1-iV4",
+   "notes": [
+    "Class1 has `-iV1` private, `#iV2` protected, `iV3` package (no symbol here), `+iV4` public.",
+    "Class2 and Class3 (same package, whether subclass or not): iV2, iV3, iV4. Never iV1.",
+    "Class4 (subclass in ANOTHER package): iV2, iV4. Class5 (non-subclass, other package): iV4 only.",
+    "So protected wins over package only for subclasses in other packages."
+   ]
+  },
+  {
+   "slide": 28,
+   "tag": "exam",
+   "weak": true,
+   "title": "Visibility table (memorise)",
+   "notes": [
+    "Columns are Class / Package / Subclass / World. public `Y Y Y Y`, protected `Y Y Y N`, not defined (package) `Y Y N N`, private `Y N N N`.",
+    "The 'Subclass' column means a subclass in a **different** package. A subclass in the same package already gets package access.",
+    "'Not defined' = no modifier = package-private = default."
+   ]
+  },
+  {
+   "slide": 29,
+   "tag": "exam",
+   "title": "Java packages",
+   "notes": [
+    "Packages group classes by **functionality, usability and category**.",
+    "Names derive from the internet domain namespace, e.g. `com.foo.users`, `sg.edu.ntu.projects`.",
+    "The package namespace is global, so the same class name can exist in different packages.",
+    "With no `package` statement, the class goes in the anonymous **default package**."
+   ]
+  },
+  {
+   "slide": 30,
+   "tag": "trap",
+   "title": "Two classes named Deck",
+   "notes": [
+    "`import casino.game.Deck; import star.cruise.Deck;` together is a **compile error** (two single-type imports with the same simple name, verified). The import version is a hidden animation step in the slide text.",
+    "Fix: use **fully qualified names**: `casino.game.Deck cards = new casino.game.Deck();`",
+    "Typo: the slide's `cards` line is missing its `;`."
+   ]
+  },
+  {
+   "slide": 33,
+   "tag": "exam",
+   "title": "final methods and classes",
+   "notes": [
+    "`final` method: **cannot be overridden** in subclasses.",
+    "`final` class: **cannot be a superclass** (no subclasses). Its methods are implicitly final.",
+    "The 2 benefits: 1) **security** (behaviour cannot be changed by subclasses), 2) **efficiency** (binding can happen at compile time instead of run time)."
+   ]
+  },
+  {
+   "slide": 35,
+   "tag": "exam",
+   "title": "Abstract classes and methods",
+   "notes": [
+    "If a superclass is too general to give meaningful objects, it is an **abstract class** (Abstract Base Class, ABC). It cannot be instantiated.",
+    "An abstract method uses the keyword `abstract` and has **no implementation** (it ends with `;`). Subclasses must provide the body.",
+    "Moving up the hierarchy = more general (abstraction). Moving down = more specific and concrete."
+   ]
+  },
+  {
+   "slide": 36,
+   "tag": "diagram",
+   "title": "UML notation for abstract",
+   "notes": [
+    "Abstract class or method = name in *italics* OR the `{abstract}` constraint.",
+    "In the diagram, Figure's `findArea/findPerimeter/print` are italic (abstract). Rectangle and Circle implement them with upright names (concrete)."
+   ]
+  },
+  {
+   "slide": 37,
+   "tag": "code",
+   "title": "abstract class Figure",
+   "notes": [
+    "`public abstract double findArea();` has a semicolon and no `{}`. Writing a body would be a compile error.",
+    "An abstract class CAN have fields, constructors and concrete methods (`color`, `Figure(String)`, `getColor()`).",
+    "Its constructors run through `super(c)` from subclasses, even though `new Figure()` is illegal."
+   ]
+  },
+  {
+   "slide": 41,
+   "tag": "code",
+   "title": "FigureApp output",
+   "notes": [
+    "Every double prints with `.0`: `Width = 10.0`, `Area = 100.0`.",
+    "Circle(r=5): Perimeter `31.41592653589793`, Area `78.53981633974483`."
+   ]
+  },
+  {
+   "slide": 43,
+   "tag": "diagram",
+   "title": "Multiple inheritance (multiple is-a)",
+   "notes": [
+    "Here one subclass has two superclasses: Library (Building, Container), Part-Time Student (Student, Employee), Professor (Researcher, Teacher).",
+    "This is allowed in UML/C++, but Java classes CANNOT do it. Interfaces are used instead."
+   ]
+  },
+  {
+   "slide": 44,
+   "tag": "slides-wrong",
+   "title": "Interfaces (and the outdated 'only abstract methods')",
+   "notes": [
+    "Java does NOT support multiple inheritance of classes, but a class can implement **multiple interfaces**.",
+    "Per the slides: an interface has **only abstract methods + constants (static final)**. An implementing class must implement them **all**, or be declared **abstract**.",
+    "Slide outdated: since Java 8, interfaces may have `default` and `static` methods with bodies. Since Java 9, they may also have `private` methods (verified on JDK 17; see Ch10).",
+    "Exam: for a Ch3-style 'an interface can only contain…' question, answer per the slide. For modern-Java or default-method questions, answer with real Java."
+   ]
+  },
+  {
+   "slide": 45,
+   "tag": "code",
+   "title": "IntFigure / Circle implements",
+   "notes": [
+    "Interface methods are implicitly `public abstract`. `void print();` without `abstract` is still abstract.",
+    "Implementing methods must be declared `public`. Leaving off `public` is a compile error (weaker access).",
+    "Keyword: a class `implements` an interface, while a class `extends` a class."
+   ]
+  },
+  {
+   "slide": 46,
+   "tag": "exam",
+   "weak": true,
+   "title": "Derived interfaces",
+   "notes": [
+    "An interface can be derived from a base interface using `extends BaseInterfaceName` (NOT `implements`).",
+    "A concrete class implementing the derived interface must define the methods of **both** the derived AND the base interface.",
+    "UML (Ch6): interface-extends-interface is generalisation, drawn as a **solid** line with a hollow triangle."
+   ]
+  },
+  {
+   "slide": 47,
+   "tag": "code",
+   "title": "IShowablyOrdered extends IOrdered",
+   "notes": [
+    "`Order implements IShowablyOrdered` must implement all 3 methods: `precedes`, `follows` (from IOrdered) and `showOneWhoPrecedes`.",
+    "An interface can extend multiple interfaces (`extends A, B`). A class can only extend one class."
+   ]
+  },
+  {
+   "slide": 48,
+   "tag": "exam",
+   "title": "Abstract class vs interface",
+   "notes": [
+    "An abstract class is a real parent (base class). An interface is not a real parent; the slide corrects 'base class' to **type**.",
+    "An abstract class can have data members and non-abstract methods. An interface (per the slides) only has constants and abstract methods.",
+    "'Constructor?': an abstract class CAN have constructors, but an interface cannot.",
+    "A **concrete** class implements all its methods, so it has NO abstract methods."
+   ]
+  },
+  {
+   "slide": 49,
+   "tag": "code",
+   "title": "Concrete vs abstract vs interface Shape",
+   "notes": [
+    "Concrete: `findArea()` returns a dummy `0`. Abstract: `public abstract double findArea();`. Interface: the methods have no `abstract` keyword but are implicitly abstract.",
+    "`String color;` has no modifier, so it is package-private."
+   ]
+  },
+  {
+   "slide": 50,
+   "tag": "diagram",
+   "title": "Interface use: INameable",
+   "notes": [
+    "A **dashed** line with a hollow triangle pointing at the `<<interface>>` = realisation (`implements`).",
+    "Interfaces give common functionality to possibly **unrelated** classes (Ship, Person, Pet, Building)."
+   ]
+  },
+  {
+   "slide": 51,
+   "tag": "exam",
+   "title": "Abstract vs interface table",
+   "notes": [
+    "Abstract class: may have some abstract methods, `protected` members and `static` methods, and both final and non-final fields.",
+    "Interface (per the slides): only abstract methods, only `public` methods without implementation, only constants (`static final`).",
+    "**Neither** can be instantiated: `new AbstractClass()` and `new Interface()` are both compile errors."
+   ]
+  },
+  {
+   "slide": 52,
+   "tag": "diagram",
+   "title": "extends + implements together",
+   "notes": [
+    "Syntax: `class SubClass1 extends SuperClass implements Interface1, Interface2, Interface3`. `extends` comes **before** `implements`.",
+    "Diagram: a solid line + hollow triangle to the class (generalisation), and dashed lines + hollow triangles to each interface (realisation)."
+   ]
+  }
+ ]
+}

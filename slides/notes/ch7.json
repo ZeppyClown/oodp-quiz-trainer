@@ -1,0 +1,127 @@
+{"chapter": 7,
+ "summary": [
+  "A sequence diagram is a behavioural (interaction) diagram: objects across the top, **time flows downward**, and messages are horizontal arrows between lifelines.",
+  "The arrow style carries the meaning: **filled** head = synchronous call, **open** head = asynchronous, **dashed** line = reply/return, **dashed + `new`** into a lowered head box = creation, **X** at the bottom of a lifeline = destruction.",
+  "Found message = starts from a black dot (sender unknown). Lost message = ends at a black dot (receiver unknown).",
+  "Interaction fragments are boxes with an operator in the top-left pentagon: `opt` (if), `alt` (if-else/switch), `loop`, `break`, `par`, `critical`, `ref` (reuse another sd). Conditions are guards in `[ ]`.",
+  "Diagram to code: each arrow into an object becomes a method call on a field/local of that type; self-messages become private helper calls; `x = msg()` means the return value is assigned to `x`."
+ ],
+ "mustMemorise": [
+  "Synchronous message = solid line + FILLED arrowhead (a normal method call; the caller waits).",
+  "Asynchronous message = solid line + OPEN (stick) arrowhead (the caller does not wait).",
+  "Reply/return message = DASHED line (open arrowhead), going back to the caller.",
+  "Creation = dashed line with open arrow labelled `new`, pointing at the HEAD box of the new object, drawn lower than the other heads.",
+  "Destruction = a large X at the end of the lifeline.",
+  "Found message = black dot at the START (unknown sender). Lost message = black dot at the END (never arrives).",
+  "Lifeline head format `[name] : ClassName`: the class name is mandatory, the object name is optional (e.g. `:User`, `btn:Button`).",
+  "Frame = rectangle with `sd <InteractionName>` in a pentagon at the top left.",
+  "Activation bar (execution specification) = the thin rectangle on a lifeline while a method is running.",
+  "`opt` = if (one operand). `alt` = if/else or switch (operands split by dashed lines; at most one runs). `loop` = repeat while guard. `break` = runs instead of the rest of the enclosing fragment. `par` = parallel. `critical` = no interleaving. `ref` = InteractionUse (reference to another sd).",
+  "Guard = condition in square brackets, e.g. `[isAuthenticated]`, `[else]`."
+ ],
+ "items": [
+  {"slide": 4, "tag": "diagram", "weak": true, "title": "Anatomy of a sequence diagram (sd ButtonPress)",
+   "notes": [
+    "`press` (User to Button) has an **open stick arrowhead** = **asynchronous**. `actionPerformed(event)` and `toggle` have **filled** heads = **synchronous** calls.",
+    "The two **dashed** arrows going right-to-left are **return messages** (Light to ButtonListener, ButtonListener to Button). Nothing returns to User: an async sender does not wait for a reply.",
+    "`getState()` loops back from Light to Light = **self message**, which opens a small nested activation bar, then returns with a short dashed arrow.",
+    "Labels: dashed vertical line = **lifeline**; thin blue rectangle = **activation** (method running); `btn:Button` = object `btn` of class Button; the big blue arrow on the left = **time goes down**."
+   ]},
+  {"slide": 5, "tag": "diagram", "title": "Self vs recursive message; stereotype icons",
+   "notes": [
+    "**Self message**: the arrow loops back into the **same** activation bar. **Recursive message**: the arrow loops back into a **new, nested** activation bar stacked on the first.",
+    "The green box shows what it means in code: `getState()` is called **inside** `toggle()` on the same object, i.e. `this.getState()`.",
+    "Heads here use Ch8 stereotype icons: circle with a T-bar on its left = **boundary** (`:Button`, `:Light`); circle with an arrowhead on top = **control** (`:ButtonListener`)."
+   ]},
+  {"slide": 6, "tag": "diagram", "weak": true, "title": "Creating and destroying participants",
+   "notes": [
+    "**Creation**: `new` is a **dashed line with an open arrowhead** that points at the **head box** of `:UserInfo`. The head is drawn **lower** than the others because the object only exists from that moment.",
+    "`validate` and `update` are **filled** heads = synchronous calls on the new object.",
+    "**Destruction**: the **X** ends UserInfo's lifeline, so the object no longer exists. (Java has no explicit delete; the object simply becomes garbage-collectable.)",
+    "Here `submit` from the User is **filled** (synchronous), so the User has an activation bar and receives the final dashed return. Contrast slide 4, where `press` is async."
+   ]},
+  {"slide": 7, "tag": "trap", "title": "Message specification syntax",
+   "notes": [
+    "`result=dispatch(today)`: argument `today` goes into parameter `dateDispatched` (an `in` parameter), and the **return value is assigned to `result`**.",
+    "`verifyTransactions(myRecords=records)`: per this slide, the caller's local `myRecords` receives the value of the **inout** parameter `records`.",
+    "Parameter directions in the class box: `in`, `out`, `inout`, e.g. `dispatch(in dateDispatched: Date): Boolean`.",
+    "**Trap:** slide 21 reads `mymsg(myint=16)` the other way round (parameter `myint` gets 16). Know both readings: `x=` **before** the message name = the return value is assigned to x."
+   ]},
+  {"slide": 9, "tag": "diagram", "weak": true, "title": "Fragments: ref and opt with a guard",
+   "notes": [
+    "`ref EstablishAccess(\"Illegal PIN\")` = **InteractionUse**: \"insert another sequence diagram here\" (reuse, like calling a sub-routine).",
+    "`opt [isAuthenticated]` = **if** with no else: the contents run only when the guard is true.",
+    "`[ ... ]` in square brackets = **guard**. A `ref OpenDoor` sits nested inside the opt.",
+    "`CardOut` and `Msg(\"Please Enter\")` go **right to left** (Access Control to User). Arrows can point either way; the head shows the receiver."
+   ]},
+  {"slide": 10, "tag": "diagram", "weak": true, "title": "loop, alt, break and the found message",
+   "notes": [
+    "`printCurrentRecords(f)` starts at a **black dot** = **found message** (the sender is outside the diagram's scope).",
+    "`loop [not end of file]` = while loop. Inside it, `alt [rec==valid] ... [else]` = **if/else** (or switch). The **dashed line** separates the operands, and at most one operand runs.",
+    "`[else] log(rec)` is a self message on PrintManager. `rec=readRecord()` means the return value is assigned to `rec`, even though no dashed reply is drawn.",
+    "Red inset: `break [y>0]` inside a loop runs `save()` and then **leaves the enclosing fragment** (the loop), like Java `break`."
+   ]},
+  {"slide": 11, "tag": "diagram", "weak": true, "title": "Enacting a use case flow (fingerprint access)",
+   "notes": [
+    "Typical layering: **Actor, then Boundary** (`:FingerprintReaderInterface`), **then Control** (`:FASMgr`, `:FingerprintMgr`), **then Entity** (`:Fingerprint`). The actor talks only to the boundary.",
+    "`result=validate(img)` is a synchronous call whose return value is assigned to `result`. Inside it, `loop [not last record and not found]` repeats `findMatch(img)`.",
+    "Dashed arrows = returns (FingerprintMgr to FASMgr; FASMgr to the reader interface).",
+    "`opt [result==true]`, then `unlock()` goes to `:EntryGateInterface` (a boundary to a device). This is how a use-case flow becomes messages."
+   ]},
+  {"slide": 13, "tag": "diagram", "title": "sd CalculatePrice (the source of the code on slides 14-16)",
+   "notes": [
+    "`calculatePrice()` enters from a **filled dot** = **found message**.",
+    "Calls on other objects (getQuantity, getProduct, getPricingDetails, getDiscountInfo) map to calls through **fields/locals** of Order: `ol`, `p`, `c`.",
+    "Self messages (calculateBasicPrice, calculateDiscounts, calculateTotalPrice) each open a nested activation bar and map to **private helper methods** of Order.",
+    "Dashed returns carry values: `p`, `price`, `total`. `qty = getQuantity()` shows the return by assignment instead of an arrow."
+   ]},
+  {"slide": 14, "tag": "slides-wrong", "title": "Order code: does NOT compile as written",
+   "notes": [
+    "`private Orderline ol;` but the class is `OrderLine`. Java is case-sensitive, so this is **cannot find symbol**.",
+    "`p.getPricingDetail()` but Product declares `getPricingDetails()`, so this is also **cannot find symbol**.",
+    "`calculateBasicPrice(qty, price)` has **no parameter types**, so it is a syntax error. Should be `(int qty, double price)`. Checked with javac 17.",
+    "Exam: if asked for the mapping, the answer is self message = private method and arrow to another object = call through a field/local. With these typos fixed, `calculatePrice()` returns `100.0 * 10.0 = 1000.0` (`bPrice` is computed but never used, as in the diagram)."
+   ]},
+  {"slide": 15, "tag": "slides-wrong", "title": "OrderLine code: syntax error",
+   "notes": [
+    "`public int getQuantity( ) () {` has an **extra `()`**, which javac rejects (`';' expected`).",
+    "`calculateTotalPrice(double price, double discount)` returns `price * discount`, which matches the diagram's arguments (price, not bPrice). It is logically odd but faithful to the diagram.",
+    "Getters `getQuantity()` and `getProduct()` correspond to the synchronous arrows into `ol:OrderLine`."
+   ]},
+  {"slide": 16, "tag": "code", "title": "Product & Customer; 'must be COMPILABLE'",
+   "notes": [
+    "`getPricingDetails()` returns `100.0`. `getDiscountInfo()` returns `10.0`. Both print as doubles (`100.0`, `10.0`).",
+    "The slide insists partial code **must still be COMPILABLE**, yet slides 14-15 are not (see the notes there). In a code-writing question, give types for every parameter and match names exactly."
+   ]},
+  {"slide": 18, "tag": "exam", "title": "Frame and Lifeline definitions",
+   "notes": [
+    "**Frame**: a rectangle with `sd` + the interaction name (and parameters) in a **pentagon** at the top left.",
+    "**Lifeline** = one participant: a head rectangle plus a vertical (may be dashed) line for its lifetime.",
+    "Head text format is `[name] : <class_name>`. The **class name is mandatory and the name is optional**."
+   ]},
+  {"slide": 19, "tag": "exam", "title": "Execution specification and InteractionUse",
+   "notes": [
+    "**Execution Specification = Activation** (the thin bar), bounded by its start and finish occurrence specifications.",
+    "**InteractionUse** = a combined-fragment-style box with operator **`ref`**, used to share a common portion between several interactions."
+   ]},
+  {"slide": 20, "tag": "exam", "weak": true, "title": "Combined fragment operators",
+   "notes": [
+    "`alt` = choice; **at most one** operand runs, the one whose guard is true.",
+    "`opt` = a single conditional trace; **equivalent to an `alt` with only one trace**.",
+    "`loop` = at least `minint`, at most `maxint` iterations, then stops when the guard is false. `break` = runs **instead of the remainder** of the enclosing fragment.",
+    "`par` = operands run in **parallel**. `critical` = a region that **cannot be interleaved**."
+   ]},
+  {"slide": 21, "tag": "exam", "weak": true, "title": "Message arrow types and destruction",
+   "notes": [
+    "**Asynchronous = open arrowhead. Synchronous (operation call) = filled arrowhead.** Reply = **dashed line**. Creation = **dashed line with open arrow**.",
+    "**Destruction event = X**.",
+    "Syntax: `mymessage(14, - , 3.14, \"hello\")`, where `-` = undefined argument. `v=mymsg(16, variab):96` is a **reply** carrying return value 96, which is assigned to `v`.",
+    "Trap: a creation arrow and a reply arrow are both dashed. Creation is labelled `new` and points at a head box. A reply points back to the caller's activation."
+   ]},
+  {"slide": 22, "tag": "exam", "weak": true, "title": "Lost vs Found messages",
+   "notes": [
+    "**Lost**: the sender is known but there is **no receiver**. The black dot is at the **arrow end**, e.g. a Web Client's `search` that never arrives.",
+    "**Found**: the receiver is known but the **sender is unknown or out of scope**. The black dot is at the **start**, e.g. Online Bookshop receives `search`.",
+    "Memory aid: the dot sits where the unknown end is."
+   ]}
+ ]}
