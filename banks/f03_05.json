@@ -1,0 +1,1370 @@
+[
+ {
+  "id": "f3-L1-01",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "inheritance basics",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which relationship does inheritance model between a subclass and its superclass?",
+  "options": [
+   "has-a (the subclass contains a superclass object)",
+   "is-a (a Student is a Person)",
+   "uses-a (the subclass calls the superclass)",
+   "part-of (the subclass is a component of the superclass)"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Inheritance models an **is-a** relationship: every Student is also a Person, so Student can extend Person. has-a and part-of describe association, aggregation and composition (Chapter 6), not inheritance."
+ },
+ {
+  "id": "f3-L1-02",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "inheritance basics",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which keyword makes `Circle` a subclass of `Shape`?",
+  "options": [
+   "class Circle implements Shape",
+   "class Circle inherits Shape",
+   "class Circle super Shape",
+   "class Circle extends Shape"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A subclass is declared with `extends`. `implements` is used for interfaces, and `inherits` is not a Java keyword. A class may extend only one class."
+ },
+ {
+  "id": "f3-L1-03",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "inheritance basics",
+  "type": "multi",
+  "gotcha": false,
+  "question": "`Rectangle extends Shape`. Which members of `Shape` can Rectangle's code **NOT** use as its own (not inherited, or not accessible by name)?",
+  "options": [
+   "Shape's `private double xPos`",
+   "Shape's constructors `Shape()` and `Shape(double, double)`",
+   "Shape's `public double getXPos()`",
+   "Shape's `protected void print()`"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "Private members stay hidden inside Shape. They exist inside every Rectangle object, but Rectangle must use getters to reach them. **Constructors are never inherited**: Rectangle can only invoke them through `super(...)`. Public and protected methods are inherited and callable."
+ },
+ {
+  "id": "f3-L1-04",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "constructors and super",
+  "type": "single",
+  "gotcha": false,
+  "question": "Where must a call to `super(...)` appear inside a subclass constructor?",
+  "options": [
+   "Anywhere, as long as it appears exactly once",
+   "As the last statement, after the subclass fields are set",
+   "As the first statement of the constructor",
+   "Only inside the no-argument constructor"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The call to the superclass constructor must be the **first statement**, so the parent part of the object is built before the child part. Putting it anywhere else is a compile error."
+ },
+ {
+  "id": "f3-L1-05",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "constructors and super",
+  "type": "single",
+  "gotcha": false,
+  "question": "A subclass constructor does not begin with `super(...)` or `this(...)`. What does the compiler do?",
+  "code": "class Car extends Vehicle {\n    int wheels;\n    Car() {\n        wheels = 4;\n    }\n}",
+  "options": [
+   "It inserts `super();` (a call to Vehicle's no-arg constructor) as the first line",
+   "Nothing: Vehicle's part of the object is left uninitialised",
+   "It reports an error, because every constructor must call super explicitly",
+   "It copies Vehicle's constructor code into Car"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "If you don't write `super(...)` or `this(...)`, Java **implicitly inserts `super();`**. So Vehicle must have an accessible no-argument constructor, otherwise Car fails to compile."
+ },
+ {
+  "id": "f3-L1-06",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "overriding vs overloading",
+  "type": "single",
+  "gotcha": false,
+  "question": "A class contains `int findMin(int a, int b)` and `double findMin(double a, double b)`. What is this called?",
+  "options": [
+   "Method overriding",
+   "Method overloading",
+   "Method hiding",
+   "Dynamic binding"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "**Overloading** means the same method name with a **different parameter list** (number or types). **Overriding** needs a subclass that redefines an inherited method with the **same** signature and return type."
+ },
+ {
+  "id": "f3-L1-07",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "visibility and packages",
+  "type": "single",
+  "gotcha": false,
+  "question": "According to the lecture's visibility table, which modifier is visible within the class, the package and subclasses, but **not** to the rest of the world?",
+  "options": [
+   "public",
+   "private",
+   "no modifier (package access)",
+   "protected"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "**protected** gives Y, Y, Y, N: class, package, subclass, but not the world. Package access (no modifier) is Y, Y, N, N, so subclasses in other packages cannot see it. public is visible everywhere, and private only in the class."
+ },
+ {
+  "id": "f3-L1-08",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "visibility and packages",
+  "type": "single",
+  "gotcha": false,
+  "question": "In this UML class, what do the symbols before `xPos`, `id` and `reset()` mean?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 130\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"80\" y=\"10\" width=\"180\" height=\"110\" rx=\"0\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"26\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Shape</text><line x1=\"80\" y1=\"33\" x2=\"260\" y2=\"33\" stroke=\"#1f6feb\" stroke-width=\"1\"/><text x=\"85\" y=\"47\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\"># xPos: double</text><text x=\"85\" y=\"62\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\"># yPos: double</text><text x=\"85\" y=\"77\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">- id: int</text><line x1=\"80\" y1=\"84\" x2=\"260\" y2=\"84\" stroke=\"#1f6feb\" stroke-width=\"1\"/><text x=\"85\" y=\"98\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+ getXPos(): double</text><text x=\"85\" y=\"113\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">~ reset(): void</text></svg>",
+  "options": [
+   "# protected, - private, ~ package",
+   "# static, - private, ~ abstract",
+   "# protected, - public, ~ final",
+   "# package, - protected, ~ private"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The UML visibility symbols are `+` public, `#` protected, `~` package (no modifier) and `-` private. So xPos and yPos are protected, id is private, and reset() has package access."
+ },
+ {
+  "id": "f3-L1-09",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "final",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does declaring `final class Circle { ... }` mean?",
+  "options": [
+   "Circle's fields can never change after construction",
+   "Circle cannot have any objects created from it",
+   "No class can extend Circle (it cannot be a superclass)",
+   "Circle cannot override methods from its own superclass"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A **final class cannot be subclassed**, so its methods are implicitly final as well. It can still be instantiated, and it can still override methods it inherited. A final *variable* is the one that can't change."
+ },
+ {
+  "id": "f3-L1-10",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "abstract classes",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which statement about an abstract class is correct?",
+  "options": [
+   "All of its methods must be abstract",
+   "It cannot be instantiated with `new`, but it may have constructors, fields and concrete methods",
+   "It cannot have a constructor, because no objects are ever created",
+   "A subclass of it never has to implement its abstract methods"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`new Figure()` is a compile error if Figure is abstract. It can still have fields, concrete methods and constructors, which subclasses call with `super(...)`. A concrete subclass must implement every abstract method."
+ },
+ {
+  "id": "f3-L1-11",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "interfaces",
+  "type": "single",
+  "gotcha": false,
+  "question": "How many classes can a Java class extend, and how many interfaces can it implement?",
+  "options": [
+   "Many classes; one interface",
+   "One class; one interface",
+   "Many classes; many interfaces",
+   "One class; many interfaces"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Java has no multiple inheritance of classes: a class can have **one** direct superclass. It may **implement any number of interfaces**: `class S extends P implements I1, I2, I3`."
+ },
+ {
+  "id": "f3-L1-12",
+  "chapter": 3,
+  "level": 1,
+  "subtopic": "inheritance basics",
+  "type": "single",
+  "gotcha": false,
+  "question": "Neither `Person` nor `Shape` has an `extends` clause. Which class belongs in the box marked **?** at the top of this tree?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 170\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"130\" y=\"10\" width=\"80\" height=\"30\" rx=\"4\" fill=\"#fff5d6\" stroke=\"#bf8700\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"29.9\" font-size=\"14\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">?</text><rect x=\"40\" y=\"70\" width=\"90\" height=\"30\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"85.0\" y=\"89.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Person</text><rect x=\"210\" y=\"70\" width=\"90\" height=\"30\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"255.0\" y=\"89.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Shape</text><rect x=\"40\" y=\"130\" width=\"90\" height=\"30\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"85.0\" y=\"149.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Student</text><rect x=\"210\" y=\"130\" width=\"90\" height=\"30\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"255.0\" y=\"149.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Circle</text><line x1=\"85\" y1=\"70\" x2=\"155\" y2=\"42\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35h)\"/><line x1=\"255\" y1=\"70\" x2=\"185\" y2=\"42\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35h)\"/><line x1=\"85\" y1=\"130\" x2=\"85\" y2=\"102\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35h)\"/><line x1=\"255\" y1=\"130\" x2=\"255\" y2=\"102\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35h)\"/></svg>",
+  "options": [
+   "java.lang.Object",
+   "java.lang.Class",
+   "java.lang.System",
+   "Nothing: these are two separate trees"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A class without `extends` implicitly extends **java.lang.Object**, the root of every Java class. That is why every object has `toString()`, `equals()` and `getClass()`."
+ },
+ {
+  "id": "f3-L2-01",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "constructors and super",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does `new C();` print?",
+  "code": "class A {\n    A() { System.out.print(\"A \"); }\n}\nclass B extends A {\n    B() { System.out.print(\"B \"); }\n    B(int x) { this(); System.out.print(\"Bx \"); }\n}\nclass C extends B {\n    C() { super(5); System.out.print(\"C \"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        new C();\n    }\n}",
+  "options": [
+   "C Bx B A",
+   "A Bx C",
+   "A B Bx C",
+   "B Bx A C"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Every constructor first finishes its `super(...)`/`this(...)` call. C() calls B(5), which calls this(), which runs B(). B() implicitly calls A(), so **A** prints first, then B() prints **B**, B(int) prints **Bx**, and finally **C**. The parent part is always built first."
+ },
+ {
+  "id": "f3-L2-02",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "constructors and super",
+  "type": "single",
+  "gotcha": false,
+  "question": "Shape now has **only** a parameterised constructor. What happens?",
+  "code": "class Shape {\n    double x;\n    Shape(double x) { this.x = x; }\n}\nclass Circle extends Shape {\n    double r;\n    Circle(double r) { this.r = r; }\n}\nclass Main {\n    public static void main(String[] args) {\n        new Circle(2);\n        System.out.println(\"done\");\n    }\n}",
+  "options": [
+   "It prints `done`; x is left as 0.0",
+   "Compile error: Circle(double) implicitly calls super(), but Shape has no no-arg constructor",
+   "It throws a run-time exception when the Circle is created",
+   "It prints `done`, because Java supplies a default Shape() automatically"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Circle's constructor has no explicit `super(...)`, so the compiler inserts `super();`. Once Shape declares a constructor, Java no longer gives it a default one, so `Shape()` does not exist. The fix is `Circle(double r) { super(0); this.r = r; }`."
+ },
+ {
+  "id": "f3-L2-03",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "overriding vs overloading",
+  "type": "single",
+  "gotcha": false,
+  "question": "Each class overrides `print()` and refines it with `super.print()`. What does `new Disc().print();` print?",
+  "code": "class Shape {\n    void print() { System.out.print(\"S \"); }\n}\nclass Circle extends Shape {\n    void print() { System.out.print(\"C \"); super.print(); }\n}\nclass Disc extends Circle {\n    void print() { System.out.print(\"D \"); super.print(); }\n}\nclass Main {\n    public static void main(String[] args) {\n        new Disc().print();\n    }\n}",
+  "options": [
+   "D",
+   "D S",
+   "S C D",
+   "D C S"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`super.print()` calls the version in the **immediate** superclass. Disc prints D, then calls Circle's print(). Circle prints C, then calls Shape's print(), which prints S. Each call prints before it calls super, so the output is D C S."
+ },
+ {
+  "id": "f3-L2-04",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "overriding vs overloading",
+  "type": "single",
+  "gotcha": false,
+  "question": "Child's `show` takes a `double`, not an `int`. What is printed?",
+  "code": "class Parent {\n    void show(int x) { System.out.println(\"Parent int\"); }\n}\nclass Child extends Parent {\n    void show(double x) { System.out.println(\"Child double\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        Child c = new Child();\n        c.show(5);\n        c.show(5.0);\n    }\n}",
+  "options": [
+   "Parent int / Child double",
+   "Child double / Child double",
+   "Compile error: show is defined twice",
+   "Parent int / Parent int"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Different parameter types mean Child **overloads** show; it does not override it. Child now has two methods: the inherited show(int) and its own show(double). `show(5)` matches show(int) exactly, and `show(5.0)` matches only show(double)."
+ },
+ {
+  "id": "f3-L2-05",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "visibility and packages",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Class2 is in the **same package** as Class1 but is **not** a subclass. Inside Class2, which field accesses compile?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 190\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"5\" y=\"26\" width=\"330\" height=\"150\" rx=\"4\" fill=\"#fafafa\" stroke=\"#222\" stroke-width=\"1.5\"/><rect x=\"5\" y=\"10\" width=\"92\" height=\"17\" rx=\"2\" fill=\"#f3f3f3\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"51\" y=\"23\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">packageOne</text><rect x=\"14\" y=\"40\" width=\"140\" height=\"110\" rx=\"0\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"84.0\" y=\"56\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Class1</text><line x1=\"14\" y1=\"63\" x2=\"154\" y2=\"63\" stroke=\"#1f6feb\" stroke-width=\"1\"/><text x=\"19\" y=\"77\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">- iV1: int</text><text x=\"19\" y=\"92\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\"># iV2: int</text><text x=\"19\" y=\"107\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">  iV3: int</text><text x=\"19\" y=\"122\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+ iV4: int</text><line x1=\"14\" y1=\"129\" x2=\"154\" y2=\"129\" stroke=\"#1f6feb\" stroke-width=\"1\"/><text x=\"19\" y=\"143\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+ Class1()</text><rect x=\"180\" y=\"60\" width=\"145\" height=\"56\" rx=\"4\" fill=\"#e6f6ea\" stroke=\"#2da44e\" stroke-width=\"1.5\"/><text x=\"252.5\" y=\"77.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Class2</text><text x=\"252.5\" y=\"91.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">(not a subclass)</text><text x=\"252.5\" y=\"105.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Class1 c = new Class1();</text><text x=\"250\" y=\"140\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Which of c.iV1, c.iV2,</text><text x=\"250\" y=\"155\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">c.iV3, c.iV4 compile?</text></svg>",
+  "options": [
+   "c.iV1 (private)",
+   "c.iV2 (protected)",
+   "c.iV3 (package)",
+   "c.iV4 (public)"
+  ],
+  "answer": [
+   1,
+   2,
+   3
+  ],
+  "explanation": "Every member except a **private** one is accessible by name from any class in the **same package**. protected includes package access, and also adds subclasses in other packages. Only iV1 is restricted to Class1 itself."
+ },
+ {
+  "id": "f3-L2-06",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "final",
+  "type": "single",
+  "gotcha": false,
+  "question": "`print()` in Shape is now marked `final`. What happens?",
+  "code": "class Shape {\n    final void print() { System.out.println(\"Shape\"); }\n}\nclass Circle extends Shape {\n    void print() { System.out.println(\"Circle\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        new Circle().print();\n    }\n}",
+  "options": [
+   "It prints `Circle`",
+   "It prints `Shape`",
+   "Compile error: print() in Circle cannot override the final method",
+   "Run-time error when print() is called"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A **final method cannot be overridden**, so the compiler rejects Circle's print(). If Circle simply didn't declare print(), it would inherit the final one and `new Circle().print()` would print Shape."
+ },
+ {
+  "id": "f3-L2-07",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "abstract classes",
+  "type": "single",
+  "gotcha": false,
+  "question": "Square implements only one of Figure's two abstract methods. What happens?",
+  "code": "abstract class Figure {\n    abstract double area();\n    abstract void print();\n}\nclass Square extends Figure {\n    double side = 2;\n    double area() { return side * side; }\n}\nclass Main {\n    public static void main(String[] args) {\n        Figure f = new Square();\n        System.out.println(f.area());\n    }\n}",
+  "options": [
+   "It prints 4.0; print() is simply never called",
+   "Compile error: Square is not abstract and does not implement print()",
+   "It prints 4.0, and calling f.print() would print nothing",
+   "Compile error: `Figure f` is not allowed because Figure is abstract"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A concrete subclass must implement **every** inherited abstract method. Otherwise it must be declared abstract itself, and then `new Square()` would fail. Declaring a *reference* of abstract type (`Figure f`) is fine; only `new Figure()` is illegal."
+ },
+ {
+  "id": "f3-L2-08",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "interfaces",
+  "type": "single",
+  "gotcha": false,
+  "question": "This is the slides' derived-interface example, but `Order` now codes only `showOneWhoPrecedes()`. What happens?",
+  "code": "interface IOrdered {\n    boolean precedes(Object o);\n    boolean follows(Object o);\n}\ninterface IShowablyOrdered extends IOrdered {\n    void showOneWhoPrecedes();\n}\nclass Order implements IShowablyOrdered {\n    public void showOneWhoPrecedes() { System.out.println(\"show\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        new Order().showOneWhoPrecedes();\n    }\n}",
+  "diagram": "classDiagram\nclass IOrdered {\n<<interface>>\n+precedes(Object o) boolean\n+follows(Object o) boolean\n}\nclass IShowablyOrdered {\n<<interface>>\n+showOneWhoPrecedes() void\n}\nIOrdered <|-- IShowablyOrdered\nIShowablyOrdered <|.. Order",
+  "options": [
+   "It prints `show`",
+   "It prints `show`; precedes and follows default to false",
+   "Compile error: Order must implement precedes() and follows() as well",
+   "Compile error: an interface cannot extend another interface"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A concrete class implementing a **derived** interface must define the methods of the derived interface **and** of every base interface. Order is missing precedes() and follows(), so it must either implement them or be declared abstract."
+ },
+ {
+  "id": "f3-L2-09",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "interfaces",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which class header matches this class diagram?",
+  "diagram": "classDiagram\nclass Vehicle\nclass Car\nclass Drivable {\n<<interface>>\n}\nclass Insurable {\n<<interface>>\n}\nVehicle <|-- Car\nDrivable <|.. Car\nInsurable <|.. Car",
+  "options": [
+   "class Car implements Vehicle extends Drivable, Insurable",
+   "class Car extends Vehicle, Drivable, Insurable",
+   "class Car implements Vehicle, Drivable, Insurable",
+   "class Car extends Vehicle implements Drivable, Insurable"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A solid line with a hollow triangle means **extends** (inheritance from the class Vehicle). A dashed line with a hollow triangle means **implements** (realising an interface). Java syntax puts the single `extends` first, then `implements` followed by a comma-separated list."
+ },
+ {
+  "id": "f3-L2-10",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "overriding vs overloading",
+  "type": "single",
+  "gotcha": false,
+  "question": "Employee **refines** printInfo() with `super.printInfo()`. If the line `super.printInfo();` is **deleted**, what does `new Employee().printInfo()` print?",
+  "code": "class Person {\n    String name = \"Ann\";\n    void printInfo() { System.out.println(\"Name: \" + name); }\n}\nclass Employee extends Person {\n    double salary = 3000;\n    void printInfo() {\n        System.out.println(\"Employee:\");\n        super.printInfo();        // <-- deleted\n        System.out.println(\"Salary: \" + salary);\n    }\n}",
+  "options": [
+   "Employee: / Salary: 3000.0",
+   "Name: Ann / Employee: / Salary: 3000.0",
+   "Employee: / Name: Ann / Salary: 3000.0",
+   "Compile error: an overriding method must call super"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Without `super.printInfo()`, the override becomes a **replacement**: Person's version never runs, so the name line disappears. Overriding never forces a call to super. That call is what turns a replacement into a refinement."
+ },
+ {
+  "id": "f3-L2-11",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "inheritance basics",
+  "type": "single",
+  "gotcha": false,
+  "question": "Point overrides `toString()`, but Point3D does not. What is printed?",
+  "code": "class Point {\n    int x = 1, y = 2;\n    public String toString() { return \"(\" + x + \",\" + y + \")\"; }\n}\nclass Point3D extends Point {\n    int z = 3;\n}\nclass Main {\n    public static void main(String[] args) {\n        Object o = new Point3D();\n        System.out.println(o);\n    }\n}",
+  "options": [
+   "Point3D@1b6d3586 (class name and hash code)",
+   "(1,2,3)",
+   "Compile error: Object has no field x",
+   "(1,2)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "println calls `toString()`. The search starts at the object's class, Point3D, which has no toString(), so it moves up to Point, which does. Object's default `ClassName@hash` version is never reached. z is not printed because Point's toString doesn't mention it."
+ },
+ {
+  "id": "f4-L1-01",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "exception basics",
+  "type": "single",
+  "gotcha": false,
+  "question": "How does the lecture define an exception?",
+  "options": [
+   "A syntax error that the compiler reports",
+   "A run-time anomaly that a program may detect, such as division by zero or a file that cannot be opened",
+   "Any method that returns an error code",
+   "A warning printed by the compiler"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "An exception is a **run-time** anomaly (it happens while the program runs), such as memory exhaustion, an unopenable file or division by zero. Syntax errors are found at compile time and are not exceptions."
+ },
+ {
+  "id": "f4-L1-02",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "exception hierarchy",
+  "type": "single",
+  "gotcha": false,
+  "question": "Look at this part of Java's exception hierarchy. Which classes are **unchecked**?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 230\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><path d=\"M60,173 L60,217.0 L70,217.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M60,173 L60,200.0 L70,200.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M60,173 L60,183.0 L70,183.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M44,105 L44,166.0 L54,166.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M44,105 L44,149.0 L54,149.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M60,122 L60,132.0 L70,132.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M44,105 L44,115.0 L54,115.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M28,37 L28,98.0 L38,98.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M44,54 L44,81.0 L54,81.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M44,54 L44,64.0 L54,64.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M28,37 L28,47.0 L38,47.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><path d=\"M12,20 L12,30.0 L22,30.0\" fill=\"none\" stroke=\"#999\" stroke-width=\"1\"/><rect x=\"6\" y=\"6\" width=\"46.599999999999994\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"11\" y=\"16\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">Object</text><rect x=\"22\" y=\"23\" width=\"64.9\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"27\" y=\"33\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">Throwable</text><rect x=\"38\" y=\"40\" width=\"40.5\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"43\" y=\"50\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">Error</text><rect x=\"54\" y=\"57\" width=\"107.6\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"59\" y=\"67\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">OutOfMemoryError</text><rect x=\"54\" y=\"74\" width=\"119.8\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"59\" y=\"84\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">StackOverflowError</text><rect x=\"38\" y=\"91\" width=\"64.9\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"43\" y=\"101\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">Exception</text><rect x=\"54\" y=\"108\" width=\"77.1\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"59\" y=\"118\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">IOException</text><rect x=\"70\" y=\"125\" width=\"138.1\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"75\" y=\"135\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">FileNotFoundException</text><rect x=\"54\" y=\"142\" width=\"144.2\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"59\" y=\"152\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">ClassNotFoundException</text><rect x=\"54\" y=\"159\" width=\"107.6\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"59\" y=\"169\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">RuntimeException</text><rect x=\"70\" y=\"176\" width=\"125.89999999999999\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"75\" y=\"186\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">ArithmeticException</text><rect x=\"70\" y=\"193\" width=\"132.0\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"75\" y=\"203\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">NullPointerException</text><rect x=\"70\" y=\"210\" width=\"119.8\" height=\"14\" rx=\"3\" fill=\"#f3f3f3\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"75\" y=\"220\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">ClassCastException</text></svg>",
+  "options": [
+   "Only RuntimeException and its subclasses",
+   "Error and its subclasses only",
+   "RuntimeException and its subclasses, plus Error and its subclasses",
+   "Every subclass of Exception"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Unchecked = subclasses of **RuntimeException** **and** of **Error**. Error sits in a different branch from Exception, but it is still unchecked. IOException and ClassNotFoundException are checked."
+ },
+ {
+  "id": "f4-L1-03",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": false,
+  "question": "When does a `finally` block run?",
+  "options": [
+   "Only when an exception is caught",
+   "Only when no exception is thrown",
+   "Only when an exception is NOT caught",
+   "Whether or not an exception is thrown, and whether or not it is caught"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "finally holds statements that run **regardless** of what happened in the try, which makes it ideal for clean-up. The only usual exception is when `System.exit()` stops the JVM first."
+ },
+ {
+  "id": "f4-L1-04",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "throw and throws",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which keyword, written in a method **header**, declares that the method may pass an exception on to its caller?",
+  "options": [
+   "throws",
+   "throw",
+   "catch",
+   "finally"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`throws` belongs in the header, as in `double computeAvgMarks() throws ArithmeticException`. `throw` is the statement inside the body that actually raises an exception object."
+ },
+ {
+  "id": "f4-L1-05",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "exception basics",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which exception does this code throw?",
+  "code": "int[] array = new int[5];\nint j = array[5];",
+  "options": [
+   "NullPointerException",
+   "ArithmeticException",
+   "ArrayIndexOutOfBoundsException",
+   "NumberFormatException"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The valid indices are 0 to 4 (length 5). Index 5 is greater than or equal to the length, so it throws **ArrayIndexOutOfBoundsException**, a subclass of IndexOutOfBoundsException (unchecked)."
+ },
+ {
+  "id": "f4-L1-06",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "exception basics",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which exception does this line throw?",
+  "code": "int i = Integer.parseInt(\"abc\");",
+  "options": [
+   "ClassCastException",
+   "NumberFormatException",
+   "IllegalStateException",
+   "IOException"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "\"abc\" is not a valid integer format, so parseInt throws **NumberFormatException**, a subclass of IllegalArgumentException (and so of RuntimeException)."
+ },
+ {
+  "id": "f4-L1-07",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "checked vs unchecked",
+  "type": "single",
+  "gotcha": false,
+  "question": "A statement inside a method may throw a **checked** exception. What must the method do?",
+  "options": [
+   "Catch it with try/catch, or declare it with a `throws` clause; otherwise it is a compile error",
+   "Nothing; the JVM handles it automatically",
+   "Always catch it; declaring it with throws is not allowed",
+   "Call System.exit() before the statement"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The compiler enforces **catch or declare** for checked exceptions. Declaring with `throws` delays the handling to the caller, which then faces the same rule."
+ },
+ {
+  "id": "f4-L1-08",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "multiple catches",
+  "type": "single",
+  "gotcha": false,
+  "question": "A try block is followed by several catch blocks. An exception is thrown. Which catch blocks run?",
+  "options": [
+   "All catch blocks whose type matches",
+   "Every catch block, in order",
+   "Only the last matching catch block",
+   "Only the first catch block whose type matches the exception (or one of its superclasses)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The catch blocks are searched **in order** and **only the first match** runs. A catch for a superclass matches subclass exceptions too (is-a)."
+ },
+ {
+  "id": "f4-L1-09",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "multiple catches",
+  "type": "single",
+  "gotcha": false,
+  "question": "What order does the lecture recommend for catch blocks?",
+  "options": [
+   "Most specific (subclass) exceptions first, most general (e.g. Exception) last",
+   "Most general first, so nothing is missed",
+   "Alphabetical order",
+   "The order makes no difference"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A general catch placed first would grab everything, so later specific catches could never run (real Java rejects this as unreachable). Put subclasses first and superclasses last."
+ },
+ {
+  "id": "f4-L1-10",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "exception basics",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which of these are methods the lecture lists for getting information from an exception object `e`?",
+  "options": [
+   "e.getMessage()",
+   "e.printStackTrace()",
+   "e.recover()",
+   "e.toString()"
+  ],
+  "answer": [
+   0,
+   1,
+   3
+  ],
+  "explanation": "getMessage() returns the message, toString() returns a short description (the class name and the message), and printStackTrace() prints the chain of calls. There is no recover() method; recovery is the code you write in the catch block."
+ },
+ {
+  "id": "f4-L1-11",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "custom exceptions",
+  "type": "single",
+  "gotcha": false,
+  "question": "How do you create your own **checked** exception class?",
+  "options": [
+   "Write `class MyException implements Throwable`",
+   "Write any class with a getMessage() method",
+   "Write `class MyException extends RuntimeException`",
+   "Write `class MyException extends Exception` (usually with constructors that call super(message))"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A custom exception must be **derived from an existing exception class**. Extending Exception (but not RuntimeException) makes it checked. Throwable is a class, not an interface, and extending RuntimeException would make the exception unchecked."
+ },
+ {
+  "id": "f4-L1-12",
+  "chapter": 4,
+  "level": 1,
+  "subtopic": "propagation",
+  "type": "single",
+  "gotcha": false,
+  "question": "method3 throws a NullPointerException. method3 and method2 have no handler, and method1 catches it. After method1's catch block finishes, where does execution continue?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 194\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"70\" y=\"8\" width=\"200\" height=\"34\" rx=\"4\" fill=\"#f3f3f3\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"28.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">main(): calls method1()</text><rect x=\"70\" y=\"56\" width=\"200\" height=\"40\" rx=\"4\" fill=\"#e6f6ea\" stroke=\"#2da44e\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"72.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">method1(): try { method2(); }</text><text x=\"170.0\" y=\"86.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">catch (RuntimeException e)</text><rect x=\"70\" y=\"110\" width=\"200\" height=\"34\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"130.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">method2(): calls method3()</text><rect x=\"70\" y=\"158\" width=\"200\" height=\"28\" rx=\"4\" fill=\"#fdecee\" stroke=\"#d73a49\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"175.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">method3(): throws NPE</text><line x1=\"40\" y1=\"42\" x2=\"40\" y2=\"56\" stroke=\"#1f6feb\" stroke-width=\"1.5\" marker-end=\"url(#f35b)\"/><line x1=\"40\" y1=\"96\" x2=\"40\" y2=\"110\" stroke=\"#1f6feb\" stroke-width=\"1.5\" marker-end=\"url(#f35b)\"/><line x1=\"40\" y1=\"144\" x2=\"40\" y2=\"158\" stroke=\"#1f6feb\" stroke-width=\"1.5\" marker-end=\"url(#f35b)\"/><line x1=\"300\" y1=\"174\" x2=\"300\" y2=\"80\" stroke=\"#d73a49\" stroke-width=\"2.5\" marker-end=\"url(#f35r)\"/></svg>",
+  "options": [
+   "Back in method3, at the statement after the one that failed",
+   "In method2, after its call to method3()",
+   "In method1, at the statement after its try/catch",
+   "The program terminates"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "**Propagation**: an uncaught exception ends method3, then method2, and is passed back down the call chain until method1's catch handles it. Execution then resumes in method1 **after** the try/catch. The skipped statements in method2 and method3 never run."
+ },
+ {
+  "id": "f4-L2-01",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "multiple catches",
+  "type": "single",
+  "gotcha": false,
+  "question": "Using the hierarchy shown, what is printed?",
+  "code": "class Main {\n    public static void main(String[] args) {\n        try {\n            System.out.println(\"start\");\n            int n = Integer.parseInt(\"12a\");\n            System.out.println(\"n = \" + n);\n        } catch (ArithmeticException e) {\n            System.out.println(\"arith\");\n        } catch (IllegalArgumentException e) {\n            System.out.println(\"illegal arg\");\n        } catch (Exception e) {\n            System.out.println(\"general\");\n        } finally {\n            System.out.println(\"finally\");\n        }\n        System.out.println(\"after\");\n    }\n}",
+  "diagram": "classDiagram\nRuntimeException <|-- ArithmeticException\nRuntimeException <|-- IllegalArgumentException\nIllegalArgumentException <|-- NumberFormatException",
+  "options": [
+   "start / general / finally / after",
+   "start / illegal arg / finally / after",
+   "start / illegal arg / general / finally / after",
+   "start / n = 12 / finally / after"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "parseInt(\"12a\") throws NumberFormatException, which **is-a** IllegalArgumentException. The arith catch doesn't match, the IllegalArgumentException catch is the first match, and the Exception catch is skipped. finally runs, and then execution continues after the try."
+ },
+ {
+  "id": "f4-L2-02",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "class Main {\n    static int divide(int a, int b) { return a / b; }\n    public static void main(String[] args) {\n        try {\n            System.out.print(\"A \");\n            int r = divide(10, 0);\n            System.out.print(\"B\" + r + \" \");\n        } catch (ArithmeticException e) {\n            System.out.print(\"C \");\n        } finally {\n            System.out.print(\"D \");\n        }\n        System.out.print(\"E\");\n    }\n}",
+  "options": [
+   "A B0 D E",
+   "A C E",
+   "A C D E",
+   "A C D"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Integer division by zero throws ArithmeticException inside divide(). It propagates into main's try, so \"B\" is skipped. The matching catch prints C, finally prints D, and because the exception was handled, the program continues and prints E. With divide(10, 2), the output would be A B5 D E."
+ },
+ {
+  "id": "f4-L2-03",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "propagation",
+  "type": "single",
+  "gotcha": false,
+  "question": "b() does not catch the exception, but a() does. What is printed?",
+  "code": "class Main {\n    static void b() {\n        System.out.println(\"b start\");\n        int x = 5 / 0;\n        System.out.println(\"b end\");\n    }\n    static void a() {\n        try {\n            System.out.println(\"a start\");\n            b();\n            System.out.println(\"a after b\");\n        } catch (ArithmeticException e) {\n            System.out.println(\"a caught\");\n        }\n        System.out.println(\"a end\");\n    }\n    public static void main(String[] args) {\n        a();\n        System.out.println(\"main end\");\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"70\" y=\"8\" width=\"200\" height=\"32\" rx=\"4\" fill=\"#f3f3f3\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"27.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">main(): calls a()</text><rect x=\"70\" y=\"52\" width=\"200\" height=\"40\" rx=\"4\" fill=\"#e6f6ea\" stroke=\"#2da44e\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"68.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">a(): try { b(); }</text><text x=\"170.0\" y=\"82.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">catch (ArithmeticException e)</text><rect x=\"70\" y=\"104\" width=\"200\" height=\"40\" rx=\"4\" fill=\"#fdecee\" stroke=\"#d73a49\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"120.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">b(): x = 5 / 0;</text><text x=\"170.0\" y=\"134.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">no try/catch</text><line x1=\"40\" y1=\"40\" x2=\"40\" y2=\"52\" stroke=\"#1f6feb\" stroke-width=\"1.5\" marker-end=\"url(#f35b)\"/><line x1=\"40\" y1=\"92\" x2=\"40\" y2=\"104\" stroke=\"#1f6feb\" stroke-width=\"1.5\" marker-end=\"url(#f35b)\"/><line x1=\"300\" y1=\"124\" x2=\"300\" y2=\"76\" stroke=\"#d73a49\" stroke-width=\"2.5\" marker-end=\"url(#f35r)\"/></svg>",
+  "options": [
+   "a start / b start / b end / a after b / a end / main end",
+   "a start / b start / a caught / a end / main end",
+   "a start / b start / a caught / a after b / a end / main end",
+   "a start / b start / a caught"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The exception ends b() immediately, so \"b end\" is skipped. It propagates to a(), where the rest of the try (\"a after b\") is skipped and the catch runs. a() then continues normally (\"a end\"), and main finishes. Neither method needs `throws`, because ArithmeticException is unchecked."
+ },
+ {
+  "id": "f4-L2-04",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": false,
+  "question": "The first catch block throws a **new** exception. What is printed?",
+  "code": "class Main {\n    static void work() {\n        try {\n            System.out.println(\"try\");\n            throw new IllegalStateException(\"first\");\n        } catch (IllegalStateException e) {\n            System.out.println(\"catch 1\");\n            throw new RuntimeException(\"second\");\n        } catch (RuntimeException e) {\n            System.out.println(\"catch 2\");\n        } finally {\n            System.out.println(\"finally\");\n        }\n        System.out.println(\"end of work\");\n    }\n    public static void main(String[] args) {\n        try { work(); }\n        catch (RuntimeException e) { System.out.println(\"main: \" + e.getMessage()); }\n    }\n}",
+  "options": [
+   "try / catch 1 / finally / main: second",
+   "try / catch 1 / catch 2 / finally / end of work",
+   "try / catch 1 / main: second / finally",
+   "try / catch 1 / finally / end of work"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Catch blocks guard only their **try** block, so the new RuntimeException thrown inside catch 1 is not handled by the sibling catch 2. finally still runs. Then the exception leaves work(), so \"end of work\" is skipped, and main's catch prints its message."
+ },
+ {
+  "id": "f4-L2-05",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "checked vs unchecked",
+  "type": "single",
+  "gotcha": false,
+  "question": "load() declares `throws IOException`, and main calls it with no try/catch. What happens?",
+  "code": "import java.io.IOException;\n\nclass Main {\n    static void load() throws IOException {\n        throw new IOException(\"disk\");\n    }\n    public static void main(String[] args) {\n        load();\n        System.out.println(\"loaded\");\n    }\n}",
+  "options": [
+   "It prints `loaded`",
+   "It compiles, then crashes at run time with IOException: disk",
+   "Compile error in load(): a throw statement must be inside a try block",
+   "Compile error in main: the checked IOException from load() must be caught or declared"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Declaring `throws IOException` passes the **catch-or-declare** duty to the caller. main neither catches it nor declares `throws IOException`, so the compiler reports an unreported exception. load() itself is fine, because it declares what it throws."
+ },
+ {
+  "id": "f4-L2-06",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "exception hierarchy",
+  "type": "single",
+  "gotcha": false,
+  "question": "An **Error** is thrown, and the method has no `throws` clause. What happens?",
+  "code": "class Main {\n    static void risky() {\n        throw new StackOverflowError(\"deep\");\n    }\n    public static void main(String[] args) {\n        try {\n            risky();\n        } catch (Exception e) {\n            System.out.println(\"caught\");\n        } finally {\n            System.out.println(\"finally\");\n        }\n        System.out.println(\"end\");\n    }\n}",
+  "options": [
+   "Compile error: risky() must declare throws StackOverflowError",
+   "It prints caught, finally, end",
+   "It prints `finally`, then the program terminates with StackOverflowError",
+   "It prints caught and finally, then terminates"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Error is **unchecked**, so no throws clause is needed and the code compiles. But Error is **not a subclass of Exception** (both are children of Throwable), so `catch (Exception e)` doesn't match. finally runs, the Error leaves main, and the default handler ends the program."
+ },
+ {
+  "id": "f4-L2-07",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "multiple catches",
+  "type": "single",
+  "gotcha": false,
+  "question": "The catch blocks are written general-first. What happens?",
+  "code": "class Main {\n    public static void main(String[] args) {\n        try {\n            int[] a = new int[2];\n            a[2] = 1;\n        } catch (Exception e) {\n            System.out.println(\"general\");\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println(\"index\");\n        }\n    }\n}",
+  "options": [
+   "Compile error: the ArrayIndexOutOfBoundsException catch is unreachable",
+   "It prints `general`",
+   "It prints `index`",
+   "It prints general, then index"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "catch (Exception e) already catches every ArrayIndexOutOfBoundsException (is-a), so the second catch could never run. Java treats that as a **compile error** (\"exception has already been caught\"). That is why the slides say to put specific catches before general ones."
+ },
+ {
+  "id": "f4-L2-08",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "propagation",
+  "type": "single",
+  "gotcha": false,
+  "question": "m2 has a try with **finally but no catch**. What is printed?",
+  "code": "class Main {\n    static void m3() {\n        System.out.println(\"m3\");\n        Object o = null;\n        o.toString();\n    }\n    static void m2() {\n        try {\n            m3();\n            System.out.println(\"m2 after m3\");\n        } finally {\n            System.out.println(\"m2 finally\");\n        }\n    }\n    static void m1() {\n        try { m2(); }\n        catch (NullPointerException e) { System.out.println(\"m1 caught\"); }\n        System.out.println(\"m1 end\");\n    }\n    public static void main(String[] args) { m1(); }\n}",
+  "options": [
+   "m3 / m1 caught / m2 finally / m1 end",
+   "m3 / m2 after m3 / m2 finally / m1 end",
+   "m3 / m2 finally / m1 end",
+   "m3 / m2 finally / m1 caught / m1 end"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The NullPointerException ends m3. In m2, the rest of the try is skipped, but its **finally runs on the way out**. The exception continues to m1, which catches it and then carries on to \"m1 end\". A try with only a finally is legal."
+ },
+ {
+  "id": "f4-L2-09",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "custom exceptions",
+  "type": "single",
+  "gotcha": false,
+  "question": "The custom exception extends **RuntimeException**, and withdraw() has **no throws clause**. What happens?",
+  "code": "class InsufficientFundsException extends RuntimeException {\n    InsufficientFundsException(String msg) { super(msg); }\n}\nclass Account {\n    double balance = 50;\n    void withdraw(double amt) {\n        if (amt > balance)\n            throw new InsufficientFundsException(\"need \" + (amt - balance) + \" more\");\n        balance -= amt;\n    }\n}\nclass Main {\n    public static void main(String[] args) {\n        Account acc = new Account();\n        try {\n            acc.withdraw(80);\n            System.out.println(\"ok\");\n        } catch (InsufficientFundsException e) {\n            System.out.println(e.getMessage());\n        }\n    }\n}",
+  "options": [
+   "Compile error: withdraw() must declare throws InsufficientFundsException",
+   "It prints `need 30.0 more`",
+   "It prints `ok`",
+   "It prints `InsufficientFundsException: need 30.0 more`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A subclass of RuntimeException is **unchecked**, so no throws clause is required. The exception skips \"ok\", and the catch prints getMessage(), which is the string passed to super(msg). If it extended Exception instead, withdraw() would need `throws InsufficientFundsException`."
+ },
+ {
+  "id": "f4-L2-10",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": false,
+  "question": "The try block executes `return 1;`. What is printed?",
+  "code": "class Main {\n    static int f() {\n        try {\n            System.out.println(\"in try\");\n            return 1;\n        } finally {\n            System.out.println(\"in finally\");\n        }\n    }\n    public static void main(String[] args) {\n        System.out.println(\"result \" + f());\n    }\n}",
+  "options": [
+   "in try / result 1",
+   "in try / result 1 / in finally",
+   "result 1",
+   "in try / in finally / result 1"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "finally runs **before** the method actually returns, even when the try exits through `return`. So \"in finally\" prints before main receives 1 and prints \"result 1\"."
+ },
+ {
+  "id": "f4-L2-11",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "try-catch-finally",
+  "type": "multi",
+  "gotcha": false,
+  "question": "S2 throws an **ArithmeticException**, but the only catch is for IOException. Which of these blocks run?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 215\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"20\" y=\"8\" width=\"300\" height=\"92\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"30\" y=\"26\" font-size=\"12\" text-anchor=\"start\" fill=\"#222\" font-weight=\"bold\" font-family=\"Courier New, monospace\" xml:space=\"preserve\">try {</text><rect x=\"50\" y=\"34\" width=\"80\" height=\"26\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"90.0\" y=\"51.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">S1</text><rect x=\"140\" y=\"34\" width=\"80\" height=\"26\" rx=\"4\" fill=\"#fff5d6\" stroke=\"#bf8700\" stroke-width=\"1.5\"/><text x=\"180.0\" y=\"51.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">S2</text><rect x=\"230\" y=\"34\" width=\"80\" height=\"26\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"270.0\" y=\"51.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">S3</text><text x=\"180\" y=\"80\" font-size=\"11\" text-anchor=\"middle\" fill=\"#d73a49\">S2 throws ArithmeticException</text><rect x=\"20\" y=\"108\" width=\"300\" height=\"30\" rx=\"4\" fill=\"#f3f3f3\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"126.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">catch (IOException e) {  C  }</text><rect x=\"20\" y=\"146\" width=\"300\" height=\"30\" rx=\"4\" fill=\"#e6f6ea\" stroke=\"#2da44e\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"164.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">finally {  F  }</text><rect x=\"20\" y=\"184\" width=\"300\" height=\"26\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"170.0\" y=\"200.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">AFTER  (next statement after the try)</text></svg>",
+  "options": [
+   "S1",
+   "S3",
+   "C (the catch block)",
+   "F (the finally block)"
+  ],
+  "answer": [
+   0,
+   3
+  ],
+  "explanation": "S1 runs before the throw. S3 is skipped because the try stops at S2. The catch doesn't match (ArithmeticException is not an IOException), but **finally still runs**. Because the exception is still active, the method then ends, AFTER is skipped, and the exception goes to the caller."
+ },
+ {
+  "id": "f5-L1-01",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "polymorphism concepts",
+  "type": "single",
+  "gotcha": false,
+  "question": "In OOP, what does polymorphism mean according to the lecture?",
+  "options": [
+   "A class having many constructors",
+   "One object reference being able to refer to objects of different types, with the right method applied depending on the object's place in the hierarchy",
+   "A class inheriting from many superclasses",
+   "Hiding data with private fields"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Polymorphism (\"many forms\") lets a superclass reference point to objects of different subclasses, and a call through it runs the version that fits the actual object. Overriding is what makes this possible."
+ },
+ {
+  "id": "f5-L1-02",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "upcasting",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is **upcasting**?",
+  "options": [
+   "Casting a superclass object to a subclass type",
+   "Converting an int to a double",
+   "Assigning an object of a subclass to a variable of a superclass (or ancestor) type",
+   "Calling super.method() inside an override"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Upcasting is subclass to superclass, as in `Shape shape = new Rectangle();`. It happens implicitly and is always safe because a Rectangle **is a** Shape. Superclass to subclass is downcasting."
+ },
+ {
+  "id": "f5-L1-03",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "dynamic binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is **dynamic binding**?",
+  "options": [
+   "Choosing the method body at run time, based on the actual type of the object",
+   "Choosing the method body at compile time, based on the declared type",
+   "Linking libraries to the program at start-up",
+   "Assigning a value to a variable when it is declared"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "With dynamic (late) binding, the method body is selected at **run time** according to the **object type**, not the reference type. That is why `Vehicle v = new Car(); v.start();` runs Car's start()."
+ },
+ {
+  "id": "f5-L1-04",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "static binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which of these is resolved by **static (early) binding**, at compile time?",
+  "options": [
+   "Calling an overridden instance method through a superclass reference",
+   "Calling `pet.speak()` through an interface reference",
+   "Calling `animal.move()` where animal refers to an Eagle",
+   "Choosing between overloaded methods `sort(Collection)` and `sort(HashSet)`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The compiler picks among **overloaded** methods using the declared argument types, so it is static binding. All the other options are overridden or interface methods called through a general reference, which are bound dynamically."
+ },
+ {
+  "id": "f5-L1-05",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "static binding",
+  "type": "multi",
+  "gotcha": false,
+  "question": "`Animal a = new Dog();` and both classes declare the member involved. Which are decided by the **reference type** (Animal) rather than the object type?",
+  "options": [
+   "The value read by `a.name` (a field)",
+   "Which static method runs for `a.describe()` (static in both classes)",
+   "Which version runs for `a.speak()` (an instance method overridden in Dog)",
+   "Which overloaded `print(...)` is chosen for `print(a)`"
+  ],
+  "answer": [
+   0,
+   1,
+   3
+  ],
+  "explanation": "Fields, static methods and the choice of overload are all fixed at compile time from the declared types. Only the **overridden instance method** speak() is chosen by the object type (Dog) at run time."
+ },
+ {
+  "id": "f5-L1-06",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "downcasting",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Shape s = new Circle();` (Circle extends Shape). What are the values of `s instanceof Circle` and `s instanceof Shape`?",
+  "options": [
+   "false, true",
+   "true, false",
+   "Compile error: s is declared as Shape",
+   "true, true"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "instanceof tests the **actual object**, and it returns true for the object's class **and every ancestor**. The object is a Circle, so it is an instance of Circle, Shape and Object."
+ },
+ {
+  "id": "f5-L1-07",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "downcasting",
+  "type": "single",
+  "gotcha": false,
+  "question": "When is a **ClassCastException** thrown?",
+  "options": [
+   "When a downcast is written without the (Type) cast",
+   "At run time, when an explicit cast is applied to an object that is not actually an instance of the target type",
+   "When two unrelated classes have the same method name",
+   "When an upcast is performed"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A downcast with an explicit cast compiles, but at run time the JVM checks the real object. If it isn't the target type (or a subclass of it), it throws ClassCastException. A downcast **without** a cast is a compile error instead."
+ },
+ {
+  "id": "f5-L1-08",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "overriding three ways",
+  "type": "single",
+  "gotcha": false,
+  "question": "This diagram shows Cat providing the body of `move()`. Which of the slides' three ways of method overriding is this?",
+  "diagram": "classDiagram\nclass IAnimal {\n<<interface>>\n+move() void\n+speak() void\n}\nclass Cat {\n+move() void\n+speak() void\n}\nIAnimal <|.. Cat",
+  "options": [
+   "Implementing the methods of a Java interface",
+   "Implementing an abstract method of an abstract class",
+   "Overloading",
+   "Overriding a concrete superclass method"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The dashed line with a hollow triangle means **implements**, and IAnimal is an `<<interface>>`. The slides' three ways are: overriding a superclass method, implementing an abstract method, and **implementing an interface method**. Overloading is not one of them."
+ },
+ {
+  "id": "f5-L1-09",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "abstract methods",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which statement about an abstract method is correct?",
+  "options": [
+   "It can only appear in an interface",
+   "It has a body that subclasses may not change",
+   "It has no body, and a concrete subclass must implement it",
+   "It is a static method shared by all subclasses"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "An abstract method is only a signature followed by `;`. Any class containing one must be abstract, and each concrete subclass must implement it. That is one of the three ways of overriding."
+ },
+ {
+  "id": "f5-L1-10",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "polymorphism concepts",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the Liskov Substitution Principle state?",
+  "options": [
+   "Every class should have exactly one responsibility",
+   "Subtypes must be substitutable for their base types",
+   "Subclasses must never override superclass methods",
+   "Interfaces should be small"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "LSP (Liskov, 1988): a program written in terms of a base type T must behave correctly when given any subtype S. Polymorphic code like `call(Animal a)` relies on this."
+ },
+ {
+  "id": "f5-L1-11",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "benefits",
+  "type": "single",
+  "gotcha": false,
+  "question": "`shapes[0]` refers to a Circle and `shapes[1]` refers to a Square. What makes the loop call Circle's area() and then Square's area()?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 140\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><text x=\"10\" y=\"16\" font-size=\"12\" text-anchor=\"start\" fill=\"#222\" font-weight=\"bold\" font-family=\"Courier New, monospace\" xml:space=\"preserve\">Shape[] shapes</text><rect x=\"10\" y=\"24\" width=\"60\" height=\"32\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"40.0\" y=\"43.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">[0]</text><rect x=\"10\" y=\"56\" width=\"60\" height=\"32\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"40.0\" y=\"75.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">[1]</text><line x1=\"70\" y1=\"40\" x2=\"168\" y2=\"40\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35a)\"/><line x1=\"70\" y1=\"72\" x2=\"168\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35a)\"/><rect x=\"170\" y=\"24\" width=\"160\" height=\"32\" rx=\"4\" fill=\"#e6f6ea\" stroke=\"#2da44e\" stroke-width=\"1.5\"/><text x=\"250.0\" y=\"43.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Circle object</text><rect x=\"170\" y=\"66\" width=\"160\" height=\"32\" rx=\"4\" fill=\"#fff5d6\" stroke=\"#bf8700\" stroke-width=\"1.5\"/><text x=\"250.0\" y=\"85.85\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Square object</text><text x=\"170\" y=\"126\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-family=\"Courier New, monospace\" xml:space=\"preserve\">for (Shape s : shapes) s.area();</text></svg>",
+  "options": [
+   "Static binding, using the array's declared type Shape",
+   "Method overloading",
+   "Dynamic binding: the actual object type chooses the overridden area()",
+   "The compiler copies each subclass's code into Shape"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Each `s.area()` compiles because Shape declares area(). At run time, dynamic binding runs the version belonging to the object (Circle, then Square). That is the **simplicity** benefit: the loop only ever talks to Shape."
+ },
+ {
+  "id": "f5-L1-12",
+  "chapter": 5,
+  "level": 1,
+  "subtopic": "upcasting",
+  "type": "single",
+  "gotcha": false,
+  "question": "Given the diagram, which type does the **compiler** use to decide which methods may be called on `s`?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 110\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"10\" y=\"30\" width=\"100\" height=\"34\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"60.0\" y=\"51.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-family=\"Courier New, monospace\" xml:space=\"preserve\">Shape s</text><line x1=\"110\" y1=\"47\" x2=\"188\" y2=\"47\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35a)\"/><rect x=\"190\" y=\"22\" width=\"140\" height=\"50\" rx=\"4\" fill=\"#e6f6ea\" stroke=\"#2da44e\" stroke-width=\"1.5\"/><text x=\"260.0\" y=\"43.7\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Circle object</text><text x=\"260.0\" y=\"58.7\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">radius = 2.0</text><text x=\"60\" y=\"20\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1f6feb\">reference</text><text x=\"260\" y=\"14\" font-size=\"11\" text-anchor=\"middle\" fill=\"#2da44e\">object</text><text x=\"170\" y=\"96\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-family=\"Courier New, monospace\" xml:space=\"preserve\">Shape s = new Circle(2.0);</text></svg>",
+  "options": [
+   "Circle, the object type",
+   "Object, the root class",
+   "Whichever type was assigned most recently",
+   "Shape, the reference (declared) type"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The reference type is the remote control: the compiler allows only methods declared in **Shape** (or its ancestors). The object type, Circle, matters at run time to choose which overridden version runs."
+ },
+ {
+  "id": "f5-L2-01",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "dynamic binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does `a.speak();` print?",
+  "code": "class Animal {\n    void speak() { System.out.println(\"...\"); }\n}\nclass Dog extends Animal {\n    void speak() { System.out.println(\"Woof\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        Animal a = new Dog();\n        a.speak();\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 90\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"f35a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"f35r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"f35b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"f35g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"f35o\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"f35y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"f35h\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker></defs><rect x=\"10\" y=\"26\" width=\"100\" height=\"34\" rx=\"4\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"60.0\" y=\"47.2\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-family=\"Courier New, monospace\" xml:space=\"preserve\">Animal a</text><line x1=\"110\" y1=\"43\" x2=\"188\" y2=\"43\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#f35a)\"/><rect x=\"190\" y=\"18\" width=\"140\" height=\"50\" rx=\"4\" fill=\"#e6f6ea\" stroke=\"#2da44e\" stroke-width=\"1.5\"/><text x=\"260.0\" y=\"39.7\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Dog object</text><text x=\"260.0\" y=\"54.7\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">overrides speak()</text><text x=\"60\" y=\"16\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1f6feb\">reference type</text><text x=\"260\" y=\"12\" font-size=\"11\" text-anchor=\"middle\" fill=\"#2da44e\">object type</text></svg>",
+  "options": [
+   "Woof",
+   "...",
+   "... / Woof",
+   "Compile error: a is an Animal"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "speak() exists in Animal, so the call compiles. At run time, **dynamic binding** looks at the object, which is a Dog, and runs Dog's override."
+ },
+ {
+  "id": "f5-L2-02",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "static binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "Now `speak()` is **static** in both classes. What does `a.speak();` print?",
+  "code": "class Animal {\n    static void speak() { System.out.println(\"Animal speaks\"); }\n}\nclass Dog extends Animal {\n    static void speak() { System.out.println(\"Dog barks\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        Animal a = new Dog();\n        a.speak();\n    }\n}",
+  "options": [
+   "Dog barks",
+   "Compile error: a static method cannot be called through a variable",
+   "Animal speaks",
+   "Animal speaks / Dog barks"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Static methods belong to the class and are **statically bound**: the compiler uses the **reference type** (Animal). Dog's static speak() only **hides** Animal's; it does not override it. Calling it through a variable is legal, though it is poor style."
+ },
+ {
+  "id": "f5-L2-03",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "static binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "Both classes declare a field `name` and a method `getName()`. What is printed?",
+  "code": "class Animal {\n    String name = \"animal\";\n    String getName() { return name; }\n}\nclass Dog extends Animal {\n    String name = \"dog\";\n    String getName() { return name; }\n}\nclass Main {\n    public static void main(String[] args) {\n        Animal a = new Dog();\n        System.out.println(a.name + \" \" + a.getName());\n    }\n}",
+  "options": [
+   "animal dog",
+   "dog dog",
+   "animal animal",
+   "dog animal"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "**Fields are not polymorphic**: `a.name` uses the reference type Animal, so it gives \"animal\". getName() is an overridden method, so it is dynamically bound to Dog's version, which reads Dog's own field, giving \"dog\". The Dog object contains both fields."
+ },
+ {
+  "id": "f5-L2-04",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "upcasting",
+  "type": "single",
+  "gotcha": false,
+  "question": "`fetch()` exists **only** in Dog. What happens?",
+  "code": "class Animal {\n    void speak() { System.out.println(\"...\"); }\n}\nclass Dog extends Animal {\n    void fetch() { System.out.println(\"fetching\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        Animal a = new Dog();\n        a.fetch();\n    }\n}",
+  "options": [
+   "It prints `fetching`, because the object is a Dog",
+   "It throws a ClassCastException at run time",
+   "It prints `...`",
+   "Compile error: cannot find symbol fetch() in type Animal"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The compiler checks calls against the **reference type**, and Animal has no fetch(). Referring to subclass-only members through a superclass variable is a compile error. The fix is to downcast: `((Dog) a).fetch();`."
+ },
+ {
+  "id": "f5-L2-05",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "downcasting",
+  "type": "single",
+  "gotcha": false,
+  "question": "The object is a **Cat**, but it is cast to Dog. What happens?",
+  "code": "class Animal { }\nclass Dog extends Animal {\n    void fetch() { System.out.println(\"fetch\"); }\n}\nclass Cat extends Animal { }\nclass Main {\n    public static void main(String[] args) {\n        Animal a = new Cat();\n        Dog d = (Dog) a;\n        d.fetch();\n    }\n}",
+  "options": [
+   "Compile error at `Dog d = (Dog) a;`",
+   "It compiles, then throws a ClassCastException at `(Dog) a`",
+   "It prints `fetch`",
+   "It compiles, then throws a NullPointerException at `d.fetch()`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Animal and Dog are related, so the compiler accepts the explicit cast; it can't know what object `a` will hold. At run time, the object is a Cat, which is not a Dog, so the cast throws **ClassCastException**. Guard it with `if (a instanceof Dog)`."
+ },
+ {
+  "id": "f5-L2-06",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "downcasting",
+  "type": "multi",
+  "gotcha": false,
+  "question": "`Shape s = new Shape();` (Circle extends Shape; Shape and String are unrelated). Which lines **compile**? (Some might still fail at run time.)",
+  "code": "class Shape { }\nclass Circle extends Shape { }\nclass Main {\n    public static void main(String[] args) {\n        Shape s = new Shape();\n        // one of the lines below goes here\n    }\n}",
+  "options": [
+   "Circle c1 = s;",
+   "Circle c2 = (Circle) s;",
+   "String t = (String) s;",
+   "Object o = s;"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "`Object o = s` is an upcast, so it compiles. `(Circle) s` compiles because the types are related, but it throws ClassCastException at run time (the object is a plain Shape). `Circle c1 = s` is a downcast with no cast, which is a compile error. `(String) s` casts between **unrelated** classes, which is also a compile error (the slides don't mention this case)."
+ },
+ {
+  "id": "f5-L2-07",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "benefits",
+  "type": "single",
+  "gotcha": false,
+  "question": "Triangle is added **later**, and `total()` is not changed. What happens?",
+  "code": "abstract class Shape { abstract double area(); }\nclass Square extends Shape { double area() { return 4; } }\nclass Circle extends Shape { double area() { return 3; } }\nclass Triangle extends Shape { double area() { return 6; } }  // NEW\n\nclass Main {\n    static double total(Shape[] shapes) {\n        double sum = 0;\n        for (Shape s : shapes) sum += s.area();\n        return sum;\n    }\n    public static void main(String[] args) {\n        Shape[] shapes = { new Square(), new Circle(), new Triangle() };\n        System.out.println(total(shapes));\n    }\n}",
+  "options": [
+   "Compile error: total() must be updated to know about Triangle",
+   "It prints 7.0, because Triangle is ignored",
+   "It prints 13.0",
+   "ClassCastException when the Triangle is read from the array"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "This is the **extensibility** benefit. total() talks only to Shape, and dynamic binding calls each object's own area(): 4 + 3 + 6 = 13.0. A new subclass that overrides area() needs **no change** to existing code."
+ },
+ {
+  "id": "f5-L2-08",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "abstract methods",
+  "type": "single",
+  "gotcha": false,
+  "question": "Mammal's concrete `eat()` calls the abstract `speak()`. What is printed?",
+  "code": "abstract class Mammal {\n    abstract void speak();\n    void eat() { System.out.println(\"Mammal eats\"); speak(); }\n}\nclass Dog extends Mammal {\n    void speak() { System.out.println(\"Woof\"); }\n}\nclass Cat extends Mammal {\n    void speak() { System.out.println(\"Meow\"); }\n    void eat() { System.out.println(\"Cat nibbles\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        Mammal m = new Dog();\n        m.eat();\n        m = new Cat();\n        m.eat();\n    }\n}",
+  "options": [
+   "Mammal eats / Woof / Cat nibbles",
+   "Mammal eats / Woof / Mammal eats / Meow",
+   "Mammal eats / Mammal eats",
+   "Compile error: eat() cannot call an abstract method"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "For the Dog, eat() is inherited from Mammal, and its call to speak() is dynamically bound to Dog's version, giving Woof. Cat **overrides** eat(), so Mammal's eat() never runs for the Cat, and Meow is never printed. Calling an abstract method from a concrete one is fine, because a subclass object will always supply it."
+ },
+ {
+  "id": "f5-L2-09",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "static binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "`greet()` is **private** in Parent. What does `p.hello()` print?",
+  "code": "class Parent {\n    private void greet() { System.out.println(\"Parent greet\"); }\n    void hello() { greet(); }\n}\nclass Child extends Parent {\n    void greet() { System.out.println(\"Child greet\"); }\n}\nclass Main {\n    public static void main(String[] args) {\n        Parent p = new Child();\n        p.hello();\n    }\n}",
+  "options": [
+   "Child greet",
+   "Compile error: Child cannot declare greet()",
+   "Parent greet / Child greet",
+   "Parent greet"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Private methods are not inherited, so they **cannot be overridden**. Child's greet() is a brand-new, unrelated method. The call inside Parent.hello() is statically bound to Parent's private greet(). If greet() were not private, the output would be \"Child greet\"."
+ },
+ {
+  "id": "f5-L2-10",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "downcasting",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "class Animal { }\nclass Dog extends Animal { }\nclass Puppy extends Dog { }\nclass Cat extends Animal { }\nclass Main {\n    public static void main(String[] args) {\n        Animal[] zoo = { new Animal(), new Puppy(), new Cat(), new Dog() };\n        for (Animal a : zoo) {\n            if (a instanceof Dog) System.out.print(\"D \");\n            else if (a instanceof Animal) System.out.print(\"A \");\n        }\n    }\n}",
+  "options": [
+   "A P A D",
+   "A D A D",
+   "A A A D",
+   "D D D D"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "instanceof is true for the object's class **and its ancestors**. A Puppy is a Dog, so it prints D. A plain Animal and a Cat are not Dogs, so they fall to the Animal test and print A. A Dog prints D."
+ },
+ {
+  "id": "f5-L2-11",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "dynamic binding",
+  "type": "single",
+  "gotcha": false,
+  "question": "`o` is declared as **Object**. Which `toString()` runs?",
+  "code": "class Shape { double area() { return 0; } }\nclass Circle extends Shape {\n    double r = 1.0;\n    double area() { return 3.14 * r * r; }\n    public String toString() { return \"Circle r=\" + r; }\n}\nclass Main {\n    public static void main(String[] args) {\n        Object o = new Circle();\n        System.out.println(o.toString());\n    }\n}",
+  "diagram": "classDiagram\nclass Object {\n+toString() String\n}\nclass Shape {\n+area() double\n}\nclass Circle {\n-double r\n+area() double\n+toString() String\n}\nObject <|-- Shape\nShape <|-- Circle",
+  "options": [
+   "Object's: it prints something like Circle@1b6d3586",
+   "Shape's, because Shape is Circle's direct superclass",
+   "Compile error: Object does not know about Circle",
+   "Circle's: it prints Circle r=1.0"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "toString() is declared in Object, so the call compiles. It is overridden in Circle, so dynamic binding runs Circle's version even through an Object reference. (`o.area()` would NOT compile, because Object has no area().)"
+ }
+]

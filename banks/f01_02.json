@@ -1,0 +1,1031 @@
+[
+ {
+  "id": "f1-L1-01",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "paradigms",
+  "type": "single",
+  "gotcha": false,
+  "question": "In **procedural** programming (C, Pascal, Fortran), how is a program mainly organised?",
+  "options": [
+   "As objects that bundle their own data with methods and send messages to each other",
+   "As facts and rules that the computer reasons about",
+   "As a sequence of procedures (functions) that run step by step and change data, often shared or global data",
+   "As classes arranged in an inheritance hierarchy"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Procedural (imperative) languages are built around the procedure call: a list of statements, executed step by step, that use assignment to change data in memory. Bundling data with methods into objects is what OO adds."
+ },
+ {
+  "id": "f1-L1-02",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "paradigms",
+  "type": "single",
+  "gotcha": false,
+  "question": "According to the slides, how is computation represented in **object-oriented** programming?",
+  "options": [
+   "As interaction among objects that send and receive messages",
+   "As a list of assignment statements executed from top to bottom",
+   "As GOTO jumps between numbered lines",
+   "As mathematical functions that have no state"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "In OOP the fundamental entity is the object. It has local state, receives and sends messages, and performs computations, so problems are solved by objects sending messages to one another. GOTO jumps belong to unstructured programming."
+ },
+ {
+  "id": "f1-L1-03",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "objects",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which three characteristics does every object have?",
+  "options": [
+   "Class, method, attribute",
+   "Abstraction, encapsulation, inheritance",
+   "Name, type, size",
+   "Identity, state, behaviour"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "An object has an identity (it is unique), a state (its current attribute values) and behaviour (the methods it can perform). Abstraction, encapsulation and inheritance are OO concepts, not properties of a single object."
+ },
+ {
+  "id": "f1-L1-04",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": false,
+  "question": "In this diagram of how Java runs a program, what belongs in the box marked **?**",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 160\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"m1k\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"m1b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"m1r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"m1g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"m1a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"m1y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"m1t\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L11,6 L0,12 z\" fill=\"#fff\" stroke=\"#222\"/></marker></defs><rect x=\"0\" y=\"0\" width=\"340\" height=\"160\" fill=\"#fff\"/><rect x=\"6\" y=\"10\" width=\"70\" height=\"36\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"41\" y=\"32\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Hello.java</text><rect x=\"98\" y=\"10\" width=\"60\" height=\"36\" rx=\"4\" fill=\"#e7f0fd\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/><text x=\"128\" y=\"32\" font-size=\"12\" text-anchor=\"middle\" fill=\"#1f6feb\" font-weight=\"bold\">javac</text><rect x=\"180\" y=\"10\" width=\"76\" height=\"36\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"218\" y=\"26\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Hello.class</text><text x=\"218\" y=\"40\" font-size=\"11\" text-anchor=\"middle\" fill=\"#888\">bytecode</text><line x1=\"76\" y1=\"28\" x2=\"96\" y2=\"28\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m1k)\"/><line x1=\"158\" y1=\"28\" x2=\"178\" y2=\"28\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m1k)\"/><rect x=\"6\" y=\"64\" width=\"328\" height=\"90\" rx=\"4\" fill=\"#e6f4ea\" stroke=\"#2da44e\" stroke-width=\"1.4\"/><text x=\"14\" y=\"80\" font-size=\"12\" text-anchor=\"start\" fill=\"#2da44e\" font-weight=\"bold\">JVM</text><rect x=\"14\" y=\"92\" width=\"80\" height=\"36\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"54\" y=\"114\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Class loader</text><rect x=\"124\" y=\"86\" width=\"80\" height=\"24\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"164\" y=\"102\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Interpreter</text><rect x=\"124\" y=\"116\" width=\"80\" height=\"30\" rx=\"4\" fill=\"#fdf3d8\" stroke=\"#bf8700\" stroke-width=\"2\"/><text x=\"164\" y=\"137\" font-size=\"16\" text-anchor=\"middle\" fill=\"#bf8700\" font-weight=\"bold\">?</text><rect x=\"234\" y=\"98\" width=\"92\" height=\"36\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"280\" y=\"120\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">machine code</text><line x1=\"94\" y1=\"106\" x2=\"122\" y2=\"98\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m1k)\"/><line x1=\"94\" y1=\"116\" x2=\"122\" y2=\"128\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m1k)\"/><line x1=\"204\" y1=\"98\" x2=\"232\" y2=\"110\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m1k)\"/><line x1=\"204\" y1=\"131\" x2=\"232\" y2=\"122\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m1k)\"/><path d=\"M218,46 L218,56 L54,56 L54,90\" stroke=\"#222\" stroke-width=\"1.5\" fill=\"none\" marker-end=\"url(#m1k)\"/></svg>",
+  "options": [
+   "javac, which turns .java source into bytecode",
+   "The JIT (just-in-time) compiler, which turns frequently used bytecode into machine code at run time",
+   "The JDK, which contains the developer tools",
+   "The operating system's linker"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Inside the JVM, bytecode is either interpreted or compiled to native machine code by the JIT compiler while the program runs. javac already did its job at compile time, outside the JVM, when it produced Hello.class."
+ },
+ {
+  "id": "f1-L1-05",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "class-object",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the picture, what is `Person` and what is `obama`?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 138\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"m2k\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"m2b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"m2r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"m2g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"m2a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"m2y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"m2t\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L11,6 L0,12 z\" fill=\"#fff\" stroke=\"#222\"/></marker></defs><rect x=\"0\" y=\"0\" width=\"340\" height=\"138\" fill=\"#fff\"/><rect x=\"10\" y=\"10\" width=\"120\" height=\"120\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"70\" y=\"28\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Person</text><line x1=\"10\" y1=\"36\" x2=\"130\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"52\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">- name: String</text><text x=\"16\" y=\"67\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">- age: int</text><line x1=\"10\" y1=\"82\" x2=\"130\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"98\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+ eat(): void</text><text x=\"16\" y=\"113\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+ talk(): void</text><rect x=\"196\" y=\"36\" width=\"136\" height=\"56\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><rect x=\"196\" y=\"36\" width=\"136\" height=\"20\" rx=\"4\" fill=\"#f2f2f2\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"264.0\" y=\"50\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">obama : Person</text><line x1=\"225.5\" y1=\"52\" x2=\"302.5\" y2=\"52\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"202\" y=\"69\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">name = \"Barack Obama\"</text><text x=\"202\" y=\"85\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">age = 49</text><line x1=\"130\" y1=\"70\" x2=\"194\" y2=\"66\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\" marker-end=\"url(#m2k)\"/></svg>",
+  "options": [
+   "Person is an object; obama is its class",
+   "Person is a class (template); obama is an object (instance) of Person",
+   "Both are classes; obama is a subclass of Person",
+   "Both are objects; obama is a copy of Person"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A class is the template that lists attributes and methods. An object is one instance of it, with its own values. In UML an object's name is underlined and written `name : Class`, which is how you can tell `obama : Person` is an object."
+ },
+ {
+  "id": "f1-L1-06",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": false,
+  "question": "How are the **JDK**, **JRE** and **JVM** related?",
+  "options": [
+   "The JVM contains the JRE, and the JRE contains the JDK",
+   "The JRE contains the JDK, and the JDK contains the JVM",
+   "They are three separate programs; none contains another",
+   "The JDK contains the JRE, and the JRE contains the JVM"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The JVM runs bytecode. The JRE is the JVM plus the class libraries, which is everything you need to run Java. The JDK is the JRE plus developer tools such as javac, which you need to compile Java."
+ },
+ {
+  "id": "f1-L1-07",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "oo-model",
+  "type": "single",
+  "gotcha": false,
+  "question": "In OO terms, what does the second line do?",
+  "code": "Account acct = new Account();\nacct.deposit(50);",
+  "options": [
+   "It sends the message `deposit` with the argument 50 to the receiver object `acct`",
+   "It sends the message 50 from `acct` to a class called deposit",
+   "It creates a new object of class `deposit`",
+   "It makes `deposit` inherit from `acct`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Message sending uses the syntax `receiver.method(arguments)`. Here `acct` is the receiver, `deposit` is the message (it runs the method of the same name), and 50 is the argument. Only `new` creates an object."
+ },
+ {
+  "id": "f1-L1-08",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "abstraction",
+  "type": "single",
+  "gotcha": false,
+  "question": "\"It denotes the essential characteristics of an object that distinguish it from all other kinds of objects, relative to the perspective of the viewer.\" Which OO concept is Booch defining?",
+  "options": [
+   "Encapsulation",
+   "Inheritance",
+   "Abstraction",
+   "Polymorphism"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Abstraction means keeping only the characteristics that matter to the viewer and ignoring the rest. For a drawing app, a rectangle is just width, height, findArea() and findPerimeter()."
+ },
+ {
+  "id": "f1-L1-09",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "encapsulation",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which statements match the slides' description of **encapsulation** and **information hiding**?",
+  "options": [
+   "Encapsulation builds a barrier that protects an object's private data, which is reached through public methods such as get and set",
+   "Information hiding hides the implementation details of a class from its users",
+   "Information hiding means every method of a class must be private",
+   "Users of a class need to know only what it does and how to call its methods"
+  ],
+  "answer": [
+   0,
+   1,
+   3
+  ],
+  "explanation": "Encapsulation is the barrier: private data, reached through public methods. Information hiding keeps the implementation (how the methods work) away from users, who need only the method headers. Making every method private would leave nothing for anyone to call."
+ },
+ {
+  "id": "f1-L1-10",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "question": "Based on the diagram, which statement is correct?",
+  "diagram": "classDiagram\n  class Employee {\n    firstName\n    lastName\n    earnings()\n  }\n  class SalariedEmployee {\n    weeklySalary\n    overtimePay()\n  }\n  Employee <|-- SalariedEmployee",
+  "options": [
+   "Employee is the subclass and SalariedEmployee is the superclass",
+   "The relationship is has-a: a SalariedEmployee has an Employee",
+   "SalariedEmployee can only inherit; it cannot add attributes such as weeklySalary",
+   "Employee is the superclass (base, parent) and SalariedEmployee is the subclass (derived, child): a SalariedEmployee **is an** Employee"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The hollow triangle points at the superclass. A subclass inherits the parent's attributes and methods, can add its own (weeklySalary) and can override inherited ones. The test for inheritance is \"is a\"."
+ },
+ {
+  "id": "f1-L1-11",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "polymorphism",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which statement best describes **polymorphism** as the slides define it?",
+  "options": [
+   "One class can be used to create many objects",
+   "A class can inherit from several superclasses at once",
+   "The same message can be sent to objects of different classes, and each responds in the way that suits its own class",
+   "An object's state changes over time while its identity stays the same"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Polymorphism means \"many forms\": `animal.move()` makes an Eagle fly and a Shark swim. The sender does not need to know the receiver's class. Inheriting from several superclasses is multiple inheritance, a different idea."
+ },
+ {
+  "id": "f1-L1-12",
+  "chapter": 1,
+  "level": 1,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": false,
+  "question": "A student runs the command below. What does `javac` produce?",
+  "code": "javac Hello.java",
+  "options": [
+   "Native machine code for the student's CPU",
+   "Bytecode, in a file called Hello.class",
+   "A JVM process that is running the program",
+   "A copy of Hello.java with the comments removed"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "javac is the Java compiler. At compile time it translates source code (.java) into platform-independent bytecode (.class). It never produces machine code: the JIT compiler inside the JVM does that at run time."
+ },
+ {
+  "id": "f1-L2-01",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": false,
+  "question": "Alice compiles `Hello.java` on Windows and emails only `Hello.class` to Bob. Bob's Mac has a JRE but no JDK. Bob runs `java Hello`. What happens?",
+  "options": [
+   "It runs: bytecode is platform-independent, and Bob's JRE includes a JVM that can execute it",
+   "It fails: bytecode compiled on Windows runs only on Windows",
+   "Bob must first run javac on Hello.class to convert it for macOS",
+   "It fails because the JIT is part of javac, so Bob needs the JDK"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "This is \"compile once, run anywhere\". The .class file holds bytecode that any platform's JVM can load. Running a program needs only the JRE (JVM plus libraries). javac, which comes only with the JDK, is needed for compiling, not running."
+ },
+ {
+  "id": "f1-L2-02",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": false,
+  "question": "A student compiled Hello.java while it printed `Hi`. They then changed the source to the version below and saved it, but did **not** run javac again. What does `java Hello` print?",
+  "code": "public class Hello {\n    public static void main(String[] args) {\n        System.out.println(\"Bye\");  // was \"Hi\"\n    }\n}",
+  "options": [
+   "Bye, because the JIT compiler re-compiles the edited .java file at run time",
+   "Nothing: a compile error is reported because the .java and .class files differ",
+   "Hi, because the JVM runs the existing Hello.class, which still holds the old bytecode",
+   "Bye, because java always recompiles the .java file before running"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`java Hello` loads Hello.class. It does not read Hello.java at all. The JIT works on the bytecode it is given, not on source files. Until javac runs again, the old bytecode (printing Hi) is what runs."
+ },
+ {
+  "id": "f1-L2-03",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "java-platform",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which of these happen at **run time**, after the user types `java Hello`?",
+  "options": [
+   "The class loader loads Hello.class into the JVM",
+   "The JIT compiler translates frequently executed bytecode into machine code",
+   "javac checks Hello.java for syntax errors",
+   "Hello.java is translated into Hello.class"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "Run time is everything the JVM does: loading classes, interpreting bytecode and JIT-compiling hot code to machine code. Checking syntax and turning .java into .class are javac's job at compile time, before the program ever runs."
+ },
+ {
+  "id": "f1-L2-04",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "encapsulation",
+  "type": "single",
+  "gotcha": false,
+  "question": "`age` is private and can change only through `setAge`. What does this program print?",
+  "code": "class Person {\n    private int age = 30;\n    public void setAge(int a) { if (a >= 0) age = a; }\n    public int getAge() { return age; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Person p = new Person();\n        p.setAge(-5);\n        System.out.println(p.getAge());\n    }\n}",
+  "options": [
+   "30",
+   "-5",
+   "0",
+   "Compile error: age is private"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Encapsulation lets the class guard its data. The mutator rejects -5 because `a >= 0` is false, so age keeps its value of 30. The main method never touches `age` directly, only the public methods, so there is no compile error."
+ },
+ {
+  "id": "f1-L2-05",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "encapsulation",
+  "type": "single",
+  "gotcha": false,
+  "question": "The author of `Account` changes how the balance is stored, from `private double balance` to `private long cents`. The public method headers below stay exactly the same, and only the method bodies are rewritten. Which client code must change?",
+  "code": "public class Account {\n    private long cents;              // was: private double balance\n    public void deposit(double amt) { cents += Math.round(amt * 100); }\n    public double getBalance() { return cents / 100.0; }\n}",
+  "options": [
+   "Every line that calls getBalance()",
+   "Every line that creates an Account",
+   "All client code, because the class's data has changed",
+   "None: clients use only the public methods, whose headers are unchanged (information hiding)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Information hiding means users rely only on what a class does (its public interface), not on how it is implemented. Because the private field is hidden and the method headers are unchanged, client code still compiles and works."
+ },
+ {
+  "id": "f1-L2-06",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "polymorphism",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Snake` is a **new** subclass. `call()` was written before Snake existed and has not been changed. What does `main` print (lines separated by /)?",
+  "code": "class Animal { void move() { System.out.println(\"Animal moves\"); } }\nclass Eagle extends Animal { void move() { System.out.println(\"Eagle flies\"); } }\nclass Snake extends Animal { void move() { System.out.println(\"Snake slithers\"); } }\npublic class Zoo {\n    static void call(Animal a) { a.move(); }\n    public static void main(String[] args) {\n        call(new Eagle());\n        call(new Snake());\n        call(new Animal());\n    }\n}",
+  "options": [
+   "Eagle flies / Animal moves / Animal moves",
+   "Eagle flies / Snake slithers / Animal moves",
+   "Compile error: call() must be rewritten to accept a Snake",
+   "Animal moves / Animal moves / Animal moves"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Polymorphism: `a.move()` runs the version that belongs to the receiver object's actual class. A Snake is an Animal, so call() accepts it unchanged and Snake's own move() runs. A plain Animal uses Animal's move()."
+ },
+ {
+  "id": "f1-L2-07",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "question": "Using the diagram, which attributes does a `SalariedEmployee` object have?",
+  "diagram": "classDiagram\n  class Employee {\n    firstName\n    lastName\n    socialSecurityNo\n    earnings()\n  }\n  class SalariedEmployee {\n    weeklySalary\n    overtimePay()\n  }\n  class HourlyEmployee {\n    wagePerHour\n    hours\n    earnings()\n  }\n  Employee <|-- SalariedEmployee\n  Employee <|-- HourlyEmployee",
+  "options": [
+   "weeklySalary only",
+   "firstName, lastName, socialSecurityNo and weeklySalary",
+   "firstName, lastName and socialSecurityNo only",
+   "firstName, lastName, socialSecurityNo, weeklySalary, wagePerHour and hours"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A subclass inherits all of its superclass's attributes and adds its own. SalariedEmployee therefore has Employee's three attributes plus weeklySalary. wagePerHour and hours belong to its sibling HourlyEmployee, not to its parent, so it does not get them."
+ },
+ {
+  "id": "f1-L2-08",
+  "chapter": 1,
+  "level": 2,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "question": "Both parent classes declare a `name` field. What happens when this code is compiled?",
+  "code": "class Student  { String name; void printExamRes() {} }\nclass Employee { String name; void earnings() {} }\nclass StudentEmployee extends Student, Employee { }\npublic class Main {\n    public static void main(String[] args) { }\n}",
+  "options": [
+   "It compiles, and `name` comes from Student because Student is listed first",
+   "It compiles, and StudentEmployee gets two separate name fields",
+   "It compiles, but accessing name causes a run-time error",
+   "Compile error: a Java class can extend only one class"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "This is the multiple-inheritance conflict from the slides: which parent's `name` should the child inherit? Java avoids the problem entirely, because a class may extend only one superclass, so `extends Student, Employee` does not compile."
+ },
+ {
+  "id": "f2-L1-01",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "class-object",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which statement creates a `Rectangle` object **and** stores a reference to it?",
+  "options": [
+   "`Rectangle r;`",
+   "`Rectangle r = Rectangle();`",
+   "`Rectangle r = new Rectangle();`",
+   "`new Rectangle r;`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Creating an object takes two steps: declare a reference variable, then allocate the object with `new`, which runs the constructor. `Rectangle r;` only declares the variable, and no object exists yet. Leaving out `new` does not compile."
+ },
+ {
+  "id": "f2-L1-02",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "pass-by-value",
+  "type": "single",
+  "gotcha": false,
+  "question": "How does Java pass arguments to methods?",
+  "options": [
+   "Always by value: the method receives a copy, and for an object argument that copy is a copy of the reference",
+   "Primitives by value; objects by reference, so the method gets the caller's own variable",
+   "Always by reference",
+   "By value for public methods, by reference for private ones"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Java is strictly pass-by-value. For an object argument the copied value is a reference, so the method can change the shared object through it. Re-assigning the parameter, however, never affects the caller's variable."
+ },
+ {
+  "id": "f2-L1-03",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "class-object",
+  "type": "single",
+  "gotcha": false,
+  "question": "None of the fields below is given a value. What does this program print?",
+  "code": "class Item {\n    int qty;\n    double price;\n    boolean sold;\n    String name;\n}\npublic class Main {\n    public static void main(String[] args) {\n        Item it = new Item();\n        System.out.println(it.qty + \" \" + it.price + \" \" + it.sold + \" \" + it.name);\n    }\n}",
+  "options": [
+   "0 0 false \"\"",
+   "Compile error: the fields are not initialised",
+   "null null null null",
+   "0 0.0 false null"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Fields (instance variables) get default values: 0 for whole numbers, 0.0 for floating-point numbers, false for boolean and null for any reference, including String. Only local variables must be assigned before they are used."
+ },
+ {
+  "id": "f2-L1-04",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "references",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the memory diagram, what is stored **in the variable** `rect`?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 110\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"m3k\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"m3b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"m3r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"m3g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"m3a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"m3y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"m3t\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L11,6 L0,12 z\" fill=\"#fff\" stroke=\"#222\"/></marker></defs><rect x=\"0\" y=\"0\" width=\"340\" height=\"110\" fill=\"#fff\"/><text x=\"50\" y=\"16\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1f6feb\" font-weight=\"bold\">variable</text><text x=\"250\" y=\"16\" font-size=\"11\" text-anchor=\"middle\" fill=\"#2da44e\" font-weight=\"bold\">heap</text><text x=\"56\" y=\"55.0\" font-size=\"12\" text-anchor=\"end\" fill=\"#222\" font-weight=\"bold\">rect</text><rect x=\"60\" y=\"40\" width=\"50\" height=\"22\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"85.0\" y=\"55.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@1024</text><rect x=\"180\" y=\"26\" width=\"140\" height=\"56\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><rect x=\"180\" y=\"26\" width=\"140\" height=\"20\" rx=\"4\" fill=\"#f2f2f2\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"250.0\" y=\"40\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Rectangle @1024</text><text x=\"186\" y=\"59\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">width = 1.0</text><text x=\"186\" y=\"75\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">height = 1.0</text><line x1=\"110\" y1=\"51\" x2=\"178\" y2=\"52\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m3k)\"/><text x=\"170\" y=\"102\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-family=\"Courier New, monospace\">Rectangle rect = new Rectangle();</text></svg>",
+  "options": [
+   "The whole Rectangle object, including width and height",
+   "The address (reference) of the Rectangle object",
+   "A copy of the Rectangle class",
+   "The value of width"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A variable of a class type is an object reference. It stores the memory address of the object, not the object itself. The object, with its width and height, lives elsewhere (on the heap)."
+ },
+ {
+  "id": "f2-L1-05",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "constructors",
+  "type": "single",
+  "gotcha": false,
+  "question": "When does Java automatically supply a no-argument **default constructor**?",
+  "options": [
+   "Always, in addition to any constructors you write",
+   "Only when the class declares no constructors at all",
+   "Only when every field of the class is private",
+   "Never: every class must declare one"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "If you write no constructor, Java adds `public ClassName() { }`, which does nothing. As soon as you write any constructor, that free default is no longer provided."
+ },
+ {
+  "id": "f2-L1-06",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "constructors",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which statements about **constructors** are true?",
+  "options": [
+   "A constructor has the same name as its class",
+   "A constructor has no return type, not even void",
+   "A class can have several constructors with different parameter lists",
+   "A constructor must be called explicitly after `new`, for example `r.Rectangle();`"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "Constructors share the class name, have no return type, and can be overloaded. Java picks the one whose parameters match the arguments. They run automatically as part of `new` and cannot be called like an ordinary method."
+ },
+ {
+  "id": "f2-L1-07",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "this-keyword",
+  "type": "single",
+  "gotcha": false,
+  "question": "Inside an instance method, what does `this` refer to?",
+  "options": [
+   "The class itself",
+   "The most recently created object",
+   "The method's first parameter",
+   "The object the method was called on (the receiver)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`this` is a reference to the receiver object. In `rect1.findArea()`, `this` is `rect1`, so `this.width` means rect1's width. When you leave the receiver out, Java uses `this` automatically."
+ },
+ {
+  "id": "f2-L1-08",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "this-keyword",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the statement `this(1.0, 1.0);` do here?",
+  "code": "public Rectangle() {\n    this(1.0, 1.0);\n}\npublic Rectangle(double width, double height) {\n    this.width = width;\n    this.height = height;\n}",
+  "options": [
+   "It calls the class's other constructor, Rectangle(double, double), passing 1.0 and 1.0",
+   "It creates a second Rectangle object",
+   "It calls a method named this",
+   "It sets the object's reference to 1.0"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The form `this(...)` calls another constructor of the same class on the same object. No new object is created. It must be the first statement in the constructor."
+ },
+ {
+  "id": "f2-L1-09",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "encapsulation",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the slides' terms, `setWidth(double w)` is a ____ and `getWidth()` is an ____.",
+  "options": [
+   "accessor; mutator",
+   "constructor; finalizer",
+   "mutator; accessor",
+   "class method; instance method"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Accessors (get methods) return the value of a data property. Mutators (set methods) change it, and can check the new value to keep the data consistent."
+ },
+ {
+  "id": "f2-L1-10",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "encapsulation",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which access modifier makes a field accessible **only inside its own class**?",
+  "options": [
+   "`public`",
+   "`protected`",
+   "`static`",
+   "`private`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`private` restricts access to the declaring class, which is the basis of encapsulation. `protected` also allows the package and subclasses. `static` is not an access modifier: it means the member belongs to the class."
+ },
+ {
+  "id": "f2-L1-11",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "static",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which statements about a **static** variable such as `private static int numRectangles;` are true?",
+  "options": [
+   "There is only one copy, shared by all objects of the class",
+   "It can be accessed through the class name, for example `Rectangle.numRectangles` (inside the class)",
+   "Each object gets its own copy when it is created",
+   "Instance methods of the same class can read and change it"
+  ],
+  "answer": [
+   0,
+   1,
+   3
+  ],
+  "explanation": "A static (class) variable has a single memory location for the whole class. Every object, and every instance method, sees the same value. Separate copies per object belong to instance variables."
+ },
+ {
+  "id": "f2-L1-12",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "From another class, what is the recommended way to call the static method `getNumRectangles()` of `Rectangle`?",
+  "options": [
+   "`this.getNumRectangles()`",
+   "`new getNumRectangles()`",
+   "`Rectangle.getNumRectangles()`",
+   "`Rectangle().getNumRectangles()`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Class methods are called through the class name: `Class_Name.Method_Name()`, as in `Math.sqrt(2)`. No object is needed. A static method has no `this`, and you cannot use `this` from another class anyway."
+ },
+ {
+  "id": "f2-L1-13",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which declaration is a **class constant** that follows the slides' convention?",
+  "options": [
+   "`public final double maxWidth = 100;`",
+   "`public static final double MAX_WIDTH = 100;`",
+   "`public static double MAX_WIDTH = 100;`",
+   "`private static final double max_width;`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A class constant is `static` (one copy for the class) and `final` (it cannot change), and its name is written in UPPER_CASE with underscores. Without `static`, every object holds its own copy. Without `final`, the value can be changed."
+ },
+ {
+  "id": "f2-L1-14",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "strings",
+  "type": "single",
+  "gotcha": false,
+  "question": "For two `String` references `a` and `b`, what is the difference between `a == b` and `a.equals(b)`?",
+  "options": [
+   "`==` checks whether both point to the same object; `equals()` checks whether the characters are the same",
+   "Both compare the characters",
+   "`==` compares the characters; `equals()` compares addresses",
+   "`==` cannot be used with Strings, so it is a compile error"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "String is a class, so `a` and `b` hold references. `==` compares the references (identity), and `equals()` compares the contents. Use `equals()` to compare text."
+ },
+ {
+  "id": "f2-L1-15",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "composition",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Student` has the field `private Course course;`. What is this relationship called?",
+  "options": [
+   "Inheritance, an is-a relationship",
+   "Polymorphism",
+   "Object composition, a has-a relationship",
+   "Method overloading"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "When a class has fields that hold references to objects of another class, that is object composition: a student has a course. Inheritance (is-a) would be written `class Student extends Course`."
+ },
+ {
+  "id": "f2-L1-16",
+  "chapter": 2,
+  "level": 1,
+  "subtopic": "references",
+  "type": "single",
+  "gotcha": false,
+  "question": "The diagram shows memory at some point in `main`. Which object(s) are **eligible for garbage collection**?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 130\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"m4k\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"m4b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"m4r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"m4g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"m4a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"m4y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"m4t\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L11,6 L0,12 z\" fill=\"#fff\" stroke=\"#222\"/></marker></defs><rect x=\"0\" y=\"0\" width=\"340\" height=\"130\" fill=\"#fff\"/><text x=\"36\" y=\"35.0\" font-size=\"12\" text-anchor=\"end\" fill=\"#222\" font-weight=\"bold\">a</text><rect x=\"40\" y=\"20\" width=\"44\" height=\"22\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"62.0\" y=\"35.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#d73a49\">null</text><text x=\"36\" y=\"85.0\" font-size=\"12\" text-anchor=\"end\" fill=\"#222\" font-weight=\"bold\">b</text><rect x=\"40\" y=\"70\" width=\"44\" height=\"22\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"62.0\" y=\"85.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@2</text><rect x=\"200\" y=\"14\" width=\"80\" height=\"30\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"240\" y=\"34\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Box @1</text><rect x=\"200\" y=\"70\" width=\"80\" height=\"30\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"240\" y=\"90\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">Box @2</text><line x1=\"84\" y1=\"81\" x2=\"198\" y2=\"85\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m4k)\"/><text x=\"170\" y=\"124\" font-size=\"11\" text-anchor=\"middle\" fill=\"#888\">no other variables exist</text></svg>",
+  "options": [
+   "Box @1 only",
+   "Box @2 only",
+   "Both Box @1 and Box @2",
+   "Neither: objects are freed only when main ends"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "An object becomes eligible for garbage collection once no live reference can reach it. Nothing points to Box @1, so it is eligible. Box @2 is still referenced by b."
+ },
+ {
+  "id": "f2-L2-01",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this program print?",
+  "code": "class Visitor {\n    static int total = 0;\n    int number;\n    Visitor() { total++; number = total; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Visitor v1 = new Visitor();\n        Visitor v2 = new Visitor();\n        Visitor v3 = v1;\n        Visitor v4 = new Visitor();\n        new Visitor();\n        System.out.println(v3.total + \" \" + Visitor.total + \" \"\n            + v3.number + \" \" + v4.number);\n    }\n}",
+  "options": [
+   "3 3 1 3",
+   "4 4 3 3",
+   "1 4 1 3",
+   "4 4 1 3"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`total` is static, so there is one shared counter, and it counts constructor calls: four `new`s give 4, including the one whose result is not stored. `v3 = v1` creates no object, so `v3.total` and `Visitor.total` both read 4. `v3.number` is v1's own number (1), and v4 was the third Visitor created (3)."
+ },
+ {
+  "id": "f2-L2-02",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "references",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this program print?",
+  "code": "class Rectangle {\n    private double width, height;\n    public Rectangle(double w, double h) { width = w; height = h; }\n    public void setWidth(double w) { width = w; }\n    public double getWidth() { return width; }\n    public double findArea() { return width * height; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Rectangle r1 = new Rectangle(2.0, 3.0);\n        Rectangle r2 = r1;\n        r2.setWidth(10.0);\n        System.out.println(r1.getWidth() + \" \" + r1.findArea());\n    }\n}",
+  "options": [
+   "2.0 6.0",
+   "10.0 30.0",
+   "10.0 6.0",
+   "2.0 30.0"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`r2 = r1` copies the reference, so both names point to one object (an alias). Changing the width through r2 changes that single object, so r1 sees width 10.0 and an area of 10.0 * 3.0 = 30.0."
+ },
+ {
+  "id": "f2-L2-03",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the UML diagram, `name` is **underlined**. The code below matches that diagram. What does it print?",
+  "code": "class Player {\n    public static String name;\n    private int score;\n    public void play() { score++; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Player p1 = new Player();\n        Player p2 = new Player();\n        p1.name = \"Ann\";\n        p2.name = \"Ben\";\n        System.out.println(p1.name + \" \" + p2.name);\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 96\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"m5k\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"m5b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"m5r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"m5g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"m5a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"m5y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"m5t\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L11,6 L0,12 z\" fill=\"#fff\" stroke=\"#222\"/></marker></defs><rect x=\"0\" y=\"0\" width=\"340\" height=\"96\" fill=\"#fff\"/><rect x=\"90\" y=\"6\" width=\"160\" height=\"84\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"170\" y=\"24\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Player</text><line x1=\"90\" y1=\"32\" x2=\"250\" y2=\"32\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"98\" y=\"50\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+ name: String</text><line x1=\"98\" y1=\"52\" x2=\"182\" y2=\"52\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"98\" y=\"66\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">- score: int</text><line x1=\"90\" y1=\"72\" x2=\"250\" y2=\"72\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"98\" y=\"86\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+ play(): void</text></svg>",
+  "options": [
+   "Ann Ben",
+   "Ben Ben",
+   "Ann Ann",
+   "Compile error: a static field cannot be accessed through a reference"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Underlined in UML means static, so there is only one `name` for the whole class. p2's assignment overwrites the shared value, and both references read \"Ben\". Accessing a static field through a reference compiles (it is just poor style)."
+ },
+ {
+  "id": "f2-L2-04",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "What happens when you compile and run this?",
+  "code": "public class Calc {\n    int square(int x) { return x * x; }\n\n    public static void main(String[] args) {\n        System.out.println(square(4));\n    }\n}",
+  "options": [
+   "16",
+   "0",
+   "It compiles, but throws a NullPointerException because no Calc object exists",
+   "Compile error: the non-static method square(int) cannot be referenced from a static context"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`main` is static, so it has no `this` and no object to call `square` on. Calling an instance method directly from it is a compile error. Fix it with `new Calc().square(4)`, or make square static."
+ },
+ {
+  "id": "f2-L2-05",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "this-keyword",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this program print?",
+  "code": "class Box {\n    int w, h;\n    Box() { this(5); System.out.print(\"A\"); }\n    Box(int s) { this(s, s); System.out.print(\"B\"); }\n    Box(int w, int h) {\n        this.w = w; this.h = h;\n        System.out.print(\"C\");\n    }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Box b = new Box();\n        System.out.println(\" \" + b.w * b.h);\n    }\n}",
+  "options": [
+   "CBA 25",
+   "ABC 25",
+   "A 0",
+   "CBA 0"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`new Box()` enters Box(), whose first statement `this(5)` jumps to Box(int), whose first statement `this(s, s)` jumps to Box(int, int). That constructor sets w = h = 5 and prints C. Control then returns to print B, and finally A. The area is 5 * 5 = 25."
+ },
+ {
+  "id": "f2-L2-06",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "references",
+  "type": "single",
+  "gotcha": false,
+  "question": "Two Box objects are created, on line 1 and on line 2. When does each first become **eligible for garbage collection**?",
+  "code": "class Box { }\npublic class Main {\n    public static void main(String[] args) {\n        Box a = new Box();   // line 1\n        Box b = new Box();   // line 2\n        b = a;               // line 3\n        a = null;            // line 4\n        b = null;            // line 5\n        System.out.println(\"done\");\n    }\n}",
+  "options": [
+   "The line-2 object after line 5; the line-1 object after line 4",
+   "Both after line 4",
+   "The line-2 object after line 3; the line-1 object after line 5",
+   "Neither becomes eligible before main ends"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "An object is eligible once no reference reaches it. Line 3 re-points b at the line-1 object, so nothing refers to the line-2 object any more. The line-1 object is still reachable through b after `a = null`, and becomes unreachable only at line 5."
+ },
+ {
+  "id": "f2-L2-07",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "encapsulation",
+  "type": "single",
+  "gotcha": false,
+  "question": "`width` is `private`. What happens with this code?",
+  "code": "class Rectangle {\n    private double width;\n    public void setWidth(double w) { width = w; }\n}\npublic class App {\n    public static void main(String[] args) {\n        Rectangle r = new Rectangle();\n        r.width = 5.0;\n    }\n}",
+  "options": [
+   "It compiles and width becomes 5.0",
+   "It compiles but throws an exception at run time",
+   "It compiles, and the assignment is silently ignored",
+   "Compile error: width has private access in Rectangle"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Access checks happen at compile time. A private member is visible only inside its own class, so `App` must use a public mutator such as `setWidth(5.0)`. That rule is what encapsulation enforces."
+ },
+ {
+  "id": "f2-L2-08",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "pass-by-value",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this program print?",
+  "code": "class Rectangle {\n    private double width, height;\n    public Rectangle(double w, double h) { width = w; height = h; }\n    public void setWidth(double w) { width = w; }\n    public double getWidth() { return width; }\n    public double findArea() { return width * height; }\n}\npublic class Main {\n    static void addOne(int n) { n++; }\n    static void grow(Rectangle r) { r.setWidth(r.getWidth() + 1); }\n    public static void main(String[] args) {\n        int x = 5;\n        Rectangle rect = new Rectangle(1.0, 1.0);\n        addOne(x);\n        grow(rect);\n        System.out.println(x + \" \" + rect.getWidth());\n    }\n}",
+  "options": [
+   "6 2.0",
+   "5 1.0",
+   "5 2.0",
+   "6 1.0"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Both arguments are copied. `addOne` increments its own copy of the int, so x stays 5. `grow` gets a copy of the reference, which points to the same Rectangle, so the change to its width (now 2.0) is visible in main."
+ },
+ {
+  "id": "f2-L2-09",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "pass-by-value",
+  "type": "single",
+  "gotcha": false,
+  "question": "The picture shows memory just before `swap` is called. What does the program print?",
+  "code": "class Rectangle {\n    private double width, height;\n    public Rectangle(double w, double h) { width = w; height = h; }\n    public void setWidth(double w) { width = w; }\n    public double getWidth() { return width; }\n    public double findArea() { return width * height; }\n}\npublic class Main {\n    static void swap(Rectangle a, Rectangle b) {\n        Rectangle t = a; a = b; b = t;\n    }\n    public static void main(String[] args) {\n        Rectangle r1 = new Rectangle(1.0, 1.0);\n        Rectangle r2 = new Rectangle(9.0, 9.0);\n        swap(r1, r2);\n        System.out.println(r1.getWidth() + \" \" + r2.getWidth());\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 120\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"m6k\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"m6b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"m6r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"m6g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"m6a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"m6y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"m6t\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L11,6 L0,12 z\" fill=\"#fff\" stroke=\"#222\"/></marker></defs><rect x=\"0\" y=\"0\" width=\"340\" height=\"120\" fill=\"#fff\"/><rect x=\"6\" y=\"8\" width=\"110\" height=\"86\" rx=\"4\" fill=\"#e7f0fd\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/><text x=\"14\" y=\"22\" font-size=\"11\" text-anchor=\"start\" fill=\"#1f6feb\" font-weight=\"bold\">main()</text><text x=\"52\" y=\"47.0\" font-size=\"12\" text-anchor=\"end\" fill=\"#222\" font-weight=\"bold\">r1</text><rect x=\"56\" y=\"32\" width=\"40\" height=\"22\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"76.0\" y=\"47.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@1</text><text x=\"52\" y=\"79.0\" font-size=\"12\" text-anchor=\"end\" fill=\"#222\" font-weight=\"bold\">r2</text><rect x=\"56\" y=\"64\" width=\"40\" height=\"22\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"76.0\" y=\"79.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@2</text><rect x=\"196\" y=\"10\" width=\"136\" height=\"40\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><rect x=\"196\" y=\"10\" width=\"136\" height=\"20\" rx=\"4\" fill=\"#f2f2f2\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"264.0\" y=\"24\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Rectangle @1</text><text x=\"202\" y=\"43\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">width = 1.0</text><rect x=\"196\" y=\"60\" width=\"136\" height=\"40\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><rect x=\"196\" y=\"60\" width=\"136\" height=\"20\" rx=\"4\" fill=\"#f2f2f2\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"264.0\" y=\"74\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Rectangle @2</text><text x=\"202\" y=\"93\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">width = 9.0</text><line x1=\"96\" y1=\"43\" x2=\"194\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m6k)\"/><line x1=\"96\" y1=\"75\" x2=\"194\" y2=\"80\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m6k)\"/><text x=\"170\" y=\"114\" font-size=\"11\" text-anchor=\"middle\" fill=\"#888\">memory just before swap(r1, r2)</text></svg>",
+  "options": [
+   "9.0 1.0",
+   "1.0 9.0",
+   "9.0 9.0",
+   "1.0 1.0"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`swap` receives copies of the two references, and only those local copies are exchanged. main's r1 and r2 still point to the same objects as before, and neither object was modified. Because Java passes by value, a method cannot re-point the caller's variables."
+ },
+ {
+  "id": "f2-L2-10",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "strings",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this program print?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        String typed = new String(\"yes\");\n        if (typed == \"yes\") System.out.print(\"A\");\n        else System.out.print(\"B\");\n        if (typed.equals(\"yes\")) System.out.print(\"C\");\n        else System.out.print(\"D\");\n        System.out.println();\n    }\n}",
+  "options": [
+   "BC",
+   "AC",
+   "AD",
+   "BD"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`new String(\"yes\")` always creates a new object, so `typed == \"yes\"` compares two different references and gives false (prints B). `equals` compares the characters and gives true (prints C). Use equals() whenever you compare text."
+ },
+ {
+  "id": "f2-L2-11",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "strings",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this program print?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        String s = \"OOP\";\n        String t = s;\n        s = s + \"!\";\n        t.toLowerCase();\n        System.out.println(t + \" \" + s + \" \" + (t == s));\n    }\n}",
+  "options": [
+   "oop OOP! false",
+   "OOP! OOP! true",
+   "OOP OOP! false",
+   "oop oop! false"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Strings are immutable. `s + \"!\"` builds a new String and re-points s to it, while t still refers to the original \"OOP\". `t.toLowerCase()` returns a new String that is thrown away, so t is unchanged. s and t now refer to different objects, so `==` is false."
+ },
+ {
+  "id": "f2-L2-12",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "The slides show that `countArea()` cannot call `findArea()`. A student tries to fix it by making `findArea()` static, as below. What happens now?",
+  "code": "public class Rectangle {\n    private double width = 2.0, height = 3.0;\n\n    public static double findArea() {\n        return width * height;\n    }\n    public static void countArea() {\n        findArea();\n    }\n}",
+  "options": [
+   "Still a compile error, now in findArea(): a static method cannot use the instance fields width and height",
+   "It compiles; findArea() uses the width and height of the most recently created Rectangle",
+   "It compiles and returns 0.0, because the fields have default values",
+   "It compiles but throws a NullPointerException when countArea() runs"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A static method has no receiver object, so `width` and `height` do not refer to any object's fields, and the compiler rejects them. Making findArea() static only moves the error. findArea() must stay an instance method, called on an object."
+ },
+ {
+  "id": "f2-L2-13",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "constructors",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Lamp` used to have no constructors, and `new Lamp()` compiled fine. The author then adds the constructor shown. What happens now?",
+  "code": "class Lamp {\n    private boolean on;\n    public Lamp(boolean start) { on = start; }  // newly added\n}\npublic class Room {\n    public static void main(String[] args) {\n        Lamp a = new Lamp(true);\n        Lamp b = new Lamp();\n    }\n}",
+  "options": [
+   "Both lines compile; b's `on` defaults to false",
+   "Both lines compile, but `new Lamp()` throws an exception at run time",
+   "Compile error at `new Lamp(true)`: constructors cannot take boolean parameters",
+   "Compile error at `new Lamp()`: Lamp no longer has a no-argument constructor"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Java supplies the default no-arg constructor only when a class declares no constructors. Once Lamp(boolean) is written, the default disappears. `new Lamp()` matches no constructor and does not compile. Adding `public Lamp() { }` would fix it."
+ },
+ {
+  "id": "f2-L2-14",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "composition",
+  "type": "single",
+  "gotcha": false,
+  "question": "The picture shows memory after the first two lines of `main`. What does the program print?",
+  "code": "class Course {\n    private int score;\n    Course(int s) { score = s; }\n    void setScore(int s) { score = s; }\n    int getScore() { return score; }\n}\nclass Student {\n    private Course course;\n    Student(Course c) { course = c; }\n    Course getCourse() { return course; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Student s1 = new Student(new Course(80));\n        Student s2 = new Student(s1.getCourse());\n        s2.getCourse().setScore(50);\n        System.out.println(s1.getCourse().getScore() + \" \" + s2.getCourse().getScore());\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"m7k\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"m7b\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#1f6feb\"/></marker><marker id=\"m7r\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"m7g\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#2da44e\"/></marker><marker id=\"m7a\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#bf8700\"/></marker><marker id=\"m7y\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker><marker id=\"m7t\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L11,6 L0,12 z\" fill=\"#fff\" stroke=\"#222\"/></marker></defs><rect x=\"0\" y=\"0\" width=\"340\" height=\"150\" fill=\"#fff\"/><text x=\"26\" y=\"29.0\" font-size=\"12\" text-anchor=\"end\" fill=\"#222\" font-weight=\"bold\">s1</text><rect x=\"30\" y=\"14\" width=\"40\" height=\"22\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"50.0\" y=\"29.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@S1</text><text x=\"26\" y=\"99.0\" font-size=\"12\" text-anchor=\"end\" fill=\"#222\" font-weight=\"bold\">s2</text><rect x=\"30\" y=\"84\" width=\"40\" height=\"22\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"50.0\" y=\"99.0\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@S2</text><rect x=\"96\" y=\"6\" width=\"110\" height=\"46\" rx=\"4\" fill=\"#e7f0fd\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/><text x=\"151\" y=\"22\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1f6feb\" font-weight=\"bold\">Student @S1</text><text x=\"104\" y=\"42\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">course</text><rect x=\"150\" y=\"30\" width=\"46\" height=\"18\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"173\" y=\"43\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@C</text><rect x=\"96\" y=\"76\" width=\"110\" height=\"46\" rx=\"4\" fill=\"#e7f0fd\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/><text x=\"151\" y=\"92\" font-size=\"11\" text-anchor=\"middle\" fill=\"#1f6feb\" font-weight=\"bold\">Student @S2</text><text x=\"104\" y=\"112\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">course</text><rect x=\"150\" y=\"100\" width=\"46\" height=\"18\" rx=\"4\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"173\" y=\"113\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">@C</text><line x1=\"70\" y1=\"25\" x2=\"94\" y2=\"25\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m7k)\"/><line x1=\"70\" y1=\"95\" x2=\"94\" y2=\"95\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m7k)\"/><rect x=\"238\" y=\"50\" width=\"96\" height=\"40\" rx=\"4\" fill=\"#e6f4ea\" stroke=\"#2da44e\" stroke-width=\"1.4\"/><text x=\"286\" y=\"66\" font-size=\"11\" text-anchor=\"middle\" fill=\"#2da44e\" font-weight=\"bold\">Course @C</text><text x=\"286\" y=\"82\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">score = 80</text><line x1=\"196\" y1=\"39\" x2=\"236\" y2=\"60\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m7k)\"/><line x1=\"196\" y1=\"109\" x2=\"236\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#m7k)\"/><text x=\"170\" y=\"144\" font-size=\"11\" text-anchor=\"middle\" fill=\"#888\">memory after the first two lines of main</text></svg>",
+  "options": [
+   "80 50",
+   "50 50",
+   "80 80",
+   "50 80"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Composition stores references. s2 was built with `s1.getCourse()`, so both Students hold the same Course object, and no second Course was ever created. Setting the score through s2 changes that one object, so both students report 50."
+ },
+ {
+  "id": "f2-L2-15",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this program print?",
+  "code": "class Config {\n    static int level = 1;\n    static void raise() { level++; }\n    int myLevel() { return level * 10; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Config a = new Config();\n        Config b = new Config();\n        Config.raise();\n        a.raise();\n        System.out.println(b.myLevel());\n    }\n}",
+  "options": [
+   "20",
+   "30",
+   "10",
+   "Compile error: an instance method cannot read a static field"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "There is one shared `level`. `Config.raise()` makes it 2, and `a.raise()` calls the same static method through a reference, making it 3. An instance method may use static fields freely, so b.myLevel() returns 3 * 10 = 30."
+ },
+ {
+  "id": "f2-L2-16",
+  "chapter": 2,
+  "level": 2,
+  "subtopic": "static",
+  "type": "single",
+  "gotcha": false,
+  "question": "A student forgets the word `static`, so `count` is now an **instance** variable. What does this print?",
+  "code": "class Counter {\n    int count = 0;\n    Counter() { count++; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Counter c1 = new Counter();\n        Counter c2 = new Counter();\n        Counter c3 = new Counter();\n        System.out.println(c1.count + \" \" + c3.count);\n    }\n}",
+  "options": [
+   "1 3",
+   "3 3",
+   "0 0",
+   "1 1"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Without static, every object gets its own `count`, which starts at 0 and is incremented once by its own constructor. Each object therefore ends at 1. To count all objects, the field has to be static so that there is one shared copy."
+ }
+]

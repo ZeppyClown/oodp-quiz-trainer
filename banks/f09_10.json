@@ -1,0 +1,1106 @@
+[
+ {
+  "id": "f9-L1-01",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "solid",
+  "type": "single",
+  "gotcha": false,
+  "question": "In SOLID, what does the **O** stand for?",
+  "options": [
+   "Open-Closed Principle: open for extension, closed for modification",
+   "Object Principle: everything should be an object",
+   "Overriding Principle: subclasses must override every method",
+   "Ownership Principle: each object owns its data"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "SOLID = Single Responsibility, **Open-Closed**, Liskov Substitution, Interface Segregation, Dependency Injection (slides' name). OCP says a module should be open for extension but closed for modification."
+ },
+ {
+  "id": "f9-L1-02",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "rotting design",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which of these is one of the slides' **symptoms of rotting design**?",
+  "options": [
+   "Encapsulation",
+   "Fragility",
+   "Cohesion",
+   "Polymorphism"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The slides list three symptoms: Rigidity, Fragility and Immobility. Encapsulation, cohesion and polymorphism are good qualities that help prevent rot."
+ },
+ {
+  "id": "f9-L1-03",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does **high cohesion** mean for a class?",
+  "options": [
+   "It depends on many other classes",
+   "It exposes all its fields as public",
+   "Its responsibilities are closely related: it does one thing and does it well",
+   "It sits at the top of a deep inheritance tree"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Cohesion measures how focused a class is. High cohesion means everything in the class serves one purpose. Depending on many classes describes high **coupling**, which is the opposite goal."
+ },
+ {
+  "id": "f9-L1-04",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "question": "Both designs have five classes; each line is a dependency. Which statement is correct?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 205\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"k910c925tri\" viewBox=\"0 0 14 14\" refX=\"13\" refY=\"7\" markerWidth=\"14\" markerHeight=\"14\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L13,7 L1,13 Z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker><marker id=\"k910c925op\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/></marker><marker id=\"k910c925opR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#d73a49\" stroke-width=\"1.4\"/></marker><marker id=\"k910c925opG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#2da44e\" stroke-width=\"1.4\"/></marker><marker id=\"k910c925opB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/></marker><marker id=\"k910c925fi\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#222\"/></marker><marker id=\"k910c925fiR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\"/></marker><marker id=\"k910c925fiG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\"/></marker><marker id=\"k910c925fiB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\"/></marker></defs><line x1=\"85\" y1=\"50\" x2=\"137\" y2=\"88\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"85\" y1=\"50\" x2=\"117\" y2=\"149\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"85\" y1=\"50\" x2=\"53\" y2=\"149\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"85\" y1=\"50\" x2=\"33\" y2=\"88\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"137\" y1=\"88\" x2=\"117\" y2=\"149\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"137\" y1=\"88\" x2=\"53\" y2=\"149\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"137\" y1=\"88\" x2=\"33\" y2=\"88\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"117\" y1=\"149\" x2=\"53\" y2=\"149\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"117\" y1=\"149\" x2=\"33\" y2=\"88\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><line x1=\"53\" y1=\"149\" x2=\"33\" y2=\"88\" stroke=\"#d73a49\" stroke-width=\"1.6\"/><rect x=\"68\" y=\"41\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#fdecee\" stroke=\"#d73a49\" stroke-width=\"1.3\"/><rect x=\"120\" y=\"79\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#fdecee\" stroke=\"#d73a49\" stroke-width=\"1.3\"/><rect x=\"100\" y=\"140\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#fdecee\" stroke=\"#d73a49\" stroke-width=\"1.3\"/><rect x=\"36\" y=\"140\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#fdecee\" stroke=\"#d73a49\" stroke-width=\"1.3\"/><rect x=\"16\" y=\"79\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#fdecee\" stroke=\"#d73a49\" stroke-width=\"1.3\"/><line x1=\"255\" y1=\"50\" x2=\"205\" y2=\"100\" stroke=\"#2da44e\" stroke-width=\"1.6\"/><line x1=\"255\" y1=\"50\" x2=\"305\" y2=\"100\" stroke=\"#2da44e\" stroke-width=\"1.6\"/><line x1=\"205\" y1=\"100\" x2=\"225\" y2=\"160\" stroke=\"#2da44e\" stroke-width=\"1.6\"/><line x1=\"305\" y1=\"100\" x2=\"285\" y2=\"160\" stroke=\"#2da44e\" stroke-width=\"1.6\"/><rect x=\"238\" y=\"41\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#e6f4ea\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><rect x=\"188\" y=\"91\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#e6f4ea\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><rect x=\"288\" y=\"91\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#e6f4ea\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><rect x=\"208\" y=\"151\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#e6f4ea\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><rect x=\"268\" y=\"151\" width=\"34\" height=\"18\" rx=\"0\" fill=\"#e6f4ea\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"85\" y=\"22\" font-size=\"13\" text-anchor=\"middle\" fill=\"#d73a49\" font-weight=\"bold\">Design P</text><text x=\"255\" y=\"22\" font-size=\"13\" text-anchor=\"middle\" fill=\"#2da44e\" font-weight=\"bold\">Design Q</text><text x=\"85\" y=\"194\" font-size=\"11\" text-anchor=\"middle\" fill=\"#d73a49\">5 classes</text><text x=\"255\" y=\"194\" font-size=\"11\" text-anchor=\"middle\" fill=\"#2da44e\">5 classes</text><line x1=\"170\" y1=\"30\" x2=\"170\" y2=\"185\" stroke=\"#ccc\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\"/></svg>",
+  "options": [
+   "P is better: more connections give more reuse, like a network",
+   "They are equally coupled because both have five classes",
+   "Q has lower cohesion because its classes have fewer links",
+   "Q is more loosely coupled, so a change to one class reaches fewer other classes"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Coupling is about dependencies between classes, so fewer links means looser coupling: a change has fewer paths to spread along. The slides stress that class design ≠ network design: more links is worse, not better."
+ },
+ {
+  "id": "f9-L1-05",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "rotting design",
+  "type": "single",
+  "gotcha": false,
+  "question": "\"Every change causes a cascade of subsequent changes in dependent modules.\" Which symptom of rotting design is this?",
+  "options": [
+   "Fragility",
+   "Immobility",
+   "Encapsulation",
+   "Rigidity"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rigidity is when software is hard to change even in simple ways, because one change ripples (snowballs) into many required changes. Fragility is about things *breaking* in unrelated places, not required follow-up edits."
+ },
+ {
+  "id": "f9-L1-06",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "rotting design",
+  "type": "single",
+  "gotcha": false,
+  "question": "A module cannot be reused in another project because it has too much baggage it depends upon. Which symptom is this?",
+  "options": [
+   "Rigidity",
+   "Fragility",
+   "Immobility",
+   "Low coupling"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Immobility is the inability to reuse software in other projects or other parts of the same project, because the module drags along everything it depends on (the slides' \"try unplug a cable?\" picture)."
+ },
+ {
+  "id": "f9-L1-07",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "srp",
+  "type": "single",
+  "gotcha": false,
+  "question": "The slides summarise the Single Responsibility Principle as \"SRP = ___\". What fills the blank?",
+  "options": [
+   "cohesion",
+   "coupling",
+   "inheritance",
+   "polymorphism"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "SRP says a class should have only one reason to change, which means its contents serve one purpose. That is exactly high cohesion, so the slides write SRP = cohesion."
+ },
+ {
+  "id": "f9-L1-08",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "lsp",
+  "type": "single",
+  "gotcha": false,
+  "question": "In design-by-contract terms, when is a derived class substitutable for its base class (LSP)?",
+  "options": [
+   "Its pre-conditions are no stronger and its post-conditions are no weaker than the base method's",
+   "Its pre-conditions are no weaker and its post-conditions are no stronger than the base method's",
+   "Its pre- and post-conditions are exactly the same as the base method's",
+   "Only its post-conditions matter; pre-conditions can be anything"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A subclass may **expect no more** (pre-conditions no stronger) and must **provide no less** (post-conditions no weaker). Then any client written for the base class still works. Accepting more or giving more is allowed."
+ },
+ {
+  "id": "f9-L1-09",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "isp",
+  "type": "single",
+  "gotcha": false,
+  "question": "\"Many client-specific interfaces are better than one general-purpose interface.\" Which principle is this?",
+  "options": [
+   "Single Responsibility Principle",
+   "Open-Closed Principle",
+   "Liskov Substitution Principle",
+   "Interface Segregation Principle"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "ISP says classes should not depend on interfaces they do not use, so fat interfaces should be split into small, client-specific ones."
+ },
+ {
+  "id": "f9-L1-10",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "dip",
+  "type": "single",
+  "gotcha": false,
+  "question": "Complete the slides' Dependency Injection Principle: \"High-level modules should not depend upon low-level modules. Both should depend upon ___.\"",
+  "options": [
+   "concrete classes",
+   "each other",
+   "abstractions",
+   "the main method"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Both the high-level module and the low-level detail should depend on an abstraction (an interface or abstract class). Then the detail can be swapped without touching the high-level module."
+ },
+ {
+  "id": "f9-L1-11",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "ocp",
+  "type": "single",
+  "gotcha": false,
+  "question": "According to the slides, what is **the key** to the Open-Closed Principle?",
+  "options": [
+   "Declaring every class `final` so nobody can modify it",
+   "Abstraction: clients use an abstract class or interface, and new behaviour comes from new subclasses",
+   "Putting all the cases into one big switch statement",
+   "Making all fields public so new code can reach them"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The slides say \"Abstraction is the key to the OCP.\" Code written against an abstract type can be extended with new subclasses without its source being edited. A growing switch is the thing OCP removes."
+ },
+ {
+  "id": "f9-L1-12",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "coupling & cohesion",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which of these **reduce** coupling between classes?",
+  "options": [
+   "Making fields public so other classes can read them directly",
+   "Having classes interact through an interface",
+   "Passing a dependency in through the constructor instead of creating it with `new` inside",
+   "Letting one class check another class's internal type code, like NASDAQ checking `displayType`"
+  ],
+  "answer": [
+   1,
+   2
+  ],
+  "explanation": "Interfaces and injected dependencies mean a class only knows an abstraction, not a concrete class or its internals. Public fields and checking another class's type code expose internals, which is tight coupling plus bad encapsulation (the slides' NASDAQ example)."
+ },
+ {
+  "id": "f9-L1-13",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "question": "The slides' redesigned Bank Account example has Client use `<<interface>>` types, as shown. What does interaction via interfaces promote?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 190\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"k910c926tri\" viewBox=\"0 0 14 14\" refX=\"13\" refY=\"7\" markerWidth=\"14\" markerHeight=\"14\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L13,7 L1,13 Z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker><marker id=\"k910c926op\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/></marker><marker id=\"k910c926opR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#d73a49\" stroke-width=\"1.4\"/></marker><marker id=\"k910c926opG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#2da44e\" stroke-width=\"1.4\"/></marker><marker id=\"k910c926opB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/></marker><marker id=\"k910c926fi\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#222\"/></marker><marker id=\"k910c926fiR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\"/></marker><marker id=\"k910c926fiG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\"/></marker><marker id=\"k910c926fiB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\"/></marker></defs><rect x=\"130\" y=\"8\" width=\"80\" height=\"20\" rx=\"0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"170.0\" y=\"22\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Client</text><rect x=\"95\" y=\"62\" width=\"150\" height=\"75\" rx=\"0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"170.0\" y=\"76\" font-size=\"10\" text-anchor=\"middle\" fill=\"#222\">&lt;&lt;interface&gt;&gt;</text><text x=\"170.0\" y=\"89\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Account</text><line x1=\"95\" y1=\"95\" x2=\"245\" y2=\"95\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"95\" y1=\"103\" x2=\"245\" y2=\"103\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"100\" y=\"117\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+getSummary()</text><text x=\"100\" y=\"131\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+getTransactionLog()</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"62\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c926op)\"/><text x=\"176\" y=\"50\" font-size=\"10\" text-anchor=\"start\" fill=\"#222\">&lt;&lt;use&gt;&gt;</text><rect x=\"20\" y=\"160\" width=\"130\" height=\"20\" rx=\"0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"85.0\" y=\"174\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">SavingsAccount</text><rect x=\"190\" y=\"160\" width=\"130\" height=\"20\" rx=\"0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"255.0\" y=\"174\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">CheckingAccount</text><line x1=\"85\" y1=\"160\" x2=\"150\" y2=\"137\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c926tri)\"/><line x1=\"255\" y1=\"160\" x2=\"190\" y2=\"137\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c926tri)\"/></svg>",
+  "options": [
+   "Loose coupling",
+   "Tight coupling",
+   "Low cohesion",
+   "Immobility"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Client depends only on the Account interface, not on SavingsAccount or CheckingAccount. A new account type can be added without changing Client, so the classes are loosely coupled."
+ },
+ {
+  "id": "f9-L1-14",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which class has the **lowest cohesion**?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 85\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"k910c927tri\" viewBox=\"0 0 14 14\" refX=\"13\" refY=\"7\" markerWidth=\"14\" markerHeight=\"14\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L13,7 L1,13 Z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker><marker id=\"k910c927op\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/></marker><marker id=\"k910c927opR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#d73a49\" stroke-width=\"1.4\"/></marker><marker id=\"k910c927opG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#2da44e\" stroke-width=\"1.4\"/></marker><marker id=\"k910c927opB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/></marker><marker id=\"k910c927fi\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#222\"/></marker><marker id=\"k910c927fiR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\"/></marker><marker id=\"k910c927fiG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\"/></marker><marker id=\"k910c927fiB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\"/></marker></defs><rect x=\"5\" y=\"10\" width=\"105\" height=\"76\" rx=\"0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"57.5\" y=\"24\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">TempConverter</text><line x1=\"5\" y1=\"30\" x2=\"110\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"5\" y1=\"38\" x2=\"110\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"10\" y=\"52\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+toCelsius()</text><text x=\"10\" y=\"66\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+toFahrenheit()</text><text x=\"10\" y=\"80\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+toKelvin()</text><rect x=\"117\" y=\"10\" width=\"105\" height=\"90\" rx=\"0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"169.5\" y=\"24\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Utils</text><line x1=\"117\" y1=\"30\" x2=\"222\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"117\" y1=\"38\" x2=\"222\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"122\" y=\"52\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+parseDate()</text><text x=\"122\" y=\"66\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+sendEmail()</text><text x=\"122\" y=\"80\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+computeTax()</text><text x=\"122\" y=\"94\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+drawChart()</text><rect x=\"229\" y=\"10\" width=\"105\" height=\"76\" rx=\"0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"281.5\" y=\"24\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Stack</text><line x1=\"229\" y1=\"30\" x2=\"334\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"229\" y1=\"38\" x2=\"334\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"234\" y=\"52\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+push()</text><text x=\"234\" y=\"66\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+pop()</text><text x=\"234\" y=\"80\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">+peek()</text></svg>",
+  "options": [
+   "TempConverter",
+   "Stack",
+   "They all have the same cohesion",
+   "Utils"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Utils mixes date parsing, email, tax and charts: four unrelated responsibilities, so four reasons to change. TempConverter and Stack each do one job, so they are highly cohesive. Utils is a small god class (SRP violation)."
+ },
+ {
+  "id": "f9-L2-01",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "srp",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which principle does `ReportManager` violate, and what is the fix?",
+  "code": "class ReportManager {\n    List<Sale> loadSalesFromDB(String month) { /* SQL */ }\n    double computeTotal(List<Sale> sales)    { /* maths */ }\n    byte[] renderPdf(double total)           { /* layout */ }\n    void emailToManager(byte[] pdf)          { /* SMTP */ }\n}",
+  "options": [
+   "OCP: it should use a switch on the report type",
+   "SRP: it has four reasons to change (database, maths, PDF layout, email); split it into four focused classes",
+   "LSP: it should extend a Report base class",
+   "ISP: it implements too many interfaces"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Loading data, calculating, rendering and emailing are four responsibilities, so a change in any of those areas (new DB, new PDF layout) forces this class to change. SRP fixes it by giving each job its own class, e.g. SalesRepository, TotalCalculator, PdfRenderer, Mailer."
+ },
+ {
+  "id": "f9-L2-02",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "ocp",
+  "type": "single",
+  "gotcha": false,
+  "question": "A new `Hexagon` shape must be supported. In which design must the existing `AreaCalculator` source be **modified**?",
+  "code": "// Design A\nclass AreaCalculator {\n    double area(Shape s) {\n        switch (s.type) {\n            case \"circle\": return 3.14 * s.r * s.r;\n            case \"square\": return s.side * s.side;\n            default: throw new IllegalArgumentException();\n        }\n    }\n}\n// Design B\ninterface Shape { double area(); }\nclass AreaCalculator {\n    double total(List<Shape> shapes) {\n        double t = 0;\n        for (Shape s : shapes) t += s.area();\n        return t;\n    }\n}",
+  "options": [
+   "Design A only: its switch needs a new case",
+   "Design B only: its loop needs a new branch",
+   "Both designs",
+   "Neither design"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Design A switches on a type code, so every new shape means editing AreaCalculator: it is not closed for modification (OCP violation). In Design B, Hexagon just implements Shape with its own area(); the loop calls `s.area()` polymorphically and never changes."
+ },
+ {
+  "id": "f9-L2-03",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "lsp",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this client print?",
+  "code": "class Rectangle {\n    protected int width, height;\n    public void setWidth(int w)  { width = w; }\n    public void setHeight(int h) { height = h; }\n    public int getArea() { return width * height; }\n}\nclass Square extends Rectangle {\n    public void setWidth(int w)  { width = w; height = w; }\n    public void setHeight(int h) { width = h; height = h; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Rectangle r = new Square();\n        r.setHeight(4);\n        r.setWidth(6);\n        System.out.println(r.getArea());\n    }\n}",
+  "options": [
+   "24",
+   "16",
+   "36",
+   "Compile error: Square cannot override setWidth"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Dynamic binding calls Square's setters. `setHeight(4)` makes both sides 4, then `setWidth(6)` makes both sides 6, so the area is 36. A client expecting a Rectangle would expect 4 × 6 = 24: Square is not substitutable, which is an LSP violation."
+ },
+ {
+  "id": "f9-L2-04",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "isp",
+  "type": "single",
+  "gotcha": false,
+  "question": "What happens when this runs, and what is the best design fix?",
+  "code": "import java.util.List;\ninterface Worker { void work(); void eat(); }\nclass Human implements Worker {\n    public void work() { System.out.println(\"Human works\"); }\n    public void eat()  { System.out.println(\"Human eats\"); }\n}\nclass Robot implements Worker {\n    public void work() { System.out.println(\"Robot works\"); }\n    public void eat()  { throw new UnsupportedOperationException(); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        for (Worker w : List.of(new Human(), new Robot())) w.eat();\n        System.out.println(\"lunch over\");\n    }\n}",
+  "options": [
+   "`Human eats` then `lunch over`: Robot's eat() is skipped",
+   "Compile error: an implementing method cannot throw an exception",
+   "`Human eats`, then an exception; fix it by catching the exception in main so Robot can stay a Worker",
+   "`Human eats` is printed, then an UnsupportedOperationException stops the program; split Worker into Workable and Eatable so Robot never has eat()"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Robot is forced to implement eat(), which it doesn't use, so it throws; the uncaught exception ends main before `lunch over`. This fat-interface smell is what ISP targets: split the interface so each class depends only on what it uses. Catching the exception only hides the bad design."
+ },
+ {
+  "id": "f9-L2-05",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "dip",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "interface Printer { void print(String doc); }\nclass PdfPrinter implements Printer {\n    public void print(String doc) { System.out.println(\"PDF: \" + doc); }\n}\nclass HtmlPrinter implements Printer {\n    public void print(String doc) { System.out.println(\"HTML: \" + doc); }\n}\nclass ReportService {\n    private final Printer printer;\n    ReportService(Printer printer) { this.printer = printer; }\n    void run() { printer.print(\"Q3 sales\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        new ReportService(new HtmlPrinter()).run();\n        new ReportService(new PdfPrinter()).run();\n    }\n}",
+  "options": [
+   "`HTML: Q3 sales` then `PDF: Q3 sales`",
+   "`PDF: Q3 sales` twice",
+   "Compile error: an interface type cannot be a constructor parameter",
+   "Nothing: run() only stores the printer"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "ReportService depends only on the Printer interface; the concrete printer is injected through the constructor, so each object uses the printer it was given. That is the DIP payoff: new output formats need no change to ReportService."
+ },
+ {
+  "id": "f9-L2-06",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "ocp",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Tricycle` was added later. What is printed, and which existing code had to be edited to support it?",
+  "code": "abstract class Transport { abstract double calFare(int km); }\nclass Bus extends Transport  { double calFare(int km) { return 1.0 + 0.1 * km; } }\nclass Taxi extends Transport { double calFare(int km) { return 3.0 + 0.5 * km; } }\n// added later:\nclass Tricycle extends Transport { double calFare(int km) { return 2.0 * km; } }\n\npublic class Main {\n    static double total(Transport[] trips, int km) {\n        double sum = 0;\n        for (Transport t : trips) sum += t.calFare(km);\n        return sum;\n    }\n    public static void main(String[] args) {\n        Transport[] trips = { new Bus(), new Taxi(), new Tricycle() };\n        System.out.println(total(trips, 10));\n    }\n}",
+  "options": [
+   "30.0; total() needed a new case for Tricycle",
+   "30.0; none of Transport, Bus, Taxi or total() was edited, only a new class was added",
+   "10.0; Tricycle's fare falls back to Transport's",
+   "Compile error: total() does not know about Tricycle"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Bus 2.0 + Taxi 8.0 + Tricycle 20.0 = 30.0. total() calls `t.calFare(km)` on the abstract type, and dynamic binding picks each subclass's version. The design is open for extension (new subclass) and closed for modification (no existing code edited): OCP."
+ },
+ {
+  "id": "f9-L2-07",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "rotting design",
+  "type": "single",
+  "gotcha": false,
+  "question": "Renaming one field in the `Customer` class forces the team to edit 14 other classes before the system compiles again, and each of those edits forces more. Which symptom is this?",
+  "options": [
+   "Fragility",
+   "Immobility",
+   "Rigidity",
+   "High cohesion"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A simple change that cascades into a chain of required changes in dependent modules is Rigidity (the ripple/snowball effect). Fragility would be the system *breaking* in unrelated places after a change; Immobility is about not being able to reuse a module."
+ },
+ {
+  "id": "f9-L2-08",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "lsp",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Base method `Account.withdraw(amt)` has pre-condition `0 < amt <= balance` and post-condition \"balance is reduced by amt\". Which subclass overrides **violate** LSP?",
+  "options": [
+   "Accepts any `amt` up to balance + 500 (allows an overdraft), and reduces the balance by amt",
+   "Requires `amt <= 100` as well, and throws an exception otherwise",
+   "Reduces the balance by amt and also writes a log entry",
+   "Sometimes returns without reducing the balance"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "A subclass may not **expect more** (stronger pre-condition: rejecting 150 that the base accepts) or **provide less** (weaker post-condition: not reducing the balance). Accepting more input (weaker pre-condition) or doing extra work on top of the promise (stronger post-condition) is fine."
+ },
+ {
+  "id": "f9-L2-09",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "isp",
+  "type": "single",
+  "gotcha": false,
+  "question": "A new method `dive()` is added to `IAnimal`. Assume it is an ordinary abstract interface method. Which classes must now be edited for the code to compile?",
+  "diagram": "classDiagram\nclass IAnimal {\n<<interface>>\n+fly() void\n+run() void\n+swim() void\n}\nIAnimal <|.. Tiger\nIAnimal <|.. Dolphin\nIAnimal <|.. Goose",
+  "options": [
+   "Only Dolphin, because only dolphins dive",
+   "None: unused interface methods are ignored",
+   "Only IAnimal itself",
+   "Tiger, Dolphin and Goose: every implementer must add dive(), even those that can't dive"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A class implementing an interface must implement every abstract method, or it fails to compile. A fat interface forces changes on all implementers, even unrelated ones. With ISP you would add a separate IDiveable that only Dolphin implements. (A Java 8 `default` method would avoid the compile error, but it is still a fat interface.)"
+ },
+ {
+  "id": "f9-L2-10",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "srp",
+  "type": "single",
+  "gotcha": false,
+  "question": "Before HR's edit, `calculatePay()` returned 475. HR changed the helper to `Math.min(hours, 44)` for their report. What does the program print now, and which principle explains the surprise?",
+  "code": "class Employee {\n    private int hours = 45;\n    // shared helper used by BOTH departments\n    private int regularHours() {\n        return Math.min(hours, 44);   // HR changed 40 -> 44\n    }\n    // owned by Finance: overtime paid at 15/h\n    int calculatePay() {\n        return regularHours() * 10 + (hours - regularHours()) * 15;\n    }\n    // owned by HR\n    int reportHours() { return regularHours(); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(new Employee().calculatePay());\n    }\n}",
+  "options": [
+   "455; SRP: one class serves two departments, so HR's change silently altered Finance's pay",
+   "475; changing a private helper cannot affect calculatePay()",
+   "455; OCP: regularHours() should have been abstract",
+   "440; LSP: the helper broke its contract"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Now regularHours() is 44, so pay = 44×10 + 1×15 = 455 instead of 40×10 + 5×15 = 475. Employee has two reasons to change (Finance's pay rules and HR's reporting), so the responsibilities are coupled through the shared helper. SRP: give each its own class."
+ },
+ {
+  "id": "f9-L2-11",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "dip",
+  "type": "single",
+  "gotcha": false,
+  "question": "Inside `OrderService` the code says `db = new MySQLDatabase();`. The team wants to unit-test `OrderService` with an in-memory `FakeDatabase`. What is true of this design?",
+  "diagram": "classDiagram\nclass OrderService {\n-db MySQLDatabase\n+placeOrder(Order o) void\n}\nclass MySQLDatabase {\n+save(Order o) void\n}\nOrderService --> MySQLDatabase : creates with new",
+  "options": [
+   "They can pass a FakeDatabase to OrderService's constructor without any change",
+   "They must edit OrderService's source, because it creates its own concrete database; depending on an injected Database interface would avoid this",
+   "They only need to make MySQLDatabase abstract",
+   "Testing is impossible in Java whenever a class uses another class"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The high-level OrderService depends directly on the low-level detail MySQLDatabase and even chooses it itself, so swapping it means modifying OrderService. DIP: make both depend on a Database abstraction and inject the concrete one from outside (constructor injection)."
+ },
+ {
+  "id": "f9-L2-12",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "ocp",
+  "type": "single",
+  "gotcha": false,
+  "question": "This if/else chain has been copied into 6 different classes. Adding a `Triangle` is requested. Which principle does the design violate, and which symptom will the team feel?",
+  "code": "double area(Object s) {\n    if (s instanceof Circle) {\n        Circle c = (Circle) s;\n        return Math.PI * c.r * c.r;\n    } else if (s instanceof Square) {\n        Square q = (Square) s;\n        return q.side * q.side;\n    }\n    throw new IllegalArgumentException();\n}",
+  "options": [
+   "LSP; Immobility: Triangle cannot be reused",
+   "ISP; Fragility: Circle will break",
+   "OCP; Rigidity: one new type cascades into edits in 6 places",
+   "SRP; Immobility: the chain cannot be moved"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Branching on the concrete type means the code is not closed for modification: every new shape forces edits wherever the chain appears, a cascade of changes (Rigidity). The OCP fix is an abstract `area()` that each shape overrides."
+ },
+ {
+  "id": "f9-L2-13",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "question": "A `PhoneDisplay` is now needed. With this design, which **existing** classes must have their code edited?",
+  "diagram": "classDiagram\nclass Client\nclass AccountInfoDisplay {\n<<interface>>\n+format(Account a) View\n}\nclass ATMDisplay\nclass WebDisplay\nClient ..> AccountInfoDisplay : uses\nAccountInfoDisplay <|.. ATMDisplay\nAccountInfoDisplay <|.. WebDisplay",
+  "options": [
+   "Client, which must add a formatForPhone() call",
+   "AccountInfoDisplay, which needs a formatForPhone() method",
+   "ATMDisplay and WebDisplay, which need a phone case",
+   "None of them: add a new PhoneDisplay class that implements AccountInfoDisplay"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Client depends only on the interface and calls `format(...)`; any new implementation plugs in. Interaction via interfaces gives loose coupling and makes the design open for extension. The slides' earlier version (one class with formatForATM, formatForWeb...) would have needed editing."
+ },
+ {
+  "id": "f9-L2-14",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "lsp",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Square extends Rectangle` breaks clients that set width and height separately. Which redesign actually removes the LSP violation?",
+  "options": [
+   "Keep the inheritance and add `if (r instanceof Square)` checks in every client",
+   "Override getArea() in Square to return width × width",
+   "Make Rectangle and Square separate classes that both implement a Shape interface with getArea(), with no shared setWidth/setHeight",
+   "Keep the inheritance but document that clients must not call setHeight on a Square"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The problem is that Square inherits a promise (width and height change independently) that it cannot keep. Removing the is-a relationship and sharing only what both honour (getArea) fixes it. instanceof checks make clients depend on subclasses, which also breaks OCP."
+ },
+ {
+  "id": "f10-L1-01",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the `<>` do in this line?",
+  "code": "List<String> names = new ArrayList<>();",
+  "options": [
+   "It is the diamond operator: the compiler infers the type argument (String) from the left-hand side",
+   "It creates a raw ArrayList with no type checking",
+   "It lets the list hold elements of any type",
+   "It creates an empty list that can never grow"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The diamond operator (Java 7) means \"same type arguments as the declared type\", so this is `new ArrayList<String>()`. The list is still fully type-checked; it is not a raw type."
+ },
+ {
+  "id": "f10-L1-02",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which interface does `ArrayList` implement?",
+  "options": [
+   "Map",
+   "List",
+   "Set",
+   "Deque"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "ArrayList implements List (and so Collection and Iterable): ordered by index, duplicates allowed. Map is a separate hierarchy; HashSet/TreeSet implement Set; LinkedList and ArrayDeque implement Deque."
+ },
+ {
+  "id": "f10-L1-03",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "lambdas",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which is a valid Java lambda expression (assume a suitable functional interface)?",
+  "options": [
+   "`(a, b) => a + b`",
+   "`a, b -> a + b`",
+   "`(a, b) -> a + b`",
+   "`(a, b) -> return a + b;`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Java uses the arrow `->`, and two or more parameters must be in brackets. An expression body has no `return`; `return` is only used inside a block body `{ return a + b; }`."
+ },
+ {
+  "id": "f10-L1-04",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which of these is a **terminal** stream operation?",
+  "options": [
+   "`filter()`",
+   "`map()`",
+   "`sorted()`",
+   "`collect()`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Terminal operations (collect, forEach, reduce, count) end the pipeline and produce a result. filter, map and sorted are intermediate: each returns another Stream and runs lazily."
+ },
+ {
+  "id": "f10-L1-05",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "enhanced switch",
+  "type": "single",
+  "gotcha": false,
+  "question": "Inside a switch **expression**, which keyword returns a value from a block `{ ... }` case?",
+  "options": [
+   "`return`",
+   "`break`",
+   "`default`",
+   "`yield`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "In `case 'A' -> { System.out.println(\"Excellent\"); yield 100; }`, `yield` gives the block's value to the switch expression. `return` would try to return from the whole method."
+ },
+ {
+  "id": "f10-L1-06",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "lambdas",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is a **functional interface**?",
+  "options": [
+   "An interface with exactly one abstract method, which a lambda can implement",
+   "An interface whose methods are all default methods",
+   "An interface with no methods at all, like Serializable",
+   "Any interface whose methods are all static"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A lambda supplies the body of a single abstract method, so its target must be an interface with exactly one (e.g. Runnable, Consumer). An interface with no methods is a marker interface (slides: Serializable)."
+ },
+ {
+  "id": "f10-L1-07",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "java evolution",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which Java version introduced lambda expressions, the Streams API and default methods?",
+  "options": [
+   "Java 5",
+   "Java 7",
+   "Java 8",
+   "Java 12"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Slides' summary: Java 5 brought generics, collections enhancements and the enhanced for loop; Java 8 brought lambdas, streams and default methods; Java 12+ the enhanced switch. Java 7 added the diamond operator."
+ },
+ {
+  "id": "f10-L1-08",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is the main benefit of generics such as `List<String>` over a raw `List`?",
+  "options": [
+   "Programs run faster because the type is checked at run time",
+   "Type errors are caught at compile time, and no cast is needed when reading elements",
+   "Collections can store primitives such as `int` directly",
+   "ClassCastException is moved from compile time to run time"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Generics let the compiler reject `list.add(2)` on a List<String> and make `get()` return String. Without them, a wrong cast compiles and throws ClassCastException at run time. Primitives still need wrapper types (Integer)."
+ },
+ {
+  "id": "f10-L1-09",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the Collections Framework shown, which of these is **not** a subtype of `Collection`?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 300\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"k910c1028tri\" viewBox=\"0 0 14 14\" refX=\"13\" refY=\"7\" markerWidth=\"14\" markerHeight=\"14\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L13,7 L1,13 Z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker><marker id=\"k910c1028op\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1028opR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#d73a49\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1028opG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#2da44e\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1028opB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1028fi\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#222\"/></marker><marker id=\"k910c1028fiR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\"/></marker><marker id=\"k910c1028fiG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\"/></marker><marker id=\"k910c1028fiB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\"/></marker></defs><rect x=\"80\" y=\"8\" width=\"80\" height=\"22\" rx=\"3\" fill=\"#d1f0d9\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"120.0\" y=\"23\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Iterable</text><rect x=\"80\" y=\"52\" width=\"80\" height=\"22\" rx=\"3\" fill=\"#d1f0d9\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"120.0\" y=\"67\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Collection</text><rect x=\"8\" y=\"102\" width=\"64\" height=\"22\" rx=\"3\" fill=\"#d1f0d9\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"40.0\" y=\"117\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">List</text><rect x=\"88\" y=\"102\" width=\"64\" height=\"22\" rx=\"3\" fill=\"#d1f0d9\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"120.0\" y=\"117\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Queue</text><rect x=\"168\" y=\"102\" width=\"64\" height=\"22\" rx=\"3\" fill=\"#d1f0d9\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"200.0\" y=\"117\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Set</text><rect x=\"258\" y=\"52\" width=\"74\" height=\"22\" rx=\"3\" fill=\"#d1f0d9\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"295.0\" y=\"67\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\" font-weight=\"bold\">Map</text><rect x=\"4\" y=\"160\" width=\"70\" height=\"22\" rx=\"3\" fill=\"#ffe2c6\" stroke=\"#bf8700\" stroke-width=\"1.3\"/><text x=\"39.0\" y=\"175\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">ArrayList</text><rect x=\"80\" y=\"160\" width=\"76\" height=\"22\" rx=\"3\" fill=\"#ffe2c6\" stroke=\"#bf8700\" stroke-width=\"1.3\"/><text x=\"118.0\" y=\"175\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">LinkedList</text><rect x=\"80\" y=\"214\" width=\"92\" height=\"22\" rx=\"3\" fill=\"#ffe2c6\" stroke=\"#bf8700\" stroke-width=\"1.3\"/><text x=\"126.0\" y=\"229\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">PriorityQueue</text><rect x=\"168\" y=\"160\" width=\"64\" height=\"22\" rx=\"3\" fill=\"#ffe2c6\" stroke=\"#bf8700\" stroke-width=\"1.3\"/><text x=\"200.0\" y=\"175\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">HashSet</text><rect x=\"258\" y=\"160\" width=\"74\" height=\"22\" rx=\"3\" fill=\"#ffe2c6\" stroke=\"#bf8700\" stroke-width=\"1.3\"/><text x=\"295.0\" y=\"175\" font-size=\"11\" text-anchor=\"middle\" fill=\"#222\">HashMap</text><line x1=\"120\" y1=\"52\" x2=\"120\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.3\" marker-end=\"url(#k910c1028tri)\"/><line x1=\"40\" y1=\"102\" x2=\"40\" y2=\"88\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"120\" y1=\"102\" x2=\"120\" y2=\"88\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"200\" y1=\"102\" x2=\"200\" y2=\"88\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"40\" y1=\"88\" x2=\"200\" y2=\"88\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"120\" y1=\"88\" x2=\"120\" y2=\"74\" stroke=\"#222\" stroke-width=\"1.3\" marker-end=\"url(#k910c1028tri)\"/><line x1=\"39\" y1=\"160\" x2=\"34\" y2=\"124\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c1028tri)\"/><line x1=\"105\" y1=\"160\" x2=\"46\" y2=\"124\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c1028tri)\"/><line x1=\"130\" y1=\"160\" x2=\"118\" y2=\"124\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c1028tri)\"/><line x1=\"166\" y1=\"214\" x2=\"148\" y2=\"124\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c1028tri)\"/><line x1=\"200\" y1=\"160\" x2=\"200\" y2=\"124\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c1028tri)\"/><line x1=\"295\" y1=\"160\" x2=\"295\" y2=\"74\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c1028tri)\"/><rect x=\"4\" y=\"250\" width=\"332\" height=\"46\" rx=\"0\" fill=\"#fafafa\" stroke=\"#ddd\" stroke-width=\"1.3\"/><rect x=\"12\" y=\"258\" width=\"26\" height=\"14\" rx=\"0\" fill=\"#d1f0d9\" stroke=\"#2da44e\" stroke-width=\"1.3\"/><text x=\"42\" y=\"269\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">interface</text><rect x=\"12\" y=\"277\" width=\"26\" height=\"14\" rx=\"0\" fill=\"#ffe2c6\" stroke=\"#bf8700\" stroke-width=\"1.3\"/><text x=\"42\" y=\"288\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">class</text><line x1=\"110\" y1=\"266\" x2=\"140\" y2=\"266\" stroke=\"#222\" stroke-width=\"1.3\" marker-end=\"url(#k910c1028tri)\"/><text x=\"146\" y=\"270\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">extends</text><line x1=\"110\" y1=\"285\" x2=\"140\" y2=\"285\" stroke=\"#222\" stroke-width=\"1.3\" stroke-dasharray=\"5,3\" marker-end=\"url(#k910c1028tri)\"/><text x=\"146\" y=\"289\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">implements</text></svg>",
+  "options": [
+   "List",
+   "Set",
+   "Queue",
+   "Map"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "List, Queue and Set all extend Collection. Map is its own hierarchy: it stores key→value pairs, so it can't offer Collection's `add(element)`."
+ },
+ {
+  "id": "f10-L1-10",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "enhanced for",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which is the correct enhanced for loop over a `List<String> names`?",
+  "options": [
+   "`for (names : String s)`",
+   "`for (String s : names)`",
+   "`for (String s in names)`",
+   "`foreach (String s : names)`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The syntax is `for (Type variable : collection)`. Read the colon as \"in\". Java has no `in` keyword and no `foreach` keyword."
+ },
+ {
+  "id": "f10-L1-11",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "default methods",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is a default method in an interface?",
+  "options": [
+   "An abstract method that every implementing class must override",
+   "A static helper method that cannot be overridden",
+   "A method with a body, marked `default`, so a method can be added to an interface without breaking existing implementing classes",
+   "The interface's constructor"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Default methods (Java 8) have an implementation that implementers inherit, so old classes still compile when the interface grows. They can be overridden. Static interface methods are the ones that can't be."
+ },
+ {
+  "id": "f10-L1-12",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": false,
+  "question": "Given this class hierarchy, a parameter of type `List<? super Fruit>` accepts lists of which element types?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 200\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"k910c1029tri\" viewBox=\"0 0 14 14\" refX=\"13\" refY=\"7\" markerWidth=\"14\" markerHeight=\"14\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L13,7 L1,13 Z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/></marker><marker id=\"k910c1029op\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1029opR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#d73a49\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1029opG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#2da44e\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1029opB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M1,1 L9,5 L1,9\" fill=\"none\" stroke=\"#1f6feb\" stroke-width=\"1.4\"/></marker><marker id=\"k910c1029fi\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#222\"/></marker><marker id=\"k910c1029fiR\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\"/></marker><marker id=\"k910c1029fiG\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\"/></marker><marker id=\"k910c1029fiB\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"9\" markerHeight=\"9\" orient=\"auto\" markerUnits=\"userSpaceOnUse\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\"/></marker></defs><line x1=\"170\" y1=\"39\" x2=\"170\" y2=\"56\" stroke=\"#666\" stroke-width=\"1.3\" marker-end=\"url(#k910c1029fi)\"/><line x1=\"170\" y1=\"84\" x2=\"170\" y2=\"101\" stroke=\"#666\" stroke-width=\"1.3\" marker-end=\"url(#k910c1029fi)\"/><line x1=\"170\" y1=\"129\" x2=\"110\" y2=\"151\" stroke=\"#666\" stroke-width=\"1.3\" marker-end=\"url(#k910c1029fi)\"/><line x1=\"170\" y1=\"129\" x2=\"230\" y2=\"151\" stroke=\"#666\" stroke-width=\"1.3\" marker-end=\"url(#k910c1029fi)\"/><ellipse cx=\"170\" cy=\"25\" rx=\"38\" ry=\"14\" fill=\"#fff\" stroke=\"#222\"/><text x=\"170\" y=\"29\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Object</text><ellipse cx=\"170\" cy=\"70\" rx=\"38\" ry=\"14\" fill=\"#fff\" stroke=\"#222\"/><text x=\"170\" y=\"74\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Food</text><ellipse cx=\"170\" cy=\"115\" rx=\"38\" ry=\"14\" fill=\"#fff\" stroke=\"#222\"/><text x=\"170\" y=\"119\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Fruit</text><ellipse cx=\"110\" cy=\"165\" rx=\"38\" ry=\"14\" fill=\"#fff\" stroke=\"#222\"/><text x=\"110\" y=\"169\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Apple</text><ellipse cx=\"230\" cy=\"165\" rx=\"38\" ry=\"14\" fill=\"#fff\" stroke=\"#222\"/><text x=\"230\" y=\"169\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Banana</text><text x=\"10\" y=\"195\" font-size=\"11\" text-anchor=\"start\" fill=\"#555\">arrows point from superclass to subclass</text></svg>",
+  "options": [
+   "Fruit, Food or Object",
+   "Fruit, Apple or Banana",
+   "Only Fruit",
+   "Any type at all"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`? super Fruit` is a lower bound: Fruit or any **super**type of it. That makes it safe to add a Fruit (or Apple). `? extends Fruit` would be Fruit, Apple or Banana."
+ },
+ {
+  "id": "f10-L1-13",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "question": "The slides say streams use **lazy evaluation**. What does that mean?",
+  "options": [
+   "Streams process elements only when the CPU is idle",
+   "Each operation finishes the whole list before the next starts",
+   "Streams cache their results so they can be reused",
+   "Intermediate operations don't run until a terminal operation is called"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "filter/map/sorted only describe the pipeline. Work happens when a terminal operation (collect, forEach, count, ...) pulls elements through. A stream can be consumed only once."
+ },
+ {
+  "id": "f10-L1-14",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "enhanced switch",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which statements about the enhanced (arrow) switch are true?",
+  "options": [
+   "Every arrow case must end with `break`",
+   "There is no fall-through between arrow cases",
+   "One case can have several labels, e.g. `case 'A', 'B' ->`",
+   "A switch can be used as an expression that produces a value"
+  ],
+  "answer": [
+   1,
+   2,
+   3
+  ],
+  "explanation": "The slides list the benefits: no fall-through, expression support, and concise code with multiple labels per case. Because only the matching case runs, no `break` is needed."
+ },
+ {
+  "id": "f10-L2-01",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this stream pipeline print?",
+  "code": "import java.util.*;\nimport java.util.stream.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<Integer> nums = List.of(5, 3, 8, 1, 9, 2);\n        List<Integer> out = nums.stream()\n            .filter(n -> n > 2)\n            .map(n -> n * 10)\n            .sorted()\n            .collect(Collectors.toList());\n        System.out.println(out);\n    }\n}",
+  "options": [
+   "[30, 50, 80, 90]",
+   "[50, 30, 80, 90]",
+   "[10, 20, 30, 50, 80, 90]",
+   "[3, 5, 8, 9]"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "filter keeps 5, 3, 8, 9 (drops 1 and 2); map makes 50, 30, 80, 90; sorted puts them in natural order; collect gathers a List."
+ },
+ {
+  "id": "f10-L2-02",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "enhanced switch",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this print for `n = 3`?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        int n = 3;\n        switch (n) {\n            case 2: System.out.print(\"two \");\n            case 3: System.out.print(\"three \");\n            case 4: System.out.print(\"four \");\n            default: System.out.print(\"other \");\n        }\n        System.out.println(\"|\");\n        switch (n) {\n            case 2 -> System.out.print(\"two \");\n            case 3 -> System.out.print(\"three \");\n            case 4 -> System.out.print(\"four \");\n            default -> System.out.print(\"other \");\n        }\n        System.out.println(\"|\");\n    }\n}",
+  "options": [
+   "`three |` then `three |`",
+   "`three four other |` then `three |`",
+   "`three four other |` then `three four other |`",
+   "`three |` then `three four other |`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The old colon form has no `break`, so after matching case 3 it falls through and runs case 4 and default too. The arrow form never falls through: only the matching case runs."
+ },
+ {
+  "id": "f10-L2-03",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "default methods",
+  "type": "single",
+  "gotcha": false,
+  "question": "`SmartPhone` implements two interfaces that both have a default `snap()`, and does not override it. What happens?",
+  "code": "interface Camera { default String snap() { return \"Camera snap\"; } }\ninterface Phone  { default String snap() { return \"Phone snap\"; } }\nclass SmartPhone implements Camera, Phone { }\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(new SmartPhone().snap());\n    }\n}",
+  "diagram": "classDiagram\nclass Camera {\n<<interface>>\n+snap() String\n}\nclass Phone {\n<<interface>>\n+snap() String\n}\nCamera <|.. SmartPhone\nPhone <|.. SmartPhone",
+  "options": [
+   "Compile error: SmartPhone must override snap(); inside it, it may call Camera.super.snap()",
+   "Prints `Camera snap`: the first interface listed wins",
+   "Prints `Phone snap`: the last interface listed wins",
+   "Compiles, but throws an exception at run time because the call is ambiguous"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Java won't guess between two unrelated defaults with the same signature, so the class does not compile until it overrides the method. That is the diamond conflict rule from the slides' `class C implements A, B` example."
+ },
+ {
+  "id": "f10-L2-04",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this generic method return for each call?",
+  "code": "import java.util.List;\npublic class Main {\n    static <T extends Comparable<T>> T best(List<T> items) {\n        T best = items.get(0);\n        for (T x : items)\n            if (x.compareTo(best) > 0) best = x;\n        return best;\n    }\n    public static void main(String[] args) {\n        System.out.println(best(List.of(\"pear\", \"apple\", \"fig\")));\n        System.out.println(best(List.of(4, 11, 7)));\n    }\n}",
+  "options": [
+   "`apple` then `4`",
+   "`fig` then `7`",
+   "`pear` then `11`",
+   "Compile error: T has no compareTo method"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The bound `T extends Comparable<T>` lets the method call compareTo on a T. It keeps the largest: Strings compare alphabetically (pear > fig > apple), Integers numerically (11). T is inferred as String, then Integer."
+ },
+ {
+  "id": "f10-L2-05",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "import java.util.List;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> names = List.of(\"Ann\", \"Bob\");\n        names.stream()\n             .filter(n -> { System.out.println(\"check \" + n); return true; })\n             .map(String::toUpperCase);\n        System.out.println(\"done\");\n    }\n}",
+  "options": [
+   "`check Ann`, `check Bob`, then `done`",
+   "`check Ann` and `check Bob` only",
+   "Compile error: a stream must end with a terminal operation",
+   "`done` only"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "There is no terminal operation, so the lazy pipeline never runs and the filter lambda is never called. It is legal Java (the stream is just discarded). Adding `.count()` or `.forEach(...)` would trigger the checks."
+ },
+ {
+  "id": "f10-L2-06",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "import java.util.List;\npublic class Main {\n    public static void main(String[] args) {\n        List.of(\"Al\", \"Bob\", \"Cy\").stream()\n            .filter(s -> { System.out.print(\"f:\" + s + \" \"); return s.length() < 3; })\n            .forEach(s -> System.out.print(\"e:\" + s + \" \"));\n    }\n}",
+  "options": [
+   "`f:Al f:Bob f:Cy e:Al e:Cy`",
+   "`f:Al e:Al f:Bob f:Cy e:Cy`",
+   "`f:Al e:Al f:Bob e:Bob f:Cy e:Cy`",
+   "`e:Al e:Cy`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Streams pass each element through the whole pipeline before taking the next one. Al passes the filter and reaches forEach; Bob is filtered out (length 3); Cy passes. filter still runs for every element."
+ },
+ {
+  "id": "f10-L2-07",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "enhanced for",
+  "type": "single",
+  "gotcha": false,
+  "question": "What happens when this runs?",
+  "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> list = new ArrayList<>(List.of(\"Apple\", \"Banana\", \"Cherry\"));\n        for (String f : list) {\n            if (f.equals(\"Apple\")) list.remove(f);\n        }\n        System.out.println(list);\n    }\n}",
+  "options": [
+   "`[Banana, Cherry]` is printed",
+   "`[Apple, Banana, Cherry]` is printed",
+   "A ConcurrentModificationException is thrown",
+   "Compile error: remove() can't be called inside a for-each loop"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The enhanced for loop uses a hidden Iterator. Changing the list with `list.remove()` behind its back makes the next `next()` throw ConcurrentModificationException. Slides' rule: remove with `iterator.remove()` (or use `list.removeIf(...)`)."
+ },
+ {
+  "id": "f10-L2-08",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "lambdas",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "import java.util.*;\nimport java.util.function.*;\npublic class Main {\n    public static void main(String[] args) {\n        Function<String, Integer> len = String::length;\n        BinaryOperator<Integer> bigger = Math::max;\n        Supplier<List<String>> maker = ArrayList::new;\n        List<String> l = maker.get();\n        l.add(\"lambda\");\n        System.out.println(bigger.apply(len.apply(l.get(0)), 4));\n    }\n}",
+  "options": [
+   "4",
+   "lambda",
+   "Compile error: method references can't be stored in variables",
+   "6"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Each method reference is a short lambda: `String::length` is s -> s.length(), `Math::max` is (a, b) -> Math.max(a, b), `ArrayList::new` is () -> new ArrayList<>(). So the result is max(\"lambda\".length(), 4) = max(6, 4) = 6."
+ },
+ {
+  "id": "f10-L2-09",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "generics",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which marked calls compile?",
+  "code": "import java.util.*;\npublic class Main {\n    static void fill(List<? super Integer> list) {\n        list.add(1);\n        list.add(2);\n    }\n    public static void main(String[] args) {\n        fill(new ArrayList<Integer>()); // (1)\n        fill(new ArrayList<Number>());  // (2)\n        fill(new ArrayList<Object>());  // (3)\n        fill(new ArrayList<Double>());  // (4)\n    }\n}",
+  "diagram": "classDiagram\nObject <|-- Number\nNumber <|-- Integer\nNumber <|-- Double",
+  "options": [
+   "(1) `ArrayList<Integer>`",
+   "(2) `ArrayList<Number>`",
+   "(3) `ArrayList<Object>`",
+   "(4) `ArrayList<Double>`"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "`? super Integer` accepts a list of Integer or any supertype (Number, Object), all of which can safely hold the Integers that fill() adds. A List<Double> can't hold an Integer, so call (4) is a compile error."
+ },
+ {
+  "id": "f10-L2-10",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Map<String, Integer> stock = new HashMap<>();\n        stock.put(\"apple\", 5);\n        stock.put(\"pear\", 2);\n        stock.put(\"apple\", 9);\n        System.out.println(stock.size() + \" \" + stock.get(\"apple\")\n                           + \" \" + stock.get(\"kiwi\"));\n    }\n}",
+  "options": [
+   "`2 9 null`",
+   "`3 5 null`",
+   "`3 9 0`",
+   "`2 14 null`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Map keys are unique: putting \"apple\" again replaces 5 with 9 instead of adding a third entry, so size is 2. `get` with a missing key returns null; it does not throw or return 0."
+ },
+ {
+  "id": "f10-L2-11",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> list = new ArrayList<>();\n        Set<String> set = new HashSet<>();\n        for (String w : \"to be or not to be\".split(\" \")) {\n            list.add(w);\n            set.add(w);\n        }\n        System.out.println(list.size() + \" \" + set.size() + \" \" + set.add(\"or\"));\n    }\n}",
+  "options": [
+   "`6 6 true`",
+   "`6 4 false`",
+   "`4 4 false`",
+   "`6 4 true`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A List keeps duplicates (all 6 words). A Set ignores them: {to, be, or, not} has 4. `set.add(\"or\")` returns false because \"or\" is already there and the set doesn't change."
+ },
+ {
+  "id": "f10-L2-12",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is printed?",
+  "code": "import java.util.List;\npublic class Main {\n    public static void main(String[] args) {\n        List<Integer> nums = List.of(1, 2, 3, 4, 5);\n        int sum = nums.stream()\n                      .filter(n -> n % 2 == 1)\n                      .reduce(0, (a, b) -> a + b);\n        long evens = nums.stream().filter(n -> n % 2 == 0).count();\n        System.out.println(sum + \" \" + evens);\n    }\n}",
+  "options": [
+   "`15 5`",
+   "`6 2`",
+   "`9 2`",
+   "`9 3`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The odd numbers 1, 3, 5 are reduced with starting value 0 and `a + b`: 0+1+3+5 = 9. The evens 2 and 4 are counted: 2. A new stream is created for the second pipeline because a stream can only be used once."
+ },
+ {
+  "id": "f10-L2-13",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "default methods",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Kid` inherits `hi()` from a superclass and a default `hi()` from an interface, and overrides neither. What is printed?",
+  "code": "class Base { public String hi() { return \"Base\"; } }\ninterface Greeter { default String hi() { return \"Greeter\"; } }\nclass Kid extends Base implements Greeter { }\npublic class Main {\n    public static void main(String[] args) {\n        Greeter g = new Kid();\n        System.out.println(g.hi());\n    }\n}",
+  "diagram": "classDiagram\nclass Base {\n+hi() String\n}\nclass Greeter {\n<<interface>>\n+hi() String\n}\nBase <|-- Kid\nGreeter <|.. Kid",
+  "options": [
+   "`Greeter`",
+   "`BaseGreeter`",
+   "Compile error: Kid must override hi()",
+   "`Base`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: a class method beats an interface default (\"class wins\"). Kid inherits Base's public hi(), which also implements Greeter's method, and dynamic binding calls it even through a Greeter reference. The must-override rule applies only when two interface defaults clash."
+ },
+ {
+  "id": "f10-L2-14",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "lambdas",
+  "type": "single",
+  "gotcha": false,
+  "question": "What happens?",
+  "code": "interface Calc {\n    int apply(int a, int b);\n    int undo(int x);\n}\npublic class Main {\n    public static void main(String[] args) {\n        Calc add = (a, b) -> a + b;\n        System.out.println(add.apply(2, 3));\n    }\n}",
+  "options": [
+   "Prints `5`",
+   "Prints `5`; undo() returns 0 by default",
+   "Compile error: Calc has two abstract methods, so it is not a functional interface",
+   "Compiles, but throws an exception when the lambda is created"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A lambda can only target an interface with exactly one abstract method, because it provides just one method body. If `undo` were a `default` method with a body, Calc would be functional and the program would print 5."
+ }
+]

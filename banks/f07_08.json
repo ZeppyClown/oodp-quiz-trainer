@@ -1,0 +1,1072 @@
+[
+ {
+  "id": "f7-L1-01",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": false,
+  "question": "What kind of message does this arrow show? (solid line, **filled** arrowhead)",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 96\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7afillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"96\" fill=\"#fff\"/><rect x=\"32.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"60\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Client</text><line x1=\"60\" y1=\"28\" x2=\"60\" y2=\"92\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"242.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"270\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Server</text><line x1=\"270\" y1=\"28\" x2=\"270\" y2=\"92\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"56\" y=\"44\" width=\"8\" height=\"40\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"64\" y1=\"56\" x2=\"266\" y2=\"56\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7afillk)\"/><text x=\"165.0\" y=\"50\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">save(o)</text><rect x=\"266\" y=\"56\" width=\"8\" height=\"24\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/></svg>",
+  "options": [
+   "Asynchronous: `:Client` carries on without waiting",
+   "Synchronous: `:Client` waits until `save(o)` has finished",
+   "A reply carrying the value `save(o)` back",
+   "A creation message that constructs a `:Server`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A solid line with a filled arrowhead is a synchronous message, the normal method call: the caller is blocked until the operation returns. Asynchronous messages use an open arrowhead, and replies are dashed."
+ },
+ {
+  "id": "f7-L1-02",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": false,
+  "question": "What kind of message does this arrow show? (solid line, **open** arrowhead)",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 96\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7bopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"96\" fill=\"#fff\"/><rect x=\"32.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"60\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Sensor</text><line x1=\"60\" y1=\"28\" x2=\"60\" y2=\"92\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"245.52\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"270\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Alarm</text><line x1=\"270\" y1=\"28\" x2=\"270\" y2=\"92\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"56\" y=\"44\" width=\"8\" height=\"40\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"64\" y1=\"58\" x2=\"266\" y2=\"58\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7bopenk)\"/><text x=\"165.0\" y=\"52\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">notify(e)</text></svg>",
+  "options": [
+   "Synchronous: `:Sensor` blocks until `notify(e)` returns",
+   "A reply message",
+   "A lost message",
+   "Asynchronous: `:Sensor` does not wait for `notify(e)` to finish"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The slides draw asynchronous messages with an open arrowhead on a solid line: the sender fires the message and continues. A filled head means synchronous, a dashed line means a reply, and a lost message ends in a black dot."
+ },
+ {
+  "id": "f7-L1-03",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which arrow is drawn the way the slides draw a **reply (return) message**?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 176\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7cfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7copenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"176\" fill=\"#fff\"/><rect x=\"38.599999999999994\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"60\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Cart</text><line x1=\"60\" y1=\"28\" x2=\"60\" y2=\"170\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"242.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"270\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Pricer</text><line x1=\"270\" y1=\"28\" x2=\"270\" y2=\"170\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"64\" y1=\"50\" x2=\"266\" y2=\"50\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7cfillk)\"/><text x=\"30\" y=\"54\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">A</text><line x1=\"64\" y1=\"84\" x2=\"266\" y2=\"84\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7copenk)\"/><text x=\"30\" y=\"88\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">B</text><line x1=\"266\" y1=\"118\" x2=\"64\" y2=\"118\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7copenk)\"/><text x=\"30\" y=\"122\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">C</text><line x1=\"64\" y1=\"152\" x2=\"250\" y2=\"152\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7cfillk)\"/><circle cx=\"252\" cy=\"152\" r=\"4\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.3\"/><text x=\"30\" y=\"156\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">D</text></svg>",
+  "options": [
+   "Arrow A",
+   "Arrow B",
+   "Arrow C",
+   "Arrow D"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A reply is a dashed line with an open arrowhead, going back from the callee to the caller. A is a synchronous call, B is asynchronous, and D, which ends in a black dot, is a lost message."
+ },
+ {
+  "id": "f7-L1-04",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "frame and lifelines",
+  "type": "single",
+  "gotcha": false,
+  "question": "In this lifeline head, what are `acc` (part 1) and `Account` (part 2)?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 90\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7dopenb\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/></marker><marker id=\"q7dopeng\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#2da44e\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"90\" fill=\"#fff\"/><rect x=\"115.0\" y=\"20\" width=\"110\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"35\" font-size=\"13\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">acc:Account</text><line x1=\"170\" y1=\"42\" x2=\"170\" y2=\"86\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"110\" y1=\"12\" x2=\"128\" y2=\"24\" stroke=\"#1f6feb\" stroke-width=\"1.4\" marker-end=\"url(#q7dopenb)\"/><text x=\"60\" y=\"12\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">part 1</text><line x1=\"232\" y1=\"12\" x2=\"206\" y2=\"24\" stroke=\"#2da44e\" stroke-width=\"1.4\" marker-end=\"url(#q7dopeng)\"/><text x=\"236\" y=\"12\" font-size=\"11\" fill=\"#2da44e\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">part 2</text></svg>",
+  "options": [
+   "`acc` is the object's name (optional) and `Account` is its class (mandatory)",
+   "`acc` is the class and `Account` is the object",
+   "`acc` is a method that `Account` provides",
+   "`acc` is the package that contains `Account`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The slides give the head format `[name] : class_name`, where `:class_name` is mandatory and the name is optional. So `acc` names this particular object, the one the code refers to as a variable, and `Account` is its class."
+ },
+ {
+  "id": "f7-L1-05",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "frame and lifelines",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the **dashed vertical line** below a lifeline's head box represent?",
+  "options": [
+   "A reply message that is still on its way",
+   "The time a method takes to run",
+   "The lifetime of that participant during the interaction",
+   "A guard condition"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A lifeline is a head box plus a vertical (usually dashed) line that represents the participant's lifetime. Running methods are shown separately as thin activation bars on top of that line."
+ },
+ {
+  "id": "f7-L1-06",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "frame and lifelines",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is the thin red rectangle on the `:OrderLine` lifeline?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 110\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7ffillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7fopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker><marker id=\"q7fopenr\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#d73a49\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"110\" fill=\"#fff\"/><rect x=\"35.519999999999996\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"60\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Order</text><line x1=\"60\" y1=\"28\" x2=\"60\" y2=\"106\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"233.2\" y=\"6\" width=\"73.60000000000001\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"270\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:OrderLine</text><line x1=\"270\" y1=\"28\" x2=\"270\" y2=\"106\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"56\" y=\"40\" width=\"8\" height=\"60\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"64\" y1=\"52\" x2=\"266\" y2=\"52\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7ffillk)\"/><text x=\"165.0\" y=\"46\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">getQuantity()</text><rect x=\"266\" y=\"52\" width=\"8\" height=\"30\" fill=\"#ffd7d7\" stroke=\"#d73a49\" stroke-width=\"1\"/><line x1=\"266\" y1=\"82\" x2=\"64\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7fopenk)\"/><text x=\"165.0\" y=\"76\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">qty</text><line x1=\"318\" y1=\"94\" x2=\"278\" y2=\"72\" stroke=\"#d73a49\" stroke-width=\"1.4\" marker-end=\"url(#q7fopenr)\"/><text x=\"306\" y=\"106\" font-size=\"14\" fill=\"#d73a49\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">?</text></svg>",
+  "options": [
+   "The whole lifetime of `:OrderLine`",
+   "A combined fragment with no operator",
+   "An activation (execution specification): `:OrderLine` is executing `getQuantity()`",
+   "A note attached to the message"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Activation bars, also called execution specifications, show when an object is busy running a method. The bar starts when `getQuantity()` arrives and ends when the reply `qty` goes back."
+ },
+ {
+  "id": "f7-L1-07",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "frame and lifelines",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the tag `sd Checkout` in the top-left corner of the frame tell you?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 110\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7gfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"110\" fill=\"#fff\"/><rect x=\"6\" y=\"6\" width=\"328\" height=\"98\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.2\"/><path d=\"M6,6 H91.92 V18 L85.92,25 H6\" fill=\"#f3f3f3\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"11\" y=\"20\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">sd Checkout</text><rect x=\"68.6\" y=\"40\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"90\" y=\"55\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Till</text><line x1=\"90\" y1=\"62\" x2=\"90\" y2=\"100\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"228.6\" y=\"40\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"250\" y=\"55\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Card</text><line x1=\"250\" y1=\"62\" x2=\"250\" y2=\"100\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"94\" y1=\"80\" x2=\"246\" y2=\"80\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7gfillk)\"/><text x=\"170.0\" y=\"74\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">charge(amt)</text></svg>",
+  "options": [
+   "This is a sequence diagram of the interaction named `Checkout`",
+   "`Checkout` is the first object that sends a message",
+   "The frame is a `ref` to a diagram stored somewhere else",
+   "`sd` means \"system design\" and `Checkout` is a package"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A diagram's frame has a pentagon tag holding the keyword `sd` plus the interaction's name (and any parameters). A `ref` box looks different: it sits inside a diagram and is labelled `ref`."
+ },
+ {
+  "id": "f7-L1-08",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "You are drawing a method that contains `if (...) { ... } else { ... }`. Which interaction operator represents it?",
+  "options": [
+   "`opt`",
+   "`loop`",
+   "`par`",
+   "`alt`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`alt` is the choice operator: its operands are separated by dashed lines and at most one of them runs, the one whose guard is true. `opt` has only one operand, so it represents an `if` with no `else`."
+ },
+ {
+  "id": "f7-L1-09",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "fragments",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which pairings of an interaction operator with its Java meaning are correct?",
+  "options": [
+   "`opt`: an `if` with no `else`",
+   "`loop`: a `for` or `while` loop",
+   "`par`: blocks of code that run in parallel",
+   "`ref`: a `try`/`catch` block"
+  ],
+  "answer": [
+   0,
+   1,
+   2
+  ],
+  "explanation": "`opt` runs its single operand only if the guard is true, `loop` repeats, and `par` runs its operands concurrently. `ref` has nothing to do with exceptions: it inserts an interaction that is defined in another sequence diagram."
+ },
+ {
+  "id": "f7-L1-10",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this `ref Login(pin)` box mean?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 120\" font-family=\"Arial, sans-serif\" font-size=\"12\"><rect width=\"340\" height=\"120\" fill=\"#fff\"/><rect x=\"48.599999999999994\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"70\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:User</text><line x1=\"70\" y1=\"28\" x2=\"70\" y2=\"116\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"210.0\" y=\"6\" width=\"100\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"260\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:AccessControl</text><line x1=\"260\" y1=\"28\" x2=\"260\" y2=\"116\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"20\" y=\"44\" width=\"300\" height=\"40\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><path d=\"M20,44 H54 V54 L49,60 H20\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"24\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">ref</text><text x=\"170\" y=\"70\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Login(pin)</text></svg>",
+  "options": [
+   "`Login` repeats once for each lifeline it covers",
+   "The interaction `Login` is defined in its own sequence diagram and is inserted here",
+   "An object called `Login` is created at this point",
+   "The `Login` messages are optional and may be skipped"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`ref` marks an interaction use: a shared piece of interaction drawn once (as `sd Login`) and referenced from other diagrams, so it isn't redrawn each time. It covers the lifelines that take part in it."
+ },
+ {
+  "id": "f7-L1-11",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this arrow on the `:Order` lifeline represent?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 100\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7kfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"100\" fill=\"#fff\"/><rect x=\"95.52\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"120\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Order</text><line x1=\"120\" y1=\"28\" x2=\"120\" y2=\"96\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"116\" y=\"40\" width=\"8\" height=\"50\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><path d=\"M124,52 H154 V70 H124\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7kfillk)\"/><text x=\"158\" y=\"65.0\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">validate()</text><rect x=\"121\" y=\"64\" width=\"8\" height=\"16\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/></svg>",
+  "options": [
+   "A reply returning from `validate()`",
+   "`:Order` calls one of its own methods, `validate()`",
+   "An asynchronous message to a different class",
+   "The creation of a second `Order` object"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "An arrow that leaves a lifeline and loops back to the same lifeline is a self-message: the object calls its own operation (`this.validate()`). The nested, offset activation bar shows `validate()` running while the outer method is still active."
+ },
+ {
+  "id": "f7-L1-12",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "creation and destruction",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the **X** at the bottom of the `:Session` lifeline mean?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 116\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7lfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"116\" fill=\"#fff\"/><rect x=\"32.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"60\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Server</text><line x1=\"60\" y1=\"28\" x2=\"60\" y2=\"112\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"239.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"270\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Session</text><line x1=\"270\" y1=\"28\" x2=\"270\" y2=\"100\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"56\" y=\"40\" width=\"8\" height=\"60\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"64\" y1=\"60\" x2=\"266\" y2=\"60\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7lfillk)\"/><text x=\"165.0\" y=\"54\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">close()</text><rect x=\"266\" y=\"60\" width=\"8\" height=\"26\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"270\" y1=\"86\" x2=\"270\" y2=\"100\" stroke=\"#888\" stroke-width=\"1.2\"/><line x1=\"263\" y1=\"93\" x2=\"277\" y2=\"107\" stroke=\"#d73a49\" stroke-width=\"2.2\"/><line x1=\"263\" y1=\"107\" x2=\"277\" y2=\"93\" stroke=\"#d73a49\" stroke-width=\"2.2\"/></svg>",
+  "options": [
+   "`:Session` throws an exception",
+   "`close()` is a lost message",
+   "The loop around `:Session` ends here",
+   "`:Session` is destroyed: its lifetime ends here"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The slides call the X a destruction event: the instance shown by that lifeline stops existing. In Java the closest idea is that nothing references the object any more, so it can be garbage-collected."
+ },
+ {
+  "id": "f7-L1-13",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "messages",
+  "type": "single",
+  "gotcha": false,
+  "question": "The arrow ends in a small filled black circle and doesn't reach any lifeline. What is it?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 90\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7mfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"90\" fill=\"#fff\"/><rect x=\"30.0\" y=\"6\" width=\"80\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"70\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:WebClient</text><line x1=\"70\" y1=\"28\" x2=\"70\" y2=\"86\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"66\" y=\"40\" width=\"8\" height=\"40\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"74\" y1=\"58\" x2=\"240\" y2=\"58\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7mfillk)\"/><text x=\"157.0\" y=\"52\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">search(q)</text><circle cx=\"242\" cy=\"58\" r=\"5\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.3\"/></svg>",
+  "options": [
+   "A lost message: it was sent but never reached a receiver",
+   "A found message: its sender is unknown",
+   "An asynchronous message that will be answered later",
+   "A destruction event"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A lost message has a known sender but no receiving event, so the slides draw a black dot at the arrow end. A found message is the opposite: the dot is at the start, because the sender is unknown or outside the scope of the diagram."
+ },
+ {
+  "id": "f7-L1-14",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "frame and lifelines",
+  "type": "single",
+  "gotcha": false,
+  "question": "Two arrows leave `:Order`: `getQuantity()` is drawn **above** `getProduct()`. What does that tell you?",
+  "options": [
+   "`getProduct()` is sent first, because time runs upward",
+   "They are sent at the same moment",
+   "`getQuantity()` is sent before `getProduct()`",
+   "Nothing: vertical position has no meaning"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Time runs from top to bottom, so a message drawn higher happens earlier. When you turn the diagram into code, `getQuantity()` is called on an earlier line than `getProduct()`."
+ },
+ {
+  "id": "f7-L1-15",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "What is `[isAuthenticated]` in this fragment?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 124\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7ofillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"124\" fill=\"#fff\"/><rect x=\"10.0\" y=\"6\" width=\"100\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"60\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:AccessControl</text><line x1=\"60\" y1=\"28\" x2=\"60\" y2=\"120\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"242.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"270\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Screen</text><line x1=\"270\" y1=\"28\" x2=\"270\" y2=\"120\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"14\" y=\"44\" width=\"312\" height=\"60\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M14,44 H42.480000000000004 V54 L37.480000000000004,60 H14\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"18\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">opt</text><text x=\"120\" y=\"57\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[isAuthenticated]</text><line x1=\"64\" y1=\"86\" x2=\"266\" y2=\"86\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7ofillk)\"/><text x=\"165.0\" y=\"80\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">showMenu()</text></svg>",
+  "options": [
+   "A parameter passed to `showMenu()`",
+   "The number of times the operand repeats",
+   "A guard: a boolean condition that must be true for the operand to run",
+   "A comment with no effect on behaviour"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Text in square brackets on an operand is a guard. Here the `opt` operand, and therefore `showMenu()`, runs only if `isAuthenticated` is true at that point."
+ },
+ {
+  "id": "f7-L1-16",
+  "chapter": 7,
+  "level": 1,
+  "subtopic": "creation and destruction",
+  "type": "single",
+  "gotcha": false,
+  "question": "Why is the head box of `:Receipt` drawn **lower** than the other heads?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7pfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7popenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"150\" fill=\"#fff\"/><rect x=\"28.599999999999998\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Till</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"119.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"150\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Scanner</text><line x1=\"150\" y1=\"28\" x2=\"150\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"96\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"52\" x2=\"146\" y2=\"52\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7pfillk)\"/><text x=\"100.0\" y=\"46\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">scan()</text><rect x=\"146\" y=\"52\" width=\"8\" height=\"14\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"90\" x2=\"244\" y2=\"90\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7popenk)\"/><text x=\"200\" y=\"84\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">new</text><rect x=\"245.0\" y=\"79\" width=\"70\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"280\" y=\"94\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Receipt</text><line x1=\"280\" y1=\"101\" x2=\"280\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"54\" y1=\"120\" x2=\"276\" y2=\"120\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7pfillk)\"/><text x=\"200\" y=\"114\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">print()</text></svg>",
+  "options": [
+   "It is created at that point by the `new` message, so it did not exist earlier",
+   "It is less important than the other objects",
+   "It is a subclass of `Till`",
+   "It will be destroyed before the interaction ends"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Objects that already exist sit at the top. An object created during the interaction has its head placed where the dashed `new` (creation) arrow arrives, which in Java is the `new Receipt(...)` statement."
+ },
+ {
+  "id": "f7-L2-01",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": false,
+  "question": "Given this diagram, which method must class `Inventory` have?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Afillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Aopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"150\" fill=\"#fff\"/><rect x=\"25.52\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Kiosk</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"148.6\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Cart</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"254.0\" y=\"6\" width=\"72\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Inventory</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><circle cx=\"8\" cy=\"44\" r=\"4\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"8\" y1=\"44\" x2=\"46\" y2=\"44\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Afillk)\"/><rect x=\"46\" y=\"44\" width=\"8\" height=\"92\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"62\" x2=\"166\" y2=\"62\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Afillk)\"/><text x=\"110.0\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">addItem(i)</text><rect x=\"166\" y=\"62\" width=\"8\" height=\"54\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"174\" y1=\"84\" x2=\"286\" y2=\"84\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Afillk)\"/><text x=\"230.0\" y=\"78\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">ok = reserve(i)</text><rect x=\"286\" y=\"84\" width=\"8\" height=\"20\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"286\" y1=\"104\" x2=\"174\" y2=\"104\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Aopenk)\"/><text x=\"230.0\" y=\"98\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">ok</text><line x1=\"166\" y1=\"116\" x2=\"54\" y2=\"116\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Aopenk)\"/></svg>",
+  "options": [
+   "`addItem(...)`",
+   "Both `addItem(...)` and `reserve(...)`",
+   "None. `Inventory` only sends messages",
+   "`reserve(...)`, returning a value (`ok`)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A message arrow pointing INTO a lifeline means that class must provide the operation. Only `reserve(i)` arrives at `:Inventory`, and its reply `ok` means it returns a value. `addItem(i)` arrives at `:Cart`, so `Cart` owns it and calls `reserve` from inside it."
+ },
+ {
+  "id": "f7-L2-02",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "diagram to code",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which methods must class `Bank` define, according to this diagram?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 190\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Bfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Bopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"190\" fill=\"#fff\"/><rect x=\"30.0\" y=\"6\" width=\"40\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:ATM</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"186\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"148.6\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Bank</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"186\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"262.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Logger</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"186\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"136\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"56\" x2=\"166\" y2=\"56\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Bfillk)\"/><text x=\"110.0\" y=\"50\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">verify(pin)</text><rect x=\"166\" y=\"56\" width=\"8\" height=\"40\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"174\" y1=\"78\" x2=\"286\" y2=\"78\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Bfillk)\"/><text x=\"230.0\" y=\"72\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">log(msg)</text><rect x=\"286\" y=\"78\" width=\"8\" height=\"12\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"166\" y1=\"96\" x2=\"54\" y2=\"96\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Bopenk)\"/><text x=\"110.0\" y=\"90\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">ok</text><path d=\"M54,112 H76 V126 H54\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Bfillk)\"/><text x=\"80\" y=\"123.0\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">printSlip()</text><line x1=\"54\" y1=\"152\" x2=\"166\" y2=\"152\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Bfillk)\"/><text x=\"110.0\" y=\"146\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">debit(amt)</text><rect x=\"166\" y=\"152\" width=\"8\" height=\"14\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/></svg>",
+  "options": [
+   "`verify(pin)`",
+   "`log(msg)`",
+   "`debit(amt)`",
+   "`printSlip()`"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "Count the arrows whose heads end on the `:Bank` lifeline: `verify(pin)` and `debit(amt)`. `log(msg)` points into `:Logger`, so `Bank` only calls it. `printSlip()` is a self-message on `:ATM`, so it belongs to `ATM`."
+ },
+ {
+  "id": "f7-L2-03",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": false,
+  "question": "`cat` is a field of `Library` and `m` is a parameter of `hold(String isbn, Member m)`. Which body matches the diagram?",
+  "diagram": "sequenceDiagram\nparticipant L as :Library\nparticipant C as cat:Catalog\nparticipant B as b:Book\nparticipant M as m:Member\nL->>C: b = lookup(isbn)\nC-->>L: b\nL->>B: reserve(m)\nL->>M: notify(b)",
+  "options": [
+   "`Book b = cat.lookup(isbn); m.notify(b); b.reserve(m);`",
+   "`Book b = cat.lookup(isbn); b.reserve(m); m.notify(b);`",
+   "`Book b = cat.lookup(isbn); cat.reserve(m); m.notify(b);`",
+   "`Book b = m.lookup(isbn); b.reserve(m); m.notify(b);`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Go top to bottom, and send each call to the lifeline the arrow points into: `lookup` goes to `cat`, and the reply `b` becomes a local variable. Then `reserve(m)` goes into `b:Book`, and last `notify(b)` goes into `m:Member`. The other bodies change the order or send a call to the wrong object."
+ },
+ {
+  "id": "f7-L2-04",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "The report covers 3 orders, and each order has 2 lines. How many times is `getPrice()` sent in total?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 206\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Dfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"206\" fill=\"#fff\"/><rect x=\"22.439999999999998\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Report</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"200\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"145.52\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Order</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"200\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"268.6\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Line</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"200\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"152\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><rect x=\"10\" y=\"44\" width=\"326\" height=\"140\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M10,44 H44.64 V54 L39.64,60 H10\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"14\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">loop</text><text x=\"100\" y=\"57\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[for each of the 3 orders]</text><line x1=\"54\" y1=\"82\" x2=\"166\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Dfillk)\"/><text x=\"110.0\" y=\"76\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">getTotal()</text><rect x=\"166\" y=\"82\" width=\"8\" height=\"12\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><rect x=\"22\" y=\"104\" width=\"306\" height=\"66\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M22,104 H56.64 V114 L51.64,120 H22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"26\" y=\"116\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">loop</text><text x=\"100\" y=\"117\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[for each of 2 lines in this order]</text><line x1=\"54\" y1=\"150\" x2=\"286\" y2=\"150\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Dfillk)\"/><text x=\"230\" y=\"144\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">getPrice()</text><rect x=\"286\" y=\"150\" width=\"8\" height=\"10\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/></svg>",
+  "options": [
+   "2",
+   "3",
+   "5",
+   "6"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The inner loop runs completely on every pass of the outer loop, just like nested `for` loops. That gives 3 orders × 2 lines = 6 calls to `getPrice()`, while `getTotal()` is sent 3 times."
+ },
+ {
+  "id": "f7-L2-05",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "`check(card)` returns **false**. Which messages does `:Door` send after receiving the reply?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 196\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Efillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Eopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"196\" fill=\"#fff\"/><rect x=\"28.599999999999998\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Door</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"118.6\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"140\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Ctrl</text><line x1=\"140\" y1=\"28\" x2=\"140\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"198.6\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"220\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Lock</text><line x1=\"220\" y1=\"28\" x2=\"220\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"280.0\" y=\"6\" width=\"40\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"300\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Log</text><line x1=\"300\" y1=\"28\" x2=\"300\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"140\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"54\" x2=\"136\" y2=\"54\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Efillk)\"/><text x=\"96\" y=\"48\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">ok = check(card)</text><rect x=\"136\" y=\"54\" width=\"8\" height=\"16\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"136\" y1=\"70\" x2=\"54\" y2=\"70\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Eopenk)\"/><text x=\"95.0\" y=\"64\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">ok</text><rect x=\"10\" y=\"86\" width=\"326\" height=\"50\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M10,86 H38.480000000000004 V96 L33.480000000000004,102 H10\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"14\" y=\"98\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">opt</text><text x=\"64\" y=\"99\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[ok]</text><line x1=\"54\" y1=\"120\" x2=\"216\" y2=\"120\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Efillk)\"/><text x=\"170\" y=\"114\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">open()</text><line x1=\"54\" y1=\"164\" x2=\"296\" y2=\"164\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Efillk)\"/><text x=\"230\" y=\"158\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">record(card)</text></svg>",
+  "options": [
+   "`open()` and then `record(card)`",
+   "Only `record(card)`",
+   "Only `open()`",
+   "None: the interaction stops when a guard is false"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "When an `opt` guard is false, everything inside the box is skipped and the flow carries on below it. So `open()` is not sent, but `record(card)`, which is outside the fragment, still is. In code: `if (ok) lock.open(); log.record(card);`."
+ },
+ {
+  "id": "f7-L2-06",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "creation and destruction",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which object is **created** during this interaction?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 180\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Ffillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Fopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"180\" fill=\"#fff\"/><rect x=\"22.599999999999998\" y=\"6\" width=\"42.800000000000004\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"44\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Till</text><line x1=\"44\" y1=\"28\" x2=\"44\" y2=\"176\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"95.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"126\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Scanner</text><line x1=\"126\" y1=\"28\" x2=\"126\" y2=\"176\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"265.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"296\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Printer</text><line x1=\"296\" y1=\"28\" x2=\"296\" y2=\"176\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"40\" y=\"40\" width=\"8\" height=\"126\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"48\" y1=\"54\" x2=\"122\" y2=\"54\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ffillk)\"/><text x=\"86\" y=\"48\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">code = scan()</text><rect x=\"122\" y=\"54\" width=\"8\" height=\"12\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"48\" y1=\"90\" x2=\"180\" y2=\"90\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Fopenk)\"/><text x=\"100\" y=\"84\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">new(code)</text><rect x=\"182.0\" y=\"79\" width=\"60\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"212\" y=\"94\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Sale</text><line x1=\"212\" y1=\"101\" x2=\"212\" y2=\"176\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"48\" y1=\"120\" x2=\"208\" y2=\"120\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ffillk)\"/><text x=\"150\" y=\"114\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">total()</text><rect x=\"208\" y=\"120\" width=\"8\" height=\"14\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"48\" y1=\"154\" x2=\"292\" y2=\"154\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ffillk)\"/><text x=\"250\" y=\"148\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">print(sale)</text></svg>",
+  "options": [
+   "`:Till`",
+   "`:Scanner`",
+   "`:Printer`",
+   "`:Sale`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The dashed `new(code)` arrow ends on the head of `:Sale`, and that head is drawn lower than the rest: this is a creation (constructor call). The other three heads are at the top, so those objects already existed when the interaction started."
+ },
+ {
+  "id": "f7-L2-07",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "code to diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which diagram matches `Register.sell()`? (`:Reg` = `Register`, `:Scan` = `Scanner`, `:Prn` = `Printer`)",
+  "code": "class Register {\n    private Scanner sc;\n    private Printer pr;\n    void sell(String c) {\n        Item it = sc.read(c);\n        pr.print(it);\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 252\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Gfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Gopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"252\" fill=\"#fff\"/><rect x=\"4\" y=\"4\" width=\"164\" height=\"120\" fill=\"#fff\" stroke=\"#ccc\" stroke-width=\"1.2\" rx=\"4\"/><text x=\"12\" y=\"20\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">A</text><rect x=\"11.0\" y=\"26\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"34\" y=\"41\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Reg</text><line x1=\"34\" y1=\"48\" x2=\"34\" y2=\"120\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"67.0\" y=\"26\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"90\" y=\"41\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Scan</text><line x1=\"90\" y1=\"48\" x2=\"90\" y2=\"120\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"121.0\" y=\"26\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"144\" y=\"41\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Prn</text><line x1=\"144\" y1=\"48\" x2=\"144\" y2=\"120\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><line x1=\"87\" y1=\"64\" x2=\"37\" y2=\"64\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gfillk)\"/><text x=\"62.0\" y=\"58\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">read(c)</text><line x1=\"37\" y1=\"82\" x2=\"87\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Gopenk)\"/><text x=\"62.0\" y=\"76\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">it</text><line x1=\"37\" y1=\"100\" x2=\"141\" y2=\"100\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gfillk)\"/><text x=\"89.0\" y=\"94\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">print(it)</text><rect x=\"172\" y=\"4\" width=\"164\" height=\"120\" fill=\"#fff\" stroke=\"#ccc\" stroke-width=\"1.2\" rx=\"4\"/><text x=\"180\" y=\"20\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">B</text><rect x=\"179.0\" y=\"26\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"202\" y=\"41\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Reg</text><line x1=\"202\" y1=\"48\" x2=\"202\" y2=\"120\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"235.0\" y=\"26\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"258\" y=\"41\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Scan</text><line x1=\"258\" y1=\"48\" x2=\"258\" y2=\"120\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"289.0\" y=\"26\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"312\" y=\"41\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Prn</text><line x1=\"312\" y1=\"48\" x2=\"312\" y2=\"120\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><line x1=\"205\" y1=\"64\" x2=\"309\" y2=\"64\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gfillk)\"/><text x=\"257.0\" y=\"58\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">print(it)</text><line x1=\"205\" y1=\"82\" x2=\"255\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gfillk)\"/><text x=\"230.0\" y=\"76\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">read(c)</text><line x1=\"255\" y1=\"100\" x2=\"205\" y2=\"100\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Gopenk)\"/><text x=\"230.0\" y=\"94\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">it</text><rect x=\"4\" y=\"128\" width=\"164\" height=\"120\" fill=\"#fff\" stroke=\"#ccc\" stroke-width=\"1.2\" rx=\"4\"/><text x=\"12\" y=\"144\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">C</text><rect x=\"11.0\" y=\"150\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"34\" y=\"165\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Reg</text><line x1=\"34\" y1=\"172\" x2=\"34\" y2=\"244\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"67.0\" y=\"150\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"90\" y=\"165\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Scan</text><line x1=\"90\" y1=\"172\" x2=\"90\" y2=\"244\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"121.0\" y=\"150\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"144\" y=\"165\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Prn</text><line x1=\"144\" y1=\"172\" x2=\"144\" y2=\"244\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><line x1=\"37\" y1=\"188\" x2=\"87\" y2=\"188\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gfillk)\"/><text x=\"62.0\" y=\"182\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">read(c)</text><line x1=\"87\" y1=\"206\" x2=\"37\" y2=\"206\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Gopenk)\"/><text x=\"62.0\" y=\"200\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">it</text><line x1=\"37\" y1=\"224\" x2=\"141\" y2=\"224\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gfillk)\"/><text x=\"89.0\" y=\"218\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">print(it)</text><rect x=\"172\" y=\"128\" width=\"164\" height=\"120\" fill=\"#fff\" stroke=\"#ccc\" stroke-width=\"1.2\" rx=\"4\"/><text x=\"180\" y=\"144\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">D</text><rect x=\"179.0\" y=\"150\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"202\" y=\"165\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Reg</text><line x1=\"202\" y1=\"172\" x2=\"202\" y2=\"244\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"235.0\" y=\"150\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"258\" y=\"165\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Scan</text><line x1=\"258\" y1=\"172\" x2=\"258\" y2=\"244\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><rect x=\"289.0\" y=\"150\" width=\"46\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"312\" y=\"165\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Prn</text><line x1=\"312\" y1=\"172\" x2=\"312\" y2=\"244\" stroke=\"#888\" stroke-width=\"1\" stroke-dasharray=\"4 3\"/><line x1=\"205\" y1=\"188\" x2=\"255\" y2=\"188\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gfillk)\"/><text x=\"230.0\" y=\"182\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">read(c)</text><line x1=\"255\" y1=\"206\" x2=\"205\" y2=\"206\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Gopenk)\"/><text x=\"230.0\" y=\"200\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">it</text><line x1=\"205\" y1=\"224\" x2=\"309\" y2=\"224\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Gopenk)\"/><text x=\"257.0\" y=\"218\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">print(it)</text></svg>",
+  "options": [
+   "Diagram A",
+   "Diagram B",
+   "Diagram C",
+   "Diagram D"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`sc.read(c)` is a synchronous call from Register into Scanner, followed by a dashed reply `it`, and then `pr.print(it)` is a synchronous call into Printer, drawn lower because it runs later. A reverses the direction of `read`, B puts `print` first, and D draws an ordinary method call as asynchronous (open arrowhead)."
+ },
+ {
+  "id": "f7-L2-08",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "With `bal = 50` and `amt = 80`, which message(s) does `:ATM` send?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 170\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Hfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"170\" fill=\"#fff\"/><rect x=\"30.0\" y=\"6\" width=\"40\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:ATM</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"166\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"139.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Account</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"166\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"262.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Screen</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"166\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"116\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><rect x=\"10\" y=\"44\" width=\"326\" height=\"104\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M10,44 H38.480000000000004 V54 L33.480000000000004,60 H10\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"14\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">alt</text><text x=\"64\" y=\"57\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[bal &gt;= amt]</text><line x1=\"10\" y1=\"98\" x2=\"336\" y2=\"98\" stroke=\"#222\" stroke-width=\"1.1\" stroke-dasharray=\"6 4\"/><text x=\"64\" y=\"111\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[else]</text><line x1=\"54\" y1=\"80\" x2=\"166\" y2=\"80\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Hfillk)\"/><text x=\"110.0\" y=\"74\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">debit(amt)</text><line x1=\"54\" y1=\"134\" x2=\"286\" y2=\"134\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Hfillk)\"/><text x=\"230\" y=\"128\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">reject()</text></svg>",
+  "options": [
+   "Only `reject()`",
+   "Only `debit(amt)`",
+   "`debit(amt)` and then `reject()`",
+   "Neither, because the first guard is false"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "In an `alt`, the operand whose guard is true runs and the others are skipped. `50 >= 80` is false, so the `[else]` operand runs and only `reject()` is sent, exactly like the `else` branch of an `if`."
+ },
+ {
+  "id": "f7-L2-09",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": false,
+  "question": "Following the slides' rule that every reference must be traceable, which reference(s) must be **fields** of `Library`?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 214\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Ifillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Iopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"214\" fill=\"#fff\"/><rect x=\"17.0\" y=\"6\" width=\"58\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"46\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Library</text><line x1=\"46\" y1=\"28\" x2=\"46\" y2=\"206\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"86.0\" y=\"6\" width=\"76\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"124\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">cat:Catalog</text><line x1=\"124\" y1=\"28\" x2=\"124\" y2=\"206\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"175.52\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"200\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">b:Book</text><line x1=\"200\" y1=\"28\" x2=\"200\" y2=\"206\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"261.0\" y=\"6\" width=\"70\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"296\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">m:Member</text><line x1=\"296\" y1=\"28\" x2=\"296\" y2=\"206\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><circle cx=\"6\" cy=\"44\" r=\"4\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"6\" y1=\"44\" x2=\"42\" y2=\"44\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ifillk)\"/><text x=\"4\" y=\"38\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">borrow(id, m)</text><rect x=\"42\" y=\"44\" width=\"8\" height=\"154\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"50\" y1=\"64\" x2=\"120\" y2=\"64\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ifillk)\"/><text x=\"58\" y=\"58\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">b = find(id)</text><rect x=\"120\" y=\"64\" width=\"8\" height=\"18\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"120\" y1=\"82\" x2=\"50\" y2=\"82\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Iopenk)\"/><text x=\"85.0\" y=\"76\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">b</text><line x1=\"50\" y1=\"104\" x2=\"196\" y2=\"104\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ifillk)\"/><text x=\"150\" y=\"98\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">setOnLoan(true)</text><line x1=\"50\" y1=\"134\" x2=\"222\" y2=\"134\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Iopenk)\"/><text x=\"120\" y=\"128\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">new(b, m)</text><rect x=\"222.0\" y=\"123\" width=\"56\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"250\" y=\"138\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">l:Loan</text><line x1=\"250\" y1=\"145\" x2=\"250\" y2=\"206\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"50\" y1=\"170\" x2=\"292\" y2=\"170\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ifillk)\"/><text x=\"210\" y=\"164\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">addLoan(l)</text></svg>",
+  "options": [
+   "`cat` and `b`",
+   "`cat`, `b` and `l`",
+   "Only `cat`",
+   "`cat` and `m`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A reference must come from somewhere: a parameter, a return value, a `new`, or otherwise a field. `m` is a parameter of `borrow`, `b` is returned by `find(id)` and `l` is created by `new`, so all three can be locals. Nothing in the diagram supplies `cat`, so it must be an attribute."
+ },
+ {
+  "id": "f7-L2-10",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this `par` fragment say about the order of `cook(o)` and `charge(o)`?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Jfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"150\" fill=\"#fff\"/><rect x=\"15.0\" y=\"6\" width=\"70\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:OrderCtrl</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"139.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Kitchen</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"259.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Payment</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"96\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><rect x=\"10\" y=\"44\" width=\"326\" height=\"86\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M10,44 H38.480000000000004 V54 L33.480000000000004,60 H10\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"14\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">par</text><line x1=\"10\" y1=\"88\" x2=\"336\" y2=\"88\" stroke=\"#222\" stroke-width=\"1.1\" stroke-dasharray=\"6 4\"/><line x1=\"54\" y1=\"76\" x2=\"166\" y2=\"76\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Jfillk)\"/><text x=\"110.0\" y=\"70\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">cook(o)</text><line x1=\"54\" y1=\"118\" x2=\"286\" y2=\"118\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Jfillk)\"/><text x=\"230\" y=\"112\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">charge(o)</text></svg>",
+  "options": [
+   "`cook(o)` always finishes before `charge(o)` starts, because it is drawn higher",
+   "Only one of the two operands runs",
+   "No fixed order: the two operands run in parallel and may interleave",
+   "Both messages repeat until one of them fails"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`par` means the operands run concurrently. The vertical order inside the box doesn't fix which comes first between operands, though messages within one operand stay in order. Choosing exactly one operand is what `alt` does."
+ },
+ {
+  "id": "f7-L2-11",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "messages",
+  "type": "multi",
+  "gotcha": false,
+  "question": "`notify()` has an open arrowhead, and `save()` has a filled one plus a dashed reply. Which conclusions are correct?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 140\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Kfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Kopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"140\" fill=\"#fff\"/><rect x=\"25.52\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Order</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"136\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"142.44\" y=\"6\" width=\"55.120000000000005\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Mailer</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"136\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"270.0\" y=\"6\" width=\"40\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:DB</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"136\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"86\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"62\" x2=\"166\" y2=\"62\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Kopenk)\"/><text x=\"110.0\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">notify()</text><rect x=\"166\" y=\"62\" width=\"8\" height=\"48\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"90\" x2=\"286\" y2=\"90\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Kfillk)\"/><text x=\"240\" y=\"84\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">save()</text><rect x=\"286\" y=\"90\" width=\"8\" height=\"14\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"286\" y1=\"104\" x2=\"54\" y2=\"104\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Kopenk)\"/></svg>",
+  "options": [
+   "`:Order` sends `save()` without waiting for `:Mailer` to finish `notify()`",
+   "`:Order` waits for `save()` to finish before it continues",
+   "`notify()` must return a value to `:Order`",
+   "`save()` is asynchronous too, because it follows an asynchronous message"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "An open arrowhead means asynchronous: the sender doesn't block, so `:Order` moves straight on while `:Mailer` may still be working. A filled arrowhead means synchronous: `:Order` waits until `save()` returns, shown by the dashed reply. Each message's style is independent, and an asynchronous message has no reply here."
+ },
+ {
+  "id": "f7-L2-12",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "code to diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which description of the sequence diagram for `Billing.bill(o)` is correct?",
+  "code": "class Billing {\n    public Invoice bill(Order o) {\n        double amt = o.getTotal();\n        Invoice inv = new Invoice(amt);\n        inv.send();\n        return inv;\n    }\n}",
+  "options": [
+   "Lifelines `:Billing`, `o:Order` and `inv:Invoice`. `inv`'s head is lowered, at a dashed `new` arrow drawn below `getTotal()`. `send()` points into `inv`, and a dashed reply `inv` goes back to the caller",
+   "All three heads are at the top, and `new` is a solid arrow drawn before `getTotal()`",
+   "`getTotal()` points from `o:Order` into `:Billing`, because `Billing` uses the result",
+   "`send()` is a self-message on `:Billing`, because `bill()` contains the call"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Map each statement in order. `o.getTotal()` is a call into `o:Order`, `new Invoice(amt)` is a creation arrow to a lowered head, `inv.send()` is a call into `inv`, and `return inv` is the final dashed reply. The class at the arrowhead is the one that owns the method, so `send()` belongs to `Invoice`, not `Billing`."
+ },
+ {
+  "id": "f7-L2-13",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": false,
+  "question": "The designer adds the red message `applyCoupon(code)` from `:Order` to `c:Customer`, between `getPricingDetails()` and `calculateDiscounts()`. What must change in the Java code?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Mfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker><marker id=\"q7Mfillr\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#d73a49\"/></marker><marker id=\"q7Mopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"150\" fill=\"#fff\"/><rect x=\"25.52\" y=\"6\" width=\"48.96\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Order</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"135.0\" y=\"6\" width=\"70\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">p:Product</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"253.0\" y=\"6\" width=\"74\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">c:Customer</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"36\" width=\"8\" height=\"104\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"54\" y1=\"52\" x2=\"166\" y2=\"52\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Mfillk)\"/><text x=\"120\" y=\"46\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">price = getPricingDetails()</text><rect x=\"166\" y=\"52\" width=\"8\" height=\"12\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"166\" y1=\"66\" x2=\"54\" y2=\"66\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q7Mopenk)\"/><text x=\"110\" y=\"60\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">price</text><line x1=\"54\" y1=\"96\" x2=\"286\" y2=\"96\" stroke=\"#d73a49\" stroke-width=\"1.4\" marker-end=\"url(#q7Mfillr)\"/><text x=\"230\" y=\"90\" font-size=\"11\" fill=\"#d73a49\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">applyCoupon(code)</text><rect x=\"286\" y=\"96\" width=\"8\" height=\"12\" fill=\"#ffd7d7\" stroke=\"#d73a49\" stroke-width=\"1\"/><path d=\"M54,118 H72 V130 H54\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Mfillk)\"/><text x=\"76\" y=\"128.0\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">discount = calculateDiscounts()</text></svg>",
+  "options": [
+   "`Order` gets a new method `applyCoupon(...)`",
+   "`Customer` must call `applyCoupon` on the `Order`",
+   "Nothing changes in the code. New messages only add documentation",
+   "`Customer` gets a method `applyCoupon(...)`, and `Order.calculatePrice()` calls `c.applyCoupon(code)` between those two calls"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The arrowhead ends on `c:Customer`, so `Customer` must implement `applyCoupon`. The sender, `Order`, makes the call, and the call's vertical position fixes where it goes in the code: after `getPricingDetails()` and before `calculateDiscounts()`."
+ },
+ {
+  "id": "f7-L2-14",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "diagram to code",
+  "type": "single",
+  "gotcha": false,
+  "question": "`repo` is a field of `Order`. Which body of `Order.submit()` matches the diagram?",
+  "diagram": "sequenceDiagram\nparticipant o as :Order\nparticipant r as repo:Repo\no->>o: validate()\no->>r: save(this)\nr-->>o: done",
+  "options": [
+   "`repo.validate(); repo.save(this);`",
+   "`validate(); repo.save(this);` with `validate()` defined in `Order`",
+   "`repo.save(this); validate();`",
+   "`validate(); repo.save(this);` with `validate()` defined in `Repo`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`validate()` is a self-message: it leaves `:Order` and comes back to `:Order`, so it is a method of `Order` called on `this`. `save(this)` points into `:Repo` and is drawn lower, so it comes second and belongs to `Repo`."
+ },
+ {
+  "id": "f7-L2-15",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "fragments",
+  "type": "single",
+  "gotcha": false,
+  "question": "These are **two separate** `opt` fragments. With `x = 7`, which messages are sent?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 172\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q7Ofillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"172\" fill=\"#fff\"/><rect x=\"30.0\" y=\"6\" width=\"40\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"50\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:App</text><line x1=\"50\" y1=\"28\" x2=\"50\" y2=\"166\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"150.0\" y=\"6\" width=\"40\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"170\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:A</text><line x1=\"170\" y1=\"28\" x2=\"170\" y2=\"166\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"270.0\" y=\"6\" width=\"40\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"290\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:B</text><line x1=\"290\" y1=\"28\" x2=\"290\" y2=\"166\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"46\" y=\"40\" width=\"8\" height=\"120\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><rect x=\"10\" y=\"44\" width=\"326\" height=\"50\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M10,44 H38.480000000000004 V54 L33.480000000000004,60 H10\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"14\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">opt</text><text x=\"64\" y=\"57\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[x &gt; 0]</text><line x1=\"54\" y1=\"78\" x2=\"166\" y2=\"78\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ofillk)\"/><text x=\"110.0\" y=\"72\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">a()</text><rect x=\"10\" y=\"104\" width=\"326\" height=\"50\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M10,104 H38.480000000000004 V114 L33.480000000000004,120 H10\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"14\" y=\"116\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">opt</text><text x=\"64\" y=\"117\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[x &gt; 5]</text><line x1=\"54\" y1=\"138\" x2=\"286\" y2=\"138\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q7Ofillk)\"/><text x=\"230\" y=\"132\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">b()</text></svg>",
+  "options": [
+   "Only `a()`",
+   "`a()` and then `b()`",
+   "Only `b()`",
+   "Neither"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Each `opt` is an independent `if`: `7 > 0` is true so `a()` is sent, then `7 > 5` is true so `b()` is sent. If the two guards were operands of a single `alt`, at most one operand could run."
+ },
+ {
+  "id": "f7-L2-16",
+  "chapter": 7,
+  "level": 2,
+  "subtopic": "code to diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which description of the sequence diagram for `Shop.buy()` is correct?",
+  "code": "class Shop {\n    private Wallet w;\n    void buy() {\n        double b = w.balance();\n        if (b > 10) {\n            w.deduct(10);\n        }\n        log();\n    }\n    private void log() { System.out.println(\"bought\"); }\n}",
+  "options": [
+   "`log()` is inside the `opt` box together with `deduct(10)`",
+   "An `alt` with `[b > 10]` holding `deduct(10)` and `[else]` holding `log()`",
+   "`balance()` is a self-message on `:Shop`, and `deduct(10)` goes into `:Wallet`",
+   "`balance()` and `deduct(10)` point into `:Wallet`, `deduct(10)` sits inside an `opt [b > 10]`, and `log()` is a self-message on `:Shop` below the box"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "`w.balance()` and `w.deduct(10)` are calls on the `Wallet`, so both arrows end on `:Wallet`. The `if` with no `else` becomes an `opt` that holds only `deduct(10)`. `log()` runs every time and belongs to `Shop`, so it is a self-message drawn after the `opt` box."
+ },
+ {
+  "id": "f8-L1-01",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "modelling steps",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the slides' steps for modelling an OO application, which step goes in the **?** box (step 5)?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 334\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q8afilly\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#888\"/></marker></defs><rect width=\"340\" height=\"334\" fill=\"#fff\"/><rect x=\"34\" y=\"6\" width=\"232\" height=\"32\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"22\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"26\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">1</text><text x=\"42\" y=\"27\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Identify classes</text><line x1=\"150\" y1=\"38\" x2=\"150\" y2=\"47\" stroke=\"#888\" stroke-width=\"1.2\" marker-end=\"url(#q8afilly)\"/><rect x=\"34\" y=\"47\" width=\"232\" height=\"32\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"63\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"67\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">2</text><text x=\"42\" y=\"68\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Add attributes and methods</text><line x1=\"150\" y1=\"79\" x2=\"150\" y2=\"88\" stroke=\"#888\" stroke-width=\"1.2\" marker-end=\"url(#q8afilly)\"/><rect x=\"34\" y=\"88\" width=\"232\" height=\"32\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"104\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"108\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">3</text><text x=\"42\" y=\"109\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Add class relationships</text><line x1=\"150\" y1=\"120\" x2=\"150\" y2=\"129\" stroke=\"#888\" stroke-width=\"1.2\" marker-end=\"url(#q8afilly)\"/><rect x=\"34\" y=\"129\" width=\"232\" height=\"32\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"145\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"149\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">4</text><text x=\"42\" y=\"150\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Add multiplicities, etc.</text><line x1=\"150\" y1=\"161\" x2=\"150\" y2=\"170\" stroke=\"#888\" stroke-width=\"1.2\" marker-end=\"url(#q8afilly)\"/><rect x=\"34\" y=\"170\" width=\"232\" height=\"32\" fill=\"#ffecec\" stroke=\"#d73a49\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"186\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"190\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">5</text><text x=\"150\" y=\"191\" font-size=\"18\" fill=\"#d73a49\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">?</text><line x1=\"150\" y1=\"202\" x2=\"150\" y2=\"211\" stroke=\"#888\" stroke-width=\"1.2\" marker-end=\"url(#q8afilly)\"/><rect x=\"34\" y=\"211\" width=\"232\" height=\"32\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"227\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"231\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">6</text><text x=\"42\" y=\"232\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Enhance class details</text><line x1=\"150\" y1=\"243\" x2=\"150\" y2=\"252\" stroke=\"#888\" stroke-width=\"1.2\" marker-end=\"url(#q8afilly)\"/><rect x=\"34\" y=\"252\" width=\"232\" height=\"32\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"268\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"272\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">7</text><text x=\"42\" y=\"273\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Implement the model</text><line x1=\"150\" y1=\"284\" x2=\"150\" y2=\"293\" stroke=\"#888\" stroke-width=\"1.2\" marker-end=\"url(#q8afilly)\"/><rect x=\"34\" y=\"293\" width=\"232\" height=\"32\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.2\" rx=\"6\"/><circle cx=\"18\" cy=\"309\" r=\"11\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.3\"/><text x=\"18\" y=\"313\" font-size=\"12\" fill=\"#fff\" text-anchor=\"middle\" font-weight=\"bold\">8</text><text x=\"42\" y=\"314\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Quality testing</text></svg>",
+  "options": [
+   "Identify object behaviours and interaction through the functional flow (sequence diagram)",
+   "Draw the use case diagram",
+   "Normalise the database tables",
+   "Write the user manual"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "After the class diagram is built (classes, then attributes and methods, then relationships, then multiplicities), the slides walk through the functional flow to find object behaviour and interaction. That step discovers more methods, and the classes are enhanced afterwards."
+ },
+ {
+  "id": "f8-L1-02",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "stereotypes",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which class is most likely a **boundary** class?",
+  "options": [
+   "`Student`",
+   "`PaymentForm`",
+   "`CourseMgr`",
+   "`Order`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Boundary classes handle the interaction between an actor and the system, and the slides name them xxxForm, xxxUI or xxxInterface. `CourseMgr` follows the control naming (xxxMgr), while `Student` and `Order` are entities, the persistent data."
+ },
+ {
+  "id": "f8-L1-03",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "crc cards",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does **CRC** stand for?",
+  "options": [
+   "Class, Relationships, Constructors",
+   "Code, Review, Commit",
+   "Component, Role, Contract",
+   "Class, Responsibilities, Collaborators"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A CRC card records a Class, its Responsibilities (what it knows and does) and its Collaborators (the classes it works with). Kent Beck and Ward Cunningham introduced CRC cards in 1989 to teach OO thinking."
+ },
+ {
+  "id": "f8-L1-04",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "crc cards",
+  "type": "single",
+  "gotcha": false,
+  "question": "On this CRC card, area **2** (the right-hand column) lists...",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 170\" font-family=\"Arial, sans-serif\" font-size=\"12\"><rect width=\"340\" height=\"170\" fill=\"#fff\"/><rect x=\"8\" y=\"8\" width=\"324\" height=\"154\" fill=\"#fffdf5\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"28\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Class name:</text><text x=\"110\" y=\"28\" font-size=\"12\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Hand</text><line x1=\"8\" y1=\"36\" x2=\"332\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"16\" y=\"53\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Superclasses:</text><line x1=\"8\" y1=\"60\" x2=\"332\" y2=\"60\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"16\" y=\"77\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Subclasses:</text><line x1=\"8\" y1=\"84\" x2=\"332\" y2=\"84\" stroke=\"#222\" stroke-width=\"1.4\"/><line x1=\"214\" y1=\"84\" x2=\"214\" y2=\"162\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"110\" y=\"124\" font-size=\"18\" fill=\"#2da44e\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">1</text><text x=\"272\" y=\"124\" font-size=\"18\" fill=\"#d73a49\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">2</text><text x=\"16\" y=\"104\" font-size=\"11\" fill=\"#888\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Return value</text><text x=\"16\" y=\"122\" font-size=\"11\" fill=\"#888\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Add a card</text><text x=\"16\" y=\"140\" font-size=\"11\" fill=\"#888\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Show hand</text></svg>",
+  "options": [
+   "the collaborators: other classes `Hand` works with to carry out its responsibilities",
+   "the subclasses of `Hand`",
+   "the attributes of `Hand` with their types",
+   "the return types of the responsibilities in area 1"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "A CRC card puts responsibilities on the left and collaborators on the right. Superclasses and subclasses have their own rows near the top. On the slides' Hand card the collaborators are Player and Dealer."
+ },
+ {
+  "id": "f8-L1-05",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "nouns and verbs",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the slides' approach, what do you look for in the requirement statement to find classes and their responsibilities?",
+  "options": [
+   "Verbs suggest classes. Nouns suggest methods",
+   "Nouns suggest classes (or attributes). Verbs suggest responsibilities (methods)",
+   "Nouns suggest actors. Verbs suggest use cases",
+   "Adjectives suggest classes. Adverbs suggest methods"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The slides identify objects \"through identifying nouns and verbs in requirements statement\". Nouns give candidate classes, and some turn out to be attributes. Verbs (actions) lead to the responsibilities of those classes."
+ },
+ {
+  "id": "f8-L1-06",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "stereotypes",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which name follows the slides' naming convention for a **control** class?",
+  "options": [
+   "`EnrolmentForm`",
+   "`Enrolment`",
+   "`EnrolmentUI`",
+   "`EnrolmentMgr`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Control classes hold the logic that realises a use case, and the slides name them xxxMgr, xxxCtrl or xxxController (e.g. `CourseMgr`). `EnrolmentForm` and `EnrolmentUI` are boundaries, and `Enrolment` is an entity."
+ },
+ {
+  "id": "f8-L1-07",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "stereotypes",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which icon is the UML **control** stereotype?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 120\" font-family=\"Arial, sans-serif\" font-size=\"12\"><rect width=\"340\" height=\"120\" fill=\"#fff\"/><circle cx=\"60\" cy=\"46\" r=\"18\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"42\" y1=\"68\" x2=\"78\" y2=\"68\" stroke=\"#222\" stroke-width=\"1.6\"/><circle cx=\"176\" cy=\"46\" r=\"18\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"146\" y1=\"28\" x2=\"146\" y2=\"64\" stroke=\"#222\" stroke-width=\"1.6\"/><line x1=\"146\" y1=\"46\" x2=\"158\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.6\"/><circle cx=\"284\" cy=\"46\" r=\"18\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><path d=\"M286,23 L279,28 L286,33\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.6\"/><text x=\"60\" y=\"100\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Icon 1</text><text x=\"170\" y=\"100\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Icon 2</text><text x=\"284\" y=\"100\" font-size=\"13\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Icon 3</text></svg>",
+  "options": [
+   "Icon 1",
+   "Icon 2",
+   "Icon 3",
+   "None: control classes have no icon"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The control icon is a circle with an arrowhead on its rim (like a cycle arrow). Icon 1, a circle on a line, is an entity. Icon 2, a circle attached to a vertical bar, is a boundary. The slides' *check mentee result* diagram uses these icons for `:SelectForm` (boundary), `AppMgr` (control) and the entities."
+ },
+ {
+  "id": "f8-L1-08",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": false,
+  "question": "Requirement: *\"A professor is a mentor to at least 1 student.\"* What multiplicity goes at the **?** (Student end)?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 90\" font-family=\"Arial, sans-serif\" font-size=\"12\"><rect width=\"340\" height=\"90\" fill=\"#fff\"/><rect x=\"10\" y=\"30\" width=\"100\" height=\"30\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.2\"/><text x=\"60\" y=\"50\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Professor</text><rect x=\"230\" y=\"30\" width=\"100\" height=\"30\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.2\"/><text x=\"280\" y=\"50\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Student</text><line x1=\"110\" y1=\"45\" x2=\"230\" y2=\"45\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"116\" y=\"40\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">1</text><text x=\"118\" y=\"62\" font-size=\"11\" fill=\"#888\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">mentor</text><text x=\"222\" y=\"40\" font-size=\"15\" fill=\"#d73a49\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"end\" font-weight=\"bold\">?</text><text x=\"224\" y=\"62\" font-size=\"11\" fill=\"#888\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"end\">mentee</text></svg>",
+  "options": [
+   "`1`",
+   "`0..1`",
+   "`1..*`",
+   "`0..*`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "\"At least 1\" means one or more, written `1..*`. A multiplicity is written at the far end: how many Students one Professor mentors. The `1` at the Professor end says each student has one mentor."
+ },
+ {
+  "id": "f8-L1-09",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "crc cards",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which reasons do the slides give for using CRC cards?",
+  "options": [
+   "They are portable: no computer is needed, so they can be used anywhere",
+   "Participants can role-play the objects and see first-hand how the system will work",
+   "They generate compilable Java classes automatically",
+   "Once written, they never need to change"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "The slides list portability, hands-on role-play (picking up a card and acting as that object) and their value for teaching the OO paradigm. They also warn that the first CRC cards will change, and they are paper cards, not a code generator."
+ },
+ {
+  "id": "f8-L1-10",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "crc cards",
+  "type": "single",
+  "gotcha": false,
+  "question": "On the slides' Deck CRC card, which of these is a **responsibility** of Deck?",
+  "options": [
+   "Card",
+   "Dealer",
+   "Shuffle deck",
+   "52"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Responsibilities are things a class knows or does, usually from verbs: reset deck, get deck size, get next card, shuffle deck, show deck. `Card` and `Dealer` are collaborators, the classes Deck works with, and 52 is a multiplicity."
+ },
+ {
+  "id": "f8-L1-11",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "case study",
+  "type": "single",
+  "gotcha": false,
+  "question": "In the slides' Blackjack class diagram, what does the dashed open arrow from `GAME` to `Dealer` mean?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 80\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q8kopenk\" viewBox=\"-1 -1 12 12\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"11\" markerHeight=\"11\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker></defs><rect width=\"340\" height=\"80\" fill=\"#fff\"/><rect x=\"20\" y=\"24\" width=\"80\" height=\"30\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"60\" y=\"44\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">GAME</text><rect x=\"220\" y=\"24\" width=\"100\" height=\"30\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"270\" y=\"44\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Dealer</text><line x1=\"100\" y1=\"39\" x2=\"220\" y2=\"39\" stroke=\"#222\" stroke-width=\"1.4\" stroke-dasharray=\"6 4\" marker-end=\"url(#q8kopenk)\"/></svg>",
+  "options": [
+   "`GAME` inherits from `Dealer`",
+   "`GAME` is composed of `Dealer` parts",
+   "A dependency: `GAME` uses `Dealer`",
+   "A reply message from `Dealer` to `GAME`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "In a class diagram, a dashed line with an open arrowhead is a dependency: the source uses the target, often only briefly. Inheritance uses a solid line with a hollow triangle, and composition uses a filled diamond. Reply messages belong in sequence diagrams."
+ },
+ {
+  "id": "f8-L1-12",
+  "chapter": 8,
+  "level": 1,
+  "subtopic": "candidate classes",
+  "type": "single",
+  "gotcha": false,
+  "question": "What do the slides say about your **first** set of Blackjack CRC cards?",
+  "options": [
+   "They will change: not every class you think you need makes the final cut",
+   "They are final and become the classes directly",
+   "They should contain only attributes, not responsibilities",
+   "They must list every noun in the requirements as a class"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The slides warn that the first CRC cards will change, because some candidate classes drop out during review. For example, Bet is first removed, then brought back, then put off as \"can be added later\". Design is iterative."
+ },
+ {
+  "id": "f8-L2-01",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "nouns and verbs",
+  "type": "single",
+  "gotcha": false,
+  "question": "Requirement: *\"A library lends books to members. Each book has a title and an ISBN. A member has a name and can borrow up to 5 books. Each loan records the due date.\"* Which choice of classes and attributes is best?",
+  "options": [
+   "Classes `Library`, `Title`, `ISBN`, `Name`, `DueDate`",
+   "Classes `Book`, `Member`, `Loan`. Attributes: `title`, `isbn` (Book), `name` (Member), `dueDate` (Loan)",
+   "Classes `Book`, `Member`, `Loan`, `Title`, `DueDate` with no attributes",
+   "One class `Library` holding `title`, `isbn`, `name` and `dueDate`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Nouns with their own data and links become classes: Book, Member, and Loan, which connects a member to a book and has a due date. Nouns that only describe something become attributes. `Library` is the system itself, eliminated just as the slides drop Blackjack."
+ },
+ {
+  "id": "f8-L2-02",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "case study",
+  "type": "single",
+  "gotcha": false,
+  "question": "In Blackjack, which class should own the responsibility **\"calculate the value of the cards held\"**?",
+  "options": [
+   "`Player`",
+   "`Dealer`",
+   "`Card`",
+   "`Hand`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Give the responsibility to the class that holds the data. `Hand` holds the cards, and the slides' Hand CRC lists \"Return value\" (`+getValue:int`). Player and Dealer ask their Hand when they need the value, which is why Hand is one of their collaborators. A single `Card` only knows its own face value."
+ },
+ {
+  "id": "f8-L2-03",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "nouns and verbs",
+  "type": "single",
+  "gotcha": false,
+  "question": "*\"The bank stores each account's PIN. A customer types a PIN on the ATM screen and the system checks whether it matches.\"* Following the idea that a class is responsible for what it knows, which class should own `matchesPin(pin)`?",
+  "options": [
+   "`Account`, because it stores the PIN",
+   "`ATMScreen`, because the PIN is typed there",
+   "`Customer`, because the customer knows the PIN",
+   "`Receipt`, because it reports the result"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "In the slides, Card \"must know its face value and be able to report the value\": a class owns behaviour on the data it holds. `Account` stores the PIN, so it checks it. The screen is a boundary that only collects input and passes it on."
+ },
+ {
+  "id": "f8-L2-04",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "discovering methods",
+  "type": "multi",
+  "gotcha": false,
+  "question": "While drawing this sequence diagram for *check mentee result*, which methods do you discover that class `Result` must have?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 196\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q8Dfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"196\" fill=\"#fff\"/><rect x=\"13.0\" y=\"6\" width=\"62\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"44\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:AppMgr</text><line x1=\"44\" y1=\"28\" x2=\"44\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"91.0\" y=\"6\" width=\"70\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"126\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">s:Student</text><line x1=\"126\" y1=\"28\" x2=\"126\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"179.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"210\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">r:Result</text><line x1=\"210\" y1=\"28\" x2=\"210\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"265.36\" y=\"6\" width=\"61.28\" height=\"22\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"296\" y=\"21\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">c:Course</text><line x1=\"296\" y1=\"28\" x2=\"296\" y2=\"190\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"40\" y=\"40\" width=\"8\" height=\"140\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><rect x=\"6\" y=\"44\" width=\"330\" height=\"134\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M6,44 H40.64 V54 L35.64,60 H6\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"10\" y=\"56\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">loop</text><text x=\"150\" y=\"57\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[each student]</text><line x1=\"48\" y1=\"74\" x2=\"122\" y2=\"74\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q8Dfillk)\"/><text x=\"56\" y=\"68\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">getResults()</text><rect x=\"14\" y=\"86\" width=\"318\" height=\"86\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.1\"/><path d=\"M14,86 H48.64 V96 L43.64,102 H14\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.1\"/><text x=\"18\" y=\"98\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">loop</text><text x=\"64\" y=\"99\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">[each result]</text><line x1=\"48\" y1=\"116\" x2=\"206\" y2=\"116\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q8Dfillk)\"/><text x=\"150\" y=\"110\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">getCourse()</text><line x1=\"48\" y1=\"138\" x2=\"292\" y2=\"138\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q8Dfillk)\"/><text x=\"230\" y=\"132\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">getCourseName()</text><line x1=\"48\" y1=\"160\" x2=\"206\" y2=\"160\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q8Dfillk)\"/><text x=\"150\" y=\"154\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">getGrade()</text></svg>",
+  "options": [
+   "`getCourse()`",
+   "`getGrade()`",
+   "`getCourseName()`",
+   "`getResults()`"
+  ],
+  "answer": [
+   0,
+   1
+  ],
+  "explanation": "Each arrow pointing into a lifeline is an operation that class needs. `getCourse()` and `getGrade()` end on `r:Result`. `getCourseName()` ends on `c:Course` and `getResults()` on `s:Student`. This is how step 5 adds methods back into the class diagram."
+ },
+ {
+  "id": "f8-L2-05",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "candidate classes",
+  "type": "single",
+  "gotcha": false,
+  "question": "A teammate argues: \"A table can have several players, so we need a class called `Players`.\" What is the best response, following the slides?",
+  "options": [
+   "Yes. Add `Players` as a subclass of `Player`",
+   "No. Keep a single `Player` class. Several players means several `Player` objects, shown by the multiplicity `1..*`",
+   "Yes. Replace `Player` with `Players`",
+   "No. Make `players` an attribute of `Card`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The slides drop \"Players\" because \"we just need a single player (class)\". A plural noun is not a new class: the count goes in the multiplicity, and the Blackjack class diagram shows `1..*` at the Player end of the Dealer link."
+ },
+ {
+  "id": "f8-L2-06",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "candidate classes",
+  "type": "single",
+  "gotcha": false,
+  "question": "*\"A car has a colour and a licence plate. Each car has an engine with its own serial number and horsepower. Engines can be tested and moved to another car.\"* Which model fits best?",
+  "options": [
+   "`Car` with the attributes `colour`, `plate` and `engine : String`",
+   "Classes `Colour`, `Plate` and `Engine`, all linked to `Car`",
+   "`Engine` as a subclass of `Car`",
+   "`Car` (attributes `colour`, `plate`) associated with a separate `Engine` class (attributes `serialNo`, `horsepower`, method `test()`)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Colour and plate only describe a car, so they are attributes. An engine has its own data and behaviour (it can be tested) and exists apart from any one car, so it is a class linked to Car. A car is not a kind of engine, so inheritance is wrong."
+ },
+ {
+  "id": "f8-L2-07",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "stereotypes",
+  "type": "single",
+  "gotcha": false,
+  "question": "The web checkout screen is replaced by a mobile-app screen, and the checkout steps and order data stay the same. If the design follows entity/boundary/control, which class(es) should need to change?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><defs><marker id=\"q8Gfillk\" viewBox=\"0 0 10 10\" refX=\"10\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"10\" markerHeight=\"10\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 z\" fill=\"#222\"/></marker></defs><rect width=\"340\" height=\"150\" fill=\"#fff\"/><circle cx=\"30\" cy=\"11\" r=\"5\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.3\"/><line x1=\"30\" y1=\"16\" x2=\"30\" y2=\"26\" stroke=\"#222\" stroke-width=\"1.4\"/><line x1=\"23\" y1=\"19\" x2=\"37\" y2=\"19\" stroke=\"#222\" stroke-width=\"1.4\"/><line x1=\"30\" y1=\"26\" x2=\"24\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.4\"/><line x1=\"30\" y1=\"26\" x2=\"36\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"30\" y=\"46\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">Customer</text><line x1=\"30\" y1=\"50\" x2=\"30\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"66.0\" y=\"10\" width=\"80\" height=\"22\" fill=\"#fff\" stroke=\"#1f6feb\" stroke-width=\"1.2\"/><text x=\"106\" y=\"25\" font-size=\"11\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:CheckoutUI</text><line x1=\"106\" y1=\"32\" x2=\"106\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"156.0\" y=\"10\" width=\"80\" height=\"22\" fill=\"#fff\" stroke=\"#2da44e\" stroke-width=\"1.2\"/><text x=\"196\" y=\"25\" font-size=\"11\" fill=\"#2da44e\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:OrderCtrl</text><line x1=\"196\" y1=\"32\" x2=\"196\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><rect x=\"260.0\" y=\"10\" width=\"60\" height=\"22\" fill=\"#fff\" stroke=\"#bf8700\" stroke-width=\"1.2\"/><text x=\"290\" y=\"25\" font-size=\"11\" fill=\"#bf8700\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">:Order</text><line x1=\"290\" y1=\"32\" x2=\"290\" y2=\"146\" stroke=\"#888\" stroke-width=\"1.2\" stroke-dasharray=\"5 4\"/><line x1=\"30\" y1=\"70\" x2=\"102\" y2=\"70\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q8Gfillk)\"/><text x=\"66\" y=\"64\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">pay()</text><rect x=\"102\" y=\"70\" width=\"8\" height=\"60\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"110\" y1=\"88\" x2=\"192\" y2=\"88\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q8Gfillk)\"/><text x=\"151.0\" y=\"82\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">checkout()</text><rect x=\"192\" y=\"88\" width=\"8\" height=\"36\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/><line x1=\"200\" y1=\"106\" x2=\"286\" y2=\"106\" stroke=\"#222\" stroke-width=\"1.4\" marker-end=\"url(#q8Gfillk)\"/><text x=\"243.0\" y=\"100\" font-size=\"11\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\">confirm()</text><rect x=\"286\" y=\"106\" width=\"8\" height=\"12\" fill=\"#dbe9ff\" stroke=\"#222\" stroke-width=\"1\"/></svg>",
+  "options": [
+   "Only the control `OrderCtrl`",
+   "Only the entity `Order`",
+   "Only the boundary `CheckoutUI` (replaced by a mobile UI)",
+   "All three, because they are linked by messages"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The point of the split is that the boundary is the only part that talks to the actor, so a new screen affects only the boundary. The control (use-case logic) and the entity (persistent data) stay the same, because they never depended on how the screen looks."
+ },
+ {
+  "id": "f8-L2-08",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "crc cards",
+  "type": "single",
+  "gotcha": false,
+  "question": "Using this CRC card, you draw the sequence diagram for **start a new game**. Which lifelines would you expect `:Dealer` to send messages to?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" font-family=\"Arial, sans-serif\" font-size=\"12\"><rect width=\"340\" height=\"150\" fill=\"#fff\"/><rect x=\"8\" y=\"8\" width=\"324\" height=\"136\" fill=\"#fffdf5\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"28\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Class name:</text><text x=\"110\" y=\"28\" font-size=\"12\" fill=\"#1f6feb\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Dealer</text><line x1=\"8\" y1=\"36\" x2=\"332\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.4\"/><line x1=\"214\" y1=\"36\" x2=\"214\" y2=\"144\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"16\" y=\"54\" font-size=\"12\" fill=\"#2da44e\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Responsibility</text><text x=\"222\" y=\"54\" font-size=\"12\" fill=\"#bf8700\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">Collaborators</text><line x1=\"8\" y1=\"62\" x2=\"332\" y2=\"62\" stroke=\"#ccc\" stroke-width=\"1\"/><text x=\"16\" y=\"80\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Start a new game</text><text x=\"16\" y=\"98\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Get a card</text><text x=\"222\" y=\"80\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Hand</text><text x=\"222\" y=\"98\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Player</text><text x=\"222\" y=\"116\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">Deck</text></svg>",
+  "options": [
+   "Only `:Card`",
+   "`:Bet` and `:Deck`",
+   "`:Deck`, `:Player` and `:Hand`",
+   "Only `:Dealer` itself"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Collaborators are the classes a class works with to carry out its responsibilities, so in the interaction they become the lifelines it sends messages to. Here those are Hand, Player and Deck (for example, shuffle the deck and deal into the hands). Bet was postponed, and Card is reached through Deck."
+ },
+ {
+  "id": "f8-L2-09",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "candidate classes",
+  "type": "single",
+  "gotcha": false,
+  "question": "Nouns from an online-shop requirement: *Shop, Store, Customer, Customers, Item, price, Cart, quantity*. Applying the slides' elimination rules, which classes remain?",
+  "options": [
+   "`Customer`, `Item`, `Cart`",
+   "`Shop`, `Customer`, `Item`, `Cart`, `Price`",
+   "`Store`, `Customers`, `Item`, `Quantity`",
+   "`Customer`, `Customers`, `Cart`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "`Shop` is the system itself (like Blackjack) and `Store` is a synonym (like House = Dealer). `Customers` is a plural of `Customer`, and `price` and `quantity` are attributes, of Item and of a cart line respectively. That leaves Customer, Item and Cart."
+ },
+ {
+  "id": "f8-L2-10",
+  "chapter": 8,
+  "level": 2,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": false,
+  "question": "The rule changes: **a student may now have one or two mentors**. What changes in this diagram?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 90\" font-family=\"Arial, sans-serif\" font-size=\"12\"><rect width=\"340\" height=\"90\" fill=\"#fff\"/><rect x=\"10\" y=\"30\" width=\"100\" height=\"30\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.2\"/><text x=\"60\" y=\"50\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Professor</text><rect x=\"230\" y=\"30\" width=\"100\" height=\"30\" fill=\"#e8f0fe\" stroke=\"#1f6feb\" stroke-width=\"1.2\"/><text x=\"280\" y=\"50\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"middle\" font-weight=\"bold\">Student</text><line x1=\"110\" y1=\"45\" x2=\"230\" y2=\"45\" stroke=\"#222\" stroke-width=\"1.4\"/><text x=\"116\" y=\"40\" font-size=\"12\" fill=\"#d73a49\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" font-weight=\"bold\">1</text><text x=\"118\" y=\"62\" font-size=\"11\" fill=\"#888\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\">mentor</text><text x=\"224\" y=\"40\" font-size=\"12\" fill=\"#222\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"end\">1..*</text><text x=\"224\" y=\"62\" font-size=\"11\" fill=\"#888\" stroke=\"#fff\" stroke-width=\"3\" stroke-linejoin=\"round\" paint-order=\"stroke\" text-anchor=\"end\">mentee</text></svg>",
+  "options": [
+   "The Student end becomes `1..2`",
+   "The multiplicity at the Professor (mentor) end becomes `1..2`, and the Student end stays `1..*`",
+   "Both ends become `0..*`",
+   "A new `Mentor` class must be added between them"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "The number of mentors per student goes at the Professor end: the far end, read from a Student. That `1` becomes `1..2`. Each professor still mentors at least one student, so `1..*` stays, and mentor is a role, not a new class."
+ }
+]

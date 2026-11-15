@@ -1,0 +1,843 @@
+[
+ {
+  "id": "f6-L1-01",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "notation",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the highlighted middle compartment of this class box list?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 150\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open1\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri1\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia1\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf1\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr1\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr1\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra1\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg1\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"80\" y=\"10\" width=\"170\" height=\"104\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">BankAccount</text><line x1=\"80\" y1=\"34\" x2=\"250\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"86\" y=\"51\" font-size=\"12\" fill=\"#222\">- owner : String</text><text x=\"86\" y=\"67\" font-size=\"12\" fill=\"#222\">- balance : double</text><line x1=\"80\" y1=\"74\" x2=\"250\" y2=\"74\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"86\" y=\"91\" font-size=\"12\" fill=\"#222\">+ deposit(x : double)</text><text x=\"86\" y=\"107\" font-size=\"12\" fill=\"#222\">+ getBalance() : double</text><rect x=\"81\" y=\"35\" width=\"168\" height=\"39\" rx=\"0\" fill=\"none\" stroke=\"#bf8700\" stroke-width=\"3\"/><text x=\"258\" y=\"60\" font-size=\"22\" fill=\"#bf8700\" font-weight=\"bold\">?</text></svg>",
+  "options": [
+   "The operations (methods) of the class",
+   "The objects created from the class",
+   "The attributes (fields) of the class",
+   "The subclasses of BankAccount"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A class box has three compartments: name (top), attributes (middle), operations (bottom). `owner` and `balance` are written `name : Type` with no brackets, so they are attributes, i.e. fields."
+ },
+ {
+  "id": "f6-L1-02",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "notation",
+  "type": "single",
+  "gotcha": false,
+  "question": "In this attribute line, what does the circled `0.0` specify?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 80\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open2\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri2\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia2\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf2\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr2\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr2\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra2\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg2\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><text x=\"20\" y=\"40\" font-size=\"17\" fill=\"#222\" font-family=\"Courier New, monospace\" xml:space=\"preserve\" font-weight=\"bold\">- balance : double = 0.0</text><ellipse cx=\"251\" cy=\"35\" rx=\"26\" ry=\"18\" fill=\"none\" stroke=\"#d73a49\" stroke-width=\"2.5\"/><text x=\"165\" y=\"72\" font-size=\"11\" fill=\"#888\" text-anchor=\"middle\">an attribute of class Account</text></svg>",
+  "options": [
+   "The initial (default) value of `balance`",
+   "The multiplicity of `balance`",
+   "The minimum value `balance` is allowed to hold",
+   "The return type of `balance`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Attribute format is `visibility name : Type = initial-value`. The part after `=` is the initial value, so this maps to `private double balance = 0.0;`. Multiplicity would be in square brackets, e.g. `[1..*]`."
+ },
+ {
+  "id": "f6-L1-03",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "visibility",
+  "type": "single",
+  "gotcha": false,
+  "question": "In a UML class box, an attribute starts with `#`. Which Java access modifier does `#` stand for?",
+  "options": [
+   "`public`",
+   "`private`",
+   "no modifier (package access)",
+   "`protected`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The four UML visibility symbols are `+` public, `-` private, `#` protected and `~` package. So `#` is `protected`: visible in the class, its package and its subclasses."
+ },
+ {
+  "id": "f6-L1-04",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "visibility",
+  "type": "single",
+  "gotcha": false,
+  "question": "How should the field below be written in the class box for `Counter`?",
+  "code": "class Counter {\n    int count;   // no access modifier\n}",
+  "options": [
+   "`+ count : int`",
+   "`~ count : int`",
+   "`- count : int`",
+   "`# count : int`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A Java member with no access modifier has package (default) access. The UML symbol for package visibility is `~`. Leaving out a modifier does not mean public (`+`) or private (`-`)."
+ },
+ {
+  "id": "f6-L1-05",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "notation",
+  "type": "single",
+  "gotcha": false,
+  "question": "In `MathUtil`, the operation `square` is underlined but `describe` is not. Which Java call is valid **without** creating a `MathUtil` object?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 100\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open3\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri3\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia3\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf3\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr3\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr3\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra3\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg3\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"70\" y=\"10\" width=\"190\" height=\"64\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">MathUtil</text><line x1=\"70\" y1=\"34\" x2=\"260\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"76\" y=\"51\" font-size=\"12\" fill=\"#222\" text-decoration=\"underline\">+ square(x : int) : int</text><text x=\"76\" y=\"67\" font-size=\"12\" fill=\"#222\">+ describe() : String</text></svg>",
+  "options": [
+   "`MathUtil.square(3)`",
+   "`MathUtil.describe()`",
+   "`new MathUtil.square(3)`",
+   "`square.MathUtil(3)`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Underlining a member in UML means it is static, i.e. it belongs to the class. A static method is called through the class name: `MathUtil.square(3)`. `describe()` is not underlined, so it is an instance method and needs an object."
+ },
+ {
+  "id": "f6-L1-06",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "notation",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this class box tell you about `Shape`?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 106\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open4\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri4\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia4\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf4\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr4\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr4\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra4\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg4\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"80\" y=\"10\" width=\"170\" height=\"78\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\" font-style=\"italic\">Shape</text><text x=\"165.0\" y=\"41\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">{abstract}</text><line x1=\"80\" y1=\"48\" x2=\"250\" y2=\"48\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"86\" y=\"65\" font-size=\"12\" fill=\"#222\" font-style=\"italic\">+ area() : double</text><text x=\"86\" y=\"81\" font-size=\"12\" fill=\"#222\">+ getColour() : String</text></svg>",
+  "options": [
+   "`Shape` is an interface",
+   "`Shape` is an abstract class, so `new Shape()` is not allowed, and `area()` is abstract",
+   "`Shape` is a static class with one static method",
+   "`Shape` is final, so it cannot be extended"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "An italic class name and/or `{abstract}` marks an abstract class; an italic operation is an abstract method. You cannot instantiate an abstract class; a subclass must override `area()`. An interface would show `<<interface>>` instead."
+ },
+ {
+  "id": "f6-L1-07",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "question": "What relationship does this line show? (solid line, hollow triangle at `Animal`)",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 70\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open5\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri5\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia5\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf5\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr5\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr5\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra5\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg5\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"20\" y=\"20\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"65.0\" y=\"37\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Dog</text><rect x=\"220\" y=\"20\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"37\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Animal</text><line x1=\"110\" y1=\"34\" x2=\"220\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#tri5)\"/></svg>",
+  "options": [
+   "Association",
+   "Realisation",
+   "Generalisation (Dog extends Animal)",
+   "Dependency"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A solid line with a hollow triangle is generalisation (inheritance, 'is a'). The triangle points to the superclass, so `class Dog extends Animal`. Realisation uses the same triangle but a dashed line."
+ },
+ {
+  "id": "f6-L1-08",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which Java keyword does this line (dashed, hollow triangle) represent?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 80\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open6\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri6\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia6\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf6\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr6\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr6\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra6\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg6\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"20\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"65.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Printer</text><rect x=\"210\" y=\"10\" width=\"100\" height=\"38\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"260.0\" y=\"24\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">&lt;&lt;interface&gt;&gt;</text><text x=\"260.0\" y=\"41\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Printable</text><line x1=\"110\" y1=\"36\" x2=\"210\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#tri6)\"/></svg>",
+  "options": [
+   "`extends`",
+   "`implements`",
+   "`import`",
+   "`new`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A dashed line with a hollow triangle is realisation: the class realises (implements) the interface. So this is `class Printer implements Printable`. A solid line with the same triangle would be `extends`."
+ },
+ {
+  "id": "f6-L1-09",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "dependency",
+  "type": "single",
+  "gotcha": false,
+  "question": "What relationship does this dashed line with an open arrowhead show?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 60\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open7\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri7\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia7\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf7\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr7\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr7\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra7\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg7\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"20\" y=\"16\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"65.0\" y=\"33\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Chef</text><rect x=\"220\" y=\"16\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"33\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Recipe</text><line x1=\"110\" y1=\"30\" x2=\"220\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#open7)\"/></svg>",
+  "options": [
+   "Realisation",
+   "Aggregation",
+   "Association",
+   "Dependency: Chef uses Recipe"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A dashed line with an open (stick) arrowhead is a dependency. The arrow goes from the client (Chef) to the supplier it uses (Recipe), e.g. as a method parameter or local variable. An association would be a solid line."
+ },
+ {
+  "id": "f6-L1-10",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "whole-part",
+  "type": "single",
+  "gotcha": false,
+  "question": "What relationship does this line show?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 120\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open8\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri8\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia8\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf8\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr8\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr8\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra8\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg8\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"120\" y=\"10\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Body</text><rect x=\"120\" y=\"80\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"97\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Heart</text><line x1=\"165.0\" y1=\"80\" x2=\"165.0\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#diaf8)\"/><text x=\"171.0\" y=\"74\" font-size=\"12\" fill=\"#222\">1</text></svg>",
+  "options": [
+   "Aggregation",
+   "Composition",
+   "Generalisation",
+   "Dependency"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A filled (black) diamond is composition, the strong whole-part relationship. The diamond sits at the whole (Body); the Heart is created and owned by the Body and does not outlive it. A hollow diamond would be aggregation."
+ },
+ {
+  "id": "f6-L1-11",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "whole-part",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which class is the **whole** in this aggregation?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 64\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open9\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri9\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia9\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf9\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr9\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr9\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra9\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg9\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"20\" y=\"18\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"65.0\" y=\"35\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Player</text><rect x=\"220\" y=\"18\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"35\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Team</text><line x1=\"110\" y1=\"32\" x2=\"220\" y2=\"32\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#dia9)\"/><text x=\"116\" y=\"27\" font-size=\"12\" fill=\"#222\">*</text><text x=\"196\" y=\"27\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">0..1</text></svg>",
+  "options": [
+   "Team, because the diamond is drawn at Team's end",
+   "Player, because it is on the left",
+   "Player, because it has the `*` multiplicity",
+   "Neither: aggregation has no whole and part"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "In aggregation and composition the diamond always sits at the whole. Here it touches `Team`, so a Team has Players. Left/right position on the page means nothing."
+ },
+ {
+  "id": "f6-L1-12",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "multiplicity",
+  "type": "single",
+  "gotcha": false,
+  "question": "From this diagram (based on slide 19), how many Professors can teach one Course?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 70\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open10\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri10\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia10\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf10\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr10\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr10\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra10\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg10\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"55.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Course</text><rect x=\"220\" y=\"22\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"270.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Professor</text><line x1=\"100\" y1=\"36\" x2=\"220\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"105\" y=\"31\" font-size=\"12\" fill=\"#222\">*</text><text x=\"215\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">1..2</text><text x=\"160.0\" y=\"56\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\" font-style=\"italic\">teaches</text></svg>",
+  "options": [
+   "Exactly 1",
+   "Any number, including zero",
+   "At least 2",
+   "1 or 2"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Read the multiplicity at the far end: for one Course, look at the number next to `Professor`, which is `1..2`. So each Course is taught by 1 or 2 Professors. The `*` next to Course says a Professor teaches any number of Courses."
+ },
+ {
+  "id": "f6-L1-13",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "multiplicity",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does the multiplicity `0..1` mean?",
+  "options": [
+   "Exactly one",
+   "One or more",
+   "Zero or one (optional)",
+   "Zero or more"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`n..m` means from n up to m. `0..1` therefore allows none or exactly one, i.e. optional. In Java it is a single field that may be `null`."
+ },
+ {
+  "id": "f6-L1-14",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "multiplicity",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which multiplicity means the same as `*`?",
+  "options": [
+   "`1..*`",
+   "`1`",
+   "`0..1`",
+   "`0..*`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A lone `*` means 'many', with no lower limit: zero or more, the same as `0..*`. `1..*` is different because it requires at least one."
+ },
+ {
+  "id": "f6-L1-15",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "association",
+  "type": "single",
+  "gotcha": false,
+  "question": "This uni-directional association (from slide 33) has the role name `myRole` next to ClassB. What does `myRole` become in Java?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 120\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open11\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri11\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia11\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf11\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr11\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr11\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra11\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg11\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"110\" y=\"10\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"155.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">ClassA</text><rect x=\"110\" y=\"86\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"155.0\" y=\"103\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">ClassB</text><line x1=\"155.0\" y1=\"34\" x2=\"155.0\" y2=\"86\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#open11)\"/><text x=\"171\" y=\"76\" font-size=\"12\" fill=\"#222\" font-style=\"italic\">myRole</text></svg>",
+  "options": [
+   "The name of a field of type `ClassB` inside `ClassA`",
+   "The name of a field of type `ClassA` inside `ClassB`",
+   "The name of a method in `ClassA`",
+   "The name of an object of `ClassA`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The arrow means ClassA can navigate to ClassB, so ClassA holds a reference: `ClassB myRole;`. A role name at an end names the field that the class at the OTHER end uses to reach it. ClassB gets nothing."
+ },
+ {
+  "id": "f6-L1-16",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "object-diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "What does this box represent?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 80\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open12\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri12\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia12\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf12\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr12\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr12\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra12\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg12\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"90\" y=\"10\" width=\"150\" height=\"64\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">jack : Student</text><line x1=\"90\" y1=\"34\" x2=\"240\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"96\" y=\"51\" font-size=\"12\" fill=\"#222\">name = \"Jack\"</text><text x=\"96\" y=\"67\" font-size=\"12\" fill=\"#222\">year = 2</text></svg>",
+  "options": [
+   "A class called `jack` with a superclass `Student`",
+   "A class `Student` with two static attributes",
+   "An object named `jack` of class `Student`, with its current values",
+   "An interface `Student` implemented by `jack`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "In an object diagram each box is an instance: `objectName : ClassName`, underlined. The compartment lists attribute VALUES (`name = \"Jack\"`), not types. A class box would have a bold, non-underlined name."
+ },
+ {
+  "id": "f6-L1-17",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "object-diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "In this object box from the slides, what does `:Book` (nothing before the colon) mean?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 64\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open13\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri13\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia13\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf13\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr13\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr13\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra13\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg13\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"100\" y=\"10\" width=\"130\" height=\"44\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165\" y=\"28\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">:Book</text><text x=\"165\" y=\"46\" font-size=\"12\" fill=\"#222\" text-anchor=\"middle\">[checked out]</text></svg>",
+  "options": [
+   "A class named Book with no attributes",
+   "A static attribute of Book",
+   "Book is an interface",
+   "An anonymous object of class Book (unnamed instance)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "An object label is `name : Class`. Leaving the name out (`:Book`) gives an anonymous object, e.g. the one created by `library.checkout(new Book(\"Twelfth Night\"))`. `[checked out]` shows its state."
+ },
+ {
+  "id": "f6-L1-18",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "dependency",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which relationships are drawn with a **dashed** line?",
+  "options": [
+   "Association",
+   "Dependency",
+   "Composition",
+   "Realisation"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Only two of the six lines are dashed: dependency (open arrowhead, 'uses') and realisation (hollow triangle, 'implements'). Association, aggregation, composition and generalisation are all solid."
+ },
+ {
+  "id": "f6-L1-19",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "notation",
+  "type": "single",
+  "gotcha": false,
+  "question": "A class `CourseMgr` contains the logic that coordinates the 'register for a course' use case. Which class stereotype fits it?",
+  "options": [
+   "`<<entity>>`",
+   "`<<boundary>>`",
+   "`<<control>>`",
+   "`<<interface>>`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The slides give three responsibility stereotypes: entity (persistent data such as Student), boundary (interaction with the outside, e.g. xxxForm/xxxUI) and control (logic that realises a use case, e.g. xxxMgr/xxxCtrl). CourseMgr is a control class."
+ },
+ {
+  "id": "f6-L1-20",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "notation",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which Java declaration matches this class box?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 100\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open14\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri14\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia14\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf14\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr14\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr14\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra14\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg14\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"100\" y=\"6\" width=\"130\" height=\"94\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"20\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">&lt;&lt;enumeration&gt;&gt;</text><text x=\"165.0\" y=\"37\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">DayOfWeek</text><line x1=\"100\" y1=\"44\" x2=\"230\" y2=\"44\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"106\" y=\"61\" font-size=\"12\" fill=\"#222\">Sunday</text><text x=\"106\" y=\"77\" font-size=\"12\" fill=\"#222\">Monday</text><text x=\"106\" y=\"93\" font-size=\"12\" fill=\"#222\">Tuesday</text></svg>",
+  "options": [
+   "`enum DayOfWeek { Sunday, Monday, Tuesday }`",
+   "`interface DayOfWeek { Sunday(); Monday(); Tuesday(); }`",
+   "`class DayOfWeek extends Enum { String Sunday, Monday, Tuesday; }`",
+   "`abstract class DayOfWeek { }`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The stereotype `<<enumeration>>` marks an enum; the middle compartment lists its constants. So it is `enum DayOfWeek { Sunday, Monday, Tuesday }`. An interface would be marked `<<interface>>`."
+ },
+ {
+  "id": "f6-L1-21",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "uml-java",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which UML operation matches this Java method header?",
+  "code": "private void setAge(int age) { }",
+  "options": [
+   "`+ setAge(age : int) : void`",
+   "`- setAge(int age) : void`",
+   "`- setAge(age : int) : void`",
+   "`- void setAge(age : int)`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "UML puts the visibility first (`-` for private), then `name(param : Type)`, then `: ReturnType`. Parameter names come before their types, the opposite of Java, and the return type goes at the end."
+ },
+ {
+  "id": "f6-L1-22",
+  "chapter": 6,
+  "level": 1,
+  "subtopic": "notation",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which of these are UML **structure** diagrams (as opposed to behaviour diagrams)?",
+  "options": [
+   "Class diagram",
+   "Sequence diagram",
+   "Object diagram",
+   "Use case diagram"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "UML diagrams are split into structure diagrams (class, object, component, package, deployment, composite structure) and behaviour diagrams (use case, activity, state machine, and interaction diagrams such as sequence). Class and object diagrams show structure."
+ },
+ {
+  "id": "f6-L2-01",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "uml-java",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which Java code matches this diagram?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 120\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open15\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri15\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia15\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf15\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr15\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr15\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra15\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg15\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"120\" y=\"10\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Car</text><rect x=\"120\" y=\"86\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"103\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Engine</text><line x1=\"165.0\" y1=\"86\" x2=\"165.0\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#diaf15)\"/><text x=\"171.0\" y=\"80\" font-size=\"12\" fill=\"#222\">1</text><text x=\"159.0\" y=\"80\" font-size=\"11\" fill=\"#222\" text-anchor=\"end\" font-style=\"italic\">engine</text></svg>",
+  "options": [
+   "`class Car { private Engine engine; public Car(Engine e) { engine = e; } }`",
+   "`class Car { void start(Engine e) { } }`",
+   "`class Engine extends Car { }`",
+   "`class Car { private Engine engine; public Car() { engine = new Engine(); } }`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "A filled diamond at Car is composition: Car creates and owns its Engine, so the Engine is created inside Car (`new Engine()`). Receiving the Engine from outside (A) is the slides' sign of aggregation; a parameter only (B) is a dependency; C is generalisation."
+ },
+ {
+  "id": "f6-L2-02",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "whole-part",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which diagram matches this code?",
+  "code": "import java.util.ArrayList;\nclass Player { }\nclass Team {\n    private ArrayList<Player> players = new ArrayList<>();\n    public void addPlayer(Player p) {\n        players.add(p);     // created outside, passed in\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 344 224\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open16\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri16\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia16\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf16\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr16\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr16\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra16\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg16\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"4\" y=\"4\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"18\" cy=\"18\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"18\" y=\"22\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">A</text><rect x=\"41\" y=\"12\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"86.0\" y=\"29\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Team</text><rect x=\"41\" y=\"74\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"86.0\" y=\"91\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Player</text><line x1=\"86.0\" y1=\"74\" x2=\"86.0\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#diaf16)\"/><text x=\"92.0\" y=\"68\" font-size=\"12\" fill=\"#222\">*</text><rect x=\"176\" y=\"4\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"190\" cy=\"18\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"190\" y=\"22\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">B</text><rect x=\"213\" y=\"12\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"258.0\" y=\"29\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Team</text><rect x=\"213\" y=\"74\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"258.0\" y=\"91\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Player</text><line x1=\"258.0\" y1=\"74\" x2=\"258.0\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#dia16)\"/><text x=\"264.0\" y=\"68\" font-size=\"12\" fill=\"#222\">*</text><rect x=\"4\" y=\"116\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"18\" cy=\"130\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"18\" y=\"134\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">C</text><rect x=\"41\" y=\"124\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"86.0\" y=\"141\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Team</text><rect x=\"41\" y=\"186\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"86.0\" y=\"203\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Player</text><line x1=\"86\" y1=\"148\" x2=\"86\" y2=\"186\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#dia16)\"/><rect x=\"176\" y=\"116\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"190\" cy=\"130\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"190\" y=\"134\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">D</text><rect x=\"213\" y=\"124\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"258.0\" y=\"141\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Team</text><rect x=\"213\" y=\"186\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"258.0\" y=\"203\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Player</text><line x1=\"258.0\" y1=\"148\" x2=\"258.0\" y2=\"186\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#open16)\"/></svg>",
+  "options": [
+   "A: filled diamond at Team",
+   "B: hollow diamond at Team",
+   "C: hollow diamond at Player",
+   "D: dashed arrow Team to Player"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Team keeps Players in a field (a whole-part 'has a'), but the Player objects are created elsewhere and passed in, so they survive without the Team: aggregation. The hollow diamond goes at the whole, Team. Composition (A) would create the Players inside Team."
+ },
+ {
+  "id": "f6-L2-03",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "whole-part",
+  "type": "single",
+  "gotcha": false,
+  "question": "An `Order` object is deleted. Under this composition, what happens to its `OrderLine` objects?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 120\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open17\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri17\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia17\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf17\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr17\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr17\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra17\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg17\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"115\" y=\"10\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Order</text><rect x=\"115\" y=\"86\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"103\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">OrderLine</text><line x1=\"165.0\" y1=\"86\" x2=\"165.0\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#diaf17)\"/><text x=\"171.0\" y=\"80\" font-size=\"12\" fill=\"#222\">1..*</text></svg>",
+  "options": [
+   "They are deleted along with the Order",
+   "They remain and are moved to another Order automatically",
+   "They remain, unchanged, because parts are independent",
+   "Nothing can be said; the diagram does not describe lifetimes"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Composition (filled diamond) means the whole owns its parts and each part belongs to at most one whole. If the composite is deleted, its parts are normally deleted with it (slide 50). With aggregation they would survive."
+ },
+ {
+  "id": "f6-L2-04",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "whole-part",
+  "type": "single",
+  "gotcha": false,
+  "question": "A `Playlist` object is deleted. Under this aggregation, what happens to its `Song` objects?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 120\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open18\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri18\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia18\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf18\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr18\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr18\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra18\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg18\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"115\" y=\"10\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Playlist</text><rect x=\"115\" y=\"86\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"103\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Song</text><line x1=\"165.0\" y1=\"86\" x2=\"165.0\" y2=\"34\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#dia18)\"/><text x=\"171.0\" y=\"80\" font-size=\"12\" fill=\"#222\">*</text></svg>",
+  "options": [
+   "They are deleted along with the Playlist",
+   "They are copied into a new Playlist",
+   "They keep existing and can still be in other Playlists",
+   "The program will not compile, because aggregation forbids deletion"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Aggregation (hollow diamond) is a weak whole-part link: the parts are standalone objects created outside and passed in, so they outlive the whole and may be shared. Only composition ties a part's lifetime to its whole."
+ },
+ {
+  "id": "f6-L2-05",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "multiplicity",
+  "type": "single",
+  "gotcha": false,
+  "question": "According to this diagram, how many `Course` objects can one `Student` object be linked to?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 70\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open19\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri19\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia19\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf19\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr19\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr19\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra19\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg19\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"55.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Student</text><rect x=\"230\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"275.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Course</text><line x1=\"100\" y1=\"36\" x2=\"230\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"105\" y=\"31\" font-size=\"12\" fill=\"#222\">*</text><text x=\"225\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">1..*</text><text x=\"165.0\" y=\"56\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\" font-style=\"italic\">takes</text></svg>",
+  "options": [
+   "Exactly one",
+   "Any number, including zero",
+   "At most one",
+   "At least one, with no fixed upper limit"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "For one Student, read the multiplicity at the Course end: `1..*`, meaning one or more. The `*` at the Student end is about the other direction: one Course has zero or more Students."
+ },
+ {
+  "id": "f6-L2-06",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "multiplicity",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which statements does this diagram guarantee?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 70\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open20\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri20\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia20\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf20\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr20\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr20\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra20\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg20\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"22\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"60.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Department</text><rect x=\"220\" y=\"22\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"270.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Lecturer</text><line x1=\"110\" y1=\"36\" x2=\"220\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"115\" y=\"31\" font-size=\"12\" fill=\"#222\">1</text><text x=\"215\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">1..*</text><text x=\"165.0\" y=\"56\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\" font-style=\"italic\">employs</text></svg>",
+  "options": [
+   "Every Lecturer belongs to exactly one Department",
+   "A Department may have zero Lecturers",
+   "Every Department has at least one Lecturer",
+   "A Lecturer may belong to two Departments"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "Read each end for one object at the other end. For one Lecturer, look at the Department end: `1`, exactly one Department. For one Department, look at the Lecturer end: `1..*`, at least one Lecturer. So B and D break the multiplicities."
+ },
+ {
+  "id": "f6-L2-07",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "association",
+  "type": "single",
+  "gotcha": false,
+  "question": "What fields does this navigable association require?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 70\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open21\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri21\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia21\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf21\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr21\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr21\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra21\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg21\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"55.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Customer</text><rect x=\"230\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"275.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Account</text><line x1=\"100\" y1=\"36\" x2=\"230\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#open21)\"/><text x=\"105\" y=\"31\" font-size=\"12\" fill=\"#222\">1</text><text x=\"212\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">0..*</text><text x=\"225\" y=\"52\" font-size=\"11\" fill=\"#222\" text-anchor=\"end\" font-style=\"italic\">accounts</text></svg>",
+  "options": [
+   "`Customer` has `ArrayList<Account> accounts`; `Account` needs no Customer field",
+   "Both classes need a field referring to the other",
+   "`Account` has `Customer accounts`; `Customer` needs no field",
+   "Neither class needs a field, because it is only a dependency"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The open arrowhead at Account means only Customer can navigate to Account, so only Customer gets a field. The `0..*` at the Account end means many Accounts per Customer, so a collection, named after the role `accounts`."
+ },
+ {
+  "id": "f6-L2-08",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "association",
+  "type": "single",
+  "gotcha": false,
+  "question": "This association has no arrowheads. Which pair of field declarations matches it?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 70\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open22\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri22\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia22\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf22\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr22\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr22\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra22\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg22\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"55.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Person</text><rect x=\"230\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"275.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Passport</text><line x1=\"100\" y1=\"36\" x2=\"230\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"105\" y=\"31\" font-size=\"12\" fill=\"#222\">1</text><text x=\"225\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">0..1</text><text x=\"105\" y=\"52\" font-size=\"11\" fill=\"#222\" font-style=\"italic\">owner</text><text x=\"225\" y=\"52\" font-size=\"11\" fill=\"#222\" text-anchor=\"end\" font-style=\"italic\">passport</text></svg>",
+  "options": [
+   "Person: `Passport passport;`  Passport: (no field)",
+   "Person: `Passport passport;`  Passport: `Person owner;`",
+   "Person: `ArrayList<Passport> passport;`  Passport: `Person owner;`",
+   "Person: `Person owner;`  Passport: `Passport passport;`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "No arrowheads means bi-directional, so both classes get a field. A role name names the field used to reach that end: Person reaches its `passport` (0..1, a single field that may be `null`) and Passport reaches its `owner`."
+ },
+ {
+  "id": "f6-L2-09",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "dependency",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Printer` currently has an association with `Document`. Which change would turn it into a **dependency**?",
+  "code": "class Document { String text = \"hi\"; }\nclass Printer {\n    private Document doc;\n    public Printer(Document d) { doc = d; }\n    public void print() {\n        System.out.println(doc.text);\n    }\n}",
+  "options": [
+   "Make the field `doc` public",
+   "Create the Document inside the constructor with `doc = new Document();`",
+   "Remove the field and pass the Document into the method: `print(Document d)`",
+   "Make the field `doc` static"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "A dependency means Document appears only as a parameter, local variable or return type, never stored in a field. Removing the field and taking `print(Document d)` makes Printer use Document only briefly. Option B keeps a field and creates the part inside, which is composition."
+ },
+ {
+  "id": "f6-L2-10",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "dependency",
+  "type": "single",
+  "gotcha": false,
+  "question": "Following the slides' mapping rules, which set of relationships from `Kitchen` is correct?",
+  "code": "class Oven { }\nclass Recipe { }\nclass Timer { }\nclass Kitchen {\n    private Oven oven = new Oven();\n    public void cook(Recipe r) {\n        Timer t = new Timer();\n    }\n}",
+  "options": [
+   "Association to Oven, Recipe and Timer",
+   "Composition to Oven, Recipe and Timer",
+   "Dependency to Oven; association to Recipe and Timer",
+   "Composition to Oven; dependency to Recipe and Timer"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Oven is a field created inside Kitchen, which is composition (filled diamond at Kitchen). Recipe is only a parameter and Timer only a local variable, so both are dependencies (dashed arrows from Kitchen)."
+ },
+ {
+  "id": "f6-L2-11",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "object-diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "This object diagram is a valid snapshot of the association `Order` to `OrderLine`. Which multiplicity at the OrderLine end is consistent with it?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 170\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open23\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri23\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia23\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf23\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr23\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr23\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra23\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg23\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"10\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"60.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">o1 : Order</text><rect x=\"10\" y=\"120\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"60.0\" y=\"137\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">o2 : Order</text><rect x=\"210\" y=\"10\" width=\"110\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">l1 : OrderLine</text><rect x=\"210\" y=\"66\" width=\"110\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"83\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">l2 : OrderLine</text><line x1=\"110\" y1=\"24\" x2=\"210\" y2=\"24\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"30\" x2=\"210\" y2=\"78\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"118\" y=\"160\" font-size=\"11\" fill=\"#888\">o2 has no links</text></svg>",
+  "options": [
+   "`1`",
+   "`1..*`",
+   "`0..*`",
+   "`0..1`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "o1 is linked to two OrderLines, so the upper bound must be at least 2 (rules out `1` and `0..1`). o2 is linked to none, so the lower bound must be 0 (rules out `1..*`). Only `0..*` allows both."
+ },
+ {
+  "id": "f6-L2-12",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "object-diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "Is this object diagram a valid snapshot of the class diagram above it?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 220\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open24\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri24\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia24\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf24\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr24\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr24\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra24\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg24\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><text x=\"8\" y=\"14\" font-size=\"11\" fill=\"#1f6feb\" font-weight=\"bold\">Class diagram</text><rect x=\"10\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"55.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Lecturer</text><rect x=\"230\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"275.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Module</text><line x1=\"100\" y1=\"36\" x2=\"230\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"105\" y=\"31\" font-size=\"12\" fill=\"#222\">1</text><text x=\"225\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">1..3</text><text x=\"165.0\" y=\"56\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\" font-style=\"italic\">teaches</text><line x1=\"4\" y1=\"66\" x2=\"326\" y2=\"66\" stroke=\"#ccc\" stroke-width=\"1\"/><text x=\"8\" y=\"82\" font-size=\"11\" fill=\"#2da44e\" font-weight=\"bold\">Object diagram</text><rect x=\"10\" y=\"128\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"60.0\" y=\"145\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">tan : Lecturer</text><rect x=\"210\" y=\"90\" width=\"110\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"107\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">m1 : Module</text><line x1=\"110\" y1=\"142\" x2=\"210\" y2=\"104\" stroke=\"#222\" stroke-width=\"1.5\"/><rect x=\"210\" y=\"122\" width=\"110\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"139\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">m2 : Module</text><line x1=\"110\" y1=\"142\" x2=\"210\" y2=\"136\" stroke=\"#222\" stroke-width=\"1.5\"/><rect x=\"210\" y=\"154\" width=\"110\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"171\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">m3 : Module</text><line x1=\"110\" y1=\"142\" x2=\"210\" y2=\"168\" stroke=\"#222\" stroke-width=\"1.5\"/><rect x=\"210\" y=\"186\" width=\"110\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"203\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">m4 : Module</text><line x1=\"110\" y1=\"142\" x2=\"210\" y2=\"200\" stroke=\"#222\" stroke-width=\"1.5\"/></svg>",
+  "options": [
+   "Yes, an object diagram can show any number of links",
+   "No: one Lecturer may be linked to at most 3 Modules",
+   "No: object names must be the same as the class names",
+   "No: each link must be labelled with a multiplicity"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Every snapshot must obey the class diagram. For one Lecturer, the Module end says `1..3`, but tan is linked to 4 Modules. Links in object diagrams carry no multiplicities, and objects can have any name."
+ },
+ {
+  "id": "f6-L2-13",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which class header matches `Invoice` in this diagram?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 180\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open25\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri25\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia25\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf25\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr25\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr25\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra25\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg25\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"10\" width=\"130\" height=\"38\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"75.0\" y=\"27\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\" font-style=\"italic\">Document</text><text x=\"75.0\" y=\"41\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">{abstract}</text><rect x=\"190\" y=\"10\" width=\"130\" height=\"62\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"255.0\" y=\"24\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">&lt;&lt;interface&gt;&gt;</text><text x=\"255.0\" y=\"41\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Payable</text><line x1=\"190\" y1=\"48\" x2=\"320\" y2=\"48\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"196\" y=\"65\" font-size=\"12\" fill=\"#222\">+ pay() : void</text><rect x=\"100\" y=\"130\" width=\"130\" height=\"48\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"147\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Invoice</text><line x1=\"100\" y1=\"154\" x2=\"230\" y2=\"154\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"106\" y=\"171\" font-size=\"12\" fill=\"#222\">+ pay() : void</text><line x1=\"130\" y1=\"130\" x2=\"75\" y2=\"48\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#tri25)\"/><line x1=\"200\" y1=\"130\" x2=\"255\" y2=\"72\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#tri25)\"/></svg>",
+  "options": [
+   "`class Invoice implements Document extends Payable`",
+   "`class Invoice extends Payable implements Document`",
+   "`class Invoice extends Document, Payable`",
+   "`class Invoice extends Document implements Payable`"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "The solid line with a triangle to Document is generalisation, so `extends Document`. The dashed line with a triangle to the interface Payable is realisation, so `implements Payable`. In Java, `extends` comes before `implements`."
+ },
+ {
+  "id": "f6-L2-14",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "question": "`Drone` is a concrete (non-abstract) class. What must it define to compile?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 210\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open26\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri26\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia26\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf26\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr26\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr26\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra26\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg26\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"6\" width=\"120\" height=\"62\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"70.0\" y=\"20\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">&lt;&lt;interface&gt;&gt;</text><text x=\"70.0\" y=\"37\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Flyer</text><line x1=\"10\" y1=\"44\" x2=\"130\" y2=\"44\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"61\" font-size=\"12\" fill=\"#222\">+ fly() : void</text><rect x=\"10\" y=\"120\" width=\"120\" height=\"62\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"70.0\" y=\"134\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">&lt;&lt;interface&gt;&gt;</text><text x=\"70.0\" y=\"151\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Glider</text><line x1=\"10\" y1=\"158\" x2=\"130\" y2=\"158\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"175\" font-size=\"12\" fill=\"#222\">+ glide() : void</text><rect x=\"210\" y=\"134\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"260.0\" y=\"151\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Drone</text><line x1=\"70\" y1=\"120\" x2=\"70\" y2=\"68\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#tri26)\"/><line x1=\"210\" y1=\"150\" x2=\"130\" y2=\"150\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#tri26)\"/></svg>",
+  "options": [
+   "Both `fly()` and `glide()`",
+   "Only `glide()`, because it only realises Glider",
+   "Only `fly()`, because Flyer is the top interface",
+   "Neither, because interface methods have bodies"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The solid triangle from Glider to Flyer means `interface Glider extends Flyer`, so Glider includes `fly()` as well as `glide()`. Drone realises Glider (`implements Glider`), so a concrete Drone must implement both methods."
+ },
+ {
+  "id": "f6-L2-15",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "uml-java",
+  "type": "single",
+  "gotcha": false,
+  "question": "The code implements this class box (the underlined members are static). What does `main` print?",
+  "code": "class Ticket {\n    private static int nextId = 1;\n    private int id;\n    public Ticket() { id = nextId++; }\n    public int getId() { return id; }\n    public static int getNextId() { return nextId; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Ticket t1 = new Ticket();\n        Ticket t2 = new Ticket();\n        Ticket t3 = new Ticket();\n        System.out.println(t1.getId() + \" \" + Ticket.getNextId());\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 134\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open27\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri27\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia27\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf27\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr27\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr27\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra27\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg27\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"70\" y=\"6\" width=\"190\" height=\"120\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"165.0\" y=\"23\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Ticket</text><line x1=\"70\" y1=\"30\" x2=\"260\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"76\" y=\"47\" font-size=\"12\" fill=\"#222\" text-decoration=\"underline\">- nextId : int = 1</text><text x=\"76\" y=\"63\" font-size=\"12\" fill=\"#222\">- id : int</text><line x1=\"70\" y1=\"70\" x2=\"260\" y2=\"70\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"76\" y=\"87\" font-size=\"12\" fill=\"#222\">+ Ticket()</text><text x=\"76\" y=\"103\" font-size=\"12\" fill=\"#222\">+ getId() : int</text><text x=\"76\" y=\"119\" font-size=\"12\" fill=\"#222\" text-decoration=\"underline\">+ getNextId() : int</text></svg>",
+  "options": [
+   "`3 4`",
+   "`1 4`",
+   "`1 2`",
+   "`3 3`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "`nextId` is underlined, so it is static: one shared counter. Each constructor copies the current value into its own `id`, then increments the counter. t1 gets id 1, t2 gets 2, t3 gets 3, and nextId ends at 4. If nextId were not static, every ticket would get id 1."
+ },
+ {
+  "id": "f6-L2-16",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "uml-java",
+  "type": "multi",
+  "gotcha": false,
+  "question": "Which UML lines correctly show members of this class?",
+  "code": "abstract class Shape {\n    private static final int MAX = 10;\n    protected String name;\n    abstract void draw();\n    public static int count() { return 0; }\n}",
+  "options": [
+   "`- MAX : int = 10`, underlined",
+   "`+ name : String`",
+   "`~ draw()`, in italics",
+   "`+ count() : int`, not underlined"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "`private static` gives `-` plus underline (static). `protected` is `#`, not `+`. `draw()` has no modifier (package, `~`) and is abstract (italics). `count()` is static, so it must be underlined."
+ },
+ {
+  "id": "f6-L2-17",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "multiplicity",
+  "type": "single",
+  "gotcha": false,
+  "question": "Using the slides' mapping, which field should `Classroom` have?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 70\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open28\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri28\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia28\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf28\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr28\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr28\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra28\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg28\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"10\" y=\"22\" width=\"100\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"60.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Classroom</text><rect x=\"230\" y=\"22\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"275.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Chair</text><line x1=\"110\" y1=\"36\" x2=\"230\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#open28)\"/><text x=\"115\" y=\"31\" font-size=\"12\" fill=\"#222\">1</text><text x=\"212\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">30</text><text x=\"225\" y=\"52\" font-size=\"11\" fill=\"#222\" text-anchor=\"end\" font-style=\"italic\">chairs</text></svg>",
+  "options": [
+   "`Chair[] chairs = new Chair[30];`",
+   "`Chair chairs;`",
+   "`int chairs = 30;`",
+   "No field; `Chair` should have `Classroom[] rooms = new Classroom[30];`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "The arrow means Classroom navigates to Chair, so Classroom gets the field, named by the role `chairs`. A fixed multiplicity of 30 maps to an array of that size (slide 33 uses `new ClassB[5]` for `1..5`). A single field only fits an upper bound of 1."
+ },
+ {
+  "id": "f6-L2-18",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "dependency",
+  "type": "single",
+  "gotcha": false,
+  "question": "The operation `update()` in `Observer` is renamed. Because of the dependency shown, which class may also need to change?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 100\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open29\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri29\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia29\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf29\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr29\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr29\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra29\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg29\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"6\" y=\"30\" width=\"140\" height=\"48\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"76.0\" y=\"47\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Timer</text><line x1=\"6\" y1=\"54\" x2=\"146\" y2=\"54\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"12\" y=\"71\" font-size=\"12\" fill=\"#222\">+ notify(o : Observer)</text><rect x=\"200\" y=\"26\" width=\"124\" height=\"62\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"262.0\" y=\"40\" font-size=\"11\" fill=\"#222\" text-anchor=\"middle\">&lt;&lt;interface&gt;&gt;</text><text x=\"262.0\" y=\"57\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Observer</text><line x1=\"200\" y1=\"64\" x2=\"324\" y2=\"64\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"206\" y=\"81\" font-size=\"12\" fill=\"#222\">+ update(arg : Object)</text><line x1=\"146\" y1=\"56\" x2=\"200\" y2=\"56\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#open29)\"/></svg>",
+  "options": [
+   "Only Observer itself",
+   "Timer, the client that depends on Observer",
+   "No other class, because dependencies are never affected by changes",
+   "Only classes that Observer depends on"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A dependency arrow goes from the client (Timer) to the supplier (Observer). It means a change to the supplier may affect the client. If Timer calls `o.update(...)`, renaming `update()` forces Timer to change."
+ },
+ {
+  "id": "f6-L2-19",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "object-diagram",
+  "type": "single",
+  "gotcha": false,
+  "question": "Why is this snapshot NOT allowed by the class diagram?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 200\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open30\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri30\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia30\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf30\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr30\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr30\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra30\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg30\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><text x=\"8\" y=\"14\" font-size=\"11\" fill=\"#1f6feb\" font-weight=\"bold\">Class diagram</text><rect x=\"10\" y=\"22\" width=\"80\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"50.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">House</text><rect x=\"230\" y=\"22\" width=\"80\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"270.0\" y=\"39\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Room</text><line x1=\"230\" y1=\"36\" x2=\"90\" y2=\"36\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#diaf30)\"/><text x=\"224\" y=\"31\" font-size=\"12\" fill=\"#222\" text-anchor=\"end\">1..*</text><line x1=\"4\" y1=\"66\" x2=\"326\" y2=\"66\" stroke=\"#ccc\" stroke-width=\"1\"/><text x=\"8\" y=\"82\" font-size=\"11\" fill=\"#2da44e\" font-weight=\"bold\">Object diagram</text><rect x=\"10\" y=\"96\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"55.0\" y=\"113\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">h1 : House</text><rect x=\"10\" y=\"156\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"55.0\" y=\"173\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">h2 : House</text><rect x=\"220\" y=\"126\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"265.0\" y=\"143\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" text-decoration=\"underline\">r1 : Room</text><line x1=\"100\" y1=\"110\" x2=\"220\" y2=\"136\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"100\" y1=\"170\" x2=\"220\" y2=\"146\" stroke=\"#222\" stroke-width=\"1.5\"/></svg>",
+  "options": [
+   "In composition a part belongs to at most one whole at a time, but r1 is in two Houses",
+   "Every House must have exactly one Room",
+   "Object names must be underlined twice for composition",
+   "Links in an object diagram must show the filled diamond"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Composition requires a part instance to be included in at most one composite at a time (slide 50), so r1 cannot belong to both h1 and h2. `1..*` allows a House many Rooms, so B is wrong; links don't repeat diamonds."
+ },
+ {
+  "id": "f6-L2-20",
+  "chapter": 6,
+  "level": 2,
+  "subtopic": "association",
+  "type": "single",
+  "gotcha": false,
+  "question": "Which diagram matches this code?",
+  "code": "class Employee {\n    private String name;\n    private Employee manager;   // null for the CEO\n    public Employee(String name, Employee manager) {\n        this.name = name;\n        this.manager = manager;\n    }\n}",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 344 224\" font-family=\"Arial, sans-serif\"><defs><marker id=\"open31\" viewBox=\"0 0 13 12\" refX=\"12\" refY=\"6\" markerWidth=\"13\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L12,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"tri31\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"dia31\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"diaf31\" viewBox=\"0 0 20 12\" refX=\"19\" refY=\"6\" markerWidth=\"20\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,6 L10,1 L19,6 L10,11 Z\" fill=\"#222\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptr31\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrr31\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#d73a49\" stroke=\"#d73a49\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptra31\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#bf8700\" stroke=\"#bf8700\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker><marker id=\"ptrg31\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"10\" markerHeight=\"10\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M0,0 L10,5 L0,10 Z\" fill=\"#2da44e\" stroke=\"#2da44e\" stroke-width=\"1.5\" stroke-dasharray=\"none\"/></marker></defs><rect x=\"4\" y=\"4\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"18\" cy=\"18\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"18\" y=\"22\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">A</text><rect x=\"16\" y=\"34\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"61.0\" y=\"51\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Employee</text><polyline points=\"106,48 136,48 136,96 61,96 61,58\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#open31)\"/><text x=\"110\" y=\"44\" font-size=\"11\" fill=\"#222\" font-style=\"italic\">manager</text><rect x=\"176\" y=\"4\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"190\" cy=\"18\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"190\" y=\"22\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">B</text><rect x=\"188\" y=\"34\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"233.0\" y=\"51\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Employee</text><polyline points=\"278,48 308,48 308,96 233,96 233,58\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#tri31)\"/><rect x=\"4\" y=\"116\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"18\" cy=\"130\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"18\" y=\"134\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">C</text><rect x=\"16\" y=\"146\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"61.0\" y=\"163\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Employee</text><polyline points=\"106,160 136,160 136,208 61,208 61,170\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#open31)\"/><text x=\"110\" y=\"156\" font-size=\"11\" fill=\"#222\" font-style=\"italic\">manager</text><text x=\"66\" y=\"200\" font-size=\"11\" fill=\"#222\">0..1</text><rect x=\"176\" y=\"116\" width=\"164\" height=\"104\" rx=\"6\" fill=\"white\" stroke=\"#bbb\" stroke-width=\"1\"/><circle cx=\"190\" cy=\"130\" r=\"10\" fill=\"#1f6feb\" stroke=\"#1f6feb\" stroke-width=\"1.5\"/><text x=\"190\" y=\"134\" font-size=\"12\" fill=\"white\" text-anchor=\"middle\" font-weight=\"bold\">D</text><rect x=\"188\" y=\"146\" width=\"90\" height=\"24\" rx=\"0\" fill=\"white\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"233.0\" y=\"163\" font-size=\"13\" fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\">Employee</text><polyline points=\"278,160 308,160 308,208 233,208 233,170\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" marker-end=\"url(#diaf31)\"/><text x=\"282\" y=\"156\" font-size=\"11\" fill=\"#222\" font-style=\"italic\">manager</text></svg>",
+  "options": [
+   "A: dashed arrow from Employee to itself",
+   "B: triangle from Employee to itself",
+   "C: reflexive association, role `manager`, `0..1`",
+   "D: filled diamond from Employee to itself"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "`manager` is a field whose type is the same class: a reflexive association (solid line back to Employee) with role name `manager`. It holds at most one Employee and is `null` for the CEO, so `0..1`. A dashed arrow would mean no field; a triangle would mean Employee extends itself."
+ }
+]
