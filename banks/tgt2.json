@@ -1,0 +1,477 @@
+[
+ {
+  "id": "t2-01",
+  "chapter": 1,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "A developer writes `Kettle.java` and later runs the program. Which sequence describes the Java pipeline correctly?",
+  "options": [
+   "`Kettle.java` → JIT compiler (at compile time) → `Kettle.class` → `javac` (at run time) → machine code",
+   "`Kettle.java` → `javac` (at run time) → machine code → JVM → `Kettle.class`",
+   "`Kettle.java` → `javac` (at compile time) → `Kettle.class` bytecode → JIT compiler inside the JVM (at run time) → machine code",
+   "`Kettle.java` → `javac` (at compile time) → machine code stored in `Kettle.class` → the CPU runs the file directly, with no JVM"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: javac runs once at compile time and turns source into bytecode (.class); the JIT lives inside the JVM and turns bytecode into machine code only while the program runs. So javac never produces machine code, and the JIT never runs at compile time."
+ },
+ {
+  "id": "t2-02",
+  "chapter": 1,
+  "subtopic": "java-platform",
+  "type": "multi",
+  "gotcha": true,
+  "targeted": true,
+  "question": "`Ledger.class` already exists. You type `java Ledger`. Which of the following happen DURING this command? (Select all that apply.)",
+  "options": [
+   "The JVM starts and loads the bytecode in `Ledger.class`",
+   "`javac` recompiles `Ledger.java` into native machine code",
+   "The JIT compiler translates frequently run bytecode into native machine code",
+   "`Ledger.class` is rewritten to hold machine code, so the next run skips the JVM"
+  ],
+  "answer": [
+   0,
+   2
+  ],
+  "explanation": "Rule: `java X` launches the JVM, which loads bytecode, and its JIT compiles hot bytecode into machine code in memory at run time. javac is not involved when you run a program, and the .class file always stays as portable bytecode."
+ },
+ {
+  "id": "t2-03",
+  "chapter": 1,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "A lab PC has ONLY a JRE installed. A student copies `Quiz.java` and a `Quiz.class` that was compiled on another machine. What happens with each command?",
+  "options": [
+   "Both `javac Quiz.java` and `java Quiz` work, because the JRE contains the compiler",
+   "Neither works, because a JRE has no JVM",
+   "`javac Quiz.java` works, but `java Quiz` fails because the JIT compiler only comes with the JDK",
+   "`javac Quiz.java` fails because `javac` comes with the JDK; `java Quiz` works because the JRE contains the JVM"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: JRE = JVM + libraries (enough to RUN bytecode); JDK = JRE + development tools such as javac (needed to COMPILE). The JIT is part of the JVM, so a JRE has it; what a JRE is missing is javac."
+ },
+ {
+  "id": "t2-04",
+  "chapter": 1,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "`Meter.java` has two bugs: (1) a missing semicolon, and (2) a division by zero that only happens when the user enters 0. Who reports each bug, and when?",
+  "options": [
+   "(1) is reported by the JIT compiler at compile time; (2) is reported by `javac`",
+   "(1) is reported by `javac` while compiling, and no .class file is produced; (2) is reported at run time by the JVM as an ArithmeticException",
+   "Both are reported by `javac`, because javac produces machine code and checks how it will run",
+   "(1) is reported by the JVM when it loads `Meter.java`; (2) is reported by `javac`"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: syntax and type errors are compile-time errors found by javac (step .java → .class); errors that depend on input values happen at run time inside the JVM. The JIT only works on bytecode that already compiled, so it never reports syntax errors."
+ },
+ {
+  "id": "t2-05",
+  "chapter": 4,
+  "subtopic": "checked vs unchecked",
+  "type": "multi",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Which of these can be thrown with `throw new X();` from a method that has NO try/catch and NO `throws` clause, and still compile? (Select all that apply.)",
+  "options": [
+   "`FileNotFoundException`",
+   "`OutOfMemoryError`",
+   "`InterruptedException`",
+   "`ClassCastException`"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Rule: unchecked = RuntimeException and its subclasses PLUS Error and its subclasses; only these need no catch or throws. OutOfMemoryError is an Error and ClassCastException is a RuntimeException, while FileNotFoundException (an IOException) and InterruptedException are checked."
+ },
+ {
+  "id": "t2-06",
+  "chapter": 4,
+  "subtopic": "checked vs unchecked",
+  "type": "multi",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Which of these are CHECKED exceptions, which the compiler forces you to catch or declare? (Select all that apply.)",
+  "options": [
+   "`StackOverflowError`",
+   "`Exception` (plain)",
+   "`NumberFormatException`",
+   "`CloneNotSupportedException`"
+  ],
+  "answer": [
+   1,
+   3
+  ],
+  "explanation": "Rule: a Throwable is checked unless it is a RuntimeException or an Error (or a subclass of either). StackOverflowError is unchecked because it is an Error, even though it is not a RuntimeException; NumberFormatException extends IllegalArgumentException, which is a RuntimeException. Plain Exception and CloneNotSupportedException are checked."
+ },
+ {
+  "id": "t2-07",
+  "chapter": 4,
+  "subtopic": "checked vs unchecked",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "What is the result of compiling this code?",
+  "code": "class Vault {\n    void open(int pin) {\n        if (pin != 1234) throw new IllegalArgumentException(\"bad pin\");  // P\n    }\n    void lock() throws Exception {\n        throw new Exception(\"jammed\");                                  // Q\n    }\n    void reset() {\n        throw new Exception(\"no power\");                                // R\n    }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Vault v = new Vault();\n        try {\n            v.open(1);\n            v.lock();\n            v.reset();\n        } catch (Exception e) {\n            System.out.println(e.getMessage());\n        }\n    }\n}",
+  "options": [
+   "Only line R is a compile error: unreported exception Exception; must be caught or declared to be thrown",
+   "Lines P and R are compile errors, because neither `open` nor `reset` declares `throws`",
+   "No errors: it compiles and prints `bad pin`, because `main` catches Exception",
+   "Lines Q and R are compile errors, because `new Exception` cannot be thrown directly"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: a method that throws a checked exception must catch it or declare it itself; a catch in the CALLER does not fix the method that throws. Line Q is fine because `lock()` declares `throws Exception`, and line P is fine because IllegalArgumentException is unchecked."
+ },
+ {
+  "id": "t2-08",
+  "chapter": 4,
+  "subtopic": "checked vs unchecked",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "What happens when this code is compiled and run?",
+  "code": "public class Main {\n    static int parsePort(String s) {\n        int p = Integer.parseInt(s);\n        if (p > 65535) throw new IllegalArgumentException(\"range\");\n        return p;\n    }\n    public static void main(String[] args) {\n        System.out.println(parsePort(\"80\"));\n        System.out.println(parsePort(\"eighty\"));\n        System.out.println(\"done\");\n    }\n}",
+  "options": [
+   "Compile error: `parsePort` must declare `throws NumberFormatException, IllegalArgumentException`",
+   "Compile error: `main` must call `parsePort` inside a try/catch",
+   "It compiles, prints `80`, then the program ends with an uncaught NumberFormatException",
+   "It compiles and prints `80`, then `done`, because unchecked exceptions are ignored"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: unchecked exceptions (RuntimeException subclasses such as NumberFormatException) need no try/catch and no throws to COMPILE, but they still stop the program at run time if nothing catches them. So it compiles, and `done` is never printed."
+ },
+ {
+  "id": "t2-09",
+  "chapter": 4,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "What is printed?",
+  "code": "public class Main {\n    static void step() {\n        try {\n            System.out.print(\"1 \");\n            int[] a = new int[2];\n            a[5] = 1;\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.print(\"2 \");\n            throw new IllegalStateException(\"x\");\n        } catch (IllegalStateException e) {\n            System.out.print(\"3 \");\n        } finally {\n            System.out.print(\"4 \");\n        }\n        System.out.print(\"5 \");\n    }\n    public static void main(String[] args) {\n        try {\n            step();\n        } catch (RuntimeException e) {\n            System.out.print(\"6 \");\n        }\n        System.out.print(\"7\");\n    }\n}",
+  "options": [
+   "1 2 3 4 5 7",
+   "1 2 4 6 7",
+   "1 2 4 5 7",
+   "1 2 4, then the program ends with an uncaught IllegalStateException"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: an exception thrown inside a catch block is NOT handled by the sibling catches of the same try; finally runs, then the exception propagates to the caller. Here `main` catches it (an IllegalStateException is a RuntimeException), so `6 7` is printed, but `3` and `5` are skipped."
+ },
+ {
+  "id": "t2-10",
+  "chapter": 4,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "What is printed?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        try {\n            System.out.print(\"A\");\n            Object o = \"text\";\n            Integer n = (Integer) o;\n        } catch (ClassCastException e) {\n            System.out.print(\"B\");\n            try {\n                throw new UnsupportedOperationException();\n            } catch (UnsupportedOperationException u) {\n                System.out.print(\"C\");\n            } finally {\n                System.out.print(\"D\");\n            }\n            System.out.print(\"E\");\n        } catch (UnsupportedOperationException e) {\n            System.out.print(\"F\");\n        } finally {\n            System.out.print(\"G\");\n        }\n        System.out.print(\"H\");\n    }\n}",
+  "options": [
+   "ABDFGH",
+   "ABDG, then the program ends with an uncaught UnsupportedOperationException",
+   "ABCDGH",
+   "ABCDEGH"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: an exception thrown inside a catch block CAN be caught by a try/catch nested inside that same catch block, just not by its sibling catches. The inner catch prints C, the inner finally prints D, the outer catch carries on with E, and then the outer finally (G) and H run normally."
+ },
+ {
+  "id": "t2-11",
+  "chapter": 4,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "What is printed?",
+  "code": "public class Main {\n    static String fetch() {\n        try {\n            throw new IllegalArgumentException(\"bad\");\n        } catch (IllegalArgumentException e) {\n            throw new RuntimeException(\"wrapped\");\n        } finally {\n            return \"fallback\";\n        }\n    }\n    public static void main(String[] args) {\n        try {\n            System.out.println(fetch());\n        } catch (RuntimeException e) {\n            System.out.println(\"caught \" + e.getMessage());\n        }\n    }\n}",
+  "options": [
+   "caught wrapped",
+   "caught bad",
+   "fallback",
+   "Compile error: the throw in the catch block makes the return unreachable"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: finally always runs, and a `return` inside finally replaces whatever was in flight, including an exception that is propagating, so that exception is silently discarded. The RuntimeException from the catch block is thrown away and `fetch()` returns normally with \"fallback\"."
+ },
+ {
+  "id": "t2-12",
+  "chapter": 4,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "What happens when this runs?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        int zero = 0;\n        try {\n            Integer.parseInt(\"12a\");\n            System.out.print(\"P \");\n        } catch (NumberFormatException e) {\n            System.out.print(\"N \");\n            int r = 10 / zero;\n            System.out.print(\"R \");\n        } catch (ArithmeticException e) {\n            System.out.print(\"A \");\n        } catch (Exception e) {\n            System.out.print(\"E \");\n        } finally {\n            System.out.print(\"F \");\n        }\n        System.out.print(\"End\");\n    }\n}",
+  "options": [
+   "Prints `N F `, then the program ends with an uncaught ArithmeticException",
+   "Prints `N A F End`",
+   "Prints `N E F End`",
+   "Prints `N R F End`"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: the catch blocks of a try only guard the try block, never each other, so an ArithmeticException thrown inside `catch (NumberFormatException e)` skips the matching-looking `catch (ArithmeticException e)` and even `catch (Exception e)`. finally prints F, then the exception leaves `main` uncaught and `End` never prints."
+ },
+ {
+  "id": "t2-13",
+  "chapter": 6,
+  "subtopic": "class notation",
+  "type": "multi",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Class `Ticket` shows the attribute lines below (styling described in brackets). Select ALL lines where the Java translation is correct.",
+  "options": [
+   "`# price : double` → `private double price;`",
+   "`~ zone : String` → `String zone;` (no access modifier)",
+   "`- nextId : int` [underlined] → `private static int nextId;`",
+   "`# seat : int` [underlined] → `protected final int seat;`"
+  ],
+  "answer": [
+   1,
+   2
+  ],
+  "explanation": "Rule: `+` public, `-` private, `#` protected, `~` package (no modifier in Java); underlined = static; italic = abstract. `#` is protected, not private, and underline means static, not final."
+ },
+ {
+  "id": "t2-14",
+  "chapter": 6,
+  "subtopic": "visibility",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Class `Hotel` declares `protected static int maxGuests;`. Which UML attribute line shows it correctly?",
+  "options": [
+   "`~ maxGuests : int`, drawn underlined",
+   "`# maxGuests : int`, drawn underlined",
+   "`# maxGuests : int`, drawn in italics",
+   "`+ maxGuests : int`, drawn underlined"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: protected → `#`, and static → underlined (italics means abstract). `~` is package visibility (no modifier), which is a different access level from protected even though both allow access within the same package."
+ },
+ {
+  "id": "t2-15",
+  "chapter": 6,
+  "subtopic": "class notation",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "In class `Cart`, the operation `+getTotal() : double` is drawn UNDERLINED (Mermaid shows this with `$`). Which Java matches it?",
+  "diagram": "classDiagram\n  class Cart {\n    -items : int\n    +getTotal() double$\n  }",
+  "options": [
+   "`public double getTotal() { ... }`, an ordinary instance method; the underline only marks a query method",
+   "`public abstract double getTotal();`",
+   "`public static double getTotal() { ... }`, called as `Cart.getTotal()` without needing an object",
+   "`public final double getTotal() { ... }`"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: underlining an attribute OR an operation means static (class scope); italics would mean abstract. Underline never means final, so this is a public static method that belongs to the class, not to each Cart object."
+ },
+ {
+  "id": "t2-16",
+  "chapter": 6,
+  "subtopic": "class notation",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Which UML class box matches this Java code?",
+  "code": "abstract class Shipment {\n    String ref;\n    abstract double cost();\n}",
+  "options": [
+   "Class name `Shipment` plain; `+ ref : String`; `+ cost() : double` underlined",
+   "Class name `Shipment` plain; `- ref : String`; `~ cost() : double` underlined",
+   "Class name `Shipment` in italics; `# ref : String`; `# cost() : double` in italics",
+   "Class name `Shipment` in italics; `~ ref : String`; `~ cost() : double` in italics"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: italic = abstract (for the class name and for abstract operations), and no Java modifier means package visibility, written `~`. Option C is tempting, but `#` means protected, which needs the `protected` keyword in Java."
+ },
+ {
+  "id": "t2-17",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Following the slides' rules, how many DASHED dependency arrows should leave `Barista` (counting Grinder, Order, Receipt and Timer)?",
+  "code": "class Grinder { void grind() { } }\nclass Order   { String drink = \"latte\"; }\nclass Receipt { Receipt(String s) { } }\nclass Timer   { void start() { } }\n\nclass Barista {\n    private Grinder grinder = new Grinder();\n\n    Receipt serve(Order o) {\n        Timer t = new Timer();\n        t.start();\n        grinder.grind();\n        return new Receipt(o.drink);\n    }\n}",
+  "options": [
+   "3 (Order, Receipt, Timer)",
+   "4 (all of them)",
+   "1 (Timer only)",
+   "2 (Order and Timer)"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: a class held in a FIELD is an association (solid line); a class used only as a parameter, a return type or a local variable is a dependency (dashed arrow). Grinder is a field, so it is the only solid line. The return type Receipt counts as a dependency, even though it is easy to forget."
+ },
+ {
+  "id": "t2-18",
+  "chapter": 2,
+  "subtopic": "references-copying",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "What is printed?",
+  "code": "public class Main {\n    static void swap(String a, String b) { String t = a; a = b; b = t; }\n    static void swap(String[] p) { String t = p[0]; p[0] = p[1]; p[1] = t; }\n    static void rename(String[] p) { p = new String[]{\"Zed\", \"Zed\"}; }\n\n    public static void main(String[] args) {\n        String x = \"left\", y = \"right\";\n        String[] pair = {\"up\", \"down\"};\n        swap(x, y);\n        swap(pair);\n        rename(pair);\n        System.out.println(x + \" \" + y + \" \" + pair[0] + \" \" + pair[1]);\n    }\n}",
+  "options": [
+   "right left down up",
+   "left right Zed Zed",
+   "left right up down",
+   "left right down up"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: Java passes a COPY of each reference; reassigning a parameter (`a = b`, `p = new ...`) never affects the caller, but changing an object THROUGH the reference (`p[0] = ...`) does. So x and y are unchanged, the array's elements really are swapped, and `rename` only repoints its local copy."
+ },
+ {
+  "id": "t2-19",
+  "chapter": 1,
+  "subtopic": "java-platform",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "This whole file is saved as **Garden.java** and you run `javac Garden.java`, then `java Garden`. What happens?",
+  "code": "class Flower { }\n\npublic class Garden {\n    public static void main(String[] args) {\n        System.out.println(\"ok\");\n    }\n}\n\nclass Tree { }",
+  "options": [
+   "It compiles to `Flower.class`, `Garden.class` and `Tree.class`, and `java Garden` prints `ok`",
+   "Compile error: a .java file may contain only one class",
+   "It compiles, but only `Garden.class` is produced; Flower and Tree are discarded",
+   "Compile error: `Flower` and `Tree` must also be declared public"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: a file may hold at most ONE public class, and that class's name must match the file name; non-public classes can sit in the same file under any name. javac writes one .class file per class."
+ },
+ {
+  "id": "t2-20",
+  "chapter": 6,
+  "subtopic": "relationships",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "How should the two whole-part relationships in this code be drawn?",
+  "code": "import java.util.List;\n\nclass Page { }\nclass Musician { }\n\nclass Score {\n    private Page[] pages = new Page[3];\n    Score() {\n        for (int i = 0; i < 3; i++) pages[i] = new Page();\n    }\n}\n\nclass Orchestra {\n    private List<Musician> players;\n    Orchestra(List<Musician> players) { this.players = players; }\n}",
+  "options": [
+   "Score-Page: hollow diamond at Score; Orchestra-Musician: filled diamond at Orchestra",
+   "Score-Page: filled diamond at Score; Orchestra-Musician: hollow diamond at Orchestra",
+   "Score-Page: filled diamond at Page; Orchestra-Musician: hollow diamond at Musician",
+   "Both use a filled diamond (at Score and at Orchestra), because both keep their parts in a field"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: parts CREATED inside the whole (lifetime owned by the whole) = composition, a filled diamond; parts PASSED IN from outside = aggregation, a hollow diamond. The diamond always sits at the WHOLE end. Holding the parts in a field only tells you it is more than a dependency."
+ },
+ {
+  "id": "t2-21",
+  "chapter": 9,
+  "subtopic": "design-goals",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "A team tries to reuse its `PaymentGateway` module in a sister project, but cannot, because the module drags along the UI, logging and reporting packages it depends on. Which slide symptom is this, and which design goal has it failed?",
+  "options": [
+   "Rigidity; it fails Extensibility",
+   "Fragility; it fails Maintainability",
+   "Rigidity; it fails Reusability",
+   "Immobility; it fails Reusability"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: the goals are Reusability, Extensibility and Maintainability; the symptoms of rotting design are Rigidity (hard to change, cascading changes), Fragility (breaks in unrelated places) and Immobility (cannot be reused because of too much baggage). Being unable to lift the module into another project is Immobility, the opposite of Reusability."
+ },
+ {
+  "id": "t2-22",
+  "chapter": 10,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Which statement about these marked lines is correct?",
+  "code": "import java.util.*;\nclass Fruit { }\nclass Apple extends Fruit { }\nclass Banana extends Fruit { }\npublic class Main {\n    public static void main(String[] args) {\n        Fruit[] basket = new Apple[2];        // L1\n        basket[0] = new Apple();              // L2\n        basket[1] = new Banana();             // L3\n        List<Apple> apples = new ArrayList<>();\n        List<? extends Fruit> view = apples;  // L4\n        List<Fruit> crate = apples;           // L5\n    }\n}",
+  "options": [
+   "L5 is a compile error. If L5 is removed, the program compiles, L4 is fine, and L3 throws ArrayStoreException at run time",
+   "L1 and L5 are compile errors, because neither an Apple[] nor a List<Apple> is a kind of Fruit container",
+   "L4 and L5 are compile errors; L3 runs fine because a Banana is a Fruit",
+   "L3 is a compile error, and L5 compiles because Apple extends Fruit"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: arrays are covariant (an Apple[] IS a Fruit[]), so storing the wrong subtype is only caught at run time with ArrayStoreException; generics are invariant (List<Apple> is NOT a List<Fruit>), so that is caught at compile time. A wildcard `List<? extends Fruit>` is the legal way to view a List<Apple>."
+ },
+ {
+  "id": "t2-23",
+  "chapter": 10,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Because of type erasure, which marked lines FAIL to compile?",
+  "code": "import java.util.*;\nclass Registry<T> {\n    private static T defaultItem;                    // L1\n    private T current;                               // L2\n    private List<T> items = new ArrayList<>();       // L3\n    T make() { return new T(); }                     // L4\n    boolean check(Object o) {\n        return o instanceof List<String>;            // L5\n    }\n    @SuppressWarnings(\"unchecked\")\n    T[] snapshot() { return (T[]) items.toArray(); } // L6\n    T[] fresh() { return new T[10]; }                // L7\n}",
+  "options": [
+   "L4 and L7 only",
+   "L1, L4, L5 and L7",
+   "L1, L4 and L7 only",
+   "L1, L4, L5, L6 and L7"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: T is erased at run time, so anything that needs the actual type of T at run time is illegal: `new T()`, `new T[...]`, `instanceof List<String>`, and a `static T` field (static members belong to the class, not to any one Registry<T>). Casting to `(T[])` compiles; it only gives an unchecked warning."
+ },
+ {
+  "id": "t2-24",
+  "chapter": 9,
+  "subtopic": "lsp",
+  "type": "single",
+  "gotcha": true,
+  "targeted": true,
+  "question": "Which statement best diagnoses this design?",
+  "code": "class Dispenser {\n    // post-condition: returns exactly `pills` pills (for any pills >= 1)\n    int dispense(int pills) {\n        return pills;\n    }\n}\n\nclass BudgetDispenser extends Dispenser {\n    @Override\n    int dispense(int pills) {\n        return Math.min(pills, 10);   // never gives more than 10\n    }\n}",
+  "options": [
+   "It violates LSP because the pre-condition is stronger: `BudgetDispenser` rejects requests above 10",
+   "No violation: a subclass may narrow behaviour, as long as the override compiles",
+   "It violates LSP because the post-condition is weaker: callers that rely on getting exactly `pills` pills can get fewer",
+   "It violates the Interface Segregation Principle, because `Dispenser` has a method that the subclass does not fully support"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule (design by contract): an overriding method's pre-conditions must be no stronger (expect no more) and its post-conditions no weaker (provide no less). It still accepts every input, so the pre-condition is unchanged, but it delivers less than the base promises, which is a weaker post-condition. Compiling is not the same as being substitutable."
+ }
+]

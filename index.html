@@ -107,11 +107,12 @@ function home(){
   const resume = LS("oop_session");
   $("#app").innerHTML = `
   <h1>SC2002 Quiz 2 Trainer</h1>
-  <div class="mut">${BANK.length} questions · bank updated ${esc(window.MANIFEST.updated||"")}</div>
+  <div class="mut">${BANK.length} questions (${BANK.filter(q=>stats()[q.id]).length} seen) · bank updated ${esc(window.MANIFEST.updated||"")}</div>
   ${resume && resume.idx < resume.qs.length ? `<button class="btn pri" onclick="resumeS()">▶ Resume ${esc(resume.title)} (${resume.idx+1}/${resume.qs.length})</button>`:""}
   <h2>Start</h2>
   <a class="btn" style="text-decoration:none;background:#2b2410;border-color:#6b5414" href="cheatsheet.html">📄 Cheat sheet: your weak spots<small>Read this first (about 10 min). Covers every rule you missed in the diagnostic.</small></a>
   <button class="btn" style="border-color:var(--acc)" onclick="startTargeted()">🎯 Targeted fix-up set (NEW): 20 Qs<small>New questions written for your exact diagnostic mistakes. Instant feedback. Unseen questions first.</small></button>
+  <button class="btn" style="border-color:var(--ok)" onclick="startMock()">🧪 Fresh mock: 37 never-seen Qs<small>Exam style, real weighting. Only questions you've never answered, so it measures real progress, not memory.</small></button>
   <button class="btn" onclick="startDiag()">🎯 Diagnostic: 37 Qs, exam style<small>Same weighting as the real quiz (whole course, more from Ch6+). Answers shown at the end. Do this first.</small></button>
   <button class="btn" onclick="startDrill()">🔥 Drill my weak spots: 15 Qs<small>Picks from your lowest-scoring topics plus questions you got wrong. Instant feedback.</small></button>
   <button class="btn" onclick="startGotcha()">🪤 Gotcha round: 15 Qs<small>Only the trick questions. Instant feedback.</small></button>
@@ -135,13 +136,29 @@ function startDiag(){
   }
   begin("Diagnostic", shuffle(qs).map(q=>q.id), "exam");
 }
-function weakScore(q, st){ const s=st[q.id]; if(!s) return 0.5; return 1 - (s.c/s.n) + (s.lastWrong?0.6:0) }
+function subWeakness(st){
+  const m={}; for(const q of BANK){ const x=st[q.id]; if(!x) continue; const k=q.chapter+"|"+(q.subtopic||""); m[k]=m[k]||{n:0,c:0}; m[k].n+=x.n; m[k].c+=x.c }
+  return q => { const v=m[q.chapter+"|"+(q.subtopic||"")]; return (v? 1-v.c/v.n : 0.45) + 0.1 };
+}
 function startDrill(){
-  const st = stats(), m = topicMastery();
-  const chW = {}; for (const k of Object.keys(CH)){ const x=m[k]; const p = x&&x.n ? x.c/x.n : 0.5; chW[k] = (1-p)+0.15 }
-  const scored = BANK.map(q => ({q, s: weakScore(q,st)*chW[q.chapter] + Math.random()*0.25 - (st[q.id]&&!st[q.id].lastWrong&&st[q.id].c>=2?0.5:0)}));
+  // Fresh questions from weak subtopics first. No re-serving what you just saw:
+  // a question you saw in the last 45 min is skipped, and one you got right is rarely repeated.
+  const st=stats(), now=Date.now(), W=subWeakness(st);
+  const scored = BANK.map(q=>{ const x=st[q.id]; let base;
+    if(!x) base=1.0; else if(now-(x.last||0)<45*60e3) base=-1; else if(x.lastWrong) base=0.7; else base=0.08;
+    return {q, s: base<0?-1: base*W(q) + Math.random()*0.15} }).filter(o=>o.s>=0);
   scored.sort((a,b)=>b.s-a.s);
   begin("Weak-spot drill", scored.slice(0,15).map(x=>x.q.id), "learn");
+}
+function startMock(){
+  // Honest progress check: exam style, real weighting, ONLY questions you have never seen.
+  const st=stats(); let qs=[];
+  for (const [ch,n] of Object.entries(BLUEPRINT)){
+    const pool=BANK.filter(q=>q.chapter==ch);
+    const unseen=shuffle(pool.filter(q=>!st[q.id])), old=pool.filter(q=>st[q.id]).sort((a,b)=>(st[a.id].last||0)-(st[b.id].last||0));
+    qs.push(...[...unseen,...old].slice(0,n));
+  }
+  begin("Fresh mock", shuffle(qs).map(q=>q.id), "exam");
 }
 function startTargeted(){
   const st=stats(); const pool=BANK.filter(q=>q.targeted);

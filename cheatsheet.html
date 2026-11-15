@@ -16,6 +16,17 @@ a{color:#5b9cff}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 <h1>Cheat sheet for your diagnostic misses</h1>
 <div class="mut">Built from your 13/37 diagnostic. Read it once, then drill.</div>
 
+<h2 style="color:#ef5b5b">⚠️ STUCK: you've missed these more than once, even after seeing the answer</h2>
+<div class="c" style="border-color:#ef5b5b">
+<p><b>1. JIT is a RUNTIME thing.</b> <code>javac</code>: .java → .class (bytecode), at compile time. Then <code>java</code> starts the JVM, and <b>the JIT compiler inside the JVM</b> turns bytecode into machine code <b>while the program runs</b>. The JVM is part of the JRE. <code>javac</code> comes with the JDK, not the JRE. <span class="mut">(You picked "javac" or "JIT runs at compile time" 3 times.)</span></p>
+<p><b>2. Checked vs unchecked: one rule.</b> Unchecked = <code>RuntimeException</code> and its subclasses, <b>plus <code>Error</code></b> and its subclasses. Everything else under <code>Exception</code> is checked.<br>
+Unchecked: NullPointerException, ArithmeticException, NumberFormatException, ArrayIndexOutOfBounds, ClassCastException, IllegalArgumentException, VirtualMachineError, OutOfMemoryError.<br>
+Checked: IOException, FileNotFoundException, ClassNotFoundException, plain <code>Exception</code>.<br>
+→ <code>throw new Exception()</code> in a method without <code>throws Exception</code> is a <b>compile error in that method</b>, even if the caller has a try/catch.<br>
+→ <code>throw new IllegalArgumentException()</code> needs nothing declared.</p>
+<p><b>3. An exception thrown INSIDE a catch block</b> is NOT caught by the catch blocks next to it. Only <code>finally</code> runs, then it propagates up. <span class="mut">(You picked "the next catch catches it" twice.)</span></p>
+<p><b>4. Static = <u>underlined</u>. Italic = abstract.</b> <code>~</code> = package (no modifier). <span class="mut">(You picked "static in italics" twice.)</span></p>
+</div>
 <h2>0. Your #1 habit to fix: picking the "happy path" answer</h2>
 <div class="c">8 of your 24 misses were option <b>A</b>, the answer you get if the code "just works". When a code question looks easy, check these 5 traps <b>before</b> answering:
 <ul>
