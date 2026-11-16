@@ -1,0 +1,379 @@
+[
+ {
+  "id": "m9-01",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "SOLID: spot the principle",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Three jobs, one class.** Which design principle is most directly violated?",
+  "code": "class InvoiceManager {\n    double computeTotal(Invoice inv) { /* tax + discount rules */ }\n    void saveToDatabase(Invoice inv) { /* JDBC / SQL */ }\n    void printPdf(Invoice inv)       { /* fonts, page layout */ }\n}",
+  "options": [
+   "OCP",
+   "SRP",
+   "LSP",
+   "ISP"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "**SRP (Single Responsibility).** Tax/discount rules, the database schema and the PDF layout are three separate reasons for this class to change, and SRP says a class should have only ONE. Cue: one class doing pricing + persistence + printing → SRP (a God class with low cohesion). Fix: split it into InvoiceCalculator, InvoiceRepository and InvoicePrinter. OCP is the tempting pick because every new feature means editing this class, but there is no type switch here; the root problem is three unrelated responsibilities in one place. ISP is about fat *interfaces* that force implementers to write methods they don't need."
+ },
+ {
+  "id": "m9-02",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "SOLID: spot the principle",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**A growing chain of type checks.** Supporting a new Triangle shape means editing area(). Which principle is most directly at risk?",
+  "code": "class AreaCalculator {\n    double area(Shape s) {\n        if (s instanceof Circle) {\n            Circle c = (Circle) s;\n            return Math.PI * c.r * c.r;\n        } else if (s instanceof Rect) {\n            Rect r = (Rect) s;\n            return r.w * r.h;\n        }\n        return 0;\n    }\n}",
+  "options": [
+   "SRP",
+   "LSP",
+   "ISP",
+   "OCP"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "**OCP (Open-Closed, Bertrand Meyer):** open for extension, closed for modification. Every new Shape forces another `instanceof` branch, so area() is never closed. Cue: a type check or switch on 'kind' that grows with every new subtype → OCP. Fix: declare an abstract `area()` in Shape and override it in Circle, Rect and Triangle (slide 32's Transport fares example). LSP is the trap because subclasses appear, but no subclass breaks Shape's behaviour; the problem is the caller asking 'what type are you?'. Type checks also tighten coupling, because AreaCalculator has to know every concrete Shape."
+ },
+ {
+  "id": "m9-03",
+  "chapter": 9,
+  "level": 3,
+  "subtopic": "SOLID: spot the principle",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**A subclass that refuses.** payRent() works for an Account. Which principle is most directly violated by FrozenAccount?",
+  "code": "class Account {\n    protected double balance = 100;\n    void withdraw(double amt) { balance -= amt; }\n}\nclass FrozenAccount extends Account {\n    @Override void withdraw(double amt) {\n        throw new UnsupportedOperationException(\"frozen\");\n    }\n}\nstatic void payRent(Account a) {\n    a.withdraw(50);\n    System.out.println(\"paid\");\n}",
+  "options": [
+   "ISP",
+   "DIP",
+   "LSP",
+   "SRP"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "**LSP (Liskov Substitution).** Code written for Account must still work when it is handed any subclass. Run with JDK 17, `payRent(new Account())` prints `paid`, but `payRent(new FrozenAccount())` throws UnsupportedOperationException. Cue: an override that throws 'not supported' (or silently does nothing) → LSP. This is the same pattern as Slido Q26 (Penguin.fly()), where you picked DIP. DIP is about a high-level class creating or depending on a concrete class, and nothing here does `new` of a collaborator. ISP is the newer trap: ISP is about a fat *interface* forcing an implementer to stub methods it never needed. withdraw() is core Account behaviour that callers rely on, and the subclass breaks that promise."
+ },
+ {
+  "id": "m9-04",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "SOLID: spot the principle",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Empty methods you are forced to write.** Which design principle is most directly violated?",
+  "code": "interface Worker {\n    void work();\n    void eat();\n    void sleep();\n}\nclass Robot implements Worker {\n    public void work()  { /* assemble parts */ }\n    public void eat()   { }   // robots don't eat\n    public void sleep() { }   // robots don't sleep\n}",
+  "options": [
+   "ISP",
+   "LSP",
+   "OCP",
+   "DIP"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "**ISP (Interface Segregation):** many client-specific interfaces are better than one general-purpose interface. Worker is a FAT interface, so Robot has to write empty eat() and sleep(). Cue: an implementer forced to stub out an interface's methods (empty or throwing) → ISP. Fix: split it into Workable, Eatable and Sleepable, and Robot implements only Workable. This is the slide's IAnimal example, where Tiger had empty fly{} and swim{} until the interface was split. LSP is tempting because empty methods 'provide less', but the cause is the interface demanding methods that make no sense for Robot, and the fix is to split the interface."
+ },
+ {
+  "id": "m9-05",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "SOLID: spot the principle",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Hard-wired to one database.** Switching to PostgreSQL, or testing without a database, means editing ReportGenerator. Which principle is most directly violated?",
+  "code": "class MySqlDatabase {\n    void insert(String row) { /* SQL */ }\n}\nclass ReportGenerator {\n    private MySqlDatabase db = new MySqlDatabase();\n    void generate() {\n        // ... build the report ...\n        db.insert(\"report\");\n    }\n}",
+  "options": [
+   "SRP",
+   "OCP",
+   "LSP",
+   "DIP (Dependency Injection Principle)"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "**DIP**, which the slides call the Dependency Injection Principle: high-level modules must not depend on low-level modules; both should depend on abstractions. ReportGenerator (high-level policy) creates the concrete MySqlDatabase (a low-level detail) with `new`. Cue: `new ConcreteLowLevelClass()` inside a high-level class → DIP. Fix: an interface `Database { void insert(String row); }`, a `Database` field, and the implementation passed in through the constructor. OCP is the tempting pick, since you do have to edit the class, but that is a symptom; the principle that names the cause (depending on a concrete class) is DIP. ReportGenerator only generates reports, so SRP is not the issue."
+ },
+ {
+  "id": "m9-06",
+  "chapter": 9,
+  "level": 3,
+  "subtopic": "SOLID: spot the principle",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Recompiled for methods it never calls.** LoginScreen only calls login(), yet it is affected every time exportCsv() or sendNewsletter() changes. Which principle most directly addresses this?",
+  "code": "interface UserService {\n    boolean login(String u, String p);\n    void register(User u);\n    void exportCsv(String path);\n    void sendNewsletter();\n}\nclass LoginScreen {\n    private final UserService users;\n    LoginScreen(UserService users) { this.users = users; }\n    void onSubmit(String u, String p) { users.login(u, p); }\n}",
+  "options": [
+   "SRP",
+   "ISP",
+   "LSP",
+   "DIP"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "**ISP (Interface Segregation):** clients should not be forced to depend on methods they do not use. Give LoginScreen a small `Authenticator { boolean login(String u, String p); }` interface and it no longer cares about CSV export or newsletters. Cue: a client uses 1 of N interface methods but is affected by all of them → ISP. DIP is the trap: LoginScreen already depends on an *interface* that is *injected* through its constructor, so DIP is satisfied. The problem is that the interface is fat. SRP is tempting because whatever class implements UserService does too much, but the pain described here is on the client side, and that is ISP."
+ },
+ {
+  "id": "m9-07",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "SOLID: best redesign",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**A new transport type.** A TRISHAW type must be added. Which redesign best fixes the underlying problem?",
+  "code": "class Transport {\n    private String type;   // \"BUS\", \"TAXI\", \"MRT\"\n    private double km;\n    double calFare() {\n        switch (type) {\n            case \"BUS\":  return 1.0 + 0.1 * km;\n            case \"TAXI\": return 3.9 + 0.6 * km;\n            case \"MRT\":  return 0.9 + 0.08 * km;\n            default:     return 0;\n        }\n    }\n}",
+  "options": [
+   "Add case \"TRISHAW\" to the switch; it is only one line.",
+   "Make calFare() static so every type shares one fare method.",
+   "Make Transport abstract with an abstract calFare(), overridden in Bus, Taxi, MRT and a new Trishaw subclass.",
+   "Replace the String type with an int type code to avoid typos."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "**OCP:** open for extension, closed for modification. Abstraction is the key. With an abstract Transport, adding Trishaw means writing a new subclass, and Transport and its clients are never edited. This is exactly the slide 32 Transport example. Cue: a switch on a type field → OCP, so replace it with polymorphism. A is the trap: it works, but you have to modify tested code for every new type, which is what OCP forbids. D is still a type code (and a type-code check also tightens coupling), and a static method in B rules out overriding altogether."
+ },
+ {
+  "id": "m9-08",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "SOLID: best redesign",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Not every bird flies.** migrate() crashes when the flock contains a Penguin. Which redesign best fixes the problem?",
+  "code": "class Bird {\n    void fly() { System.out.println(\"Flying\"); }\n}\nclass Penguin extends Bird {\n    @Override void fly() {\n        throw new UnsupportedOperationException();\n    }\n}\nstatic void migrate(List<Bird> flock) {\n    for (Bird b : flock) b.fly();\n}",
+  "options": [
+   "Keep shared behaviour in Bird; move fly() into a Flyable interface implemented only by birds that fly, and make migrate() take List<Flyable>.",
+   "Change Penguin.fly() to do nothing instead of throwing.",
+   "Add a boolean canFly field to Bird and check it in migrate() before calling fly().",
+   "Make fly() static in Bird so Penguin cannot override it."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "**LSP:** a subtype must be substitutable for its base type, so Bird must promise only what *every* bird can do. Moving fly() into Flyable means migrate() accepts only things that really fly, and Penguin never claims to. Cue: an override that throws → LSP, so fix the abstraction (this is Slido Q26, where the answer is LSP, not DIP). B is the trap: a silent no-op still *provides less* (the bird is not flying afterwards), so it is still an LSP violation, just hidden. C is a type flag that every caller must remember to check, which brings back type-code coupling. D: a static fly() cannot be overridden, so a Penguin would 'fly' using Bird's code, which is wrong behaviour."
+ },
+ {
+  "id": "m9-09",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "SOLID: best redesign",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**A second export format.** Customers now also want CSV, and tests must run without writing files. Which redesign best fixes ReportService?",
+  "code": "class PdfExporter {\n    void export(String data) { /* write PDF file */ }\n}\nclass ReportService {\n    private PdfExporter exporter = new PdfExporter();\n    void publish(String data) { exporter.export(data); }\n}",
+  "options": [
+   "Make ReportService extend PdfExporter, and add a CsvExporter subclass of ReportService.",
+   "Declare interface Exporter { void export(String d); }; ReportService receives an Exporter in its constructor; PdfExporter and CsvExporter implement it.",
+   "Make export() static and call PdfExporter.export(data) or CsvExporter.export(data) directly.",
+   "Add a String format field to ReportService and use if/else to create a PdfExporter or a CsvExporter."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "**DIP (the slides' 'Dependency Injection Principle')**: depend on an abstraction and have the concrete object passed in. ReportService then works with PDF, CSV or a test fake without being edited. Cue: `new ConcreteClass()` inside a high-level class → introduce an interface and inject it through the constructor. This is the same fix as Slido Q28 and Q32. In Q32 you picked 'extend EmailClient'; A here is that same trap. ReportService *uses* an exporter but is not a kind of exporter, and inheritance couples the two even more tightly. C still hard-wires concrete classes and leaves no way to swap in a fake. D adds a type field, so ReportService still knows every concrete exporter and must be edited for each new format (an OCP violation)."
+ },
+ {
+  "id": "m9-10",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Report knows too much about Customer.** Which change most reduces the coupling between Report and Customer?",
+  "code": "class Customer {\n    public String name;\n    public int type;        // 1 = regular, 2 = VIP\n    public double spent;\n}\nclass Report {\n    String line(Customer c) {\n        String tag = (c.type == 2) ? \"VIP\" : \"\";\n        return c.name + \" \" + tag + \" \" + c.spent;\n    }\n}",
+  "options": [
+   "Make Report extend Customer so it can read the fields directly.",
+   "Add more type codes (3 = staff, 4 = partner) and check each one in Report.",
+   "Hide Customer's fields behind a small CustomerInfo interface (e.g. displayName(), tag()) that Report receives and uses.",
+   "Merge Report and Customer into one class so there is nothing left to couple."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "**Loose coupling via interfaces:** 'interaction via interfaces promotes loose coupling'. Today Report depends on Customer's *internals*: public fields and the meaning of type code 2. That is bad encapsulation and tight coupling, like NASDAQ having to know DataDisplay's displayType in the slides. Once Report talks only to a CustomerInfo interface, Customer can change its fields freely. Cue: public fields and type-code checks *increase* coupling; interfaces and constructor injection *reduce* it. D is the tempting distractor: merging removes the link only by creating one low-cohesion class with two jobs, which violates SRP. A (inheritance) couples Report to Customer even more tightly, and B adds even more type-code checks."
+ },
+ {
+  "id": "m9-11",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "OCP / DIP output",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Plug in a discount.** What is printed, and why is this design extensible?",
+  "code": "interface Discount { double apply(double p); }\nclass NoDiscount implements Discount {\n    public double apply(double p) { return p; }\n}\nclass Half implements Discount {\n    public double apply(double p) { return p / 2; }\n}\nclass Cart {\n    private final Discount d;\n    Cart(Discount d) { this.d = d; }\n    double total(double p) { return d.apply(p); }\n}\nSystem.out.println(new Cart(new Half()).total(80));",
+  "options": [
+   "40.0; Cart depends only on Discount, so new discounts are added without editing Cart.",
+   "80.0; the declared type Discount decides which apply() runs.",
+   "40.0; but Cart must be edited each time a new Discount class is written.",
+   "Compilation error: a final field cannot hold an interface type."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Prints **40.0** (verified with JDK 17; a double prints with `.0`). A Half object is injected through the constructor, and `d.apply(p)` is dynamically bound to Half.apply(), so 80 / 2 = 40.0. Cart knows only the Discount interface (DIP, with constructor injection), so a new TenPercentOff class needs no change to Cart (OCP). Cue: a class that calls methods on an injected interface → extensible without modification. C is the Slido Q30 trap you fell for: the right output with the wrong reason. Cart never needs rewriting. B confuses the declared type with the object's actual type. A final field can hold any reference type, so D is false."
+ },
+ {
+  "id": "m9-12",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "OCP output",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**A subclass added this week.** What is printed, and what does it show about Fares?",
+  "code": "abstract class Transport { abstract String code(); }\nclass Bus  extends Transport { String code() { return \"B\"; } }\nclass Taxi extends Transport { String code() { return \"T\"; } }\n// added this week:\nclass Trishaw extends Transport { String code() { return \"R\"; } }\nclass Fares {\n    static String all(List<Transport> ts) {\n        String s = \"\";\n        for (Transport t : ts) s += t.code();\n        return s;\n    }\n}\nSystem.out.println(Fares.all(\n    List.of(new Taxi(), new Trishaw(), new Bus())));",
+  "options": [
+   "BTR; the list is processed in class-declaration order.",
+   "TRB; but Fares.all() had to gain a new branch for Trishaw.",
+   "Compilation error: an abstract class cannot be the element type of a List.",
+   "TRB; Fares.all() was extended by a new subclass without being modified."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Prints **TRB** (verified with JDK 17). The loop visits the list in order (Taxi, Trishaw, Bus), and each `t.code()` is dynamically bound to the object's own override. Fares.all() is written against abstract Transport, so adding Trishaw needed no edit to it: closed for modification, open for extension, which is **OCP**. Cue: a new subclass added and the loop over the abstract type unchanged → OCP satisfied. B is the Q30-style trap: the right output but a false reason, since there is no branch to add. Abstract classes and interfaces are valid element types, so C is false. A list keeps insertion order, not declaration order, so A is wrong."
+ },
+ {
+  "id": "m9-13",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "DIP output",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**An injected clock.** What is printed, and why is this a good design?",
+  "code": "interface Clock { int hour(); }\nclass SystemClock implements Clock {\n    public int hour() {\n        return java.time.LocalTime.now().getHour();\n    }\n}\nclass FixedClock implements Clock {\n    public int hour() { return 21; }\n}\nclass Greeter {\n    private final Clock c;\n    Greeter(Clock c) { this.c = c; }\n    String greet() { return c.hour() < 12 ? \"AM\" : \"PM\"; }\n}\nSystem.out.println(new Greeter(new FixedClock()).greet());",
+  "options": [
+   "AM; Greeter always reads the real system time.",
+   "PM; Greeter depends on the Clock abstraction, so a fixed clock can be injected (handy for tests).",
+   "PM; but Greeter had to be edited to know about FixedClock.",
+   "It depends on the time of day the program is run."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Prints **PM** (verified with JDK 17). The injected FixedClock returns 21, and 21 < 12 is false. SystemClock is never created, so the real time plays no part, which is why D is the tempting wrong answer. This is **DIP** (the slides' 'Dependency Injection Principle'): high-level Greeter depends on the Clock abstraction, and the concrete clock is passed in through the constructor. That makes the behaviour predictable and testable. Cue: a constructor taking an interface → DIP or injection, and you can swap the implementation without edits. C has the right output but the wrong reason (Greeter never mentions FixedClock), and A ignores the object that was actually injected."
+ },
+ {
+  "id": "m9-14",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Same features, two designs.** Dashed open arrows are dependencies; the dashed hollow triangle is realisation. Which statement is correct?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 436\" font-family=\"Arial, sans-serif\" font-size=\"12\">\n<defs>\n<marker id=\"m9o\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"12\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker>\n<marker id=\"m9t\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\"/></marker>\n</defs>\n<rect x=\"0\" y=\"0\" width=\"340\" height=\"436\" fill=\"#fff\"/>\n<text x=\"10\" y=\"18\" font-weight=\"bold\" font-size=\"14\" fill=\"#1f6feb\">Design P</text>\n<text x=\"10\" y=\"222\" font-weight=\"bold\" font-size=\"14\" fill=\"#bf8700\">Design Q</text>\n<line x1=\"0\" y1=\"202\" x2=\"340\" y2=\"202\" stroke=\"#999\" stroke-width=\"1\"/>\n<g fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\">\n<rect x=\"20\" y=\"40\" width=\"96\" height=\"30\"/><rect x=\"224\" y=\"40\" width=\"96\" height=\"30\"/>\n<rect x=\"20\" y=\"150\" width=\"96\" height=\"30\"/><rect x=\"224\" y=\"150\" width=\"96\" height=\"30\"/>\n<rect x=\"10\" y=\"240\" width=\"96\" height=\"30\"/><rect x=\"122\" y=\"240\" width=\"96\" height=\"30\"/><rect x=\"234\" y=\"240\" width=\"96\" height=\"30\"/>\n<rect x=\"105\" y=\"320\" width=\"130\" height=\"40\"/>\n<rect x=\"122\" y=\"396\" width=\"96\" height=\"30\"/>\n</g>\n<g fill=\"#222\" text-anchor=\"middle\" font-weight=\"bold\" font-size=\"13\">\n<text x=\"68\" y=\"60\">Order</text><text x=\"272\" y=\"60\">Billing</text>\n<text x=\"68\" y=\"170\">Stock</text><text x=\"272\" y=\"170\">Report</text>\n<text x=\"58\" y=\"260\">Order</text><text x=\"170\" y=\"260\">Billing</text><text x=\"282\" y=\"260\">Report</text>\n<text x=\"170\" y=\"353\">StockQuery</text>\n<text x=\"170\" y=\"416\">Stock</text>\n</g>\n<text x=\"170\" y=\"334\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1f6feb\">«interface»</text>\n<g stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" fill=\"none\">\n<line x1=\"116\" y1=\"55\" x2=\"223\" y2=\"55\" marker-end=\"url(#m9o)\"/>\n<line x1=\"272\" y1=\"70\" x2=\"272\" y2=\"149\" marker-end=\"url(#m9o)\"/>\n<line x1=\"224\" y1=\"165\" x2=\"117\" y2=\"165\" marker-end=\"url(#m9o)\"/>\n<line x1=\"68\" y1=\"150\" x2=\"68\" y2=\"71\" marker-end=\"url(#m9o)\"/>\n<line x1=\"116\" y1=\"70\" x2=\"223\" y2=\"149\" marker-end=\"url(#m9o)\"/>\n<line x1=\"224\" y1=\"70\" x2=\"117\" y2=\"149\" marker-end=\"url(#m9o)\"/>\n<line x1=\"58\" y1=\"270\" x2=\"129\" y2=\"319\" marker-end=\"url(#m9o)\"/>\n<line x1=\"170\" y1=\"270\" x2=\"170\" y2=\"319\" marker-end=\"url(#m9o)\"/>\n<line x1=\"282\" y1=\"270\" x2=\"211\" y2=\"319\" marker-end=\"url(#m9o)\"/>\n<line x1=\"170\" y1=\"396\" x2=\"170\" y2=\"361\" marker-end=\"url(#m9t)\"/>\n</g>\n</svg>",
+  "options": [
+   "P is better: more links mean the classes collaborate more, so coupling is looser.",
+   "Q has tighter coupling, because it adds an extra interface type.",
+   "Q is more loosely coupled: it has fewer dependency links, and its clients depend on an interface rather than on Stock.",
+   "Both have the same coupling, because coupling depends only on the number of classes."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "**Low (loose) coupling.** Count the arrows. P has 6 dependency links (everything connected to everything, the 'network' mesh the slides tell you to avoid). Q has 4 (three dependencies plus one realisation), and Order, Billing and Report depend only on the StockQuery interface, so Stock can change or be replaced without touching them. 'Interaction via interfaces promotes loose coupling.' Cue: FEWER dependency links = LOOSER coupling, and a client that depends on an interface is looser still. A is the trap you've fallen for before: each extra link is another path along which a change can ripple (Rigidity), so more links is worse, not better. The extra interface in B removes dependencies on a concrete class. Coupling is about dependencies, not the number of classes, so D is wrong."
+ },
+ {
+  "id": "m9-15",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "coupling & cohesion",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Which class has the LOWEST cohesion?**",
+  "code": "class TaxCalculator {\n    double gst(double price)       { /* ... */ }\n    double incomeTax(double salary) { /* ... */ }\n}\nclass Point {\n    private int x, y;\n    double distanceTo(Point p) { /* ... */ }\n}\nclass Utils {\n    static String formatDate(Date d)           { /* ... */ }\n    static double gst(double price)            { /* ... */ }\n    static void sendEmail(String to, String m) { /* ... */ }\n    static int[] sort(int[] a)                 { /* ... */ }\n}\nclass EmailSender {\n    void send(String to, String msg) { /* ... */ }\n    void attach(String file)         { /* ... */ }\n}",
+  "options": [
+   "Utils",
+   "TaxCalculator",
+   "Point",
+   "EmailSender"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "**Cohesion** is how closely related a class's responsibilities are, and SRP = cohesion. Utils mixes date formatting, tax, e-mail and sorting: four unrelated reasons to change. It is a 'junk drawer' God class, the slide's man holding every tool who is 'not sure what it does'. Cue: a grab-bag class named Utils/Helper/Manager with unrelated methods → lowest cohesion. TaxCalculator, Point and EmailSender each 'do one thing well'. The tempting mistake is to judge by size: EmailSender and Point are small, but small and focused means HIGH cohesion. Cohesion is not measured by the number of methods."
+ },
+ {
+  "id": "m9-16",
+  "chapter": 9,
+  "level": 3,
+  "subtopic": "rotting design",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Symptoms of rotting design.** Which pairing matches the lecture slides?",
+  "options": [
+   "Fragility: one simple change forces a cascade of changes in dependent modules.",
+   "Rigidity: a change in billing breaks the login screen, which has no relation to billing.",
+   "Immobility: the system is hard to change, even in simple ways.",
+   "Rigidity: renaming one method forces edits in five dependent classes, and each of those forces more edits."
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "There are **three symptoms**. **Rigidity**: hard to change, because every change *cascades* into dependent modules (the dominoes picture), so D is correct. **Fragility**: a change breaks the software in places with *no conceptual relationship* to it (the junk heap). **Immobility**: the module can't be *reused* elsewhere because it drags too much baggage (the tangled cables). Cue: a change *forces more changes* → Rigidity; a change *breaks something unrelated* → Fragility; you can't lift a module out to reuse it → Immobility. A and B are the swap you have made before: A describes Rigidity and B describes Fragility. C describes Rigidity too, not Immobility."
+ },
+ {
+  "id": "m9-17",
+  "chapter": 9,
+  "level": 3,
+  "subtopic": "LSP contract",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Design by contract.** Which subclass override of withdraw() would violate LSP?",
+  "code": "class Account {\n    // pre:  amt > 0\n    // post: balance is reduced by amt; returns the new balance\n    double withdraw(double amt) { /* ... */ }\n}",
+  "options": [
+   "Accepts any amt >= 0 (withdrawing 0 does nothing); otherwise the same as Account.",
+   "Same rules, and it also writes an audit-log entry after reducing the balance.",
+   "Throws an exception when amt > 500, even when the balance is sufficient.",
+   "Same pre- and postconditions, but it caches the balance to run faster."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "**LSP as a contract:** a subtype's preconditions must be NO STRONGER (expect no more), and its postconditions NO WEAKER (provide no less). C adds the requirement amt <= 500, which is a *stronger precondition*. A caller written for Account that withdraws 600 now breaks (the slides' noodle seller demanding more money). A *weakens* the precondition by accepting more inputs, which is allowed. B *strengthens* the postcondition by delivering more, which is also allowed. D changes only internals. Cue: a subclass that demands more of the caller, or delivers less → LSP violation. The trap is A: it changes the rule, but in the safe direction."
+ },
+ {
+  "id": "m9-18",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "LSP: Square/Rectangle",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Square extends Rectangle.** What is printed, and what does it show?",
+  "code": "class Rectangle {\n    protected int w, h;\n    void setWidth(int w)  { this.w = w; }\n    void setHeight(int h) { this.h = h; }\n    int area() { return w * h; }\n}\nclass Square extends Rectangle {\n    @Override void setWidth(int w)  { this.w = w; this.h = w; }\n    @Override void setHeight(int h) { this.w = h; this.h = h; }\n}\nstatic void resize(Rectangle r) {\n    r.setWidth(4);\n    r.setHeight(5);\n    System.out.print(r.area() + \" \");\n}\nresize(new Rectangle());\nresize(new Square());",
+  "options": [
+   "20 20; a Square is-a Rectangle, so it behaves the same.",
+   "20 25; Square breaks Rectangle's promise that setHeight() leaves the width unchanged, so LSP is violated.",
+   "20 25; LSP holds because Square compiles and passes the is-a test.",
+   "25 25; Square's setters are called for both objects."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Prints **20 25** (verified with JDK 17). resize() is written for Rectangle and expects 4 x 5 = 20. For the Square object, the dynamically bound setHeight(5) also sets w = 5, giving 25. Square *weakens the postcondition* of setHeight (the width is no longer preserved), so it cannot substitute for Rectangle. That is the classic **LSP** violation from the slides, and Circle/Ellipse is the same story. Cue: an override that changes what the caller can rely on → LSP, even if it is mathematically 'is-a'. C is the trap: compiling and passing is-a do not make LSP hold (compare ATMDisplay in the slides). D is wrong because Square's overrides run only for the Square object."
+ }
+]

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16 15:40",
+ "updated": "2026-11-16 23:06",
  "banks": [
   "ch01_02.json",
   "ch03_04.json",
@@ -18,7 +18,9 @@
   "slido_b.json",
   "slido_c.json",
   "slido_d.json",
-  "slido_e.json"
+  "slido_e.json",
+  "m_solid.json",
+  "m_java.json"
  ],
  "lessons": [
   "ch1.json",

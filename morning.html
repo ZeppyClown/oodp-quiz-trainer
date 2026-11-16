@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exam morning: grind plan + pointers</title>
+<style>
+body{margin:0;background:#0f1115;color:#e8eaf0;font:15.5px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:14px 14px 60px}
+h1{font-size:21px;margin:6px 0}h2{font-size:17px;margin:24px 0 6px;color:#8fb8ff;border-bottom:1px solid #2c313c;padding-bottom:4px}
+.c{background:#181b22;border:1px solid #2c313c;border-radius:12px;padding:10px 12px;margin:8px 0}
+code{background:#2a2f3a;padding:1px 5px;border-radius:5px;font-size:.92em}
+pre{background:#11141a;border:1px solid #2c313c;border-radius:8px;padding:8px;overflow:auto;font-size:13px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-bottom:1px solid #2c313c;padding:6px 4px;text-align:left;vertical-align:top}th{color:#9aa3b2;font-weight:600}
+.t{color:#f0b429;font-weight:700}.ok{color:#2fbf71}.bad{color:#ef5b5b}
+a{color:#5b9cff}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
+.mut{color:#9aa3b2;font-size:13px}
+.step{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #2c313c}.step:last-child{border:0}
+.tm{min-width:92px;font-weight:700;color:#f0b429}
+.go{display:block;text-align:center;background:#1f6feb;color:#fff;border-radius:10px;padding:10px;margin:6px 0;text-decoration:none;font-weight:600}
+</style></head><body><div class="w">
+<a href="./">← Back to quiz</a>
+<h1>☀️ Exam morning: 6:00 → 9:30</h1>
+<div class="mut">Built from all your results: Slido 35/42, Ch9 Foundation 8/14, Ch3 What-if 9/14, Ch4 Foundation 9/12. Your #1 gap is <b>Ch9 design principles</b>. Your #2 gap is <b>tracing which version of a field or method actually runs</b>.</div>
+
+<h2>⏱ The plan (do it in this order)</h2>
+<div class="c">
+<div class="step"><div class="tm">6:00–6:15</div><div>Wake up, drink water. Read <b>Section 1 (SOLID)</b> below. Just read it; don't quiz yet.</div></div>
+<div class="step"><div class="tm">6:15–6:50</div><div><b>Round 1: SOLID twins</b> (18 Qs, learn mode). These are new questions written in the lecturer's Slido style. Read the explanation <u>only when you get one wrong</u>.<a class="go" href="./#round=solid">▶ Round 1: SOLID twins</a></div></div>
+<div class="step"><div class="tm">6:50–7:05</div><div>Read <b>Section 2 (Java traps)</b>.</div></div>
+<div class="step"><div class="tm">7:05–7:40</div><div><b>Round 2: Java trap twins</b> (18 Qs): dispatch, fields, checked exceptions, streams, final.<a class="go" href="./#round=java">▶ Round 2: Java trap twins</a></div></div>
+<div class="step"><div class="tm">7:40–8:00</div><div><b>Round 3: Redo my mistakes</b>, which includes anything you got wrong in Rounds 1 and 2. If one is still wrong now, write that rule down on paper and re-read it on the way.<a class="go" href="./#round=mistakes">▶ Round 3: Redo mistakes</a></div></div>
+<div class="step"><div class="tm">8:00 →</div><div><b>Stop doing questions.</b> Get ready and eat. On the way, read <b>Section 4 (last 15 minutes)</b> and the <a href="cheatsheet.html">⚠️ STUCK box</a>. Nothing new after 8:45.</div></div>
+</div>
+
+<h2>1. SOLID: how the lecturer tests it</h2>
+<div class="c">The Slido deck had 9 Ch9 questions, in exactly <b>4 formats</b>. You'll see the same 4 tomorrow:
+<ul>
+<li><b>"Which principle is most directly at risk?"</b> + a code snippet (Q26). → Spot the smell using the table below.</li>
+<li><b>"Which redesign best addresses the problem?"</b> (Q24, 25, 27, 28, 32). → The answer is almost always: <b>split it up, add an interface, or inject the dependency</b>.</li>
+<li><b>"What is printed, AND why is the design good?"</b> (Q29, Q30). → Get the output, then pick the reason that mentions <b>depending on the interface/abstraction</b>.</li>
+<li><b>A UML diagram → which principle?</b> (Q31). → A client with a dashed arrow to an «interface», which the concrete classes realise (dashed line, hollow triangle), means <b>DIP</b>.</li>
+</ul></div>
+
+<div class="c"><b>Smell → principle → fix</b> (memorise this table)
+<table>
+<tr><th>If you see…</th><th>It's</th><th>Fix</th></tr>
+<tr><td>One class doing pricing, database AND printing/email. "Too many reasons to change", a god class or <code>Utils</code></td><td><b>SRP</b> (low cohesion)</td><td>Split it into focused classes</td></tr>
+<tr><td><code>if (type.equals("VIP"))… else if…</code> or a <code>switch</code> on a type. Adding a new type means editing this class</td><td><b>OCP</b></td><td>An interface plus one class per type (polymorphism)</td></tr>
+<tr><td>A subclass override that <b>throws</b> <code>UnsupportedOperationException</code>, does nothing, or changes the meaning (Penguin.fly, Square.setWidth)</td><td><b>LSP</b></td><td>Fix the hierarchy: don't inherit what you can't honour</td></tr>
+<tr><td>An interface with many methods, where implementers leave some <b>empty or throwing</b> (BasicPrinter.fax)</td><td><b>ISP</b></td><td>Split it into small interfaces (Printer, Scanner, Fax)</td></tr>
+<tr><td>A high-level class does <code>new EmailClient()</code> / <code>new MySQLDb()</code> <b>inside itself</b></td><td><b>DIP</b> (slides: Dependency <i>Injection</i> Principle)</td><td>An interface plus <b>passing it in through the constructor</b></td></tr>
+</table>
+<p class="bad" style="margin:8px 0 0"><b>Your Slido traps:</b></p>
+<ul>
+<li><b>Q26:</b> an override that throws is <b>LSP</b>, not DIP. "Can the subclass stand in for the parent?" No, so LSP.</li>
+<li><b>Q32:</b> <b>inheritance is NEVER the fix</b> for coupling. "Make OrderService extend EmailClient" is always wrong. So are "make it static" and "merge the classes".</li>
+<li><b>Q30:</b> when the output options tie, the right reason is <b>"X depends on the interface, not the concrete class"</b>. Any option saying "must be rewritten for each new type" describes the BAD design.</li>
+</ul></div>
+
+<div class="c"><b>Coupling &amp; cohesion</b> (you missed 4 of these)
+<ul>
+<li><b>Goal: LOW (loose) coupling + HIGH cohesion.</b> Remember it as "low-high".</li>
+<li><b>Coupling</b> = how much classes depend on <b>each other</b>. <b>Fewer links = looser = better.</b> More links is worse; class design ≠ a network.</li>
+<li><b>Cohesion</b> = how focused <b>one</b> class is. One job means high cohesion. <code>Utils</code> doing dates, email, tax and charts is the <b>lowest</b> cohesion. Cohesion is basically SRP.</li>
+<li><b>Reduces coupling:</b> talking through <b>interfaces</b>, and <b>injecting</b> dependencies through the constructor. <b>Increases coupling:</b> public fields, checking another class's type code, <code>new</code>-ing concrete classes.</li>
+<li>"Interaction via interfaces promotes…" → <b>loose coupling</b>.</li>
+</ul></div>
+
+<div class="c"><b>Facts they can ask word for word</b>
+<ul>
+<li><b>Symptoms of rotting design (exactly 3):</b>
+ <ul>
+ <li><b>Rigidity</b>: hard to change; one change <b>cascades</b> into many required changes.</li>
+ <li><b>Fragility</b>: one change <b>breaks</b> things in unrelated places.</li>
+ <li><b>Immobility</b>: can't <b>reuse</b> a part, because it drags baggage with it.</li>
+ </ul>
+ Cue: "cascade" → Rigidity. "breaks elsewhere" → Fragility. "can't reuse" → Immobility.</li>
+<li><b>OO design objective:</b> minimise the impact of change by managing dependencies. Design for <b>Reusability, Extensibility, Maintainability</b>.</li>
+<li><b>OCP</b>: Bertrand <b>Meyer</b>, "open for extension, closed for modification".</li>
+<li><b>LSP</b>: Barbara <b>Liskov</b>, 1988. As a contract: a subclass's <b>pre-conditions are no stronger</b> (it expects no more) and its <b>post-conditions are no weaker</b> (it provides no less).</li>
+<li><b>ISP</b>: many client-specific interfaces beat one fat, general-purpose interface.</li>
+<li><b>D</b> = "Dependency <b>Injection</b> Principle" (the slides' name), also called Inversion of Control. High- and low-level modules both depend on abstractions.</li>
+<li><b>SRP</b>: a class should have only ONE reason to change.</li>
+</ul></div>
+
+<h2>2. Java traps you keep hitting</h2>
+<div class="c"><b>A. Which version runs? One rule decides it.</b>
+<table>
+<tr><th>Thing</th><th>Decided by</th></tr>
+<tr><td>Instance method (overriding)</td><td><b>RUNTIME</b> object (<code>new Child()</code>)</td></tr>
+<tr><td><b>Field</b></td><td><b>DECLARED</b> type (<code>Parent p</code>)</td></tr>
+<tr><td><b>static</b> method (hiding)</td><td><b>DECLARED</b> type</td></tr>
+<tr><td><b>Overload</b> choice (<code>check(Animal)</code> vs <code>check(Dog)</code>)</td><td><b>DECLARED</b> type, chosen at compile time</td></tr>
+<tr><td>private / final method</td><td>no overriding; the class it's written in</td></tr>
+</table>
+<ul>
+<li><b>Slido Q08:</b> parent method <code>run()</code> calls <code>doWork()</code>. That call means <code>this.doWork()</code>, and <code>this</code> is the Child, so <b>the child's version runs</b>. Answer <code>B!</code>, not <code>A!</code>.</li>
+<li><b>Slido Q09:</b> <code>Parent p = new Child(); p.points</code> gives Parent's field (10). <code>p.getPoints()</code> runs Child's method. Answer <code>10:30</code>.</li>
+<li><code>toString()</code> comes from the <b>nearest ancestor</b> that defines it, not Object's default <code>Class@hash</code>.</li>
+<li>A <b>final</b> method can't be overridden, so a subclass that declares it is a <b>compile error</b>.</li>
+</ul></div>
+
+<div class="c"><b>B. Checked exceptions</b> <span class="bad">(missed 4 times, so read this twice)</span>
+<ul>
+<li><b>Unchecked = <code>RuntimeException</code> and its subclasses, plus <code>Error</code> and its subclasses.</b> Everything else is <b>checked</b>: IOException, FileNotFoundException, plain Exception, and your own <code>MyEx extends Exception</code>.</li>
+<li><b>The test:</b> if a method can throw a checked exception, you need a <code>catch</code> of that exception <b>or one of its parents</b>, or a <code>throws</code> on the method. Otherwise it's a <b>compile error</b>.</li>
+<li><code>catch (RuntimeException e)</code> does <b>not</b> catch an IOException (they're sibling branches). <b><code>finally</code> never counts as handling.</b> (Slido Q42)</li>
+<li>An exception thrown <b>inside a catch</b> skips the sibling catches; only <code>finally</code> runs, then it propagates.</li>
+<li>Custom checked exception: <code>class MyEx extends Exception</code>. Custom unchecked: <code>extends RuntimeException</code>.</li>
+<li>Methods on <code>e</code>: <code>getMessage()</code>, <code>toString()</code>, <code>printStackTrace()</code>. An exception is a <b>run-time anomaly</b>, not a syntax error.</li>
+</ul></div>
+
+<div class="c"><b>C. Others from your misses</b>
+<ul>
+<li><b>Streams are lazy.</b> <code>filter</code>/<code>map</code>/<code>peek</code> do nothing until a <b>terminal</b> operation (<code>forEach</code>, <code>collect</code>, <code>count</code>, <code>toList</code>) runs. No terminal operation means the lambdas never print. (Slido Q38)</li>
+<li><code>list.remove(1)</code> on a <code>List&lt;Integer&gt;</code> removes by <b>index</b>.</li>
+<li><b>Constructor chain:</b> the parent part is always built first. Follow every <code>this(...)</code> and <code>super(...)</code> to the top, then print on the way back down.</li>
+<li><b>Same package:</b> everything except <b>private</b> is accessible. <code>protected</code> = package + subclasses elsewhere.</li>
+<li><b>Abstract class vs interface:</b> a class extends ONE class but implements many interfaces. Neither can be <code>new</code>'d. Interface fields are <code>static final</code> constants. Implementing a derived interface means implementing the base interface's methods too.</li>
+</ul></div>
+
+<h2>3. Not in the Slido deck, but in the quiz</h2>
+<div class="c">The deck skipped <b>Ch1, Ch2 and Ch8</b>, and the real quiz covers them. The essentials:
+<ul>
+<li><b>Ch1:</b> <code>javac</code> compiles .java to .class bytecode. The <b>JIT inside the JVM</b> compiles bytecode to machine code <b>at run time</b>. JDK ⊃ JRE ⊃ JVM.</li>
+<li><b>Ch2:</b> Java passes references <b>by value</b>, so reassigning a parameter doesn't affect the caller, but <code>obj.setX()</code> does. A double prints <code>100.0</code>. A static field is shared by all objects.</li>
+<li><b>Ch8:</b> nouns become classes, verbs become methods. A <b>CRC card</b> has Class, Responsibilities, Collaborators (+ super/subclasses), and <b>no attributes</b>. <b>entity</b> = data, <b>boundary</b> = UI, <b>control</b> = logic.</li>
+<li><b>UML</b> (you scored 14/14, keep it): static is <u>underlined</u>, abstract is <i>italic</i>, <code>~</code> = package, <code>#</code> = protected. A filled diamond is composition; a hollow one is aggregation.</li>
+</ul></div>
+
+<h2>4. Last 15 minutes (read on the way)</h2>
+<div class="c" style="border-color:#f0b429">
+<ol>
+<li>Override throws → <b>LSP</b>. Type <code>if</code>/<code>switch</code> → <b>OCP</b>. <code>new Concrete()</code> inside → <b>DIP</b>, fixed by injecting an interface. Fat interface → <b>ISP</b>. Does everything → <b>SRP</b>.</li>
+<li><b>Inheritance is never the fix</b> in a "best redesign" question.</li>
+<li>Low coupling (few links, use interfaces) + high cohesion (one job each).</li>
+<li>Cascade = Rigidity. Breaks elsewhere = Fragility. Can't reuse = Immobility.</li>
+<li><b>Methods follow the object; fields, statics and overloads follow the declared type.</b></li>
+<li>Checked exception not caught by its own type or a parent, and not declared → <b>compile error</b>. <code>finally</code> doesn't count.</li>
+<li>No terminal operation → the stream does nothing.</li>
+<li>JIT = run time, in the JVM. Error = unchecked. Static = underlined.</li>
+</ol>
+<b>In the exam:</b> on every code question, ask <span class="t">"does it compile?"</span> before tracing the output. You went from 4–5 min to 1.1 min per question, so you have time to check.</div>
+<a href="./">← Back to quiz</a>
+</div></body></html>

@@ -1,0 +1,380 @@
+[
+ {
+  "id": "mj-01",
+  "chapter": 5,
+  "level": 2,
+  "subtopic": "dynamic-binding",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Inherited method calls an overridden method.** What is printed?",
+  "code": "class Report {\n    void print() {\n        System.out.print(header() + \"|\");\n        body();\n    }\n    String header() { return \"R\"; }\n    void body() { System.out.print(\"r\"); }\n}\nclass Sales extends Report {\n    String header() { return \"S\"; }\n    void body() { System.out.print(\"s\"); }\n}\n\nReport r = new Sales();\nr.print();",
+  "options": [
+   "R|r",
+   "S|s",
+   "R|s",
+   "S|r"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: inside an inherited method, a call like `header()` means `this.header()`, and `this` is the runtime object, so the child's override runs. Trace: `Sales` does not override `print()`, so `Report.print()` runs, but `this` is a `Sales` object. `header()` is dispatched to `Sales.header()` (S) and `body()` to `Sales.body()` (s), which prints `S|s`. A (R|r) is the trap: it assumes that code written in `Report` calls `Report`'s versions. Where the code is written does not matter; the runtime object decides."
+ },
+ {
+  "id": "mj-02",
+  "chapter": 5,
+  "level": 3,
+  "subtopic": "dynamic-binding",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Private method vs. overridden method.** What is printed?",
+  "code": "class Engine {\n    void start() {\n        System.out.print(check());\n        System.out.print(this.mode());\n    }\n    private String check() { return \"E\"; }\n    String mode() { return \"1\"; }\n}\nclass Turbo extends Engine {\n    String check() { return \"T\"; }\n    String mode() { return \"2\"; }\n}\n\nnew Turbo().start();",
+  "options": [
+   "T2",
+   "E1",
+   "Compilation error",
+   "E2"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: private methods are not inherited, so they can't be overridden; a call to a private method is bound at compile time to that class's own version. Trace: `Engine.start()` runs on a `Turbo`. `check()` is private in `Engine`, so the call is fixed to `Engine.check()`, which gives E. `Turbo.check()` is a separate, unrelated method. `mode()` is a normal method, so `this.mode()` dispatches to `Turbo.mode()`, which gives 2. The output is `E2`. T2 is the trap: it applies dynamic binding to the private method. The code compiles, because a subclass may declare a method with the same name as a private parent method."
+ },
+ {
+  "id": "mj-03",
+  "chapter": 5,
+  "level": 3,
+  "subtopic": "dynamic-binding",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Overridden method called from the parent constructor.** What is printed?",
+  "code": "class Shape {\n    Shape() { System.out.print(name()); }\n    String name() { return \"shape\"; }\n}\nclass Circle extends Shape {\n    private String label = \"circle\";\n    String name() { return label; }\n}\n\nCircle c = new Circle();\nSystem.out.print(\" \" + c.name());",
+  "options": [
+   "null circle",
+   "shape circle",
+   "circle circle",
+   "shape shape"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: dynamic binding works even inside a constructor, and the parent constructor runs BEFORE the child's field initialisers. Trace: `new Circle()` first runs `Shape()`. Its call `name()` is `this.name()`, and `this` is a `Circle`, so `Circle.name()` runs. At this point `label` has not been assigned yet and still holds its default `null`, so null is printed. Then `label = \"circle\"` runs, and the later `c.name()` prints circle. The output is `null circle`. B (shape...) assumes the constructor uses `Shape`'s own method. C forgets that field initialisers run after `super()`."
+ },
+ {
+  "id": "mj-04",
+  "chapter": 3,
+  "level": 3,
+  "subtopic": "field-hiding",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Hidden fields, `super.x` and `super.get()`.** What is printed?",
+  "code": "class A {\n    int x = 1;\n    int get() { return x; }\n}\nclass B extends A {\n    int x = 2;\n    int get() { return x; }\n    int sum() { return x + super.x + super.get(); }\n}\n\nA a = new B();\nB b = (B) a;\nSystem.out.print(a.x + \" \" + a.get() + \" \" + b.sum());",
+  "options": [
+   "2 2 5",
+   "1 1 4",
+   "1 2 4",
+   "1 2 5"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: a field access uses the DECLARED type and is fixed at compile time; a method call uses the RUNTIME type; `super.` skips dynamic dispatch and calls the parent's version. Trace: `a.x` → `a` is declared as `A`, so `A.x` = 1. `a.get()` → the runtime object is a `B`, so `B.get()` runs and returns `B.x` = 2. `b.sum()` → `x` (B's) 2 + `super.x` (A's) 1 + `super.get()`, which is `A.get()` and returns A's `x` = 1, for 2+1+1 = 4. The output is `1 2 4`. D (5) assumes `super.get()` dispatches back to `B.get()`. It doesn't: `super.m()` always runs the parent's code, and inside `A.get()`, `x` means `A.x`."
+ },
+ {
+  "id": "mj-05",
+  "chapter": 5,
+  "level": 3,
+  "subtopic": "casting",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Casting changes field access but not method dispatch.** What is printed?",
+  "code": "class Parent {\n    String x = \"P\";\n    String show() { return x; }\n}\nclass Child extends Parent {\n    String x = \"C\";\n    String show() { return x; }\n}\n\nParent p = new Child();\nSystem.out.print(p.x + ((Child) p).x + p.show() + ((Parent) p).show());",
+  "options": [
+   "PCCP",
+   "CCCC",
+   "PCCC",
+   "PPCC"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: a cast changes the compile-time type, so it changes which FIELD is read, but it never changes the object, so method calls still go to the runtime type. Trace: `p.x` → declared type `Parent` → P. `((Child) p).x` → the expression now has type `Child` → C. `p.show()` → the runtime object is a `Child` → `Child.show()` → C. `((Parent) p).show()` → the upcast doesn't matter, the object is still a `Child` → C. The output is `PCCC`. A (PCCP) is the trap: it assumes casting to `Parent` makes `Parent.show()` run. Only fields follow the declared type."
+ },
+ {
+  "id": "mj-06",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "field-hiding",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Hidden field changed by an inherited method.** What is printed?",
+  "code": "class Base {\n    int v = 10;\n    int getV() { return v; }\n    void inc() { v++; }\n}\nclass Derived extends Base {\n    int v = 20;\n}\n\nDerived d = new Derived();\nd.inc();\nBase b = d;\nSystem.out.print(d.v + \" \" + b.v + \" \" + d.getV());",
+  "options": [
+   "20 11 11",
+   "21 11 21",
+   "21 10 21",
+   "20 10 11"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: fields are not overridden. A `Derived` object holds TWO fields called `v`, and code written in `Base` always uses `Base.v`. Trace: `d.inc()` runs `Base.inc()`, which increments `Base.v` from 10 to 11; `Derived.v` stays 20. `d.v` → declared type `Derived` → 20. `b.v` → declared type `Base` → 11. `d.getV()` → `Base.getV()` (not overridden) reads `Base.v` → 11. The output is `20 11 11`. B (21 ...) assumes `v++` in `Base` touches the child's field."
+ },
+ {
+  "id": "mj-07",
+  "chapter": 4,
+  "level": 3,
+  "subtopic": "checked-exceptions",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**A checked exception with the wrong catch, plus finally.** What happens?",
+  "code": "import java.io.*;\n\npublic class Main {\n    static void read() throws IOException {\n        throw new IOException(\"disk\");\n    }\n    public static void main(String[] args) {\n        try {\n            read();\n            System.out.print(\"A\");\n        } catch (RuntimeException e) {\n            System.out.print(\"B\");\n        } finally {\n            System.out.print(\"F\");\n        }\n    }\n}",
+  "options": [
+   "Prints BF",
+   "Prints F, then the program terminates with an uncaught IOException",
+   "Prints AF",
+   "Compilation error"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: a checked exception (`Exception` but not `RuntimeException`) must be caught by a matching catch or declared with `throws`; the compiler checks this, and a `finally` does NOT count. Trace: `read()` declares `throws IOException`, which is checked. `IOException` is not a subclass of `RuntimeException`, so `catch (RuntimeException e)` does not handle it, and `main` has no `throws`. javac reports \"unreported exception IOException; must be caught or declared to be thrown\". B is the trap (it's the answer you gave last time): it describes what would happen at run time, but the program never compiles, so it never runs. A finally block only runs code; it does not handle the exception."
+ },
+ {
+  "id": "mj-08",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "checked-exceptions",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**`throws`, `catch (Exception)` and `Error`.** What happens?",
+  "code": "import java.io.*;\n\npublic class Main {\n    static void a() throws IOException {\n        throw new IOException(\"io\");\n    }\n    static void b() {\n        throw new AssertionError(\"err\");\n    }\n    static void run() throws IOException {\n        try {\n            b();\n        } catch (Error e) {\n            System.out.print(\"E \");\n        }\n        a();\n        System.out.print(\"X\");\n    }\n    public static void main(String[] args) {\n        try {\n            run();\n        } catch (Exception e) {\n            System.out.print(\"IO \" + e.getMessage());\n        }\n    }\n}",
+  "options": [
+   "Prints E IO io",
+   "Compilation error: b() must declare throws AssertionError",
+   "Compilation error: main must catch IOException specifically",
+   "Prints E X IO io"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: `Error` and `RuntimeException` (and their subclasses) are UNCHECKED; every other `Exception` is checked and is satisfied by `throws` on the method or by any catch of a supertype such as `catch (Exception e)`. Trace: `b()` throws `AssertionError` (an `Error`, unchecked), so it needs no `throws`, which rules out B. It is caught → prints \"E \". `a()` throws `IOException`, and `run()` declares `throws IOException`, so it compiles; `X` is skipped. In `main`, `catch (Exception e)` covers `IOException` because it's a supertype → prints \"IO io\". The output is `E IO io`. D forgets that a throw ends `run()` immediately."
+ },
+ {
+  "id": "mj-09",
+  "chapter": 4,
+  "level": 3,
+  "subtopic": "custom-exceptions",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Custom checked vs. unchecked exceptions.** Does `Account` compile?",
+  "code": "class LowBalance extends Exception {\n    LowBalance(String m) { super(m); }\n}\nclass BadAmount extends RuntimeException {\n    BadAmount(String m) { super(m); }\n}\nclass Account {\n    void withdraw(int amt) {\n        if (amt < 0)   throw new BadAmount(\"neg\");\n        if (amt > 100) throw new LowBalance(\"low\");\n    }\n}",
+  "options": [
+   "Yes: custom exceptions never need to be declared",
+   "No: both throw statements need a throws clause",
+   "No: only the throw of LowBalance is an error",
+   "No: only the throw of BadAmount is an error"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: a custom exception is checked or unchecked depending ONLY on what it extends: `extends Exception` → checked, `extends RuntimeException` → unchecked. Trace: `BadAmount extends RuntimeException`, so it is unchecked and can be thrown without `throws`. `LowBalance extends Exception`, so it is checked; `withdraw` neither catches nor declares it, and javac gives exactly 1 error: \"unreported exception LowBalance\". The fix is `void withdraw(int amt) throws LowBalance`. B treats every custom exception as checked. A treats every custom exception as unchecked."
+ },
+ {
+  "id": "mj-10",
+  "chapter": 4,
+  "level": 3,
+  "subtopic": "try-catch-finally",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**An exception thrown inside a catch block.** What is printed?",
+  "code": "public class Main {\n    public static void main(String[] args) {\n        try {\n            try {\n                Object s = \"x\";\n                Integer i = (Integer) s;\n                System.out.print(\"1\");\n            } catch (ClassCastException e) {\n                System.out.print(\"2\");\n                throw new IllegalStateException(\"bad\");\n            } catch (IllegalStateException e) {\n                System.out.print(\"3\");\n            } catch (RuntimeException e) {\n                System.out.print(\"4\");\n            } finally {\n                System.out.print(\"5\");\n            }\n            System.out.print(\"6\");\n        } catch (Exception e) {\n            System.out.print(\"7\");\n        }\n    }\n}",
+  "options": [
+   "2356",
+   "257",
+   "2345",
+   "2457"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: at most ONE catch of a try statement runs; an exception thrown from inside a catch is not handled by its sibling catches. It leaves the try statement (after `finally` runs) and goes to an outer handler. Trace: the cast throws `ClassCastException` → \"1\" is skipped, and the first catch prints 2, then throws `IllegalStateException`. The sibling catches for `IllegalStateException` and `RuntimeException` are skipped. `finally` prints 5. The exception is still propagating, so \"6\" is skipped, and the outer `catch (Exception e)` prints 7. The output is `257`. A (2356) assumes the next catch picks up the new exception and the program then continues normally."
+ },
+ {
+  "id": "mj-11",
+  "chapter": 10,
+  "level": 3,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Stream pipeline with no terminal operation.** What is printed?",
+  "code": "List<String> names = List.of(\"ann\", \"bob\", \"cy\");\nStream<String> s = names.stream()\n    .filter(n -> { System.out.print(\"f\" + n.length()); return n.length() == 3; })\n    .map(n -> { System.out.print(\"m\"); return n.toUpperCase(); });\nSystem.out.print(\"end\");",
+  "options": [
+   "f3mf3mf2end",
+   "f3f3f2mmend",
+   "Compilation error: the stream is never consumed",
+   "end"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: intermediate operations (`filter`, `map`, `peek`, `sorted`...) are LAZY. Nothing runs until a terminal operation (`forEach`, `count`, `collect`, `reduce`...) is called. Trace: the code only BUILDS a pipeline and stores it in `s`. With no terminal operation, no element is pulled, so neither lambda ever runs, and only end is printed. A is what you'd see if `.count()` or `.forEach(...)` were added. It is a trap here, and B is wrong in any case, because streams do not run stage by stage. An unused stream is legal Java, so C is wrong."
+ },
+ {
+  "id": "mj-12",
+  "chapter": 10,
+  "level": 3,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**`peek`, `filter` and `map` with a terminal `count()`.** What is printed?",
+  "code": "long c = Stream.of(4, 7, 2)\n    .peek(x -> System.out.print(\"p\" + x))\n    .filter(x -> x > 3)\n    .map(x -> { System.out.print(\"m\" + x); return x * 2; })\n    .count();\nSystem.out.print(\" c=\" + c);",
+  "options": [
+   "p4p7p2m4m7 c=2",
+   " c=2",
+   "p4m4p7m7p2m2 c=3",
+   "p4m4p7m7p2 c=2"
+  ],
+  "answer": [
+   3
+  ],
+  "explanation": "Rule: once a terminal operation runs, each element goes through the WHOLE pipeline before the next element starts (vertical, per-element order), and an element rejected by `filter` goes no further. Trace: 4 → p4, passes the filter → m4. 7 → p7, passes → m7. 2 → p2, fails `x > 3` → stops, so there is no m2. `count()` = 2 elements. The output is `p4m4p7m7p2 c=2`. A assumes stage-by-stage (horizontal) execution. B is the no-terminal-operation answer, but `count()` IS terminal. C forgets that `filter` drops 2."
+ },
+ {
+  "id": "mj-13",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "final",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Overriding a `final` method.** What happens?",
+  "code": "class Vehicle {\n    final String id() { return \"V\"; }\n    String type() { return \"vehicle\"; }\n}\nclass Car extends Vehicle {\n    String id() { return \"C\"; }\n    String type() { return \"car\"; }\n}\n\nVehicle v = new Car();\nSystem.out.print(v.id() + v.type());",
+  "options": [
+   "Prints Vcar",
+   "Compilation error",
+   "Prints Ccar",
+   "Prints Vvehicle"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: a `final` method cannot be overridden; declaring a method with the same signature in a subclass is a COMPILE error. Trace: `Car.id()` has the same signature as `Vehicle.id()`, which is `final`. javac reports \"id() in Car cannot override id() in Vehicle; overridden method is final\". Nothing runs. A (Vcar) is the trap: it treats `final` as \"keep the parent's version at run time\". The compiler rejects the class outright. (A `private` parent method would be different: then the subclass method is simply a new method.)"
+ },
+ {
+  "id": "mj-14",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "inheritance",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Which `toString()` is inherited?** What is printed?",
+  "code": "class Animal {\n    public String toString() { return \"Animal\"; }\n}\nclass Dog extends Animal {\n    public String toString() { return \"Dog:\" + super.toString(); }\n}\nclass Puppy extends Dog { }\nclass Robot { }\n\nAnimal a = new Puppy();\nSystem.out.print(a + \" \" + new Robot().toString().startsWith(\"Robot@\"));",
+  "options": [
+   "Puppy@6d06d69c true",
+   "Animal true",
+   "Dog:Animal true",
+   "Dog:Animal false"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Rule: a class without its own `toString()` inherits the one from its NEAREST ancestor that defines it; you only get `Object`'s default `ClassName@hash` when no class in the chain overrides it. Trace: `Puppy` has no `toString()`, so the nearest one is `Dog.toString()`, which returns \"Dog:\" + `Animal.toString()` = `Dog:Animal`. `Robot` overrides nothing, so it uses `Object.toString()`, which gives \"Robot@<hex>\", and `startsWith` is true. The output is `Dog:Animal true`. A assumes `Object`'s default because `Puppy` is empty. B assumes the declared type `Animal` decides, but `toString()` is dispatched on the runtime type."
+ },
+ {
+  "id": "mj-15",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "constructors",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Constructor chaining with `this(...)` and `super(...)`.** What is printed?",
+  "code": "class Base {\n    Base()      { this(0); System.out.print(\"B \"); }\n    Base(int n) { System.out.print(\"B\" + n + \" \"); }\n}\nclass Mid extends Base {\n    Mid()         { this(\"x\"); System.out.print(\"M \"); }\n    Mid(String s) { super(5);  System.out.print(\"M\" + s + \" \"); }\n}\nclass Top extends Mid {\n    Top() { System.out.print(\"T\"); }\n}\n\nnew Top();",
+  "options": [
+   "B5 Mx M T",
+   "B0 B Mx M T",
+   "T M Mx B5",
+   "B0 B B5 Mx M T"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: a constructor's first statement is either `this(...)` (another constructor of the same class) or `super(...)`; if neither is written, the compiler inserts `super()`. The chain runs to the top, and the bodies print on the way back down. Trace: `Top()` → implicit `super()` → `Mid()` → `this(\"x\")` → `Mid(String)` → `super(5)` → `Base(int)` prints \"B5 \". Back in `Mid(String)` → \"Mx \". Back in `Mid()` → \"M \". Back in `Top()` → \"T\". `Base()` is never called, because `super(5)` picked `Base(int)`. The output is `B5 Mx M T`. B and D assume that `Base()` (no-arg) always runs."
+ },
+ {
+  "id": "mj-16",
+  "chapter": 3,
+  "level": 2,
+  "subtopic": "access-modifiers",
+  "type": "single",
+  "gotcha": false,
+  "morning": true,
+  "question": "**Access within the same package.** Which lines fail to compile?",
+  "code": "// Box and Other are in the SAME package\nclass Box {\n    private   int a = 1;\n    int           b = 2;   // package-private\n    protected int c = 3;\n    public    int d = 4;\n}\nclass Other {               // NOT a subclass of Box\n    void test(Box x) {\n        System.out.print(x.a);   // L1\n        System.out.print(x.b);   // L2\n        System.out.print(x.c);   // L3\n        System.out.print(x.d);   // L4\n    }\n}",
+  "options": [
+   "L1 and L3 only",
+   "L1 only",
+   "L1, L2 and L3",
+   "None of them"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: inside the SAME package, everything except `private` is accessible: package-private (no modifier), `protected` and `public` all work, even from a class that is not a subclass. Trace: L1 `x.a` is private, so it's visible only inside `Box` → error (\"a has private access in Box\"). L2 (default) is fine, because it's the same package. L3 (protected) is fine, because `protected` includes package access, and the subclass rule only matters for OTHER packages. L4 (public) is fine. javac reports exactly 1 error. A is the trap: it reads `protected` as \"subclasses only\" and forgets the same-package rule."
+ },
+ {
+  "id": "mj-17",
+  "chapter": 5,
+  "level": 3,
+  "subtopic": "overloading-vs-overriding",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Overloading, overriding and static hiding together.** What is printed?",
+  "code": "class Printer {\n    static String kind() { return \"P\"; }\n    String fmt() { return \"p\"; }\n}\nclass Laser extends Printer {\n    static String kind() { return \"L\"; }\n    String fmt() { return \"l\"; }\n}\nclass Shop {\n    static String use(Printer p) { return \"1\"; }\n    static String use(Laser l)   { return \"2\"; }\n}\n\nPrinter p = new Laser();\nSystem.out.print(Shop.use(p) + p.kind() + p.fmt() + Shop.use((Laser) p));",
+  "options": [
+   "1Pl2",
+   "2Ll2",
+   "1Ll2",
+   "2Pl2"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Rule: the overload is chosen at COMPILE time from the declared type; an instance method override is chosen at RUN time; static methods are HIDDEN (not overridden), so they bind to the declared type as well. Trace: `Shop.use(p)` → `p` is declared `Printer` → `use(Printer)` → 1. `p.kind()` → static, so it is bound to `Printer.kind()` → P. `p.fmt()` → instance method, runtime object is a `Laser` → l. `Shop.use((Laser) p)` → the cast makes the expression type `Laser` → `use(Laser)` → 2. The output is `1Pl2`. B picks overloads and static methods by the runtime type. C treats `static kind()` as overridden."
+ },
+ {
+  "id": "mj-18",
+  "chapter": 5,
+  "level": 3,
+  "subtopic": "overloading-vs-overriding",
+  "type": "single",
+  "gotcha": true,
+  "morning": true,
+  "question": "**Which overload, then which override?** What is printed?",
+  "code": "class Greeter {\n    String hi(Object o) { return \"GO\"; }\n    String hi(String s) { return \"GS\"; }\n}\nclass Loud extends Greeter {\n    String hi(Object o) { return \"LO\"; }\n    String hi(String s) { return \"LS\"; }\n}\n\nGreeter g = new Loud();\nObject o = \"x\";\nSystem.out.print(g.hi(o) + \" \" + g.hi((String) o));",
+  "options": [
+   "GO GS",
+   "LO LS",
+   "LS LS",
+   "GS GS"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Rule: two steps. (1) The compiler picks the overload SIGNATURE from the declared types of the arguments. (2) The JVM picks the override of that signature from the runtime type of the receiver. Trace: `g.hi(o)` → `o` is declared `Object` → signature `hi(Object)` (it doesn't matter that it holds a String) → the receiver is a `Loud` → `Loud.hi(Object)` = LO. `g.hi((String) o)` → declared type `String` → `hi(String)` → `Loud.hi(String)` = LS. The output is `LO LS`. C is the trap: it picks the overload from the runtime type of the argument. A ignores overriding on the receiver."
+ }
+]
