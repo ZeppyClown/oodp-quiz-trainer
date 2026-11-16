@@ -1,0 +1,191 @@
+[
+  {
+    "id": "s-01",
+    "chapter": 5,
+    "level": 1,
+    "subtopic": "overloading",
+    "type": "single",
+    "gotcha": false,
+    "slido": 1,
+    "question": "**Slido Q01: Which overload is selected?** What is printed?",
+    "code": "class Printer {\n    void show(int n)    { System.out.print(\"I\"); }\n    void show(double n) { System.out.print(\"D\"); }\n}\nPrinter p = new Printer();\np.show(5);\np.show(5.0);",
+    "options": [
+      "II",
+      "ID",
+      "DI",
+      "DD"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Overloading is resolved at compile time from the argument types. `5` is an `int` literal, so the exact match `show(int)` wins and prints I; `5.0` is a `double` literal, so only `show(double)` fits and prints D. DD is tempting if you think an `int` gets widened to `double`, but widening is only used when there is no exact match. II is impossible because a `double` can't narrow to `int` without a cast."
+  },
+  {
+    "id": "s-02",
+    "chapter": 5,
+    "level": 2,
+    "subtopic": "overloading",
+    "type": "single",
+    "gotcha": false,
+    "slido": 2,
+    "question": "**Slido Q02: Overload resolution uses declared types** What is printed?",
+    "code": "class Animal { }\nclass Dog extends Animal { }\nclass Checker {\n    static void check(Animal a) { System.out.print(\"A\"); }\n    static void check(Dog d) { System.out.print(\"D\"); }\n}\nAnimal pet = new Dog();\nChecker.check(pet);",
+    "options": [
+      "A",
+      "D",
+      "AD",
+      "Compilation error"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "The compiler picks the overload from the declared (static) type of the argument, and `pet` is declared as `Animal`, so `check(Animal)` is chosen and A is printed. The runtime object being a `Dog` doesn't matter: Java only does runtime dispatch on the object a method is called on (overriding), never on the arguments. D is the trap: it mixes up overloading (compile time) with overriding (run time)."
+  },
+  {
+    "id": "s-03",
+    "chapter": 5,
+    "level": 1,
+    "subtopic": "overriding",
+    "type": "single",
+    "gotcha": false,
+    "slido": 3,
+    "question": "**Slido Q03: Runtime method dispatch** What is printed?",
+    "code": "class Animal {\n    void speak() { System.out.print(\"A\"); }\n}\nclass Dog extends Animal {\n    @Override void speak() { System.out.print(\"D\"); }\n}\nAnimal pet = new Dog();\npet.speak();",
+    "options": [
+      "A",
+      "D",
+      "AD",
+      "Compilation error"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "An instance method that is overridden is chosen at run time from the actual object (dynamic binding). `pet` refers to a `Dog`, so `Dog.speak()` runs and prints D. The declared type `Animal` only decides whether the call compiles, and it does because `Animal` declares `speak()`. AD would need an explicit `super.speak()` call, which isn't there."
+  },
+  {
+    "id": "s-04",
+    "chapter": 5,
+    "level": 3,
+    "subtopic": "overloading-vs-overriding",
+    "type": "single",
+    "gotcha": true,
+    "slido": 4,
+    "question": "**Slido Q04: Both mechanisms in one example** What is printed?",
+    "code": "class Base {\n    void log(Object x) { System.out.print(\"B\"); }\n}\nclass Child extends Base {\n    @Override void log(Object x) { System.out.print(\"C\"); }\n    void log(String x) { System.out.print(\"S\"); }\n}\nBase ref = new Child();\nref.log(\"Hi\");",
+    "options": [
+      "B",
+      "C",
+      "S",
+      "Compilation error"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "This happens in two steps. At compile time the compiler looks only in `Base` (the declared type of `ref`), where the one candidate is `log(Object)`, so that signature is locked in. `log(String)` exists only in `Child`, so the compiler never sees it. At run time the locked-in `log(Object)` is dispatched to the object's override, `Child.log(Object)`, which prints C. S is the trap: it assumes the more specific overload is picked from the runtime type. B ignores overriding."
+  },
+  {
+    "id": "s-05",
+    "chapter": 3,
+    "level": 1,
+    "subtopic": "constructor-chaining",
+    "type": "single",
+    "gotcha": false,
+    "slido": 5,
+    "question": "**Slido Q05: Constructor execution order** What is printed?",
+    "code": "class Parent {\n    Parent() { System.out.print(\"P\"); }\n}\nclass Child extends Parent {\n    Child() { System.out.print(\"C\"); }\n}\nChild c = new Child();",
+    "options": [
+      "C",
+      "PC",
+      "CP",
+      "P"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Every constructor implicitly starts with `super()` unless it calls `this(...)` or `super(...)` explicitly. So `Child()` first runs `Parent()`, which prints P, and then runs its own body, which prints C. Construction always goes from the top of the hierarchy down, so the superclass part is initialised before the subclass part."
+  },
+  {
+    "id": "s-06",
+    "chapter": 3,
+    "level": 3,
+    "subtopic": "static-hiding",
+    "type": "single",
+    "gotcha": true,
+    "slido": 6,
+    "question": "**Slido Q06: Static methods do not override** What is printed?",
+    "code": "class A {\n    static void show() { System.out.print(\"A\"); }\n}\nclass B extends A {\n    static void show() { System.out.print(\"B\"); }\n}\nA x = new B();\nx.show();",
+    "options": [
+      "A",
+      "B",
+      "AB",
+      "Compilation error"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "Static methods belong to the class, not the object, so they are hidden, not overridden, and there is no dynamic dispatch. Calling `x.show()` through an instance is legal (javac only gives a warning, not an error) and is bound at compile time to the declared type `A`, so `A.show()` prints A. B is the trap: it would be right if `show()` were an instance method, as in Q03."
+  },
+  {
+    "id": "s-07",
+    "chapter": 5,
+    "level": 1,
+    "subtopic": "downcasting",
+    "type": "single",
+    "gotcha": false,
+    "slido": 7,
+    "question": "**Slido Q07: Safe downcasting** What is printed?",
+    "code": "class Animal { }\nclass Dog extends Animal { void bark() { System.out.print(\"W\"); } }\nAnimal a = new Dog();\nif (a instanceof Dog) {\n    ((Dog) a).bark();\n} else {\n    System.out.print(\"N\");\n}",
+    "options": [
+      "W",
+      "N",
+      "ClassCastException",
+      "Compilation error"
+    ],
+    "answer": [
+      0
+    ],
+    "explanation": "`a` really refers to a `Dog`, so `a instanceof Dog` is true, the downcast `(Dog) a` succeeds, and `bark()` prints W. You need the cast because `bark()` isn't declared in `Animal`: without it, `a.bark()` would not compile. A ClassCastException only happens when the object isn't actually a `Dog`, and the `instanceof` check rules that out."
+  },
+  {
+    "id": "s-08",
+    "chapter": 5,
+    "level": 2,
+    "subtopic": "overriding",
+    "type": "single",
+    "gotcha": false,
+    "slido": 8,
+    "question": "**Slido Q08: An inherited method calls an override** What is printed?",
+    "code": "class A {\n    void doWork() { System.out.print(\"A\"); }\n    void run() { doWork(); System.out.print(\"!\"); }\n}\nclass B extends A {\n    @Override void doWork() { System.out.print(\"B\"); }\n}\nA x = new B();\nx.run();",
+    "options": [
+      "A!",
+      "B!",
+      "AB!",
+      "Compilation error"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "`run()` is inherited from `A`, but the call `doWork()` inside it means `this.doWork()`, and `this` is the `B` object. Dynamic dispatch therefore runs `B.doWork()` (B), and then `run()` prints !. A! is the trap: it assumes a call written inside class A stays in A. That is only true for private, static or final methods, or for fields."
+  },
+  {
+    "id": "s-09",
+    "chapter": 3,
+    "level": 3,
+    "subtopic": "field-hiding",
+    "type": "single",
+    "gotcha": true,
+    "slido": 9,
+    "question": "**Slido Q09: Fields vs. overridden methods** What is printed?",
+    "code": "class Parent {\n    int points = 10;\n    int getPoints() { return points; }\n}\nclass Child extends Parent {\n    int points = 20;\n    @Override int getPoints() {\n        return super.points + points;\n    }\n}\nParent p = new Child();\nSystem.out.print(p.points + \":\" + p.getPoints());",
+    "options": [
+      "10:10",
+      "10:30",
+      "20:30",
+      "20:20"
+    ],
+    "answer": [
+      1
+    ],
+    "explanation": "Fields are not polymorphic. `p.points` is resolved from the declared type `Parent`, so it reads `Parent.points` = 10. Methods are polymorphic, so `p.getPoints()` runs `Child.getPoints()`, which returns `super.points` (10) + `this.points` (20) = 30. The `Child` object holds both `points` fields. 20:30 is the trap: it treats field access as if it were dynamically dispatched like method calls."
+  }
+]

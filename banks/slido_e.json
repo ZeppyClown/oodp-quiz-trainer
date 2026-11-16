@@ -1,0 +1,212 @@
+[
+ {
+  "id": "s-33",
+  "chapter": 10,
+  "level": 3,
+  "subtopic": "collections",
+  "type": "single",
+  "gotcha": true,
+  "slido": 33,
+  "question": "**Slido Q33: Which element is removed?** What is printed?",
+  "code": "List<Integer> scores = new ArrayList<>();\nscores.add(10);\nscores.add(20);\nscores.add(30);\nscores.remove(1);\nSystem.out.println(scores);",
+  "options": [
+   "[10, 20]",
+   "[10, 30]",
+   "[20, 30]",
+   "Compilation error"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "List has two methods called remove: remove(int index) and remove(Object o). The literal 1 is an int, and remove(int) matches it exactly with no boxing, so overload resolution chooses it and removes index 1 (the value 20), leaving [10, 30]. If you picked C, you treated 1 as the value 1. To remove by value you would write scores.remove(Integer.valueOf(20)). This is the overloading rule from Ch5: an exact primitive match wins over boxing."
+ },
+ {
+  "id": "s-34",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "generics",
+  "type": "single",
+  "gotcha": false,
+  "slido": 34,
+  "question": "**Slido Q34: Subtype vs. generic type** Which statement is correct?",
+  "code": "class Animal { }\nclass Dog extends Animal { }\n\nList<Dog> dogs = new ArrayList<>();\nList<Animal> animals = dogs;",
+  "options": [
+   "This compiles because Dog extends Animal.",
+   "It fails at runtime with ClassCastException.",
+   "It does not compile: List<Dog> is not List<Animal>.",
+   "It compiles only when dogs is empty."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Generics are invariant: Dog being a subtype of Animal does NOT make List<Dog> a subtype of List<Animal>. javac reports \"incompatible types: List<Dog> cannot be converted to List<Animal>\". If this were allowed, you could call animals.add(new Cat()) and put a Cat into a list of Dogs. The check happens at compile time, so B (a runtime error) is wrong. Whether the list is empty does not matter either. To accept it you would write List<? extends Animal>."
+ },
+ {
+  "id": "s-35",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "iterator",
+  "type": "single",
+  "gotcha": false,
+  "slido": 35,
+  "question": "**Slido Q35: Remove while iterating safely** What is printed?",
+  "code": "List<Integer> values = new ArrayList<>(\n    Arrays.asList(1, 2, 3, 4));\nIterator<Integer> it = values.iterator();\nwhile (it.hasNext()) {\n    int v = it.next();\n    if (v % 2 != 0) it.remove();\n}\nSystem.out.println(values);",
+  "options": [
+   "[1, 3]",
+   "[2, 4]",
+   "[1, 2, 3, 4]",
+   "ConcurrentModificationException"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Iterator.remove() is the safe way to remove items while you iterate. It removes the element that next() just returned and keeps the iterator's modification count in step, so no ConcurrentModificationException is thrown. The odd values (1 and 3) are removed, leaving [2, 4]. You only get the CME (option D) if you call values.remove(...) directly inside a for-each loop. A is the list of removed items, not the list that remains."
+ },
+ {
+  "id": "s-36",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "lambda",
+  "type": "single",
+  "gotcha": false,
+  "slido": 36,
+  "question": "**Slido Q36: Two ways to implement one method** What is printed?",
+  "code": "interface Task { void run(); }\nTask first = new Task() {\n    public void run() { System.out.print(\"A\"); }\n};\nTask second = () -> System.out.print(\"L\");\nfirst.run();\nsecond.run();",
+  "options": [
+   "A",
+   "L",
+   "AL",
+   "Compilation error"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Task has exactly one abstract method, so it is a functional interface. You can implement it with an anonymous class or with a lambda, and both are valid. first.run() prints A, then second.run() prints L, giving AL. The anonymous class's run() must be public because interface methods are implicitly public, and here it is. So there is no compilation error."
+ },
+ {
+  "id": "s-37",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": false,
+  "slido": 37,
+  "question": "**Slido Q37: Transform selected values** What is printed?",
+  "code": "List<Integer> data = Arrays.asList(1, 2, 3, 4);\nList<Integer> out = data.stream()\n    .filter(x -> x % 2 == 0)\n    .map(x -> x * 3)\n    .collect(Collectors.toList());\nSystem.out.println(out);",
+  "options": [
+   "[2, 4]",
+   "[3, 6, 9, 12]",
+   "[6, 12]",
+   "[1, 3]"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The pipeline runs in order. filter keeps the even values [2, 4], then map multiplies each by 3 to give [6, 12], and collect gathers them into a List. B is what you get if you skip the filter and map every element. A is the list after the filter but before the map."
+ },
+ {
+  "id": "s-38",
+  "chapter": 10,
+  "level": 3,
+  "subtopic": "streams",
+  "type": "single",
+  "gotcha": true,
+  "slido": 38,
+  "question": "**Slido Q38: Intermediate operations are lazy** What is printed before any terminal operation?",
+  "code": "List<Integer> nums = Arrays.asList(1, 2, 3);\nStream<Integer> s = nums.stream()\n    .filter(x -> {\n        System.out.print(x);\n        return x > 1;\n    });\nSystem.out.print(\"X\");",
+  "options": [
+   "123X",
+   "X123",
+   "X",
+   "Compilation error"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "filter is an intermediate operation, and intermediate operations are lazy. They only describe the pipeline, and the lambda runs only when a terminal operation (forEach, collect, count, ...) pulls elements through. There is no terminal operation here, so the lambda never runs, and only X is printed. A assumes the stream runs eagerly. B assumes it runs later anyway, but nothing ever triggers it. The code compiles because a block lambda returning boolean is a valid Predicate."
+ },
+ {
+  "id": "s-39",
+  "chapter": 10,
+  "level": 2,
+  "subtopic": "interface static/default",
+  "type": "single",
+  "gotcha": false,
+  "slido": 39,
+  "question": "**Slido Q39: Who calls a static interface method?** What is printed?",
+  "code": "interface Greeter {\n    default void hello() { System.out.print(\"H\"); }\n    static void info() { System.out.print(\"I\"); }\n}\nclass Friendly implements Greeter { }\nGreeter g = new Friendly();\nGreeter.info();\ng.hello();",
+  "options": [
+   "HI",
+   "IH",
+   "H",
+   "Compilation error"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "A static interface method must be called through the interface name, and Greeter.info() does exactly that, so it prints I first. A default method is inherited by implementing classes, so g.hello() prints H, giving IH. A trap to remember: static interface methods are NOT inherited, so g.info() or Friendly.info() WOULD be a compilation error. Here the call is legal. A gets the order backwards, since statements run top to bottom."
+ },
+ {
+  "id": "s-40",
+  "chapter": 10,
+  "level": 1,
+  "subtopic": "switch expression",
+  "type": "single",
+  "gotcha": false,
+  "slido": 40,
+  "question": "**Slido Q40: Switch selects a value** What is printed in Java 17+?",
+  "code": "int level = 2;\nString label = switch (level) {\n    case 1 -> \"LOW\";\n    case 2, 3 -> \"MID\";\n    default -> \"HIGH\";\n};\nSystem.out.println(label);",
+  "options": [
+   "LOW",
+   "MID",
+   "HIGH",
+   "Compilation error because break is missing"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Arrow-form (->) case labels never fall through, so they need no break. A case can list several labels (case 2, 3). As an expression, the switch produces a value, and it must be exhaustive, which the default ensures. level is 2, so the result is \"MID\". D applies to the old colon-style switch statement, where a missing break causes fall-through, not a compilation error."
+ },
+ {
+  "id": "s-41",
+  "chapter": 4,
+  "level": 2,
+  "subtopic": "finally",
+  "type": "single",
+  "gotcha": false,
+  "slido": 41,
+  "question": "**Slido Q41: Catch, finally, and return** What is printed when the final statement executes?",
+  "code": "class Demo {\n    static int test() {\n        try {\n            System.out.print(\"T\");\n            int z = 0;\n            return 8 / z;\n        } catch (ArithmeticException e) {\n            System.out.print(\"C\");\n            return 4;\n        } finally { System.out.print(\"F\"); }\n    }\n}\nSystem.out.print(Demo.test());",
+  "options": [
+   "TCF4",
+   "TC4F",
+   "TF4",
+   "Compilation error"
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "8 / z throws ArithmeticException before the return can complete, so the catch block runs and prints C. Its return 4 is evaluated, but finally always runs before the method actually returns, so F is printed. Only after that does the caller print the returned 4: TCF4. B is the common trap: test() has to finish (including finally) before print(...) can print its result."
+ },
+ {
+  "id": "s-42",
+  "chapter": 4,
+  "level": 3,
+  "subtopic": "checked exceptions",
+  "type": "single",
+  "gotcha": true,
+  "slido": 42,
+  "question": "**Slido Q42: Which exception must be handled?** What happens when this class is compiled?",
+  "code": "import java.io.IOException;\nclass Demo {\n    static void read() throws IOException {\n        throw new IOException();\n    }\n    static void run() {\n        try { read(); }\n        catch (RuntimeException e) { System.out.print(\"R\"); }\n        finally { System.out.print(\"F\"); }\n    }\n}",
+  "options": [
+   "Compiles; run() prints F",
+   "Compiles; run() prints R",
+   "Compilation error: IOException is not handled",
+   "Compiles; run() prints nothing"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "IOException is a checked exception, and it is not a subclass of RuntimeException. So catch (RuntimeException e) does not handle it, and run() does not declare throws IOException. javac reports \"unreported exception IOException; must be caught or declared to be thrown\". A finally block does not count as handling an exception. Options A, B and D all assume the code compiles, so all three are wrong. The fix is to catch IOException (or Exception) or add throws IOException to run()."
+ }
+]

@@ -1,0 +1,191 @@
+[
+ {
+  "id": "s-24",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "SRP",
+  "type": "single",
+  "gotcha": false,
+  "slido": 24,
+  "question": "**Slido Q24: Too many reasons to change (SRP).** Which redesign best addresses the main problem?",
+  "code": "class OrderManager {\n    void calculateTotal(Order o) { /* pricing */ }\n    void saveToDatabase(Order o) { /* SQL */ }\n    void printReceipt(Order o) { /* formatting */ }\n}",
+  "options": [
+   "Make every method static.",
+   "Separate pricing, persistence and receipt duties.",
+   "Add more overloaded printReceipt methods.",
+   "Inherit OrderManager from Order."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "This is the answer the deck gives (B). Pricing rules, the database/SQL and the receipt format each change for a different reason, so one class has three responsibilities. Splitting them into cohesive collaborators (e.g. PriceCalculator, OrderRepository, ReceiptPrinter) is the Single Responsibility Principle: one reason to change per class. Making the methods static or adding overloads leaves all three duties in one class, and OrderManager is not a kind of Order, so inheriting from it is wrong."
+ },
+ {
+  "id": "s-25",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "OCP",
+  "type": "single",
+  "gotcha": false,
+  "slido": 25,
+  "question": "**Slido Q25: Adding a new pricing rule (OCP).** Which change most directly supports OCP when new customer types are added?",
+  "code": "class Checkout {\n    double price(String type, double p) {\n        if (type.equals(\"REGULAR\")) return p;\n        if (type.equals(\"VIP\")) return p * 0.8;\n        return p;\n    }\n}",
+  "options": [
+   "Add another if branch for each type.",
+   "Define a PricingPolicy interface with implementations.",
+   "Make the type parameter a char.",
+   "Move the whole method into main()."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Open-Closed: open for extension, closed for modification. With a PricingPolicy interface (RegularPricing, VipPricing, ...), you add a new customer type by writing a new class, and Checkout calls policy.price(p) through dynamic binding without being edited. A is the trap: another if branch works, but it means editing Checkout every time, which is exactly what OCP forbids. C and D change nothing structural."
+ },
+ {
+  "id": "s-26",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "LSP",
+  "type": "single",
+  "gotcha": false,
+  "slido": 26,
+  "question": "**Slido Q26: Can a subtype replace its base type? (LSP)** Which design principle is most directly at risk?",
+  "code": "class Bird {\n    void fly() { System.out.println(\"Flying\"); }\n}\nclass Penguin extends Bird {\n    @Override void fly() {\n        throw new UnsupportedOperationException();\n    }\n}",
+  "options": [
+   "SRP",
+   "OCP",
+   "LSP",
+   "DIP"
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "Liskov Substitution: any code written against Bird must still work when given a subclass object. A method `letFly(Bird b) { b.fly(); }` works for a Bird but throws UnsupportedOperationException for a Penguin (checked with JDK 17), so Penguin cannot stand in for Bird. An override that throws 'not supported' or does nothing is the classic LSP smell. It compiles fine; the break is in behaviour, not syntax. The usual fix is to move fly() out into a separate abstraction (e.g. a FlyingBird class or Flyable interface)."
+ },
+ {
+  "id": "s-27",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "ISP",
+  "type": "single",
+  "gotcha": false,
+  "slido": 27,
+  "question": "**Slido Q27: An interface that forces unused methods (ISP).** What is the best interface-level improvement?",
+  "code": "interface Device {\n    void print();\n    void scan();\n    void fax();\n}\nclass BasicPrinter implements Device {\n    public void print() { /* prints */ }\n    public void scan() { throw new UnsupportedOperationException(); }\n    public void fax()  { throw new UnsupportedOperationException(); }\n}",
+  "options": [
+   "Split capabilities into Print, Scan and Fax interfaces.",
+   "Move all methods into Object.",
+   "Make Device a final class.",
+   "Add an empty constructor to BasicPrinter."
+  ],
+  "answer": [
+   0
+  ],
+  "explanation": "Interface Segregation: clients should not be forced to depend on methods they don't use. Device is a 'fat' interface, so BasicPrinter has to stub out scan() and fax(). With small Printer, Scanner and Fax interfaces, BasicPrinter implements only Printer, and a multifunction machine implements all three (a class can implement many interfaces). C is meaningless: an interface cannot be final, and Device is not a class."
+ },
+ {
+  "id": "s-28",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "DIP",
+  "type": "single",
+  "gotcha": false,
+  "slido": 28,
+  "question": "**Slido Q28: A high-level class creates a concrete notifier (DIP).** What is the best DIP-oriented redesign?",
+  "code": "class EmailNotifier {\n    void send(String message) { /* send email */ }\n}\nclass OrderService {\n    private EmailNotifier notifier = new EmailNotifier();\n    void submit() {\n        // ... business work ...\n        notifier.send(\"Done\");\n    }\n}",
+  "options": [
+   "Change the field to public.",
+   "Depend on Notifier and inject an implementation.",
+   "Inherit OrderService from EmailNotifier.",
+   "Create EmailNotifier again inside submit()."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "High-level OrderService is hard-wired to the low-level concrete EmailNotifier through `new`. DIP says both should depend on an abstraction: declare `interface Notifier { void send(String m); }`, make the field a Notifier, and pass the implementation in through the constructor (dependency injection). Then SMS, push or a test fake can be swapped in without editing OrderService. D still does `new EmailNotifier()`, and C wrongly uses inheritance for a 'uses-a' relationship. Note: the course slides call the D in SOLID the \"Dependency Injection Principle\"; it is the Dependency Inversion Principle elsewhere. Same idea either way: depend on an abstraction and have the concrete object passed in."
+ },
+ {
+  "id": "s-29",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "dependency injection",
+  "type": "single",
+  "gotcha": false,
+  "slido": 29,
+  "question": "**Slido Q29: Choose an implementation at construction.** What is printed?",
+  "code": "interface Notifier { void send(); }\nclass Email implements Notifier {\n    public void send() { System.out.print(\"E\"); }\n}\nclass SMS implements Notifier {\n    public void send() { System.out.print(\"S\"); }\n}\nclass Service {\n    private Notifier n;\n    Service(Notifier n) { this.n = n; }\n    void run() { n.send(); }\n}\nnew Service(new SMS()).run();",
+  "options": [
+   "E",
+   "S",
+   "ES",
+   "Compilation error"
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Prints S (run with JDK 17). The SMS object is injected through the constructor, so field n refers to an SMS. n.send() is dynamically bound to the actual object's send(), not to the declared type Notifier. Email is declared but never created, so neither E nor ES can appear. This is constructor injection, the mechanism behind the D in SOLID (the course calls it the Dependency Injection Principle)."
+ },
+ {
+  "id": "s-30",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "OCP",
+  "type": "single",
+  "gotcha": false,
+  "slido": 30,
+  "question": "**Slido Q30: Extend with another implementation (OCP / polymorphism).** What is printed, and why is this design extensible?",
+  "code": "interface Payment { void pay(); }\nclass Card implements Payment {\n    public void pay() { System.out.print(\"C\"); }\n}\nclass Cash implements Payment {\n    public void pay() { System.out.print(\"H\"); }\n}\nclass Checkout {\n    void complete(Payment p) { p.pay(); }\n}\nnew Checkout().complete(new Cash());",
+  "options": [
+   "C; the compiler always picks Card.",
+   "H; Checkout depends on Payment, not Cash.",
+   "H; Checkout must be rewritten for each payment type.",
+   "Compilation error: an interface cannot be a parameter."
+  ],
+  "answer": [
+   1
+  ],
+  "explanation": "Prints H (run with JDK 17): p refers to a Cash object, and p.pay() binds dynamically to Cash.pay(). Checkout only knows the Payment interface, so you add a new payment type (e.g. a Wallet class) without touching Checkout. That is OCP. C has the right output but the wrong reason: Checkout never needs rewriting. Interfaces are valid parameter types, so D is false."
+ },
+ {
+  "id": "s-31",
+  "chapter": 9,
+  "level": 1,
+  "subtopic": "DIP",
+  "type": "single",
+  "gotcha": false,
+  "slido": 31,
+  "question": "**Slido Q31: Depend on an abstraction (DIP / UML relationships).** Which principle is most directly supported by the illustrated relationships?",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 326\" font-family=\"Arial, sans-serif\" font-size=\"12\">\n<defs>\n<marker id=\"dOpen\" viewBox=\"0 0 12 12\" refX=\"11\" refY=\"6\" markerWidth=\"12\" markerHeight=\"12\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L11,6 L1,11\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/></marker>\n<marker id=\"dTri\" viewBox=\"0 0 16 16\" refX=\"15\" refY=\"8\" markerWidth=\"16\" markerHeight=\"16\" markerUnits=\"userSpaceOnUse\" orient=\"auto\"><path d=\"M1,1 L15,8 L1,15 z\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\"/></marker>\n</defs>\n<rect x=\"0\" y=\"0\" width=\"340\" height=\"326\" fill=\"#fff\"/>\n<g fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\">\n<rect x=\"70\" y=\"10\" width=\"200\" height=\"64\"/>\n<line x1=\"70\" y1=\"38\" x2=\"270\" y2=\"38\"/><line x1=\"70\" y1=\"50\" x2=\"270\" y2=\"50\"/>\n<rect x=\"70\" y=\"124\" width=\"200\" height=\"78\"/>\n<line x1=\"70\" y1=\"166\" x2=\"270\" y2=\"166\"/><line x1=\"70\" y1=\"178\" x2=\"270\" y2=\"178\"/>\n<rect x=\"70\" y=\"252\" width=\"200\" height=\"64\"/>\n<line x1=\"70\" y1=\"280\" x2=\"270\" y2=\"280\"/><line x1=\"70\" y1=\"292\" x2=\"270\" y2=\"292\"/>\n</g>\n<g fill=\"#222\">\n<text x=\"170\" y=\"29\" text-anchor=\"middle\" font-weight=\"bold\" font-size=\"14\">OrderService</text>\n<text x=\"78\" y=\"67\">+submit(o): void</text>\n<text x=\"170\" y=\"141\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1f6feb\">«interface»</text>\n<text x=\"170\" y=\"158\" text-anchor=\"middle\" font-weight=\"bold\" font-size=\"14\">OrderRepository</text>\n<text x=\"78\" y=\"195\">+save(o): void</text>\n<text x=\"170\" y=\"271\" text-anchor=\"middle\" font-weight=\"bold\" font-size=\"14\">SqlRepository</text>\n<text x=\"78\" y=\"309\">+save(o): void</text>\n</g>\n<line x1=\"170\" y1=\"74\" x2=\"170\" y2=\"123\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#dOpen)\"/>\n<line x1=\"170\" y1=\"252\" x2=\"170\" y2=\"203\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"6,4\" marker-end=\"url(#dTri)\"/>\n<text x=\"180\" y=\"103\" fill=\"#555\" font-size=\"11\">depends on</text>\n<text x=\"180\" y=\"231\" fill=\"#555\" font-size=\"11\">implements</text>\n</svg>",
+  "options": [
+   "SRP: one class has exactly one method.",
+   "LSP: inheritance is forbidden.",
+   "DIP: service depends on a repository interface.",
+   "ISP: every class implements three interfaces."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "The dashed arrow with an open head from OrderService is a dependency on the «interface» OrderRepository. The dashed arrow with a hollow triangle from SqlRepository is realization (implements). So the high-level service depends on an abstraction and the low-level SQL class implements it, which is DIP: you could swap in another repository without changing OrderService. The other options misstate their principles: SRP means one reason to change, not one method; LSP doesn't forbid inheritance; nothing here implements three interfaces. Note: the course slides call the D in SOLID the \"Dependency Injection Principle\"; it is the Dependency Inversion Principle elsewhere. Same idea either way: depend on an abstraction and have the concrete object passed in."
+ },
+ {
+  "id": "s-32",
+  "chapter": 9,
+  "level": 2,
+  "subtopic": "cohesion & coupling",
+  "type": "single",
+  "gotcha": false,
+  "slido": 32,
+  "question": "**Slido Q32: A focused service and a stable collaborator (high cohesion / low coupling).** Which refactoring best improves this design?",
+  "code": "class OrderService {\n    void complete(Order order) {\n        order.markPaid();\n        String message =\n            \"Paid: \" + order.getId();\n        EmailClient email = new EmailClient();\n        email.send(message);\n    }\n}\n// Order and EmailClient are provided.",
+  "options": [
+   "Make complete() static.",
+   "Move markPaid() into EmailClient.",
+   "Inject a Notifier and delegate sending.",
+   "Make OrderService extend EmailClient."
+  ],
+  "answer": [
+   2
+  ],
+  "explanation": "OrderService is tightly coupled to the concrete EmailClient, which it creates itself with `new`. If OrderService receives a Notifier abstraction through its constructor and calls notifier.send(message), it depends only on a stable interface (low coupling) and stays focused on completing the order (high cohesion). This is the same DIP/injection fix as Q28. B is the trap: putting order-payment logic into an email class lowers cohesion. D uses inheritance where OrderService merely uses EmailClient, which couples the two even more tightly."
+ }
+]

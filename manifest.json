@@ -1,1 +1,35 @@
-{"updated": "15 Nov 19:08", "banks": ["ch01_02.json", "ch03_04.json", "ch05_10.json", "ch06_07.json", "ch08_09.json", "tgt_java.json", "tgt_uml.json", "tgt2.json", "f01_02.json", "f03_05.json", "f06.json", "f07_08.json", "f09_10.json"], "lessons": ["ch1.json", "ch2.json", "ch3.json", "ch4.json", "ch5.json", "ch6.json", "ch7.json", "ch8.json", "ch9.json", "ch10.json"]}
+{
+ "updated": "2026-11-16 15:40",
+ "banks": [
+  "ch01_02.json",
+  "ch03_04.json",
+  "ch05_10.json",
+  "ch06_07.json",
+  "ch08_09.json",
+  "tgt_java.json",
+  "tgt_uml.json",
+  "tgt2.json",
+  "f01_02.json",
+  "f03_05.json",
+  "f06.json",
+  "f07_08.json",
+  "f09_10.json",
+  "slido_a.json",
+  "slido_b.json",
+  "slido_c.json",
+  "slido_d.json",
+  "slido_e.json"
+ ],
+ "lessons": [
+  "ch1.json",
+  "ch2.json",
+  "ch3.json",
+  "ch4.json",
+  "ch5.json",
+  "ch6.json",
+  "ch7.json",
+  "ch8.json",
+  "ch9.json",
+  "ch10.json"
+ ]
+}
